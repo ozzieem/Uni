@@ -2,7 +2,7 @@
 
 #include "Multimedia.h"
 
-class Movie
+class Movie : public Multimedia
 {
 
 private:
@@ -17,7 +17,6 @@ public:
 	//void setName(string n) { this->name = n; }
 	//string getName() { return this->name; }
 
-	~Multimedia() { cout << "Multimedia destructor"; }
 };
 
 //Methods
@@ -28,4 +27,8 @@ void Movie::add_item()
 
 	cout << "Enter producer: ";
 	cin >> this->producer;
+}
+
+void Movie::display_item()
+{
 }
