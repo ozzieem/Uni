@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Klassen Multimedia", "Klass
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TicTacToe", "TicTacToe\TicTacToe.vcxproj", "{31CD0B7D-5B6E-42BB-A06C-31FD69F8BBD3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Byråkraten", "Byråkraten\Byråkraten.vcxproj", "{3696B1EF-E182-4508-A393-03A5E992703F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{31CD0B7D-5B6E-42BB-A06C-31FD69F8BBD3}.Release|x64.Build.0 = Release|x64
 		{31CD0B7D-5B6E-42BB-A06C-31FD69F8BBD3}.Release|x86.ActiveCfg = Release|Win32
 		{31CD0B7D-5B6E-42BB-A06C-31FD69F8BBD3}.Release|x86.Build.0 = Release|Win32
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Debug|x64.ActiveCfg = Debug|x64
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Debug|x64.Build.0 = Debug|x64
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Debug|x86.ActiveCfg = Debug|Win32
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Debug|x86.Build.0 = Debug|Win32
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Release|x64.ActiveCfg = Release|x64
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Release|x64.Build.0 = Release|x64
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Release|x86.ActiveCfg = Release|Win32
+		{3696B1EF-E182-4508-A393-03A5E992703F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

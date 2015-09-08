@@ -4,7 +4,7 @@
 
 void Dice::throw_dice()
 {
-	this->value = rand() % 9 + 1;
+	this->value = rand() % 6 + 1;
 }
 
 void Dice::read()
@@ -29,7 +29,7 @@ void Dice::display_dice()
 		break;
 
 	case 2:
-		SetConsoleTextAttribute(h, FOREGROUND_BLUE);
+		SetConsoleTextAttribute(h, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 
 		cout << "!-------!\n"
 				"! x     !\n"
