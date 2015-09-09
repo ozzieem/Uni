@@ -63,6 +63,12 @@ Byråkraten::Byråkraten()
 	};
 }
 
+//Byråkraten::~Byråkraten()
+//{
+//	cout << "Class deconstructed." << endl;
+//}
+
+
 //DEBUG
 void Byråkraten::test_print()
 {

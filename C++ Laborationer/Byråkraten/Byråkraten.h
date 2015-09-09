@@ -20,6 +20,8 @@ private:
 public:
 	Byråkraten(vector<vector<string>>);
 	Byråkraten();
+	//~Byråkraten();
+
 
 	void random_word();
 	void print_sentence();
