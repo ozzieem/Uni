@@ -18,7 +18,7 @@ private:
 	vector<string> new_sentence;
 
 public:
-	Byråkraten(vector<vector<string>> vec);
+	Byråkraten(vector<vector<string>>);
 	Byråkraten();
 
 	void random_word();

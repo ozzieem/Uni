@@ -15,10 +15,13 @@ void Byråkraten::random_word()
 }
 
 void Byråkraten::print_sentence()
-{
+{	
+	cout << endl;
+
 	for (int i = 0; i < this->new_sentence.size(); i++)
 		cout << this->new_sentence[i] << " ";
-	cout << "\b.\n";
+
+	cout << "\b.\n"; //Backspace and dot
 }
 
 //Constructor
