@@ -6,8 +6,11 @@ DungeonCrawl::DungeonCrawl()
 {
 	srand(unsigned int(time(NULL)));
 
+	this->active = true;
+	this->mainloop = true;
+
 	this->player.x = 2;
-	this->player.y = 3;
+	this->player.y = 2;
 	this->goal.x = 8;
 	this->goal.y = 7;
 }
@@ -57,7 +60,7 @@ void DungeonCrawl::createTraps()
 
 void DungeonCrawl::placeTraps()
 {
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		createTraps();
 		this->board[this->trap.y][this->trap.x] = 'T';
@@ -90,16 +93,40 @@ void DungeonCrawl::checkPosition()
 {
 	Console::gotoxy(0, 12);
 
-	if (this->board[this->player.y][this->player.x] == \
-		this->board[this->goal.y][this->goal.x])
+	if (this->board[this->player.y][this->player.x] == this->board[this->goal.y][this->goal.x])
 	{
-		cout << "You did it!";
-		cin.get();
+		playerWon(true);
 	}
-	else if (this->board[this->player.y][this->player.x] == \
-		this->board[this->trap.y][this->trap.x])
+	else if (this->board[this->player.y][this->player.x] == this->board[this->trap.y][this->trap.x])
 	{
-		cout << "You fell into a trap!";
-		cin.get();
+		playerWon(false);
+	}
+}
+
+void DungeonCrawl::playerWon(bool state)
+{
+	if (state)
+	{
+		cout << "You did it!" << endl;
+	}
+	else
+	{
+		cout << "You fell into a trap!" << endl;
+	}
+
+	cout << "Restart game? (y/n)" << endl;
+	char r;
+	switch (r = _getch())
+	{
+	case 'y':
+		active = false;
+		mainloop = true;
+		break;
+	case 'n':
+		active = false;
+		mainloop = false;
+		break;
+	default:	//Can add some sort of wrong-input checker
+		break; 
 	}
 }

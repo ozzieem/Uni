@@ -2,22 +2,29 @@
 
 int main()
 {
-	DungeonCrawl game;
-	game.createMap();
-	game.placeTraps();
-	game.placeGoal();
+	bool mainloop = true;
 
-	while (true)
+	while (mainloop)
 	{
-		Console::clrscr();
-	
-		game.placePlayer();	
-		game.drawMap();
-		game.playerMove();
-		game.checkPosition();
-		
+		DungeonCrawl game;
+		game.createMap();
+		game.placeTraps();
+		game.placeGoal();
+
+		while (game.active)
+		{
+			Console::clrscr();
+
+			game.placePlayer();
+			game.drawMap();
+			game.playerMove();
+			game.checkPosition();
+		}
+
+		if (!game.mainloop)
+			mainloop = false;
 	}
 
-	cout << "test" << endl;
+	cout << "Ending..." << endl;
 	cin.get();
 }

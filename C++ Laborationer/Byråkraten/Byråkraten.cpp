@@ -72,7 +72,7 @@ void Byråkraten::test_print()
 			cout << this->words[i][j] << endl;
 	}
 	
-	int size_of_vec = this->words.size();
+	int size_of_vec = int(this->words.size());
 	cout << "Vector size: " << size_of_vec;
 }
 

@@ -15,6 +15,7 @@ class DungeonCrawl
 private: 
 
 	string board[10][10];
+	
 
 	struct Position
 	{
@@ -26,9 +27,13 @@ private:
 
 public:
 	DungeonCrawl();
-	~DungeonCrawl() { cout << "Deconstruct"; }
+	~DungeonCrawl() { cout << "Deconstructing class\n"; }
+
+	bool active;
+	bool mainloop;
 
 	void checkPosition();
+	void playerWon(bool);
 	void playerMove();
 	void drawMap();
 	void createTraps();
