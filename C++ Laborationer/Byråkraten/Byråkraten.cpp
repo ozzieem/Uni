@@ -63,8 +63,6 @@ Byråkraten::Byråkraten()
 	};
 }
 
-Byråkraten::~Byråkraten() {}
-
 //DEBUG
 void Byråkraten::test_print()
 {
