@@ -4,7 +4,7 @@
 
 void Byråkraten::random_word()
 {
-	for (int i = 0; i < this->words.size(); i++)
+	for (int i = 0; i < int(this->words.size()); i++)
 	{
 		for (int j = 0; j < 1; j++)
 		{
@@ -18,7 +18,7 @@ void Byråkraten::print_sentence()
 {	
 	cout << endl;
 
-	for (int i = 0; i < this->new_sentence.size(); i++)
+	for (int i = 0; i < int(this->new_sentence.size()); i++)
 		cout << this->new_sentence[i] << " ";
 
 	cout << "\b.\n"; //Backspace and dot
@@ -27,14 +27,14 @@ void Byråkraten::print_sentence()
 //Constructor
 Byråkraten::Byråkraten(vector<vector<string>> vec)
 {
-	srand(time(NULL));
+	srand(unsigned int(time(NULL)));
 	this->words = vec;
 }
 
 //Constructor
 Byråkraten::Byråkraten()
 {
-	srand(time(NULL));
+	srand(unsigned int(time(NULL)));
 	this->words =
 	{
 		{ "När det gäller", "Beträffande", "Mot bakgrund av",
@@ -63,12 +63,14 @@ Byråkraten::Byråkraten()
 	};
 }
 
+Byråkraten::~Byråkraten() {}
+
 //DEBUG
 void Byråkraten::test_print()
 {
-	for (int i = 0; i < this->words.size(); i++)
+	for (unsigned int i = 0; i < this->words.size(); i++) //Unsigned int
 	{
-		for (int j = 0; j < this->words[i].size(); j++)
+		for (int j = 0; j < int(this->words[i].size()); j++) //Eller int()?
 			cout << this->words[i][j] << endl;
 	}
 	

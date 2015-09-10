@@ -3,6 +3,7 @@
 #include <time.h>
 #include <cstdlib>
 #include <iostream>
+#include <Windows.h>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ private:
 public:
 	Dice()
 	{
-		srand(time(NULL));
+		srand(unsigned int(time(NULL)));
 		value = 0;
 	}
 

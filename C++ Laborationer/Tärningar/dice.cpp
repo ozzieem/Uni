@@ -1,6 +1,5 @@
-#include "dice.h";
-#include <Windows.h>
 
+#include "dice.h"
 
 void Dice::throw_dice()
 {
