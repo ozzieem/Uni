@@ -26,5 +26,6 @@ int main()
 	}
 
 	cout << "Ending..." << endl;
-	cin.get();
+	
+	cin.get();	 //DEBUG
 }

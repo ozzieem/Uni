@@ -33,12 +33,16 @@ public:
 	bool mainloop;
 
 	void checkPosition();
+	void drawMap();
+
 	void playerWon(bool);
 	void playerMove();
-	void drawMap();
+
 	void createTraps();
+	void createMap();
+
 	void placeTraps();
 	void placePlayer();
 	void placeGoal();
-	void createMap();
+	
 };
