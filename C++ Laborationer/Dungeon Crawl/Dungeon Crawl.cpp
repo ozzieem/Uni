@@ -119,12 +119,12 @@ void DungeonCrawl::playerWon(bool state)
 	switch (r = _getch())
 	{
 	case 'y':
-		active = false;
-		mainloop = true;
+		this->active = false;
+		this->mainloop = true;
 		break;
 	case 'n':
-		active = false;
-		mainloop = false;
+		this->active = false;
+		this->mainloop = false;
 		break;
 	default:	//Can add some sort of wrong-input checker
 		break; 

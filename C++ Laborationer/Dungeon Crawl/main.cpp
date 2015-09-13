@@ -25,7 +25,7 @@ int main()
 			mainloop = false;
 	}
 
-	cout << "Ending..." << endl;
+	cout << "Press ENTER to end..." << endl;
 	
 	cin.get();	 //DEBUG
 }

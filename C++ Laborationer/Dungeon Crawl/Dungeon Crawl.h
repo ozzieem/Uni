@@ -1,7 +1,8 @@
-#pragma once
+#ifndef __DUNGEON_CRAWL_H__
+#define __DUNGEON_CRAWL_H__
+
 #include <iostream>
 #include <string>
-#include <cstdlib>
 #include <time.h>
 #include <conio.h>
 #include "Console.h"
@@ -12,22 +13,20 @@ using namespace Course;
 class DungeonCrawl
 {
 
-private: 
+private:
 
 	string board[10][10];
-	
+
 
 	struct Position
 	{
 		int x;
 		int y;
-	};
-
-	Position player, trap, goal;
+	} player, trap, goal;
 
 public:
 	DungeonCrawl();
-	~DungeonCrawl() { cout << "Deconstructing class\n"; }
+	~DungeonCrawl() { cout << "\nDeconstructing class\n"; }
 
 	bool active;
 	bool mainloop;
@@ -44,5 +43,7 @@ public:
 	void placeTraps();
 	void placePlayer();
 	void placeGoal();
-	
+
 };
+
+#endif // !__DUNGEON_CRAWL_H__
