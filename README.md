@@ -7,4 +7,4 @@ C++ Laborationer has all the assignments from the OOP course.
 
 Programmeringsteknik has all the assignments from the Python summer course in OOP.
 
-Small projects folder contains really small projects that I created when I started learning C++ or just want to try out small things.
+Small projects folder contains really small projects that I created when I started learning C++ or just want to try out small things. (I'm really sorry for using so many #if0's in the test code!)
