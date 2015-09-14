@@ -126,7 +126,7 @@ void DungeonCrawl::playerWon(bool state)
 		this->active = false;
 		this->mainloop = false;
 		break;
-	default:	//Can add some sort of wrong-input checker
+	default:	//TODO: Can add some sort of wrong-input checker
 		break; 
 	}
 }

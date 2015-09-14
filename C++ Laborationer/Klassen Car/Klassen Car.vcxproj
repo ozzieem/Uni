@@ -22,6 +22,7 @@
     <ProjectGuid>{EA93953C-A4C0-4796-8CC1-7406BD81EB9C}</ProjectGuid>
     <RootNamespace>KlassenCar</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Car</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

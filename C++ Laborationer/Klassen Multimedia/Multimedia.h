@@ -14,8 +14,8 @@ protected:
 
 public:
 
-	Multimedia(){name = ""; year = 0;}
-	Multimedia(string n, int y){name = n; year = y;}
+	Multimedia();
+	Multimedia(string, int);
 
 	virtual void add_item();
 	virtual void display_item();
@@ -25,20 +25,4 @@ public:
 
 	~Multimedia() { cout << "Multimedia destructor"; }
 };
-
-//Methods
-void Multimedia::add_item()
-{
-	cout << "Enter title: ";
-	cin >> this->name;
-
-	cout << "Enter year: ";
-	cin >> this->year;
-}
-
-void Multimedia::display_item()
-{
-	cout << "Title: " << this->name << endl;
-	cout << "Year: " << this->year << endl;
-}
 

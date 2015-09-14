@@ -1,20 +1,14 @@
 #include "Multimedia.h"
-#include "Book.h"
 
 
 
 int main()
 {
-	Multimedia video("Aliens", 1979);
-	Book book;
+	Multimedia item("Aliens", 1979);
 
-	video.display_item();
-	cout << endl;
-
-	book.add_item();
-	cout << endl;
-
-	book.display_item();
+	item.display_item();
+	item.add_item();
+	item.display_item();
 
 	int temp;
 	cin >> temp;

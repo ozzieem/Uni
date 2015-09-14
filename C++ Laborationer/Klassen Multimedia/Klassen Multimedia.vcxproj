@@ -22,6 +22,7 @@
     <ProjectGuid>{C2F14A20-16FB-4382-AEB8-7AC95B78675D}</ProjectGuid>
     <RootNamespace>KlassenMultimedia</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>Multimedia</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -120,11 +121,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Multimedia.cpp" />
+    <ClCompile Include="MultimediaRegister.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Book.h" />
-    <ClInclude Include="Movie.h" />
     <ClInclude Include="Multimedia.h" />
+    <ClInclude Include="MultiMediaRegister.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

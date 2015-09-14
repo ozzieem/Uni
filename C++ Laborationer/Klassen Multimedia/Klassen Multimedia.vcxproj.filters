@@ -21,15 +21,15 @@
     <ClCompile Include="Multimedia.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MultimediaRegister.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Multimedia.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Book.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Movie.h">
+    <ClInclude Include="MultiMediaRegister.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
