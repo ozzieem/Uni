@@ -6,13 +6,30 @@ DungeonCrawl::DungeonCrawl()
 {
 	srand(unsigned int(time(NULL)));
 
+	this->maxBoard.row = 10;
+	this->maxBoard.col = 10;
 	this->active = true;
 	this->mainloop = true;
-
 	this->player.x = 2;
 	this->player.y = 2;
-	this->goal.x = 8;
-	this->goal.y = 7;
+	this->nTraps = (maxBoard.row + maxBoard.col) / 2;
+	this->goal.x = maxBoard.row - 2;
+	this->goal.y = maxBoard.col - 3;
+}
+
+DungeonCrawl::DungeonCrawl(int row, int col)
+{
+	srand(unsigned int(time(NULL)));
+
+	this->maxBoard.row = row;
+	this->maxBoard.col = col;
+	this->active = true;
+	this->mainloop = true;
+	this->player.x = 2;
+	this->player.y = 2;
+	this->nTraps = (maxBoard.row + maxBoard.col) / 2;
+	this->goal.x = maxBoard.row - 2;
+	this->goal.y = maxBoard.col - 3;
 }
 
 void DungeonCrawl::playerMove()
@@ -40,27 +57,16 @@ void DungeonCrawl::playerMove()
 	}
 }
 
-void DungeonCrawl::drawMap()
-{
-	for (int row = 0; row < 10; row++)
-	{
-		for (int col = 0; col < 10; col++)
-		{
-			cout << this->board[row][col];
-		}
-		cout << endl;
-	}
-}
 
 void DungeonCrawl::createTraps()
 {
-		this->trap.x = rand() % 10;
-		this->trap.y = rand() % 10;
+		this->trap.x = rand() % maxBoard.row;
+		this->trap.y = rand() % maxBoard.col;
 }
 
 void DungeonCrawl::placeTraps()
 {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < nTraps; i++)
 	{
 		createTraps();
 		this->board[this->trap.y][this->trap.x] = 'T';
@@ -77,12 +83,24 @@ void DungeonCrawl::placeGoal()
 	this->board[this->goal.y][this->goal.x] = 'X';
 }
 
+void DungeonCrawl::drawMap()
+{
+	for (int row = 0; row < maxBoard.row; row++)
+	{
+		for (int col = 0; col < maxBoard.col; col++)
+		{
+			cout << this->board[row][col];
+		}
+		cout << endl;
+	}
+}
+
 void DungeonCrawl::createMap()
 {
 
-	for (int row = 0; row < 10; row++)
+	for (int row = 0; row < maxBoard.row; row++)
 	{
-		for (int col = 0; col < 10; col++)
+		for (int col = 0; col < maxBoard.col; col++)
 		{
 			this->board[row][col] = '-';
 		}
@@ -91,7 +109,7 @@ void DungeonCrawl::createMap()
 
 void DungeonCrawl::checkPosition()
 {
-	Console::gotoxy(0, 12);
+	Console::gotoxy(0, maxBoard.col + 2);
 
 	if (this->board[this->player.y][this->player.x] == this->board[this->goal.y][this->goal.x])
 	{

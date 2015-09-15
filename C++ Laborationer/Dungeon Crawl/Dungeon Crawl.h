@@ -14,9 +14,16 @@ class DungeonCrawl
 {
 
 private:
+	
+	int nTraps;
 
-	string board[10][10];
+	string board[100][100];
 
+	struct BoardSize
+	{
+		int row;
+		int col;
+	} maxBoard;
 
 	struct Position
 	{
@@ -24,8 +31,12 @@ private:
 		int y;
 	} player, trap, goal;
 
+
 public:
+
 	DungeonCrawl();
+	DungeonCrawl(int, int);
+
 	~DungeonCrawl() { cout << "\nDeconstructing class\n"; }
 
 	bool active;
