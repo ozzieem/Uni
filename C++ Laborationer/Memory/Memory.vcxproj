@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F4592160-F3FA-4CAB-84C2-CC7DDE32D6C8}</ProjectGuid>
-    <RootNamespace>Testcodes</RootNamespace>
+    <ProjectGuid>{001F2B39-A8D3-42F8-88BA-01C5A4987978}</ProjectGuid>
+    <RootNamespace>Memory</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -118,8 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Popup window.cpp" />
-    <ClCompile Include="Test codes.cpp" />
+    <ClInclude Include="MemorySpace.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

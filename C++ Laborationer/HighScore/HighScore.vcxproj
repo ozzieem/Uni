@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F4592160-F3FA-4CAB-84C2-CC7DDE32D6C8}</ProjectGuid>
-    <RootNamespace>Testcodes</RootNamespace>
+    <ProjectGuid>{6436DD56-7FCC-4CC2-B1D2-2A5440A71285}</ProjectGuid>
+    <RootNamespace>HighScore</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -118,8 +118,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Popup window.cpp" />
-    <ClCompile Include="Test codes.cpp" />
+    <ClInclude Include="HighScore.h" />
+    <ClInclude Include="HighScoreData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

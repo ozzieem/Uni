@@ -1,6 +1,6 @@
+#if 0
 #include <Windows.h>
 
-#if 0
 
 //Pop-up window
 int CALLBACK
@@ -9,10 +9,31 @@ WinMain(HINSTANCE hInstance,
 	LPSTR lpCmdLine,
 	int nCmdShow)
 {
-	MessageBoxA(0, "This is a pop-up window", "Pop-up window",
-		MB_OK | MB_ICONINFORMATION);
+	int choice;
 
-	return (0);
+	while (true)
+	{
+
+		choice = MessageBoxA(0, "This is a pop-up window", "Pop-up window",
+			MB_YESNO | MB_ICONINFORMATION);
+
+		switch (choice)
+		{
+		case 6: //Yes
+		{
+			OutputDebugStringA("Yes");
+		} break;
+
+		case 7: //No
+		{
+			OutputDebugStringA("No");
+		} break;
+
+		default:
+			OutputDebugStringA("Def");
+		} break;
+	}
+	return(0);
 }
 
-#endif
+#endif // 0

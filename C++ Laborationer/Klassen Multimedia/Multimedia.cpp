@@ -19,7 +19,7 @@ void Multimedia::add_item()
 {
 	cout << "Enter title and year (with space inbetween): ";
 	cin >> this->name >> this->year;
-	MultimediaRegister::
+	//MultimediaRegister::
 
 }
 

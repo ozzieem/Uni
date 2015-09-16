@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F4592160-F3FA-4CAB-84C2-CC7DDE32D6C8}</ProjectGuid>
-    <RootNamespace>Testcodes</RootNamespace>
+    <ProjectGuid>{3FD388B9-8216-451C-AB50-395C77CA8CB9}</ProjectGuid>
+    <RootNamespace>Vector</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -118,8 +118,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Popup window.cpp" />
-    <ClCompile Include="Test codes.cpp" />
+    <ClInclude Include="VectorFloat.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="VectorFloat.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
