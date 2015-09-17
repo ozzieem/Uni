@@ -5,7 +5,7 @@ int main()
 	while (true)
 	{
 		int VectorSize;
-		cout << "Ange storlek på vector: ";
+		cout << "Enter size on vector: ";
 		cin >> VectorSize;
 
 		VectorFloat vc(VectorSize);
@@ -15,5 +15,6 @@ int main()
 
 		cout << "Enter to restart" << endl;
 		_getch();	//Bad using _getch();
+		system("cls");	//Bad using system...
 	}
 }

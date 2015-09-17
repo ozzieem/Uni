@@ -10,7 +10,7 @@ class VectorFloat
 {
 private:
 
-	vector<float> *vptr;
+	float *vptr;
 	int size;
 	
 	void CreateVector(int);

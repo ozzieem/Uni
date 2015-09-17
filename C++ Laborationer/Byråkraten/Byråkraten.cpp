@@ -68,7 +68,7 @@ void Byråkraten::test_print()
 {
 	for (unsigned int i = 0; i < this->words.size(); i++) //Unsigned int
 	{
-		for (int j = 0; j < int(this->words[i].size()); j++) //Eller int()?
+		for (int j = 0; j < int(this->words[i].size()); j++)
 			cout << this->words[i][j] << endl;
 	}
 	

@@ -22,7 +22,7 @@ VectorFloat::~VectorFloat()
 
 void VectorFloat::CreateVector(int s)
 {
-	this->vptr = new vector<float>(s);
+	this->vptr = new float[s];
 	this->size = s;
 }	
 
@@ -36,7 +36,7 @@ void VectorFloat::Set(float value, int index)
 {
 	try
 	{
-		if (index < 0 || index > this->vptr->size())
+		if (index < 0 || index > this->size)
 		{
 			throw "index is less than 0 or out of bound";
 		}
@@ -46,35 +46,22 @@ void VectorFloat::Set(float value, int index)
 		cerr << "Not correct type";
 	}
 	
-	this->vptr->at(index) = value - 48; // FIX: -48 is a bandaid fix for the output
+
+	(*this).vptr[index] = value;
 }
 
 void VectorFloat::ReadFromKeyboard()
 {
 
-	cout << "Mata in tecken.." << endl;
+	cout << "Enter " << this->size << " digits... (separate with space)" << endl;
 
-	char c;
+	float c;
 	
-#if 0
-
-	while ((c = _getch()) != 'q')
-	{
-		for (int i = 0; i < this->vptr->size(); i++)
-		{
-			cout << c << " ";
-			Set(c, i);
-		}
-	}
-
-#endif // 0
-
 	while(true)
 	{
-		for (int i = 0; i < this->vptr->size(); i++)
+		for (int i = 0; i < this->size; i++)
 		{
-			c = _getch();
-			cout << c << " ";
+			cin >> c;
 			Set(c, i);
 
 		} break;
@@ -83,11 +70,11 @@ void VectorFloat::ReadFromKeyboard()
 
 void VectorFloat::Print()
 {
-	cout << "\nLista: ";
+	cout << "\nList: ";
 	cout << "[";
-	for (int i = 0; i < this->vptr->size(); i++)
+	for (int i = 0; i < this->size; i++)
 	{
-		cout << this->vptr->at(i) << ", ";
+		cout << (*this).vptr[i]<< ", ";
 	}
 	cout << "\b\b]\n\n";
 }
