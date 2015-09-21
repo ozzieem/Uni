@@ -34,6 +34,7 @@ void VectorFloat::DeleteVector()
 
 void VectorFloat::Set(float value, int index)
 {
+#if 0
 	try
 	{
 		if (index < 0 || index > this->size)
@@ -45,7 +46,7 @@ void VectorFloat::Set(float value, int index)
 	{
 		cerr << "Not correct type";
 	}
-	
+#endif	
 
 	(*this).vptr[index] = value;
 }
