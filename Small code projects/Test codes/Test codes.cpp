@@ -458,3 +458,12 @@ int main()
 }
 #endif
 
+#if 0
+void f(int& x)
+{}
+
+int main()
+{
+	f(1);
+}
+#endif
