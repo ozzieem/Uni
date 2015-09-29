@@ -1,21 +1,25 @@
 #include "MemorySpace.h"
 
 using namespace MemorySpace;
+using namespace Course;
 
 int main()
 {
 	Memory game;
+	HighScore highScore;
 	game.CreateCards();
 	game.GenMemCards();
 
 	while (true)
 	{
-		game.PrintCards();
-		game.cardFlip();
-		
-		//Console::clrscr();
+
+			Console::clrscr();
+			game.PrintCards();
+			game.CardNav();
+
 	}
 
-	cin.get();
+	highScore.writeFile();
 
+	return 0;
 }
