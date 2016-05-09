@@ -1,0 +1,16 @@
+Person=Leo-Male:Animal,Travel,Games,Sports
+Person=Piper-Female:Animal,Cinema,Dance,Travel
+Person=Fred-Male:Travel,Animal,Dance
+Person=Susan-Female:Cinema,Sports,Travel
+Person=Lisa-Female:Dance,Travel,Sports
+Person=Sven-Male:Games,Travel,Animal
+Person=Gurt-Male:Games,Sports,Cinema
+Person=Dan-Male:Animal,Cinema,Sports
+Person=Tian-Female:Travel,Games,Dance,Cinema
+Person=Awa-Female:Animal,Cinema,Games
+Person=Shawn-Male:Games,Travel,Sports
+Person=Joe-Male:Sports,Animal,Dance
+Person=Dranah-Female:Travel,Sports,Animal
+Person=Ina-Female:Games,Sports,Travel
+
+
