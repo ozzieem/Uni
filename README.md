@@ -1,10 +1,14 @@
 # UniCpp
 Almost all the coding I'm doing relating to university courses.
 
-Programming C has all assignments from the C-course.
+C++_Tests/C_Tests includes some test code I've been writing to test things or helping others.
 
-C++ Laborationer has all the assignments from the OOP course.
+Programming_C includes all assignments from the basic programming course in C.
 
-Programmeringsteknik has all the assignments from the Python summer course in OOP.
+Programming_OOP includes all the assignments from the OOP course in C++.
 
-Small projects folder contains really small projects that I created when I started learning C++ or just want to try out small things. (I'm really sorry for using so many #if0's in the test code!)
+Programming_Methodology includes all the projects for the course in C++ and C#.
+
+Programming_Techniques has all the assignments from the summer course in OOP Python.
+
+Small_Projects folder contains really small projects that I created when I started learning C++ or just want to try out small things. Includes some parts of the Project Euler challenges.
