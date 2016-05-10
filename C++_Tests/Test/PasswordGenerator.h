@@ -6,9 +6,9 @@
 const std::string alphanum =
 "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*_+ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-void GeneratePassword()
+inline void GeneratePassword()
 {
-	srand(time(nullptr));
+	srand(static_cast<unsigned int>(time(nullptr)));
 	std::cout << "Enter password length:";
 	int pw_len;
 	std::cin >> pw_len;
@@ -23,3 +23,4 @@ void GeneratePassword()
 
 	std::cout << password << std::endl;
 }
+
