@@ -229,7 +229,6 @@ int main()
 	pthread_create(&motor_led_t, NULL, motor_led_thread, &motor_led);
 	//	pthread_setschedparam(motor_left_t, SCHED_FIFO, &sp4);
 
-	//	pthread_join(input_t, NULL);
 	pthread_join(manager_t, NULL);
 
 	motor_destroy(&motor_right);
