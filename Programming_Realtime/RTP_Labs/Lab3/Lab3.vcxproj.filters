@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{03e7f4a0-2bf7-492b-ad3f-99aa8af506d8}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{90b25d6c-4caa-4e3e-a167-722d1e74966f}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{81697746-0718-48d3-8dab-d3042bf32e56}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{ba601e2d-a26b-4b8e-8a9d-e5bef64d85af}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{c632774d-f3c2-4e70-9b23-75bde0636a82}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Lab3.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="piodirect.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lab3_B1.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lab3_B2.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lab3_B3.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Lab3_C.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="pwm.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="Lab3-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="Lab3-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="piodirect.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="pwm.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

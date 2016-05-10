@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{d2ace2cf-b6f0-4c8e-b873-c5cbabb166ff}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{0896206c-bb89-42a3-a291-223bbbbb1d18}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{eb9cacc1-1731-485b-a0c0-75d1b9de576a}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{ee8d4837-e905-4bdd-8054-70348d9ee4dc}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{5eae28c0-5fb5-4cf7-bdd4-d05f610083ca}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lab4.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="piodirect.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="pwm.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="motor_leds.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="motor.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="lab4-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="lab4-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="piodirect.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="pwm.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="motor.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="motor_leds.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

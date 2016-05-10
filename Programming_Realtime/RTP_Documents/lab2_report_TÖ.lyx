@@ -1,0 +1,338 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{listings}
+\usepackage{color}
+\usepackage{textcomp}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
+\lstset{
+backgroundcolor=\color{lbcolor},
+tabsize=4,
+rulecolor=,
+language=C,
+        basicstyle=\scriptsize,
+        upquote=true,
+        aboveskip={1.5\baselineskip},
+        columns=fixed,
+        keywordstyle=\color{blue},
+        stringstyle=\color{red},
+        commentstyle=\color{green},
+        morecomment=[l][\color{magenta}]{\#}
+        showstringspaces=false,
+        extendedchars=true,
+        breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
+        showtabs=false,
+        showspaces=false,
+        showstringspaces=false,
+        identifierstyle=\ttfamily,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=green
+}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Lab 2 Report
+\end_layout
+
+\begin_layout Author
+Tobias L & Özgun M (Group 5)
+\end_layout
+
+\begin_layout Standard
+The purpose of the lab was to learn the interaction between button and LEDs
+ and also learning how time works between different processes.
+ The main goal of this lab was to learn how to create a breathing LED through
+ the use of a pulse function using a pwm-struct.
+ By calculating how much time a process will take depending on how high
+ the frequency is, one was able to create a formula for how long the LED
+ will be turned on and vice versa.
+ The result of the formula was put into a nanosleep-function as an argument.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define BILLION 1000000000L
+\end_layout
+
+\begin_layout Plain Layout
+
+struct timespec lightOn, lightOff;
+\end_layout
+
+\begin_layout Plain Layout
+
+	lightOn.tv_sec = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	lightOff.tv_sec = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+	lightOn.tv_nsec = 1.0 / pwm.frequency * dutyPercent * BILLION;
+\end_layout
+
+\begin_layout Plain Layout
+
+	lightOff.tv_nsec = 1.0 / pwm.frequency * (1.0 - dutyPercent) * BILLION;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The BILLION-multiplier converts the result of the formula to nanoseconds
+ and runs the program for the calculated length of the pulse.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=C"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+	onOff(pwm.pio, ON);
+\end_layout
+
+\begin_layout Plain Layout
+
+	nanosleep(&lightOn, NULL);
+\end_layout
+
+\begin_layout Plain Layout
+
+	onOff(pwm.pio, OFF);
+\end_layout
+
+\begin_layout Plain Layout
+
+	nanosleep(&lightOff, NULL);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One problem that was encountered, was in assignment A2 in this specific
+ code section:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define BREATHECYCLES 100		
+\end_layout
+
+\begin_layout Plain Layout
+
+		for (float i = 0; i < BREATHECYCLES; i++)
+\end_layout
+
+\begin_layout Plain Layout
+
+		{
+\end_layout
+
+\begin_layout Plain Layout
+
+			pwmPulse(led_4, i / 100);
+\end_layout
+
+\begin_layout Plain Layout
+
+			pwmPulse(led_5, 1.0 - i / 100);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		for (float i = BREATHECYCLES; i > 0; i--)
+\end_layout
+
+\begin_layout Plain Layout
+
+		{
+\end_layout
+
+\begin_layout Plain Layout
+
+			pwmPulse(led_4, i / 100);
+\end_layout
+
+\begin_layout Plain Layout
+
+			pwmPulse(led_5, 1.0 - i / 100);
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+At first in the 2nd argument of pwnPulse, a different formula was used before:
+ 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pwmPulse(led_4, 1 / (BREATHECYCLES - i);
+\end_layout
+
+\end_inset
+
+What wasn't noticed until later was that when this code was run, the 2nd
+ argument at some point received the value 1/2 which is 0.5.
+ This means that it's not a linear curve and the pulse becomes inconsistent.
+ When it was changed to 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+pwmPulse(led_4, i / 100);
+\end_layout
+
+\end_inset
+
+ the pulse was clearly pulsing in a more consistent way.
+\end_layout
+
+\begin_layout Paragraph
+Commentary
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The difficulty of the lab was fairly easy, represented by a 4 in a scale
+ of 1-10.
+ Eventhough there wasn't much that was learned in the process, it would've
+ been a bit more challenging if one could create more of the code from scratch
+ instead of using premade code.
+ For example, it would be good to know what's going on inside of piodirect
+ by at least making students create some of the code inside of it, instead
+ of giving the complete file to be used.
+ If one would compare this lab 2 to lab 1, this lab was obviously a lot
+ harder than lab 1.
+ I don't know if lab 1 should be called a lab since it didn't feel like
+ it should be named like it because of how easy it was.
+ Maybe in that lab the students can in the future at least complete a half-compl
+eted piodirect, so that they know what they're coding with and how it works.
+\end_layout
+
+\end_body
+\end_document
