@@ -11,6 +11,8 @@ Programming_OOP includes all the assignments from the OOP course in C++. Beginne
 
 Programming_Python includes all the assignments from the first Python programming course in data science. Beginner level.
 
+Programming_Realtime includes all assignments and reports from the Realtime programming course. Intermediate level.
+
 Programming_Techniques has all the assignments from the summer course in OOP Python. Beginner level.
 
 Small_Projects folder contains really small projects that I created when I started learning C++ or just want to try out small things. Includes some parts of the Project Euler challenges.
