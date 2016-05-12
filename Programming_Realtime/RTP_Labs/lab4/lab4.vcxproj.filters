@@ -32,12 +32,6 @@
     <ClCompile Include="pwm.c">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="motor_leds.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="motor.c">
-      <Filter>Source files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

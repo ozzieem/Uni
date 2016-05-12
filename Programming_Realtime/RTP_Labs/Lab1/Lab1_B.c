@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "piodirect.h"
 
+#if 0
 int main()
 {
 	gpioSetup();
@@ -15,3 +16,5 @@ int main()
 	destroy(led_4);
 	return 0;
 }
+
+#endif

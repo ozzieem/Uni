@@ -15,67 +15,17 @@ void* motor_led_thread(MotorLed* this)
 {
 	while (1)
 	{
-		switch (motorLedState)
-		{
-		case NONE:
-			{
-				motor_led_blink(this->green_led, 0);
-				break;
-			}
-		case GREEN_BREATHE:
-			{
-				motor_led_breathing(this->green_led);
-				break;
-			}
-		case GREEN_TWO:
-			{
-				motor_led_blink(this->green_led, 2.0);
-				break;
-			}
-		case GREEN_FOUR:
-			{
-				motor_led_blink(this->green_led, 4.0);
-				break;
-			}
-		case GREEN_TEN:
-			{
-				motor_led_blink(this->green_led, 10.0);
-				break;
-			}
-		case GREEN_TWENTY:
-			{
-				motor_led_blink(this->green_led, 20.0);
-				break;
-			}
-		case YELLOW_ONE_BLINK:
-			{
-				motor_led_blink(this->yellow_led_one, 2.0);
-			}
-			break;
-		case YELLOW_TWO_BLINK:
-			{
-				motor_led_blink(this->yellow_led_two, 2.0);
-			}
-			break;
-		case RED_BLINK:
-			{
-				motor_led_blink(this->red_led, 10.0);
-			}
-			break;
-		default:
-			break;
-		}
+		motor_led_run(this);
 	}
 }
 
 void* motor_thread(Motor* motor)
 {
-	int emergency_break = 1;
 	float speed = 0;
 
 	while (1)
 	{
-		motor_speed(motor, emergency_break, speed);
+		motor_speed(motor, speed);
 	}
 }
 
@@ -261,4 +211,3 @@ void busy_wait(const long nsec)
 		diffns += diffs * 1000000000;
 	}
 }
-

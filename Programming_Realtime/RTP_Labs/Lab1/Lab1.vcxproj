@@ -63,9 +63,9 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Lab1_B\Lab1_B.c" />
-    <ClCompile Include="..\Lab1_B\piodirect.c" />
     <ClCompile Include="Lab1_A.c" />
+    <ClCompile Include="Lab1_B.c" />
+    <ClCompile Include="piodirect.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />
@@ -75,7 +75,7 @@
     <None Include="release.mak" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Lab1_B\piodirect.h" />
+    <ClInclude Include="piodirect.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

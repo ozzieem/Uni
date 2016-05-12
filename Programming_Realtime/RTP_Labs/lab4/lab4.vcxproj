@@ -65,8 +65,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="lab4.c" />
-    <ClCompile Include="motor.c" />
-    <ClCompile Include="motor_leds.c" />
     <ClCompile Include="piodirect.c" />
     <ClCompile Include="pwm.c" />
   </ItemGroup>

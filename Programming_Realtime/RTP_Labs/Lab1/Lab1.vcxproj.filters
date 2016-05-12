@@ -26,10 +26,10 @@
     <ClCompile Include="Lab1_A.c">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Lab1_B\Lab1_B.c">
+    <ClCompile Include="Lab1_B.c">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Lab1_B\piodirect.c">
+    <ClCompile Include="piodirect.c">
       <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -49,7 +49,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Lab1_B\piodirect.h">
+    <ClInclude Include="piodirect.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
