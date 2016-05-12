@@ -28,7 +28,7 @@ bld/
 *.db
 *.opendb
 *.openDB
-*.VC*
+*.VC.db
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
