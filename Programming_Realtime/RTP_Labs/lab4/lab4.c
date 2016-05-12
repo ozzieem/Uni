@@ -63,17 +63,20 @@ void* motor_manager_thread()
 			{
 				if (prev_message == 'r')
 					active = 0; // Breaks out of loop and shuts down program
+				activeMotor = BOTH_ACTIVE;
 				motorState = EMERGENCY_STOP;
 			}
 			break;
 		case 'w': // WHITE - RIGHT
 			{
-				activeMotor = RIGHT_ACTIVE;
+				if (motorState != EMERGENCY_STOP)
+					activeMotor = RIGHT_ACTIVE;
 			}
 			break;
 		case 'b': // BLUE - LEFT
 			{
-				activeMotor = LEFT_ACTIVE;
+				if (motorState != EMERGENCY_STOP)
+					activeMotor = LEFT_ACTIVE;
 			}
 			break;
 		default:

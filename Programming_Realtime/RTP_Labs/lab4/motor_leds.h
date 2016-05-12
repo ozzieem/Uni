@@ -24,7 +24,7 @@ typedef struct
 
 MotorLedStates motorLedState = NONE;
 
-void motor_led_breathing(PWM led)
+void motor_led_breathe(PWM led)
 {
 	unsigned const cycles = 50;
 	for (float i = 0; i < cycles; i++)
@@ -54,7 +54,7 @@ void motor_led_run(MotorLed* this)
 		}
 	case GREEN_BREATHE:
 		{
-			motor_led_breathing(this->green_led);
+			motor_led_breathe(this->green_led);
 			break;
 		}
 	case GREEN_TWO:
@@ -79,7 +79,7 @@ void motor_led_run(MotorLed* this)
 		}
 	case YELLOW_ONE_BLINK:
 		{
-			motor_led_blink(this->yellow_led_one, 2.0);
+				motor_led_blink(this->yellow_led_one, 2.0);
 		}
 		break;
 	case YELLOW_TWO_BLINK:

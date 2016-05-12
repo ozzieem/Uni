@@ -38,24 +38,26 @@ typedef struct
 } Motor;
 
 ActiveMotors activeMotor = BOTH_ACTIVE;
-MotorStates motorState = NEUTRAL;
+MotorStates motorState = NEUTRAL, prevMotorState = NEUTRAL;
 int emergency_break = 1;
 
 void motor_update()
 {
 	if (motorState == HUNDRED || motorState == REVERSE || motorState == EMERGENCY_STOP)
 	{
+		prevMotorState = motorState;
 		motorState = NEUTRAL;
 	}
 	else
 	{
+		prevMotorState = motorState;
 		motorState++;
 	}
 
 	if (activeMotor == RIGHT_ACTIVE || activeMotor == LEFT_ACTIVE)
 	{
 		activeMotor = BOTH_ACTIVE;
-		motorState = TWENTY_FIVE;
+		motorState = prevMotorState;
 	}
 }
 
@@ -214,7 +216,7 @@ void motor_speed(Motor* motor, float speed)
 		{
 			speed = 50.0;
 			motor_activate(motor, speed, 0);
-			motorLedState = NONE;
+			motor_led_decider(speed);
 			emergency_break = 1;
 			break;
 		}
@@ -228,8 +230,8 @@ void motor_speed(Motor* motor, float speed)
 				}
 				emergency_break = 0;
 			}
+			motor_led_decider(speed);
 			motor_activate(motor, 0.0, 1);
-			motorLedState = RED_BLINK;
 			break;
 		}
 	default:
