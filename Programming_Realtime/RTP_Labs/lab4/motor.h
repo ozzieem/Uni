@@ -41,7 +41,7 @@ ActiveMotors activeMotor = BOTH_ACTIVE;
 MotorStates motorState = NEUTRAL, prevMotorState = NEUTRAL;
 int emergency_break = 1;
 
-void motor_update()
+void motor_gear_shift()
 {
 	if (motorState == HUNDRED || motorState == REVERSE || motorState == EMERGENCY_STOP)
 	{
@@ -179,7 +179,7 @@ void motor_speed(Motor* motor, float speed)
 	case NEUTRAL:
 		{
 			speed = 0.0;
-			motor_activate(motor, speed, 1);
+			motor_run(motor, speed);
 			motor_led_decider(speed);
 			break;
 		}

@@ -159,28 +159,13 @@ int main()
 	motor_create(&motor_right, _22, _27, _17, RIGHT);
 	motor_create(&motor_left, _23, _24, _18, LEFT);
 
-	//	struct sched_param sp1, sp2, sp3, sp4, sp5;
-	//	sp1.__sched_priority = 40;
-	//	sp2.__sched_priority = 20;
-	//	sp3.__sched_priority = 10;
-	//	sp4.__sched_priority = 5;
-
 	pthread_t motor_right_t, motor_left_t, input_t, manager_t, motor_led_t;
 
 	pthread_create(&input_t, NULL, input_thread, NULL);
-	//	pthread_setschedparam(input_t, SCHED_FIFO, &sp1);
-
 	pthread_create(&manager_t, NULL, motor_manager_thread, NULL);
-	//	pthread_setschedparam(input_t, SCHED_FIFO, &sp2);
-
 	pthread_create(&motor_left_t, NULL, motor_thread, &motor_left);
-	//	pthread_setschedparam(motor_left_t, SCHED_FIFO, &sp3);
-
 	pthread_create(&motor_right_t, NULL, motor_thread, &motor_right);
-	//	pthread_setschedparam(motor_left_t, SCHED_FIFO, &sp3);
-
 	pthread_create(&motor_led_t, NULL, motor_led_thread, &motor_led);
-	//	pthread_setschedparam(motor_left_t, SCHED_FIFO, &sp4);
 
 	pthread_join(manager_t, NULL);
 

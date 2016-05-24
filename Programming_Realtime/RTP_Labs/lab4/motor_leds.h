@@ -79,19 +79,19 @@ void motor_led_run(MotorLed* this)
 		}
 	case YELLOW_ONE_BLINK:
 		{
-				motor_led_blink(this->yellow_led_one, 2.0);
+			motor_led_blink(this->yellow_led_one, 2.0);
+			break;
 		}
-		break;
 	case YELLOW_TWO_BLINK:
 		{
 			motor_led_blink(this->yellow_led_two, 2.0);
+			break;
 		}
-		break;
 	case RED_BLINK:
 		{
 			motor_led_blink(this->red_led, 10.0);
+			break;
 		}
-		break;
 	default:
 		break;
 	}
