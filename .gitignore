@@ -6,7 +6,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.openDB
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -22,10 +21,14 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
-[Cc]odeDB/
 
 # Visual Studio 2015 cache/options directory.
 .vs/
+[Cc]odeDB/
+*.db
+*.opendb
+*.openDB
+*.VC.db
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -212,3 +215,6 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+*.db
+*.db

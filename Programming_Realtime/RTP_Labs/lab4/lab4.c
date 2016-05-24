@@ -51,7 +51,7 @@ void* motor_manager_thread()
 			{
 				if (prev_message == 's') // Prevent reverse from instantly stop after button-release
 					break;
-				motor_update();
+				motor_gear_shift();
 			}
 			break;
 		case 's': // REVERSE
