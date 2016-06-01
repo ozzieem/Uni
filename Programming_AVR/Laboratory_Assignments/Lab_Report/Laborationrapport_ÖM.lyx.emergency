@@ -1,0 +1,3694 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Assembly
+\end_layout
+
+\begin_layout Author
+Özgun M
+\end_layout
+
+\begin_layout Quotation
+\align center
+Laborationsrapport för kursen Datorgrafik 2016 VT
+\end_layout
+
+\begin_layout Quotation
+\align center
+Kjell Mårdensjö
+\end_layout
+
+\begin_layout Quotation
+\align center
+Örebro Universitet 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Laboration 1: Lysdioder & Strömställare
+\end_layout
+
+\begin_layout Standard
+I kommande koduppvisning kommer läsaren att märka främst två typer av funktioner
+, init_func och loop_func, som är generella namn på två funktioner som används
+ i assembly-koden.
+ Notera att dessa namn får och kan ändras till ens eget tycke men i denna
+ laboration var funktionsnamnen oförändrade.
+ C-koden ser ut som på nedanstående sätt och står för grunden av assembly-progra
+mmeringen.
+ Istället för att skriva funktionerna i vanlig C ska dessa skrivas i assembly-ko
+d som står med i slutet av respektive uppgift.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=C"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#include <avr/io.h>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+int main(void)
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	init_func();
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    while (1
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		loop_func();
+\end_layout
+
+\begin_layout Plain Layout
+
+		wait_milliseconds(300);
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+I varje laboration kommer dessutom att fördefinierade värden för portarna
+ och ingångarna att finnas:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Doublebox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[Motorola68k]Assembler},basicstyle={\small}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+;;;--- I/O-adresses for Port D --- 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PIND	0x10 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define DDRD	0x11 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PORTD	0x12
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+;;;--- I/O-adresses for Port C --- 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PINC	0x13 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define DDRC	0x14 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PORTC	0x15
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+;;;--- I/O-adresses for Port B --- 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PINB	0x16 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define DDRB	0x17 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PORTB	0x18
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+;;;--- I/O-adresses for Port A --- 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PINA	0x19 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define DDRA	0x1A 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define PORTA	0x1B
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 1 - Programmet Hello World
+\end_layout
+
+\begin_layout Standard
+Denna uppgift var främst för att prova lite lätt assembly och därför finns
+ ingen redovisning.
+\end_layout
+
+\begin_layout Subsection
+Uppgift 2 - Assemblerprogram för att tända och släcka en lysdiod med en
+ strömbrytare
+\end_layout
+
+\begin_layout Standard
+Denna uppgift gick ut på att kunna tända en diod genom att trycka in respektive
+ diod-knapp.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler},numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+		.data
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+lamps:  .byte 0	;; unsigned char lamps = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; DDRA = 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI		R20, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT		DDRA, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; DDRB = 0xFF;
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI		R20, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT		DDRB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; PORTB = PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN	 	R20, PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT		PORTB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET 		
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tända/släcka en lysdiod med strömbrytare
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 3 - Assemblerprogram för att tända och släcka en lysdiod med en
+ switch
+\end_layout
+
+\begin_layout Standard
+Denna uppgift är har samma förutgrunder som föregående däremot är skillnaden
+ att en switch används för att tända en lysdiod på ATMega32.
+ När tredje switchen aktiveras lyser den första biten i registret som styr
+ lysdioderna.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler},numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+lamps:  .byte 0		;;   unsigned char lamps = 0; 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; DDRA = 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI		R20, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT		DDRA, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; DDRB = 0xFF;
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI		R20, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT		DDRB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; PORTB = 0xFF;
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT		PORTB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; R20 = PINA & 0x08
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN R20, PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI R20, 0b00001000
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; R20 = R20 >> 3
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSR R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSR R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSR R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; R21 = PORTB & 0xFE
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN R21, PORTB
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM R21
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI R21, 0xFE
+\end_layout
+
+\begin_layout Plain Layout
+
+		OR R20, R21		; R20 = R20 | R21
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT PORTB, R20	; PORTB = R20 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Tända/släcka en lysdiod med switch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 4 - Ringräknare
+\end_layout
+
+\begin_layout Standard
+Denna uppgift gick ut på att implementera en ringräknare.
+ Processen för att skapa programmet följdes genom en figur från kurskompendiet
+ som visar stegen för en lösning.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename ringcounter.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ringräknare lösning genom register-användning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Som det syns i ovanstående figur finns det olika steg man kan följa.
+ Notera att det finns alternativa lösningar till denna uppgift men denna
+ valdes för att lättare kunna designa koden för ringräknaren.
+ I denna lösning används processorns register medan de andra respresenterar
+ lösningar som involverar en mönstertabell eller en if-else-sats.
+ För enkelhetens skull gjordes denna uppgift med en lösning som använder
+ processorns register genom T-bit utilisering.
+ 
+\end_layout
+
+\begin_layout Standard
+Stegen som följdes demonstreras i nedanstående steg med tillhörande assembly-kod
+ i algoritm-figuren.
+\end_layout
+
+\begin_layout Enumerate
+I första steget initierades T-biten till 0 genom att använda CLT-instruktionen.
+\end_layout
+
+\begin_layout Enumerate
+Andra steget inkluderade att kopiera T-biten till bit 7 i processorns R21-regist
+er som är användes som ett hjälpregister genom att använda instruktionen
+ BLD.
+\end_layout
+
+\begin_layout Enumerate
+Samma sak utfördes på registret R20, men i detta fall kopierades bit 6 till
+ T-biten.
+ R20 är ringräknaren, alltså registret som aktiverar lysdioderna.
+\end_layout
+
+\begin_layout Enumerate
+Eftersom R21 fick bit 7 så roterades den så att den hamnar i C-biten som
+ i nästa steg roterades in i ringräknaren-registret R20, båda använde instruktio
+nen ROL.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler},numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+		.data
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text         
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R20, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT DDRB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		CLT
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		BLD R21, 7
+\end_layout
+
+\begin_layout Plain Layout
+
+		BST R20, 6
+\end_layout
+
+\begin_layout Plain Layout
+
+		ROL R21
+\end_layout
+
+\begin_layout Plain Layout
+
+		ROL R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT PORTB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ringräknare genom registeranvändning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 5 - Johnsonräknare
+\end_layout
+
+\begin_layout Standard
+Koden som beskrivs nedan är i princip identisk mot ringräknar koden.
+ Den enda skillnaden är att ett register inverteras i johnsonräknaren så
+ att det fortsätter lysa även efter dioden har flyttat sig.
+ I ringräknaren behövdes inte det eftersom det bara var en diod som skulle
+ förflytta sig hela tiden.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler},numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+		.data
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R20, 0xFF 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT DDRB, R20 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		CLT
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		.text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		BLD		R21, 7 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		BST		R20, 6		 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM		R21		;; Detta steg gör ringräknaren till en johnsonräknare		
+\end_layout
+
+\begin_layout Plain Layout
+
+		ROL		R21	 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		ROL		R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT PORTB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Johnsonräknare genom registeranvändning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler},numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#define	vjohn R20 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define one R21 
+\end_layout
+
+\begin_layout Plain Layout
+
+#define vjohn_and R22
+\end_layout
+
+\begin_layout Plain Layout
+
+vjohn_temp: .byte 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        .text         
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global init_func           
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI	vjohn, 0xFF 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT	DDRB, vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI	vjohn, vjohn_temp	;; R20 = vjohn <=> R20 = 0 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI	one, 1	;; R21 = 1
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        .text
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDS	vjohn,vjohn_temp	;;R20=vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+		MOV	vjohn_and, vjohn	;; R22 = R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI	vjohn_and, 0x80	;; R22 & 0x80
+\end_layout
+
+\begin_layout Plain Layout
+
+		BREQ	if_equal
+\end_layout
+
+\begin_layout Plain Layout
+
+		RJMP	else_f
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+if_equal: 
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSL	vjohn	;; R20 << 1
+\end_layout
+
+\begin_layout Plain Layout
+
+		ADD	vjohn, one	;; R20 += R21
+\end_layout
+
+\begin_layout Plain Layout
+
+		RJMP	end_loop
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+else_f:
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSL	vjohn	;; R20 << 1
+\end_layout
+
+\begin_layout Plain Layout
+
+		RJMP	end_loop
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+end_loop:
+\end_layout
+
+\begin_layout Plain Layout
+
+		STS		vjohn_temp, vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM		vjohn	;; Inverterar för lysdioderna
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT		PORTB, vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Johnsonräknare genom if-else-användning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uppgift 6 - Lysdiodsmönster
+\end_layout
+
+\begin_layout Standard
+I denna uppgift skulle ett mönster skapas.
+ Mönstret i fråga ser ut som en johnsonräknare som i cykler räknar inåt
+ och sedan utåt.
+ En representation kan fås genom nedanstående figur:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename lysdiodmönster.PNG
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Lysdiodsmönster
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+För uppgiften användes en lista för att hålla reda på vilka lysdioder som
+ ska lysa.
+ Loop-funktionen gick igenom en for-loop liknande sats som aktiverade respektive
+ position i listan.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler},numbers=left"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+		.data 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global LEDS
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+LEDS: .byte 0x00, 0x81, 0xC3, 0xE7, 0xFF, 0xE7, 0xC3, 0x81
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        .text         
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global init_func           
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func: 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; i = 0 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R28, 0x00 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R29, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; DDRB = 0xFF 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI	R24, 0xFF 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT DDRB, R24
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        .text         
+\end_layout
+
+\begin_layout Plain Layout
+
+		.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func: 	
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; PORTB = LEDS[i] 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R30, lo8(LEDS) 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R31, hi8(LEDS) 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; LEDS + i - R31:R30 + R29:R28 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		ADD R30, R28 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		ADC R31, R29
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		LD	R24, Z		;; Z = R31:R30 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		/*COM R24*/ ;;ignore
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT	PORTB, R24
+\end_layout
+
+\begin_layout Plain Layout
+
+		ADIW R28, 0x01	;; i += 1 		  		
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		;; i = i & 0x07 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI R28, 0x07 		
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI R29, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Lysdiodsmönster genom tabell
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Laboration 2: Subrutiner och aritmetik
+\end_layout
+
+\begin_layout Subsection
+Villkorliga programsatser i assembler
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+	.data
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define vjohn R20
+\end_layout
+
+\begin_layout Plain Layout
+
+#define vjohn_and R21
+\end_layout
+
+\begin_layout Plain Layout
+
+#define vring R22
+\end_layout
+
+\begin_layout Plain Layout
+
+vjohn_temp: .byte 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ 	LDI	R18, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT	DDRB, R18
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI	R17, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT	DDRA, R17
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI	vjohn, vjohn_temp
+\end_layout
+
+\begin_layout Plain Layout
+
+    RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	IN vjohn, PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+	MOV R19, vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	ANDI R19, 0x01
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ ring_f
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP john_f
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ring_f:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LSL vring		;vring
+\end_layout
+
+\begin_layout Plain Layout
+
+	CPI vring, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ ring_eq
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP ring_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ring_eq: 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI vring, 0x01
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP ring_end
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+ring_end:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM vring
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT PORTB, vring
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM vring
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+john_f:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDS	vjohn, vjohn_temp
+\end_layout
+
+\begin_layout Plain Layout
+
+	MOV	vjohn_and, vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	ANDI vjohn_and, 0x80
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ john_if
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP john_else
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+john_if:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LSL vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	INC vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP john_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+john_else:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LSL vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP john_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+john_end:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS vjohn_temp, vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT PORTB, vjohn
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ring- och Johnsonräknare
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Elektronisk tärning
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+	.data
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+pattern: 
+\end_layout
+
+\begin_layout Plain Layout
+
+	.byte 0x10, 0x82, 0x92, 0xC6, 0xD6, 0xEE
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R20, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT DDRB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R21, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT DDRA, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	CLR R20
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	IN R21, PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+	ANDI R21, 0x01
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ dice_update
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP dice_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+dice_update:
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	INC R20	; counter++
+\end_layout
+
+\begin_layout Plain Layout
+
+	CPI R20, 0x06
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ dice_if
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP dice_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+dice_if:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R20, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP dice_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+dice_end:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R30, lo8(pattern)
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R31, hi8(pattern)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	ADD R30, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+	LD R24, Z
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM R24
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT PORTB, R24
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Elektronisk tärning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Förändringsräknare
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+	.data
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+#define oldValue R22
+\end_layout
+
+\begin_layout Plain Layout
+
+#define newValue R23
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+counter: .byte 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R20, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT DDRB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R21, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT DDRA, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	MOV oldValue, newValue
+\end_layout
+
+\begin_layout Plain Layout
+
+	/*IN R19, PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+	ANDI R19, 0x01*/
+\end_layout
+
+\begin_layout Plain Layout
+
+	EOR R19, oldValue	;För automatisk räkning utan intryckning
+\end_layout
+
+\begin_layout Plain Layout
+
+	MOV newValue, R19
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	CP oldValue, newValue
+\end_layout
+
+\begin_layout Plain Layout
+
+	BRNE loop_if
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP loop_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_if:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDS R18, counter
+\end_layout
+
+\begin_layout Plain Layout
+
+	INC R18
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS counter, R18
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP loop_end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_end:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM R18
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT PORTB, R18
+\end_layout
+
+\begin_layout Plain Layout
+
+	CLR R18
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Förändringsräknare
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Simulerad aritmetisk enhet (AU)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+        .data
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+#define valueX R20
+\end_layout
+
+\begin_layout Plain Layout
+
+#define valueY R21
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\end_layout
+
+\begin_layout Plain Layout
+
+        .text
+\end_layout
+
+\begin_layout Plain Layout
+
+        .global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R23, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT DDRB, R23
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R23, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT DDRA, R23
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		LDI R23, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT DDRD, R23
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\end_layout
+
+\begin_layout Plain Layout
+
+        RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+        .text
+\end_layout
+
+\begin_layout Plain Layout
+
+        .global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN R22, PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM  R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI R22, 0xF0
+\end_layout
+
+\begin_layout Plain Layout
+
+		MOV valueX, R22
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN R22, PINA
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSL R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSL R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSL R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		LSL R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		MOV valueY, R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN R23, PIND
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI  R23, 0x01
+\end_layout
+
+\begin_layout Plain Layout
+
+		CPI R23, 0x01
+\end_layout
+
+\begin_layout Plain Layout
+
+		BRNE Subtract_func
+\end_layout
+
+\begin_layout Plain Layout
+
+		RJMP Add_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Subtract_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		SUB valueX, valueY
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN	R22, SREG
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM valueX
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT PORTB, valueX
+\end_layout
+
+\begin_layout Plain Layout
+
+		RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Add_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		ADD valueX, valueY
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI valueX , 0xF0
+\end_layout
+
+\begin_layout Plain Layout
+
+		IN	R22, SREG
+\end_layout
+
+\begin_layout Plain Layout
+
+		ANDI R22, 0x0F
+\end_layout
+
+\begin_layout Plain Layout
+
+		OR valueX,R22
+\end_layout
+
+\begin_layout Plain Layout
+
+		COM valueX
+\end_layout
+
+\begin_layout Plain Layout
+
+		OUT PORTB, valueX
+\end_layout
+
+\begin_layout Plain Layout
+
+        RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Simulerings-kod
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Några loopar
+\end_layout
+
+\begin_layout Standard
+Tidigare iteration av denna uppgift var extremt dåligt kodat på grund av
+ låg kunskap kring assembly-kodning och generell tänkande.
+ De som visas nedan är av nyare version och mycket mer effektiv och tydligare
+ kod.
+\end_layout
+
+\begin_layout Subsubsection
+7-räknare
+\end_layout
+
+\begin_layout Standard
+Tanken med denna uppgift var att räkning skulle ske genom varje flank-detekterin
+g.
+ Vid nedaktivering av en knapp för negativ flank och uppaktivering av en
+ knapp för positiv flank.
+ I nedastående kod räknar det däremot automatisk med hjälp av instruktionen
+ EOR som har samma funktion som en XOR-operation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+	.data
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+varX: .byte 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R20, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT DDRB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL seven
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+seven:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDS R21, varX
+\end_layout
+
+\begin_layout Plain Layout
+
+	INC R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS varX, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	CPI R21, 0x08
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ reset
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R24, 0
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R25, 1
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL wait_milliseconds
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT PORTB, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM R21
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP seven
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+reset:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R21, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS varX, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	CLR R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+7-räknare
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+7- och 30-räknare
+\end_layout
+
+\begin_layout Standard
+Denna kod har lånat seven-funktionen som finns från förra deluppgiften och
+ dessutom har en thirty-funktion lagts till som räknar ned från 30 efter
+ att seven har körts tre gånger.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language={[x86masm]Assembler}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+	.data
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+varX: .byte 0
+\end_layout
+
+\begin_layout Plain Layout
+
+varY: .byte 0
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global init_func
+\end_layout
+
+\begin_layout Plain Layout
+
+         
+\end_layout
+
+\begin_layout Plain Layout
+
+init_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R20, 0xFF
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT DDRB, R20
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	.text
+\end_layout
+
+\begin_layout Plain Layout
+
+	.global loop_func
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+loop_func:
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL seven
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL seven
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL seven
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL thirty
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+seven:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDS R21, varX
+\end_layout
+
+\begin_layout Plain Layout
+
+	INC R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS varX, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	; varX = 7 ? reset : seven
+\end_layout
+
+\begin_layout Plain Layout
+
+	CPI R21, 0x08
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ reset
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL display
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP seven
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+thirty:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDS R21, varY
+\end_layout
+
+\begin_layout Plain Layout
+
+	DEC R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	DEC R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS varY, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	; varY = 0 ? reset : thirty
+\end_layout
+
+\begin_layout Plain Layout
+
+	CPI R21, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	BREQ reset
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL display
+\end_layout
+
+\begin_layout Plain Layout
+
+	RJMP thirty
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+reset:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R21, 0x00
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS varX, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R21, 0x1E
+\end_layout
+
+\begin_layout Plain Layout
+
+	STS varY, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	CLR R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+display:
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	; wait_milliseconds ~0.25s
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R24, 0
+\end_layout
+
+\begin_layout Plain Layout
+
+	LDI R25, 1
+\end_layout
+
+\begin_layout Plain Layout
+
+	CALL wait_milliseconds
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	; display to PORTB
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	OUT PORTB, R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	COM R21
+\end_layout
+
+\begin_layout Plain Layout
+
+	RET
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+30-räknare
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

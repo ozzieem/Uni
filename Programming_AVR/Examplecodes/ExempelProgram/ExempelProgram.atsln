@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "WhatHappens", "avr_machine_level\WhatHappens.cproj", "{7B6DE938-4363-4789-A3EB-8E67BC185C6E}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "MinMax", "avr_max_min\MinMax.cproj", "{87929AB2-CF02-47B9-B37B-EA08DBB15A9C}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Recursive", "avr_recursive\Recursive.cproj", "{EE4433B0-F6A0-4689-B5D8-E0B5E8D8C46D}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "StartStopTime", "avr_start_stop_time\StartStopTime.cproj", "{EAFE9F37-14B0-4E52-9280-9633364AE4F8}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "CPP-ISR-RING-COUNTER", "avr_cpp_isr_ring_counter\CPP-ISR-RING-COUNTER.cppproj", "{3B69E775-001B-4D02-B763-322F7431A41E}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "FalseDice", "FalseDice\FalseDice.cppproj", "{157F74A9-536D-4B2F-821D-0DB4E85B3B7C}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "FlancDetector", "FlancDetector\FlancDetector.cppproj", "{49599618-3B4D-4256-8C3A-D6ABC2248011}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "TrafficLight", "TrafficLight\TrafficLight.cppproj", "{9ED40BDC-5DDB-4C12-AC29-0ABDDCE788FE}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "Smt160", "Smt160\Smt160.cppproj", "{400BF1E0-C334-4877-8F78-8AD38A6E58C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		default|AVR = default|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B6DE938-4363-4789-A3EB-8E67BC185C6E}.Debug|AVR.ActiveCfg = default|AVR
+		{7B6DE938-4363-4789-A3EB-8E67BC185C6E}.Debug|AVR.Build.0 = default|AVR
+		{7B6DE938-4363-4789-A3EB-8E67BC185C6E}.default|AVR.ActiveCfg = default|AVR
+		{7B6DE938-4363-4789-A3EB-8E67BC185C6E}.default|AVR.Build.0 = default|AVR
+		{7B6DE938-4363-4789-A3EB-8E67BC185C6E}.Release|AVR.ActiveCfg = default|AVR
+		{7B6DE938-4363-4789-A3EB-8E67BC185C6E}.Release|AVR.Build.0 = default|AVR
+		{87929AB2-CF02-47B9-B37B-EA08DBB15A9C}.Debug|AVR.ActiveCfg = default|AVR
+		{87929AB2-CF02-47B9-B37B-EA08DBB15A9C}.Debug|AVR.Build.0 = default|AVR
+		{87929AB2-CF02-47B9-B37B-EA08DBB15A9C}.default|AVR.ActiveCfg = default|AVR
+		{87929AB2-CF02-47B9-B37B-EA08DBB15A9C}.default|AVR.Build.0 = default|AVR
+		{87929AB2-CF02-47B9-B37B-EA08DBB15A9C}.Release|AVR.ActiveCfg = default|AVR
+		{87929AB2-CF02-47B9-B37B-EA08DBB15A9C}.Release|AVR.Build.0 = default|AVR
+		{EE4433B0-F6A0-4689-B5D8-E0B5E8D8C46D}.Debug|AVR.ActiveCfg = default|AVR
+		{EE4433B0-F6A0-4689-B5D8-E0B5E8D8C46D}.Debug|AVR.Build.0 = default|AVR
+		{EE4433B0-F6A0-4689-B5D8-E0B5E8D8C46D}.default|AVR.ActiveCfg = default|AVR
+		{EE4433B0-F6A0-4689-B5D8-E0B5E8D8C46D}.default|AVR.Build.0 = default|AVR
+		{EE4433B0-F6A0-4689-B5D8-E0B5E8D8C46D}.Release|AVR.ActiveCfg = default|AVR
+		{EE4433B0-F6A0-4689-B5D8-E0B5E8D8C46D}.Release|AVR.Build.0 = default|AVR
+		{EAFE9F37-14B0-4E52-9280-9633364AE4F8}.Debug|AVR.ActiveCfg = default|AVR
+		{EAFE9F37-14B0-4E52-9280-9633364AE4F8}.Debug|AVR.Build.0 = default|AVR
+		{EAFE9F37-14B0-4E52-9280-9633364AE4F8}.default|AVR.ActiveCfg = default|AVR
+		{EAFE9F37-14B0-4E52-9280-9633364AE4F8}.default|AVR.Build.0 = default|AVR
+		{EAFE9F37-14B0-4E52-9280-9633364AE4F8}.Release|AVR.ActiveCfg = default|AVR
+		{EAFE9F37-14B0-4E52-9280-9633364AE4F8}.Release|AVR.Build.0 = default|AVR
+		{3B69E775-001B-4D02-B763-322F7431A41E}.Debug|AVR.ActiveCfg = Debug|AVR
+		{3B69E775-001B-4D02-B763-322F7431A41E}.Debug|AVR.Build.0 = Debug|AVR
+		{3B69E775-001B-4D02-B763-322F7431A41E}.default|AVR.ActiveCfg = Debug|AVR
+		{3B69E775-001B-4D02-B763-322F7431A41E}.default|AVR.Build.0 = Debug|AVR
+		{3B69E775-001B-4D02-B763-322F7431A41E}.Release|AVR.ActiveCfg = Release|AVR
+		{3B69E775-001B-4D02-B763-322F7431A41E}.Release|AVR.Build.0 = Release|AVR
+		{157F74A9-536D-4B2F-821D-0DB4E85B3B7C}.Debug|AVR.ActiveCfg = Debug|AVR
+		{157F74A9-536D-4B2F-821D-0DB4E85B3B7C}.Debug|AVR.Build.0 = Debug|AVR
+		{157F74A9-536D-4B2F-821D-0DB4E85B3B7C}.default|AVR.ActiveCfg = Debug|AVR
+		{157F74A9-536D-4B2F-821D-0DB4E85B3B7C}.default|AVR.Build.0 = Debug|AVR
+		{157F74A9-536D-4B2F-821D-0DB4E85B3B7C}.Release|AVR.ActiveCfg = Release|AVR
+		{157F74A9-536D-4B2F-821D-0DB4E85B3B7C}.Release|AVR.Build.0 = Release|AVR
+		{49599618-3B4D-4256-8C3A-D6ABC2248011}.Debug|AVR.ActiveCfg = Debug|AVR
+		{49599618-3B4D-4256-8C3A-D6ABC2248011}.Debug|AVR.Build.0 = Debug|AVR
+		{49599618-3B4D-4256-8C3A-D6ABC2248011}.default|AVR.ActiveCfg = Debug|AVR
+		{49599618-3B4D-4256-8C3A-D6ABC2248011}.default|AVR.Build.0 = Debug|AVR
+		{49599618-3B4D-4256-8C3A-D6ABC2248011}.Release|AVR.ActiveCfg = Release|AVR
+		{49599618-3B4D-4256-8C3A-D6ABC2248011}.Release|AVR.Build.0 = Release|AVR
+		{9ED40BDC-5DDB-4C12-AC29-0ABDDCE788FE}.Debug|AVR.ActiveCfg = Debug|AVR
+		{9ED40BDC-5DDB-4C12-AC29-0ABDDCE788FE}.Debug|AVR.Build.0 = Debug|AVR
+		{9ED40BDC-5DDB-4C12-AC29-0ABDDCE788FE}.default|AVR.ActiveCfg = Debug|AVR
+		{9ED40BDC-5DDB-4C12-AC29-0ABDDCE788FE}.default|AVR.Build.0 = Debug|AVR
+		{9ED40BDC-5DDB-4C12-AC29-0ABDDCE788FE}.Release|AVR.ActiveCfg = Release|AVR
+		{9ED40BDC-5DDB-4C12-AC29-0ABDDCE788FE}.Release|AVR.Build.0 = Release|AVR
+		{400BF1E0-C334-4877-8F78-8AD38A6E58C9}.Debug|AVR.ActiveCfg = Debug|AVR
+		{400BF1E0-C334-4877-8F78-8AD38A6E58C9}.Debug|AVR.Build.0 = Debug|AVR
+		{400BF1E0-C334-4877-8F78-8AD38A6E58C9}.default|AVR.ActiveCfg = Debug|AVR
+		{400BF1E0-C334-4877-8F78-8AD38A6E58C9}.default|AVR.Build.0 = Debug|AVR
+		{400BF1E0-C334-4877-8F78-8AD38A6E58C9}.Release|AVR.ActiveCfg = Release|AVR
+		{400BF1E0-C334-4877-8F78-8AD38A6E58C9}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

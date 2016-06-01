@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>6.1</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>719c3b00-86ce-406c-b85a-9f57c486b619</ProjectGuid>
+    <Name>static_execution_scheme</Name>
+    <avrdevice>ATmega32</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <AvrProjectType>Importer</AvrProjectType>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>main</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <avrtool />
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <OverrideVtorValue />
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <avrtoolinterface />
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress />
+    <UncachedRange />
+    <BootSegment>2</BootSegment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'default' ">
+    <OutputPath>bin\default\</OutputPath>
+    <ToolchainSettings>
+      <AvrGcc xmlns="">
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>F_CPU=8000000UL</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.warnings.AllWarnings>true</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -fsigned-char</avrgcc.compiler.miscellaneous.OtherFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2      -DF_CPU=8000000UL -Os -fsigned-char</avrgcc.assembler.general.AssemblerFlags>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+  <ItemGroup>
+    <Compile Include="time.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="counter.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="delay_loop.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="help_functions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="io_bit_fields.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="io_usart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lcd4.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="relay.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensor_smt160.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="task_dice.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="task_ring.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="task_tc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="wait_milliseconds.s">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lcd4.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="counter.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="delay_loop.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="time.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="io_usart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="task_tc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="relay.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="sensor_smt160.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="task_dice.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="task_ring.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="io_di.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="io_do.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="help_functions.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

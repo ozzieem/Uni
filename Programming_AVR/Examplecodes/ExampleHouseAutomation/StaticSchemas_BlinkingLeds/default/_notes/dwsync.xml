@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Makefile" local="129673016290000000" remote="129930314750000000" testing="0" />
+<file name="main.o" local="129673016290000000" remote="129930314730000000" testing="0" />
+<file name="wait_milliseconds.o" local="129673016290000000" remote="129930314830000000" testing="0" />
+<file name="lcd4.o" local="129673016290000000" remote="129930314660000000" testing="0" />
+<file name="counter.o" local="129673016290000000" remote="129930314360000000" testing="0" />
+<file name="delay_loop.o" local="129673016290000000" remote="129930314370000000" testing="0" />
+<file name="time.o" local="129673016290000000" remote="129930314820000000" testing="0" />
+<file name="io_usart.o" local="129673016290000000" remote="129930314650000000" testing="0" />
+<file name="task_tc.o" local="129673016290000000" remote="129930314800000000" testing="0" />
+<file name="relay.o" local="129673016290000000" remote="129930314760000000" testing="0" />
+<file name="sensor_smt160.o" local="129673016290000000" remote="129930314770000000" testing="0" />
+<file name="task_dice.o" local="129673016290000000" remote="129930314780000000" testing="0" />
+<file name="task_ring.o" local="129673016290000000" remote="129930314790000000" testing="0" />
+<file name="io_di.o" local="129673016290000000" remote="129930314630000000" testing="0" />
+<file name="io_do.o" local="129673016290000000" remote="129930314640000000" testing="0" />
+<file name="help_functions.o" local="129673016290000000" remote="129930314610000000" testing="0" />
+<file name="main.map" local="129673016290000000" remote="129930314720000000" testing="0" />
+<file name="main.elf" local="129673016290000000" remote="129930314690000000" testing="0" />
+<file name="main.hex" local="129673016290000000" remote="129930314700000000" testing="0" />
+<file name="main.eep" local="129673016290000000" remote="129930314680000000" testing="0" />
+<file name="main.lss" local="129673016290000000" remote="129930314710000000" testing="0" />
+</dwsync>

@@ -1,0 +1,22 @@
+init_func:
+
+	LDI R20, 0
+	OUT DDRA,  R20
+	LDI R20, 0b00000001
+	OUT DDRB, R20 ;PBO är en digital utsignal
+	RET
+
+loop_func:
+
+	IN R20, PINA ;R20 = START-N
+	COM R20 ;R20 = START = PAO 
+	IN R21, PINA
+	LSR R21 ;R21 bit 00 = !STOP
+	IN R22, PORTB ;R22 = !LAMP
+	COM R22 ;R22 = LAMP
+	AND R22, R21 ;R22 = LAMP * !STOP
+	AND R20, R21 ;R20 = START * !STOP
+	OR R20, R22 ;R20 = LAMP+
+	COM R20
+	OUT PORTB, R20
+	RET

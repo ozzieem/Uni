@@ -1,0 +1,14 @@
+Imagine you have a pile of cash that you want to put in a briefcase. You have to measure the size of the cash to know how big a briefcase to use, and you need a handle to conveniently carry the cash around.
+
+The cash is your strings. The briefcase is memory space. The briefcase handle is the pointer.
+
+Measure your cash: strlen(string1) + strlen(string2) + strlen(stringX) + 1. Call this "total".
+Now get a big enough briefcase: malloc(total)
+And put a handle on it: string3
+Cobbling all that together...
+
+char *string3 = malloc(strlen(string1)+strlen(stringX)+strlen(string2)+1);
+sprintf(string3, "%s%s%s", string1, stringX, string2);
+So what was wrong with the first attempt? You had no briefcase. You have cash, and you have a handle, but no briefcase in the middle. It appeared to work, in a random kind of way, because the compiler gave you a dirty dumpster to hold the cash. Sometimes the dumpster has room, sometimes it doesn't. When it doesn't, we call that "segmentation fault".
+
+Whenever you have data, you have to allocate space for that data. The compiler allocates space for your constant strings, like "HELLO". But you have to allocate space for strings built at run-time.

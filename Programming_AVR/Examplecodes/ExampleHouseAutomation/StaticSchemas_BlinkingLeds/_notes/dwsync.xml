@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="ProjektFil.aps" local="129673016290000000" remote="129930315040000000" testing="0" />
+<file name="wait_milliseconds.s" local="129673016290000000" remote="129930315230000000" testing="0" />
+<file name="io_bit_fields.h" local="129673016290000000" remote="129930314910000000" testing="0" />
+<file name="lcd4.c" local="129673016290000000" remote="129930315010000000" testing="0" />
+<file name="lcd4.h" local="129673016290000000" remote="129930315020000000" testing="0" />
+<file name="counter.h" local="129673016290000000" remote="129930314320000000" testing="0" />
+<file name="help_functions.h" local="129673016290000000" remote="129930314900000000" testing="0" />
+<file name="delay_loop.c" local="129673016290000000" remote="129930314860000000" testing="0" />
+<file name="delay_loop.h" local="129673016290000000" remote="129930314870000000" testing="0" />
+<file name="help_functions.c" local="129673016290000000" remote="129930314890000000" testing="0" />
+<file name="counter.c" local="129673016290000000" remote="129930314310000000" testing="0" />
+<file name="relay.h" local="129673016290000000" remote="129930315080000000" testing="0" />
+<file name=".DS_Store" local="-4469979396471521280" remote="-3892332654447583032" testing="0" />
+<file name="task_ring.h" local="129673016290000000" remote="129930315170000000" testing="0" />
+<file name="time.h" local="129673016290000000" remote="129930315220000000" testing="0" />
+<file name="io_usart.h" local="129673016290000000" remote="129930314990000000" testing="0" />
+<file name="io_usart.c" local="129673016290000000" remote="129930314980000000" testing="0" />
+<file name="relay.c" local="129673016290000000" remote="129930315070000000" testing="0" />
+<file name="sensor_smt160.c" local="129673016290000000" remote="129930315100000000" testing="0" />
+<file name="sensor_smt160.h" local="129673016290000000" remote="129930315110000000" testing="0" />
+<file name="task_dice.c" local="129673016290000000" remote="129930315130000000" testing="0" />
+<file name="task_tc.c" local="129673016290000000" remote="129930315180000000" testing="0" />
+<file name="task_dice.h" local="129673016290000000" remote="129930315140000000" testing="0" />
+<file name="task_tc.h" local="129673016290000000" remote="129930315190000000" testing="0" />
+<file name="io_do.h" local="129673016290000000" remote="129930314970000000" testing="0" />
+<file name="io_di.c" local="129673016290000000" remote="129930314930000000" testing="0" />
+<file name="io_di.h" local="129673016290000000" remote="129930314940000000" testing="0" />
+<file name="io_do.c" local="129673016290000000" remote="129930314950000000" testing="0" />
+<file name="task_ring.c" local="129673016290000000" remote="129930315150000000" testing="0" />
+<file name="main.c" local="129673016290000000" remote="129930315030000000" testing="0" />
+<file name="time.c" local="129673016290000000" remote="129930315200000000" testing="0" />
+<file name="projektfil.aws" local="129673016290000000" remote="129930315060000000" testing="0" />
+</dwsync>

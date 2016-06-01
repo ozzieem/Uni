@@ -3,11 +3,11 @@
 #include "stable_partition_position.h"
 
 
-int main()
+int main(int argc, char* argv[])
 {
 	//GeneratePassword();
 	//HashMap();
-	stable_partition_test();
+	//stable_partition_test();
 
 	system("pause");
 }

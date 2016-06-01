@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="main.o.d" local="129673016290000000" remote="129930314490000000" testing="0" />
+<file name="wait_milliseconds.o.d" local="129673016290000000" remote="129930314580000000" testing="0" />
+<file name="lcd4.o.d" local="129673016290000000" remote="129930314480000000" testing="0" />
+<file name="counter.o.d" local="129673016290000000" remote="129930314400000000" testing="0" />
+<file name="delay_loop.o.d" local="129673016290000000" remote="129930314410000000" testing="0" />
+<file name="time.o.d" local="129673016290000000" remote="129930314570000000" testing="0" />
+<file name="io_usart.o.d" local="129673016290000000" remote="129930314470000000" testing="0" />
+<file name="task_tc.o.d" local="129673016290000000" remote="129930314560000000" testing="0" />
+<file name="relay.o.d" local="129673016290000000" remote="129930314510000000" testing="0" />
+<file name="sensor_smt160.o.d" local="129673016290000000" remote="129930314520000000" testing="0" />
+<file name="task_dice.o.d" local="129673016290000000" remote="129930314530000000" testing="0" />
+<file name="task_ring.o.d" local="129673016290000000" remote="129930314550000000" testing="0" />
+<file name="io_di.o.d" local="129673016290000000" remote="129930314440000000" testing="0" />
+<file name="io_do.o.d" local="129673016290000000" remote="129930314460000000" testing="0" />
+<file name="help_functions.o.d" local="129673016290000000" remote="129930314430000000" testing="0" />
+</dwsync>

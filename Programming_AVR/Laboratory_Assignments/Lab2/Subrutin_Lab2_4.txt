@@ -1,0 +1,99 @@
+;;;--- I/O-adresses for Port D ---
+#define PIND	0x10
+#define DDRD	0x11
+#define PORTD	0x12
+
+;;;--- I/O-adresses for Port C ---
+#define PINC	0x13
+#define DDRC	0x14
+#define PORTC	0x15
+
+;;;--- I/O-adresses for Port B ---
+#define PINB	0x16
+#define DDRB	0x17
+#define PORTB	0x18
+
+;;;--- I/O-adresses for Port A ---
+#define PINA	0x19
+#define DDRA	0x1A
+#define PORTA	0x1B
+
+#define SREG	0x3F ;Kjell
+
+;;;--- Variables ---
+        .data
+		#define xValue R20
+		#define yValue R21
+		;#define uValue R22
+        
+;;;--- subrutin init_func ---
+        .text
+        .global init_func
+
+         
+init_func:
+
+		;Initiate PORTB
+		LDI R23, 0xFF
+		OUT DDRB, R23
+
+		;Initiate PORTA
+		LDI R23, 0x00
+		OUT DDRA, R23
+
+		;Initiate PORTD
+		LDI R23, 0x00
+		OUT DDRD, R23
+        
+        RET
+
+;;;--- subrutin loop_func ---
+        .text
+        .global loop_func
+
+loop_func:
+
+		;Read from inports
+		IN R22, PINA
+		COM  R22
+		ANDI R22, 0xF0
+		MOV xValue, R22
+
+		IN R22, PINA
+		COM R22
+		LSL R22
+		LSL R22
+		LSL R22
+		LSL R22
+		MOV yValue, R22
+
+		;Test: PORTD
+		IN R23, PIND
+		ANDI  R23, 0x01 ;PD0 , R23=0x00 eller 0x01
+		CPI R23, 0x01 ;Compare if zero
+		BRNE Sub_func
+		RJMP Add_func
+
+Sub_func:
+
+		;Check if PIND gives 0
+		;ANDI R23, 0x00
+		;If branches here, subtract.
+		SUB xValue, yValue
+		IN	R22, SREG ;Kjell
+		COM xValue ;Converts to get lights on the second half.
+		OUT PORTB, xValue
+		;RJMP end_func - räknaren funkar
+		;CLR R23
+		RET			  ;- räknaren funkar ej
+
+Add_func:
+		;Add two registers/ without carry
+		ADD xValue, yValue ;result saved in xValue
+		ANDI xValue , 0xF0 ;Kjell
+		IN	R22, SREG ;Kjell
+		ANDI R22, 0x0F ;Kjell
+		OR xValue,R22 ;Kjell
+		COM xValue
+		OUT PORTB, xValue
+        RET
