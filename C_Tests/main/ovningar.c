@@ -117,7 +117,7 @@ void ovning3_C()
 void ovning6_A()
 {
 	FILE* fp;
-	fopen_s(&fp, "reelatal.txt", "w");
+	fopen_s(&fp, "./files/reelatal.txt", "w");
 
 	double reeltal = 1;
 	do
@@ -135,7 +135,7 @@ void ovning6_A()
 void ovning6_B()
 {
 	FILE* fp;
-	fopen_s(&fp, "reelatal.txt", "r");
+	fopen_s(&fp, "./files/reelatal.txt", "r");
 
 	auto antal_tal = 0;
 	float medelvarde = 0, tal;
@@ -153,7 +153,7 @@ void ovning6_B()
 void ovning6_C()
 {
 	FILE* fp;
-	fopen_s(&fp, "semikolon.txt", "r");
+	fopen_s(&fp, "./files/semikolon.txt", "r");
 
 	auto antal_semikolon = 0;
 	char semi_c;
@@ -172,7 +172,7 @@ void ovning6_C()
 void ovning6_D()
 {
 	FILE* fp;
-	fopen_s(&fp, "personnamn.txt", "r");
+	fopen_s(&fp, "./files/personnamn.txt", "r");
 
 	auto antal_namn = 0;
 	char namn[10];
@@ -186,7 +186,7 @@ void ovning6_D()
 void ovning6_E()
 {
 	FILE* fp;
-	fopen_s(&fp, "tarningskast.dat", "wb");
+	fopen_s(&fp, "./files/tarningskast.dat", "wb");
 	srand(time(NULL));
 
 	for (auto i = 0; i < 500; i++)
@@ -204,7 +204,7 @@ void ovning6_F()
 {
 	FILE* fp;
 
-	fopen_s(&fp, "tarningskast.dat", "rb");
+	fopen_s(&fp, "./files/tarningskast.dat", "rb");
 
 	float medelvarde = 0;
 	int antal_tarningar = 0;
