@@ -7,7 +7,7 @@ Clock::Clock()
 	this->seconds = Counter(0, 59);
 }
 
-void Clock::UpdateClock()
+void Clock::Update()
 {
 		if(this->seconds.GetValue() < this->seconds.GetMax())
 		{

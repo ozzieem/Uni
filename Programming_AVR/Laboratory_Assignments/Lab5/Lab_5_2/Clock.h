@@ -6,5 +6,5 @@ public:
 	Counter hours, minutes, seconds;
 	Clock();
 
-	void UpdateClock();
+	void Update();
 };

@@ -13,7 +13,7 @@ ISR(TIMER0_OVF_vect)	// Interrupts when Timer has encountered overflow
 {
 	if(tick.Increment())	// Returns 1 if tick has reached 30
 	{
-		clock.UpdateClock();
+		clock.Update();
 	}
 }
 
