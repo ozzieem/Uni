@@ -18,21 +18,21 @@ void struct_fraction();
 void random_password();
 void const_pointer_test();
 
-#if 1
+#if 0
 
 int main()
 {
-	//ovning3_A();
-	//ovning3_B();
-	//ovning3_C();
-	//ovning6_A();
-	//ovning6_B();
-	//ovning6_C();
-	//ovning6_D();
-	//ovning6_E();
-	//ovning6_F();
-	//struct_fraction();
-	//random_password();
+//ovning3_A();
+//ovning3_B();
+//ovning3_C();
+//ovning6_A();
+//ovning6_B();
+//ovning6_C();
+//ovning6_D();
+//ovning6_E();
+//ovning6_F();
+//struct_fraction();
+//random_password();
 	const_pointer_test();
 
 

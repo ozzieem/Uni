@@ -110,6 +110,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cstack.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="ovningar.c" />
   </ItemGroup>
