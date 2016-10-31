@@ -1,0 +1,116 @@
+===============================================================================
+                          AIMR LAB INFORMATION SHEET
+===============================================================================
+Lab Assistant:    Ali Abdul Khaliq
+Email:            ali-abdul.khaliq@oru.se
+Office:           T-1121
+Lab:              T-002
+Course Homepage:  http://www.aass.oru.se/~asaffio/Teaching/AIMR/
+===============================================================================
+Writing Lab Reports:
+
+  -First: SEPARATE Cover Page
+    -Course name (e.g. "AIMR", or "Artificial Intelligence in Mobile Robots")
+    -Lab assistant's name (e.g. "Delivered to: Ali Adbul Khaliq")
+    -Lab number and title (e.g. "Lab 2 - Position Estimation", or "Final Project")
+    -Group number, member names, personal ID numbers, and email addresses
+    -Date when lab was performed, and date when report was submitted
+
+  -Second: SEPARATE Text Section
+    -In English (we can accommodate Swedish if needed: please talk to us)
+    -About 2 page for labs (not including code/figures)
+    -Section 1:
+      -State lab objectives, and overview.
+    -Section 2:
+      -Explain what you did, and how you did it.  This section should explain
+       what was done for EACH POINT of the lab assignment (use appropriate
+       subsections - refer to lab description).  In particular, indicate which
+       sections refer to optional parts.  Indicate which optional parts were
+       done, and how.
+    -Section 3:
+      -Conclusions.  Explain problems encountered and solutions used (don't
+       mention pure programming problems or hardware problems).  Explain how
+       well the resulting program worked, and how it might be improved.
+
+  -Third: SEPARATE Appendix
+    -Include COMMENTED source code, figures, program output, etc.
+    -Only include data which is necessary to show that the lab was successful
+    -Include only the code relevant to the particular lab
+
+===============================================================================
+===============================================================================
+Submitting Lab Reports:
+
+  -Submit perforated and stapled paper copies of lab reports to lab assistant
+    -Bring to lab, drop off in office, or drop in mail slot at the department
+
+  -Reports which are not good enough will be returned, to be resubmitted
+
+  -Reports are due 10 days the lab was assigned
+    -Late lab reports can negatively affect your grade (see below)
+    -Reports judged as inadequate should be re-submitted in an adequate form
+     the following week, and will be considered late
+    -Any missing lab reports by FINAL deadline = FAIL
+
+  -YOU CAN FAIL THIS COURSE IF...
+    -You do not submit approved lab reports for all labs by the FINAL deadline
+    -You do not demonstrate a working project by the FINAL deadline
+    -You do not submit an approved final report by the FINAL deadline
+    -Exceptions MIGHT be made if you have a valid, verifiable reason
+
+  -YOU CAN GET A PERFECT SCORE FOR THIS COURSE IF...
+    -You submit all lab reports, demos, and final reports, on time
+    -You submit lab reports which meet format specifications, and which have
+     content which is consistent with the specifications
+    -You complete a substantial number of optional parts for the final project
+
+===============================================================================
+===============================================================================
+Other Important Information About Labs:
+
+  -Attendance at labs is compulsory, until at least the mandatory parts of the
+   lab are completed.  Absenteeism must be explained, and if you miss labs
+   without good reason this could affect your grade.
+
+  -Remember to sign the attendance sheet before leaving the lab, and if you've
+   demonstrated a lab be sure it is marked on the attendance sheet
+
+  -Use the same computer and robot throughout the course.
+
+  -Do not bring food or drink anywhere near the computers/robots.
+
+  -You will not have time to finish all the options by the time allocated
+   for the final project.  Many of the options are the same options that are
+   given during the previous labs - so you might want to complete as many
+   options as possible in each of the labs.
+
+  -Before moving on to lab N, you should DEMONSTRATE that you have successfully
+   implemented (at least the mandatory parts of) lab N-1.  You should demo all
+   parts of the lab at the same time (i.e. when you're finished all mandatory
+   parts, and any optional parts you intend to complete).  Demos for labs and
+   the final project should be on the REAL robot: you may use a simulator, 
+   but just as a tool to speed up rough development.
+
+  -If you fall behind, there are a few "extra" lab slots available.  It is
+   your responsibility to let us know (during the normal lab slot) if you feel
+   you need extra time in the lab.  We encourage you to do as much work as you
+   can outside the lab if you feel you're falling behind.  Extra time slots are
+   only available to students who have not missed labs without good reason.
+
+  -If for a (good) reason your group cannot attend a lab as scheduled, contact
+   the lab assistant to determine when you can do the lab.  
+
+===============================================================================
+Information about robots:
+
+  -They are EXPENSIVE.  Handle with care.
+
+  -Some of them may be worn.  In particular, if you start moving too fast,
+   sometimes one wheel will reach full speed faster than the other, causing a
+   lurch which can make position estimation difficult.  If this happens, slow
+   down.
+
+  -You cannot take the robots out of the lab, sorry.  If you need to do
+   work off the lab, you can use the simulator for that.
+
+===============================================================================

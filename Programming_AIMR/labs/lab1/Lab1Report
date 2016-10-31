@@ -1,0 +1,111 @@
+4. The simulator runs in relative positioning so SetTargetSteps are going to be different for the simulator and the real robot. The real robot is in absolute positioning meaning it will travel the correct distance for SetTargetSteps compared to the simulator. One thing that was noticed was that in the simulator the movement was faster than the real robot, because of the relative and absolute differences. The simulator did however do slower IR-readings than the real robot.
+
+5. The function takes the left and right values and sends the values to the robot, which in turn sends pulses of messages to the robot to activate the motors. A value of 1000 to both left and right gives 1000 pulses per 10 msec.
+SetTargetSteps(2000,3000) makes the right wheel turn for 2 rotation and the left for 3 total rotations. It continues to turn one more rotation after the right one has finished, thus turning the car to a leftward direction.
+
+6. SetSpeed makes the robot travel the same distance in the simulator and in the real environment. Sleep is required to stop the program from continuing to the next line of code to allow the vehicle to travel in said speed. Stop is needed to make the robot stop so it doesn't run forever. SetSpeed reads values of right and left like SetTargetSteps. It also sends the values to the robot. 
+
+7. 
+int direction = 500;
+
+for(i = 0; i < 5; i++) {
+
+   SetTargetSteps(direction, direction);
+   Sleep(500);
+   direction *= -1;	
+}
+
+8.
+int direction = 500;
+
+for(i = 0; i < 5; i++) {
+
+   SetSpeed(direction, direction);
+   Sleep(1000);
+   direction *= -1;	
+}
+Stop();
+
+9.
+// 1 step = 7.71 mm
+void Move(double mm) {
+   float StepsPermm = 7.71;
+   int steps = mm * StepsPermm + GetSteps().l; // GetSteps().l (!)
+   printf("Moving %lf millimeters\n", mm);
+   printf("Setting steps: %d\n", steps);
+   SetTargetSteps(steps, steps);
+}
+
+10.
+// 1 step = 3.63 degrees
+void Turn(double degrees) {
+   float StepsPerDegree = 3.63;
+   int steps = degrees * StepsPerDegree + GetSteps().l;
+   printf("Turning %lf degrees\n", degrees);
+   printf("Setting steps %d:\n", steps);
+   SetTargetSteps(steps, -steps);
+}
+
+11.
+void Move2(double mm)
+{
+  float StepsPermm = 7.71;
+  int initialSteps = GetSteps().l;
+  float target = GetSteps().l + mm * StepsPermm;
+  SetSpeed(400, 400);
+  while (GetSteps().l * 1.0 < target) {
+    // "Busy wait" until target is readched...
+    printf("%d steps!\n", GetSteps().l);    
+  }
+  Stop();
+  printf("Final steps: %d\n", GetSteps().l);   
+  float movedmm = (GetSteps().l - initialSteps) / StepsPermm;
+  printf("Moved %lf mm!\n", movedmm);    
+}
+
+The precision of this function is less than the previous function.
+
+
+13.
+
+This function detects which of the sensors are receiving low light and activates the corresponding led to the IR-sensor number. 
+
+void IRDetector()
+{
+  Sensors ir;       // get sensors voltage unsigned int (sensor)
+  bool led[8] = {0,0,0,0,0,0,0,0};  // eight leds
+  SetRingLED (led);
+
+  int i, j;
+  for (i=0;i<1000;i++)
+  {
+    ir = GetIR();
+    printf("IR values: %4d, %4d, %4d, %4d, %4d, %4d, %4d, %4d\n",
+           ir.sensor[0], ir.sensor[1], ir.sensor[2], ir.sensor[3],
+           ir.sensor[4], ir.sensor[5], ir.sensor[6], ir.sensor[7]);
+    for (j=0; j<8; j++)
+    {
+        if (ir.sensor[j] > 1000)
+		led[j] = 1;
+	else
+		led[j] = 0;
+    }  
+    SetRingLED(led);  
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

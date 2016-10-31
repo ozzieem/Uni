@@ -1,0 +1,81 @@
+---------------Menu---------------
+1. Enter values
+2. Follow Path (S: (2, 3), G: (5, 3))
+3. Follow Gradient (S: (2, 3), G: (5, 3))
+2
+C:(2, 3) (Start)
+C:(3, 3) (MVal: 2)
+C:(4, 3) (MVal: 1)
+C:(5, 3) (MVal: 0)
+
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+@@@                         @@@
+@@@       4  S    4         @@@
+@@@   4   3  *    3   4     @@@
+@@@   3   2  *    2   3   4 @@@
+@@@   2   1  G    1   2   3 @@@
+@@@   3   2   1   2   3   4 @@@
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+Width:   8  Height:   8
+Generated:   Translated:
+(3, 3)    (0.0, -98.3)
+(5, 3)    (0.0, -295.0)
+Track position coords: (0.00, -98.33)
+Track position coords: (0.00, -295.00)
+Added obstacle to cell ahead. Replanning!
+C:(3, 3) (Start)
+C:(3, 2) (MVal: 3)
+C:(4, 2) (MVal: 2)
+C:(5, 2) (MVal: 1)
+C:(5, 3) (MVal: 0)
+
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+@@@                         @@@
+@@@   5   4       4         @@@
+@@@   4  *   S    3   4     @@@
+@@@   3  *  ###   2   3   4 @@@
+@@@   2  *   G    1   2   3 @@@
+@@@   3   2   1   2   3   4 @@@
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+Width:   8  Height:   8
+Generated:   Translated:
+(3, 2)    (-98.3, -98.3)
+(5, 2)    (-98.3, -295.0)
+(5, 3)    (0.0, -295.0)
+Track position coords: (-98.33, -98.33)
+Track position coords: (-98.33, -295.00)
+Track position coords: (0.00, -295.00)
+End of FollowPath
+
+---------------Menu---------------
+1. Enter values
+2. Follow Path (S: (3, 3), G: (5, 3))
+3. Follow Gradient (S: (3, 3), G: (5, 3))
+1
+StartCell: 5 3
+GoalCell: 2 3
+
+C:(5, 3) (Start)
+C:(5, 2) (MVal: 4)
+C:(4, 2) (MVal: 3)
+C:(3, 2) (MVal: 2)
+C:(2, 2) (MVal: 1)
+C:(2, 3) (MVal: 0)
+
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+@@@   3   2   1   2   3   4 @@@
+@@@   2  *   G    1   2   3 @@@
+@@@   3  *    1   2   3   4 @@@
+@@@   4  *  ###   3   4   5 @@@
+@@@   5  *   S    4   5     @@@
+@@@   6   5       5         @@@
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+Width:   8  Height:   8
+Generated:   Translated:
+(5, 2)    (-98.3, -295.0)
+(2, 2)    (-98.3, 0.0)
+(2, 3)    (0.0, 0.0)
+Track position coords: (-98.33, -295.00)
+Track position coords: (-98.33, 0.00)
+Track position coords: (0.00, 0.00)
+End of FollowPath

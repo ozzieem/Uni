@@ -1,0 +1,80 @@
+
+<!-- saved from url=(0051)http://aass.oru.se/~asaffio/Teaching/AIMR/lab2.html -->
+<html class="gr__aass_oru_se"><style type="text/css" id="night-mode-pro-style"></style><link type="text/css" rel="stylesheet" id="night-mode-pro-link"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>AIMR Lab 2</title><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head>
+<body data-gr-c-s-loaded="true">
+
+<h2>Laboratory 2 - Position estimation<em>(assigned on Sep 5)</em></h2>
+
+<h3>Objective</h3>
+
+<p> Implement and test position estimation based on odometry </p>
+
+<h3>Steps</h3>
+
+<ol>
+<li> Implement position estimation on the ePuck.
+<p>
+</p></li><li> Verify that the estimates are correct over simple trajectories.
+(Note: think about how you can verify this, and describe it in your report.)
+</li></ol>
+
+<h3>Optional parts</h3>
+
+<ol start="3">
+<li> Measure the error over a closed square trajectory.
+<br> Make sure to measure the error over a sufficient number of laps, and
+see how the error increase without bounds at each lap.
+<br> Make sure to try both directions.
+
+<p>
+</p></li><li> Try to improve the estimate by computing a compensation factor.
+
+<br> For instance, if in your experiements you observed that the
+diameters of the two wheels are different, use this factor to compensate
+the encoder readings from one of the wheels.
+
+<p>
+</p></li><li> Measure the estimate error as above with your improved estimate.
+
+<br> Is the position estimate more precise or less precise?  Does the
+error in the estimate increase without bounds at every additional lap?
+
+<p>
+</p></li><li> (Advanced) Try to detect wrong estimates by using the sensors.
+
+<br> For instance, you can notice that you are close to a wall according
+to the readings from the IR sensors, but you should not be close to a wall
+according to your (<i>x, y, theta</i>) position.  Then, you can print a
+warning message.
+
+<p>
+</p></li><li> (Advanced) Try to improve the robot's estimate of its position by using the sensors.
+
+<br> For instance, when you observe that you are close to a wall according
+to the readings from the IR sensors, you can adjust the (<i>x, y,
+theta</i>) position of the robot accordingly.
+<br> Can you think of other ways to corrent the robot's position
+estimate using data from the sensors?
+
+</li></ol>
+
+<h3>Report due: Sep 20 <em>(max)</em></h3>
+
+<p>Make sure to read the "<a href="http://aass.oru.se/~asaffio/Teaching/AIMR/labinfo.txt">How to write your lab
+reports</a>" document.</p>
+
+<p>Include (only) your code, with comments.</p>
+
+<p>Discuss problems encoutered and solutions invented.</p>
+
+<p>Discuss the quality of the position estimate, and explain how you have
+measured it.</p>
+
+<p>Did you try to do anything to improve the quality of the estimate?  If
+so, explain clearly what you have tried that worked, and what you have
+tried that did not work.</p>
+
+
+
+
+</body></html>

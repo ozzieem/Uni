@@ -1,0 +1,46 @@
+1. Implement position estimation on the ePuck:
+	
+This was done using the General Position Updating equations described from the lectures to update the robot position values and orientation. An issue that was encountered was division by zero when one of the equations was used when the angle was zero ie when only going forward with the robot. This was solved using functional approximation equations:
+	dx = d * cos(ang/2)
+	dy = d * sin(ang/2)
+	
+instead of the computationally better equations:
+	dx = d*(sin(ang) / ang)
+	dx = d*((1 - cos(ang)) / ang)
+
+
+
+
+2. Verify position estimate:
+	
+We verified the position estimate by looking at the robot while it was turning around in a circle while keeping an eye on the position-values as well as the angle value. When it had completed a lap, the angle would be 2*pi, which was correct since the angle value was nearly precisely that value.
+
+We also used the the wooden robot platform, which had a grid system. This grid system made it easy to get reference points while the robot was running it's trajectory.
+
+
+
+3. Measure the error of a closed square trajectory
+
+The data that was retrieved from measuring the errors showed that the y-position had the highest changes for every turning point the robot did compared to the previous lap. This was confirmed both visually and through processing of data. The total change for the y-position turned out to be -0.39 and -0.61 for each turn that was made.
+
+To calculate a compensation factor, we need to calculate how much difference there is for each direction in the rectangle trajectory. This can be done by taking the average increase or decrease and add multiply it with the respective wheel speed. Although this assumes that the turn-function performs exactly 90 degrees so there really is no way of making sure that it'll still compensate enough for each diversion. For each point there were different values of percentual changes. 
+
+
+
+
+Own calculated robot diameter was 53.92, in the library a macro named was ROBOT_DIAMETER = 52.55. 
+
+One issue we encountered was that when the robot turned 180 degree with the Turn-function, it didn't really calculate correctly. Instead of showing 3,14 as it should do when it turns 180 degrees it showed something like 3,42. To fix this issue, we figured that using the ROBOT_DIAMETER from the library must be the error in this case, since the amount of steps it takes to turn 180 degrees was mostly the same. To get the new value of the Robot diameter, we reverse-calculated the diameter of the robot by using this equation:
+	
+angle = (dR - dL)/D -> D = (dR - dL)/PI 
+
+We calculated that each millimeter was about 7,71 steps for this robot. In this case we got the differences in millimeter: diffR = 653/7,71 and diffL = -653/7,71. 
+
+Putting these into the new equation gives: D = (diffR - diffL) / PI. Calculating D gives us a value of 53.92, which is the exact diameter between the wheels of the robot according to the measurements of our steps per millimeter. Using this value gave the correct value of 3.14 rad when turning 180 degrees with the Turn-function.
+
+
+
+
+
+
+

@@ -1,0 +1,138 @@
+
+<!-- saved from url=(0051)http://aass.oru.se/~asaffio/Teaching/AIMR/lab1.html -->
+<html class="gr__aass_oru_se"><style type="text/css" id="night-mode-pro-style"></style><link type="text/css" rel="stylesheet" id="night-mode-pro-link"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>AIMR Lab 1</title><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head>
+<body data-gr-c-s-loaded="true">
+
+<h2>Laboratory 1 - Getting started <em>(assigned on Sep 5, report due on
+Sep 15)</em></h2>
+
+See the course homepage
+(<a href="http://aass.oru.se/~asaffio/Teaching/AIMR/">http://aass.oru.se/~asaffio/Teaching/AIMR</a>)
+for information about how to write and submit lab reports, due dates, linux help, etc.
+
+<h3>Objective</h3>
+
+<p>Learn how to run your programs on the robot, run some test programs,
+and write and use a few simple programs of your own.</p>
+
+<h3>Tasks</h3>
+
+<ol>
+
+  <li>
+  Familiarize yourself with the Linux installation on your computer.
+  Open an editor and write a simple C program -- e.g., the usual "hello
+  world" that you find in all C books or online.  Try to compile it and
+  run it.  Make sure you are confortable with the file system, the
+  editor, and the compiler.   Be sure to <b>thoroughly</b> read the
+  linux tips document
+  (<a href="http://aass.oru.se/~aakq/AIMR/linuxtips.txt">http://aass.oru.se/~aakq/AIMR/linuxtips.txt</a>).
+  </li>
+<p>
+  </p><li>
+  Go to the course homepage and read all the documentation you find.
+  Answers to many of your questions can be found here.  In addition to
+  the linux tips document above, be sure to <b>thoroughly</b> read the
+  lab report specifications document
+  (<a href="http://aass.oru.se/~asaffio/Teaching/AIMR/labinfo.txt">http://aass.oru.se/~asaffio/Teaching/AIMR/labinfo.txt</a>).
+  Download the latest source code
+  (<a href="http://aass.oru.se/~aakq/AIMR/AIMR_2016.tar.gz">http://aass.oru.se/~aakq/AIMR/AIMR_2016.tar.gz</a>)
+  and extract it.  Take a close look at the include file <tt>epuck.hpp</tt>.
+  Also, take a look at <tt>lists.h</tt> and <tt>maps.h</tt>: they will be needed
+  in later labs.
+  </li>
+<p>
+  </p><li>
+  View the readme file, and follow the instructions to compile the code for the
+  robot.  <b>Ask for help connecting the robot</b>, and then run the sample
+  program on the robot.  Describe what each part of the sample program does.
+  </li>
+<p>
+  </p><li>
+  View the readme file, and follow the instructions to compile the code for the
+  simulator.  Start the simulator, and then run the sample program on the
+  simulator.  Describe what each part of the sample program does, and compare
+  this to the results obtained on the real robot.
+  </li>
+<!--
+-->
+<p>
+  </p><li>
+  Make the robot move using the
+  <font color="#008000">SetTargetSteps()</font> function.  Try various values,
+  including values which are very different for each wheel.  How does this
+  function work?  
+  What happens when you try
+  <font color="#008000">SetTargetSteps(2000,3000)</font>?  Why?
+  </li>
+<p>
+  </p><li>
+  Make the robot move using the <font color="#008000">SetSpeed()</font>,
+  <font color="#008000">Stop()</font>, and
+  <font color="#008000">Sleep()</font> functions.  Try various values,
+  including values which are very different for each wheel.  How does this
+  function work?  Why do you need to use the
+  <font color="#008000">Sleep()</font> function?  What is the maximum speed
+  allowed by the software (see the epuck.hpp header file)?  Try sending
+  <font color="#008000">SetSpeed(300,400)</font> to the robot for a very short
+  time.  Why doesn't the robot turn?
+  </li>
+<p>
+  </p><li>
+  Make the robot go back and forth 5 times between two points using the
+  <font color="#008000">SetTargetSteps()</font> and
+  <font color="#008000">Sleep()</font> functions.
+  </li>
+<p>
+  </p><li>
+  Make the robot go back and forth 5 times between two points using the
+  <font color="#008000">SetSpeed()</font>,
+  <font color="#008000">Stop()</font>, and
+  <font color="#008000">Sleep()</font> functions.
+  </li>
+<p>
+  </p><li><b>(Optional)</b>
+  Write a function called <font color="#008000">Move(double mm)</font>, that
+  moves the robot a specific number of mm (positive = forward, negative =
+  backward), using <font color="#008000">SetTargetSteps()</font>.
+  Try printing out the values of the steps after the robot reaches
+  the target.
+  </li>
+<p>
+  </p><li><b>(Optional)</b>
+  Write a function called <font color="#008000">Turn(double degrees)</font>,
+  that turns the robot the given number of degrees (positive = counterclockwise),
+  using <font color="#008000">SetTargetSteps()</font>.
+  </li>
+<p>
+  </p><li><b>(Optional)</b>
+  Write another version of the <font color="#008000">Move()</font>
+  function, this time using <font color="#008000">SetSpeed()</font> and
+  then calling <font color="#008000">GetSteps()</font> until the
+  robot has traveled the desired amount of space, and finally calling
+  <font color="#008000">Stop()</font>.  Try printing out the values
+  of the steps during the motion of the robot.  Also, note how long
+  it takes for the steps values to stop changing.  Is the resulting
+  motion more precise or less precise than the previus version of
+  <font color="#008000">Move()</font>?
+  </li>
+<p>
+  </p><li><b>(Optional)</b>
+  Write yet another version of the <font color="#008000">Move()</font>
+  function, using <font color="#008000">SetSpeed()</font> and then 
+  <font color="#008000">Sleep()</font> for the amount of time needed to
+  reach your position.  Is this third version more precise or less
+  precise than the previus two?  Explain why.
+  </li>
+<p>
+  </p><li><b>(Optional)</b>
+  Write your own program which makes the robot react to the infra-red sensors in
+  some way: e.g., you can blink the leds, retract from an obstacle, 
+  go toward an obstacle, or other.  Use the <font color="#008000">GetIR()</font>
+  function.  Describe what your program does, and how.
+  </li>
+
+</ol>
+
+
+</body></html>

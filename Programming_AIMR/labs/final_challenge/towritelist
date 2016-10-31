@@ -1,0 +1,14 @@
+TODO Report
+
+Skriva om:
+	
+- Implementering av path following
+- GotoAvoid
+	- Monolithic. Varför?
+- Fuzzy rules 
+- Uppdatera map med obstacles 
+	- Egen distansmätning
+	
+- A* jämfört med BFS
+- Mapsize
+- Gradient following - Advantages or drawbacks compared to traditional path following

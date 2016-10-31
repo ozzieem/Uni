@@ -5,6 +5,8 @@ C++_Tests/C_Tests includes some test code I've been writing to test things or he
 
 Programming_C includes all assignments from the basic programming course in C. Beginner level.
 
+Programming_AIMR includes all material from the course Artificial Intelligence in Mobile Robots, Advanced level.
+
 Programming_AVR includes all material from the course Computer Hardware and Architecture. Intermediate level.
 
 Programming_Methodology includes all the projects for the course in C++ and C#. Intermediate level.

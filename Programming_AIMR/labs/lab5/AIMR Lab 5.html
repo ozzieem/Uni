@@ -1,0 +1,65 @@
+
+<!-- saved from url=(0051)http://aass.oru.se/~asaffio/Teaching/AIMR/lab5.html -->
+<html class="gr__aass_oru_se"><style type="text/css" id="night-mode-pro-style"></style><link type="text/css" rel="stylesheet" id="night-mode-pro-link"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>AIMR Lab 5</title><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head>
+<body data-gr-c-s-loaded="true">
+
+<h1>Laboratory 5 - Path planning <em>(assigned on Sep 26)</em></h1>
+
+<h3>Objective</h3>
+
+<p>Implement and test a path planning algorithm</p>
+
+<h3>Steps</h3>
+
+<ol>
+<li>Implement the Search() and MarkCell() procedures.</li>
+<p>
+</p><li>Create a sample grid, run Search() for a few different maps and a few different
+start and goal positions, and print the values on the grid.</li>
+<p>
+</p><li>Implement the Plan() procedure.</li>
+<p>
+</p><li>Run Plan() on a few different maps and different start
+and goal positions, and print the resulting path.</li>
+</ol>
+
+<h3>Optional parts</h3>
+
+<ol start="5">
+<p>
+</p><li> Make the robot execute the planned path using fuzzy rules.  More
+precisely: input a grid that corresponds to the actual configuration of
+obstacles on your table, and use your Track() procedure (with fuzzy
+rules) to make your robot go to the target position following the
+planned path.  Show in your report the environment that you have used
+for testing.
+<p>
+</p></li><li> Write a function to grow the obstacles in the map by at least one
+robot radius before you do the planning.  Show the resulting map in your
+report.  Also show the results of planning with and without obstacle
+growing.
+<p>
+</p></li><li> [Advanced] Implement Depth First Search, and show the results as above.
+<p>
+</p></li><li> Implement Heuristic Search, and show the results as above.
+<p>
+</p></li><li> Implement A* Search, and show the results as above.
+<p>
+</p></li><li> [Advanced] There are better heuristic search algorithms, for instance IDA* or
+D*.  Try to implement one of them, and report the results.
+</li></ol>
+
+<h3>Report due: Oct 7</h3>
+
+<p>Include (only) your code, with comments.</p>
+
+<p>Include some printouts of the grid before and after the Search is done, 
+with different maps, start, and goal positions.</p>
+
+<p>If you did any of the optional tasks, describe the results.
+For task 5, also show in the report the environment used for testing.
+</p>
+
+
+
+</body></html>

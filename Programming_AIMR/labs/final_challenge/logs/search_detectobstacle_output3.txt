@@ -1,0 +1,99 @@
+---------------Menu---------------
+1. Enter values
+2. Follow Path (S: (6, 2), G: (4, 2))
+3. Follow Gradient (S: (6, 2), G: (4, 2))
+2
+C:(6, 2) (Start)
+C:(5, 2) (MVal: 1)
+C:(4, 2) (MVal: 0)
+
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+@@@       3                 @@@
+@@@   3   2   3             @@@
+@@@   2   1   2   3         @@@
+@@@   1  G    1   2   3     @@@
+@@@   2  *    2   3         @@@
+@@@   3  S    3             @@@
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+Width:   8  Height:   8
+Generated:   Translated:
+(5, 2)    (0.0, 98.3)
+(4, 2)    (0.0, 196.7)
+Track position coords: (0.00, 98.33)
+Added obstacle to cell ahead. Replanning!
+C:(6, 2) (Start)
+C:(6, 1) (MVal: 3)
+C:(5, 1) (MVal: 2)
+C:(4, 1) (MVal: 1)
+C:(4, 2) (MVal: 0)
+
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+@@@   4   3   4             @@@
+@@@   3   2   3   4         @@@
+@@@   2   1   2   3   4     @@@
+@@@  *   G    1   2   3   4 @@@
+@@@  *  ###   2   3   4     @@@
+@@@  *   S    3   4         @@@
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+Width:   8  Height:   8
+Generated:   Translated:
+(6, 1)    (-98.3, 0.0)
+(4, 1)    (-98.3, 196.7)
+(4, 2)    (0.0, 196.7)
+Track position coords: (-98.33, 0.00)
+Added obstacle to cell ahead. Replanning!
+C:(6, 1) (Start)
+C:(6, 2) (MVal: 8)
+C:(6, 3) (MVal: 7)
+C:(6, 4) (MVal: 6)
+C:(6, 5) (MVal: 5)
+C:(5, 5) (MVal: 4)
+C:(4, 5) (MVal: 3)
+C:(4, 4) (MVal: 2)
+C:(4, 3) (MVal: 1)
+C:(4, 2) (MVal: 0)
+
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+@@@   4   3   4   5   6   7 @@@
+@@@   3   2   3   4   5   6 @@@
+@@@   2   1   2   3   4   5 @@@
+@@@   1  G   *   *   *    4 @@@
+@@@ ### ### ### ###  *    5 @@@
+@@@  S   *   *   *   *    6 @@@
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+Width:   8  Height:   8
+Generated:   Translated:
+(6, 2)    (0.0, 0.0)
+(6, 5)    (295.0, 0.0)
+(4, 5)    (295.0, 196.7)
+(4, 2)    (0.0, 196.7)
+Track position coords: (0.00, 0.00)
+Track position coords: (295.00, 0.00)
+Track position coords: (295.00, 196.67)
+Added obstacle to cell ahead. Replanning!
+C:(6, 5) (Start)
+C:(6, 6) (MVal: 6)
+C:(5, 6) (MVal: 5)
+C:(4, 6) (MVal: 4)
+C:(4, 5) (MVal: 3)
+C:(4, 4) (MVal: 2)
+C:(4, 3) (MVal: 1)
+C:(4, 2) (MVal: 0)
+
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+@@@   4   3   4   5   6   7 @@@
+@@@   3   2   3   4   5   6 @@@
+@@@   2   1   2   3   4   5 @@@
+@@@   1  G   *   *   *   *  @@@
+@@@ ### ### ### ### ###  *  @@@
+@@@                  S   *  @@@
+@@@ @@@ @@@ @@@ @@@ @@@ @@@ @@@
+Width:   8  Height:   8
+Generated:   Translated:
+(6, 6)    (393.3, 0.0)
+(4, 6)    (393.3, 196.7)
+(4, 2)    (0.0, 196.7)
+Track position coords: (393.33, 0.00)
+Track position coords: (393.33, 196.67)
+Track position coords: (0.00, 196.67)
+End of FollowPath
