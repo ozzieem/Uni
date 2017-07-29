@@ -21,6 +21,8 @@ Programming_DCN includes all assigments from the Data Communication and Networks
 
 Programming_Java includes all assignments from the Java for Interfaces and Networks course. Advanced level.
 
+Programming_MBS includes a few assigments from the Multibody Simulation course, done in Matlab. Advanced level. (Incomplete)
+
 Programming_Methodology includes all the projects for the course in C++ and C#. Intermediate level.
 
 Programming_OOP includes all the assignments from the OOP course in C++. Beginner level.

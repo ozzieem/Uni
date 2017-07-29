@@ -1,0 +1,63 @@
+Task 1
+
+>> r_mat = rotation_matrix(pi/8)
+
+r_mat =
+
+    0.9239   -0.3827
+    0.3827    0.9239
+
+
+
+R' * R = I
+
+>> r_mat' * r_mat == eye(2,2)
+
+ans =
+
+     1     1
+     1     1
+
+
+
+R * R' = I
+
+>> r_mat * r_mat' == eye
+
+ans =
+
+     1     1
+     1     1
+
+
+
+det(R) = 1
+
+>> det(r_mat) == 1
+
+ans =
+
+     1
+
+
+
+R' = R^-1
+
+>> r_mat' == inv(r_mat)
+
+ans =
+
+     1     1
+     1     1
+
+
+
+||Rx|| = ||x||
+
+>> x = [2,3]; 
+>> norm(r_mat * x')^2 == norm(x)^2
+
+ans =
+
+     1
+
