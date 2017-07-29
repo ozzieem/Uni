@@ -1,0 +1,12 @@
+Tömma ARP-cachen (tabellen)
+1. Logga in på ubuntupadrone 
+2. Terminal: arp (listar arp-cachen)
+3. Ny terminal: 
+sudo bash
+arp –d 192.168.201.1
+arp –d 192.168.201.53
+osv.
+exit
+
+
+Lösen: 5myror4elefanter

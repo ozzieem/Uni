@@ -17,6 +17,8 @@ Programming_CG includes all assignments from the Computer Graphics course in Ope
 
 Programming_DB includes all assigments from the Database course. Beginner level.
 
+Programming_DCN includes all assigments from the Data Communication and Networks course. Intermediate level.
+
 Programming_Java includes all assignments from the Java for Interfaces and Networks course. Advanced level.
 
 Programming_Methodology includes all the projects for the course in C++ and C#. Intermediate level.

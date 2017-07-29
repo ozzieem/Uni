@@ -1,0 +1,15 @@
+Hej Özgyn och Rojan!
+
+
+Labb 5: CAN
+
+Arbete: I stort sett bra och dessutom med utökad funktionallitet.
+- Filtret ska vara "större", enligt labb-PM. (Några grupper har redan justerat detta.)
+Tydligen gäller bilaga 7 för Nod A eftersom ni har "IdRx == 0x002" i filtret. Filtret för Nod A ska också släppa igenom 007 och 00C.
+
+Eftersom redovisningen ska innefatta även Nod B, kan ni lägga in kommentarer där koden för de två noder skiljer sig, och ange värdena för denna nod. Filtret ska släppa igenom 000, 005 och 00A för Nod B. (Många grupper har gjort så i rapporten istället för att lägga in dubbla koder.)
+
+- Oändlighetsloopen: Det hade varit smartare av er att deklarera variablerna i början av koden. Flera grupper fick körproblem då RAM blev överfullt. (Ni behöver alltså inte ändra något, bara observera.)
+
+- Från bilaga 7: /* IdTx = 0000 för Nod A IdTxAck blir 0001 och skickas till Nod B */
+Lägg in en motsvarande för Nod B. (Många grupper har gjort så i rapporten istället för att lägga in dubbla koder.)

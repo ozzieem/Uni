@@ -1,0 +1,171 @@
+int main(void)
+{
+	unsigned char btr0 = 0x03, btr1 = 0x1C;
+	unsigned int IdTx;
+	int j = 0;
+
+	/* Initieringar och registeravläsning */
+     USART_Init();                 // Initierar USART
+     USART_Flush();                // Rensar RS232-bufferten
+     LCD_Init();                   // Initierar LCD
+     DDRA = 0xFF;                  // Sätter Port A på STK200-kortet för bussar till/från CAN-kontroller
+     DDRB = 0xFF;                  // Sätter Port B på STK200-kortet för LED:s (data output, obs flera olika kontakttyper)
+                                   // Sätter Port C på STK200-kortet för LCD (data output)
+     DDRD = 0x00;                  // Sätter Port D på STK200-kortet för bussar till/från CAN-kontroller
+                                   // Sätter Port E på STK200-kortet för NC
+     SJA_Init(&btr0, &btr1);       // Initierar CAN-kontrollerna SJA1000 till 125 kbit
+     SJA_Dump();		           // Visar CAN-registren på terminalen via RS232-porten
+                                   // Status bör vara 0C, om inte starta om med Powerknappen
+                                   // (Observera att några SJA1000-register inte kan avläsas i körläget)
+
+     /* Visar text på LCD */
+     LCD_Clean(LINE1);             // Rensar LCD-rad 1 och gå till början av den
+     LCD_StrOut(MSG1);             // Matar ut titeln på LCD-rad 1
+     LCD_Clean(LINE2);             // Rensar LCD-rad 2 och gå till början av den
+
+     /* Läser in IdTx och skickar en ram på CAN-bussen */
+     IdTx = USART_ReceiveIdTx();   // Läser in Tx-identifieraren från terminalens tangentbord
+     CAN_StrOut(IdTx, &MSG2[0]);   // Skickar dataram på CAN med texten "xxx ON-LINE ", där xxx = IdTx
+
+     /* Evighetsloop */
+     while(1)
+     {
+    	 if(SJA_Read(CAN_STATUS) & RBS)  // Kontrollerar om ram har kommit in till CAN-kontrollerns Rx
+    	 {
+    		 CAN_Check();                // Hämtar in IdRx och meddelande från CAN-kontroller och visar på LCD
+
+/* Övning D:2 - Plats för att beräkna IdRx utifrån registrevärdena */
+    		 // Beräkna och skriv de hexadecimala tecknen, två och två, för IdRx
+
+
+    		 unsigned int IdRx = 0;
+    		 unsigned char tmp1 = 0, tmp2 = 0;
+
+    		 tmp1 = SJA_Read(CAN_RX_ID);
+    		 tmp2 = SJA_Read(CAN_RX_LEN);
+
+    		 if (SJA_Read(CAN_STATUS) & RBS)
+    		 {
+    			 IdRx = ((unsigned int) tmp1 << 3) + ((tmp2 >> 5) & 0x07);
+    		 }
+
+
+
+/* Övning D:4 - Plats för filtret */
+
+    		 if(IdRx == 0x002)
+    		 {
+    	    		int i = 0;
+    	    		char R[9];
+
+    	    		for(i; i < 8; i++)
+    	    		{
+    	    			R[i] = SJA_Read(CAN_RX_BUF0 + i);
+    	    		}
+
+    	    		R[8] = '\0';
+
+    	    		prints("Medd: ");
+    	    		prints(R);
+    	    		prints("\n");
+
+
+/* Övning D:1 - Plats för att beräkna x1 och x2 från IdTx
+   samt att mata ut IdTx som två hexadecimala tal (x1 och x2) på terminalen */
+
+    	    		unsigned int x1, x2;
+
+    	    		x1 = IdTx / 256;
+    	    		x2 = IdTx - x1 * 256;
+
+    	    		prints("IdTx = ");
+    	    		printh(x1);
+    	    		printh(x2);
+    	    		prints("\n");
+
+
+
+/* Övning D:5 - Plats för att beräkna x1 och x2 från IdTxAck
+   samt att mata ut IdTxAck som två hexadecimala tal (x1 och x2) på terminalen */
+
+    	    		unsigned int IdTxAck = IdTx + 1; //Nod A
+
+    	    		x1 = IdTxAck / 256;
+    	    		x2 = IdTxAck - x1 * 256;
+
+    	    		prints("IdTxAck = ");
+    	    		printh(x1);
+    	    		printh(x2);
+    	    		prints("\n");
+       			 
+
+
+/* Övningen D:2 - Plats för att beräkna x1 och x2 från IdRx
+   samt att mata IdRx som två hexadecimala tal (x1 och x2) på terminalen */
+
+    	    		x1 = IdRx / 256;
+    	    		x2 = IdRx - x1 * 256;
+
+    	    		prints("RX = ");
+    	    		printh(x1);
+    	    		printh(x2);
+    	    		prints("\n");
+       			 
+/* Övning D:3 - Plats för att avläsa meddelandet (data) i inkommande ram
+   från CAN-kontrollern och att mata ut på terminalen */
+
+
+
+       			 
+/* Övning D:6 - Plats för att sätta samman kvittenserna "ACKNOW-j" och att
+   skicka dessa till avsändaren över CAN-bussen */
+
+    	    		SJA_Write(CAN_TX_ID, IdTxAck >> 3);
+    	    		SJA_Write(CAN_TX_LEN, (IdTxAck << 5) | 8);
+
+    	    		SJA_Write(CAN_TX_BUF0, 'A');
+    	    		SJA_Write(CAN_TX_BUF1, 'C');
+    	    		SJA_Write(CAN_TX_BUF2, 'K');
+    	    		SJA_Write(CAN_TX_BUF3, 'N');
+    	    		SJA_Write(CAN_TX_BUF4, 'O');
+    	    		SJA_Write(CAN_TX_BUF5, 'W');
+    	    		SJA_Write(CAN_TX_BUF6, '-');
+
+    	    		SJA_Write(CAN_TX_BUF7, j + 48);
+    	    		j = (j+1) % 10;
+
+    	    		SJA_Write(CAN_CMD, TXREQ);
+
+
+    		 }
+        	 else if(IdRx == 0x003)
+        	 {
+    	    		int i = 0;
+    	    		char R[9];
+
+    	    		for(i; i < 8; i++)
+    	    		{
+    	    			R[i] = SJA_Read(CAN_RX_BUF0 + i);
+    	    		}
+
+    	    		R[8] = '\0';
+
+    	    		prints("Ack: ");
+    	    		prints(R);
+    	    		prints("\n");
+
+        	 }
+
+    		SJA_Write(CAN_CMD,RRB);           // Frigör Rx-bufferten i CAN-kontrollern (SJA1000)
+
+    	 }
+
+    	 if(USART_KbHit()) CAN_MessOut(IdTx);  // Om det finns data att skicka, hämtar detta från terminalen (RS232-porten),
+   	                                       // flyttar över data till CAN-kontrollern (SJA1000) och
+   	                                       // skickar ut det på CAN-bussen
+     }
+}
+
+
+rojand94@gmail.com
+
