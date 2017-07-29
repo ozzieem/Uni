@@ -1,0 +1,37 @@
+Hur ska guld genereras?
+- Monster? Ja, kanske det, som blir följesagare i en begränsad tid eller tills den dör.
+- Automatisk generering för att öka på gamespeed och så att saker händer hela tiden.
+
+Vinstkriterier?
+- Poänggeneration i detta fall också? Man förlorar inte poäng när man dör för att förhindra att en match håller på för lång tid. Man får bara poäng när man dödar andra eller om man håller i en conquest point om vi ska ta den vägen.
+
+Matchtid?
+- Hur lång tid ska en match hålla på och hur mycket kommer man att hinna med? 
+-- Beror på hur servern hanterar så många klienter tillsammans.
+
+HP-pool kopplat med items? 
+- Nej, endast ability/spells.
+
+Abilities? Support spells? Attack spells?
+- Cooldowns bestäms beroende av balansering
+
+Movement? Dis/Engage?
+- Kopplat med items, tex boots
+
+Setting? Miljö.
+- 
+
+Player roles? 
+- Ska alla vara det man vill eller ska karaktären vara förbestämd
+
+Hur ser det ut för DIG när du går in i spelet?
+
+Hur ska specifika saker fungera? Hur tänker du?
+
+Hur ska kartan se ut? Berg längs kanterna men invisible walls?
+
+
+Magic-klassen
+- Hanterar runor
+- Kan möjligen tämja monster
+- Olika kombinationer av runor ger olika kraftfulla spells

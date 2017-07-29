@@ -1,0 +1,20 @@
+{
+  "name" : "NodejsHTTPserver",
+  "version" : "0.0.1",
+  "main" : "./",
+  "author" : {
+    "name" : "kmo",
+    "email" : "you@email.example"
+  },
+  "keywords" : [ ],
+  "licenses" : {
+    "type" : "none"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "git://github.com/YOUR_LOGIN/Hello World.git"
+  },
+  "bugs" : {
+    "url" : "http://github.com/YOUR_LOGIN/Hello World/issues"
+  }
+}

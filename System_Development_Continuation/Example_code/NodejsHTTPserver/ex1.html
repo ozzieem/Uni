@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Multiplikationsfrågor</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #idDivQandA {
+                background-color: aliceblue;
+                border-color: cadetblue;
+                border-width: 3px;
+            }
+            #idDivQuestion {
+                padding: 0.5em;
+                
+            }
+
+            #idDivAnswer {
+                position : relative;
+                text-align : center;
+            }
+            
+            #idDivResponse {
+                position : relative;
+                text-align : center;
+            }
+            
+            #idDivResultWrong {
+                background-color: darksalmon;
+                border-color: darkred;
+                border-width: 3px;
+            }
+            
+            #idDivResultRight {
+                background-color: chartreuse;
+                border-color: darkgreen;
+                border-width: 3px;
+            }
+        </style>
+        <script src="chance.js"></script>
+        <script>
+            var newQ = 1;
+            var gX = 0;
+            var gY = 0;
+            var gR = 0;
+            
+            function new_question()
+            {
+                newQ=1;
+                document.getElementById("idDivResultRight").innerHTML="";
+                document.getElementById("idDivResultWrong").innerHTML="";
+                write_question();
+            }
+            
+            function write_question()
+            {
+                if ( newQ === 1)
+                {
+                    newQ=0;
+                    gX = chance.integer({min: 2, max: 12});
+                    gY = chance.integer({min: 2, max: 12});
+                    gR = gX * gY;
+                    document.getElementById("idMyAnswer").disabled=false;
+                }
+                document.getElementById("idQuestion").innerHTML = gX + "*" + gY;
+            }
+            
+            function keydown(event)
+            {
+                var keyCode = event.keyCode;
+                if ( keyCode === "\r".charCodeAt(0) )
+                {
+                    if ( gR == document.getElementById("idMyAnswer").value )
+                    {
+                        //alert("RÄTT");
+                        var html = "";
+                        html += "<p style=\"font-family : sans-serif; font-style: italic; font-size: 2em; text-align: center; color : darkgreen\">";
+                        html += "Rätt svar";
+                        html += "</p>";
+                        html += "<button id=\"idButtonNewQuestion\" style=\"font-size: 1.5em;\" onclick=\"new_question();\"> Ny fråga </button>";
+                        document.getElementById("idDivResultRight").innerHTML=html;
+                        document.getElementById("idDivResultWrong").innerHTML="";
+                        document.getElementById("idMyAnswer").disabled=true;
+                    }
+                    else
+                    {
+                        //alert("FEL");
+                        var html = "";
+                        html += "<p style=\"font-family : sans-serif; font-style: italic; font-size: 2em; text-align: center; color : darkred\">";
+                        html += "Fel svar";
+                        html += "</p>";
+                        html += "<p style=\"font-family : sans-serif; font-style: italic; font-size: 1.5em; text-align: center; color : darkgreen\">";
+                        html += "Rätt svar: " + gR;
+                        html += "</p>";
+                        html += "<button id=\"idButtonNewQuestion\" style=\"font-size: 1.5em;\" onclick=\"new_question();\"> Ny fråga </button>";
+                        document.getElementById("idDivResultWrong").innerHTML=html;
+                        document.getElementById("idDivResultRight").innerHTML="";
+                        document.getElementById("idMyAnswer").disabled=true;
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id="idDivQandA">
+            <div id="idDivQuestion">
+                <h3 style="font-family : sans-serif; font-style: italic; font-size: 2em; text-align: center; color : darkblue">
+                    Fråga
+                </h3>
+                
+                <h3 id="idQuestion" style="font-family : sans-serif; font-style: normal; font-size: 2em; text-align: center; color : darkblue">
+                    ?
+                </h3>
+            </div>
+            <div id="idDivAnswer">
+                <h3 style="font-family : sans-serif; font-style: italic; font-size: 2em; text-align: center; color : darkgreen">
+                    Mitt svar
+                </h3>
+                <input id="idMyAnswer"  style="font-size: 2em;" onkeydown="keydown(event);" >
+            </div>
+        </div>
+        <div id="idDivResponse">
+            <div id="idDivResultRight"></div>
+            <div id="idDivResultWrong"></div>
+        </div>
+
+        <script>
+            write_question();
+        </script>
+    </body>
+</html>

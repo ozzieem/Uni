@@ -30,3 +30,5 @@ Programming_Techniques has all the assignments from the summer course in OOP Pyt
 Small_Projects folder contains really small projects that I created when I started learning C++ or just want to try out small things. Includes some parts of the Project Euler challenges.
 
 System_Development contains files for a small program that is used as an administration program by judges for a diving-competition for the system-development course. Intermediate level.
+
+System_Development_Continuation contains files for a multiplayer game which was developed with 7 people in the Phaser engine with Typescript. Intermediate level.

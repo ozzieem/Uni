@@ -1,0 +1,39 @@
+Project [PPB AB - L (BubbleBomber) ]
+
+Please enter ideas here...
+Someone entered a very good idea
+Hockey
+FiskKtt
+
+Balans-design för karaktärer:
+Ska karaktärer ha samma speed men olika abilities för engage / disengage?
+Alt: olika speed och något färre / mindre kraftfulla engage / disengages?
+
+
+Miljö? Vilken typ av setting rör det sig om?
+-retro
+-fantasy
+-sci-fi
+-steampunk
+-stenålder
+-modern
+-annat?
+
+
+Support-klass? Healing, traps, slow?
+
+Spender? Melee: Rage, Ranged: Mana/Aimpower? Support: Spirit/Mana?
+Eller ska alla bara ha en power bar?
+
+Förslag för item-effects:
+(Ska varje item öka damage/attack speed/regeneration?)
+Charge
+Teleport
+Teleport other
+Pushback
+Silence / Skill block?
+Health/Mana globes? (Istället för support?)
+
+Hiding places? Om topdown kanske det ska finnas träd för att förhindra att andra ra ser en. Om last man standing i ett lag blir den revealed.
+
+Dynamiska teamstorlekar.
