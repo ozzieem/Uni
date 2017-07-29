@@ -1,0 +1,46 @@
+PASTE THE BELOW CODE INTO THE WEBSEQUENCEDIAGRAMS.COM WEBSITE:
+
+
+title Server-Client Sequence Diagram
+
+ServerGUI->Server: Initialize Server
+ServerGUI->ServerGUI: Create Scene
+
+loop ServerGUI:Draw
+    Server->ServerGUI: Get serverFlock
+    ServerGUI->ServerGUI: Update local flock
+
+Server->+Listener: Initiate Listener-Thread
+loop Server:ListenerThread
+    Listener->Listener: Await connections
+    Server->+SimulationRunner: Initiate Simulation-Thread
+    Client->Listener: Connect to server
+    Listener->Server: Client connected
+end
+
+Server->ClientThread: Create ClientThread (Callable)
+Client->ClientThread: Send name
+ClientThread->Server: Add client to clientCallables
+ClientThread->ClientThread: Create boid
+ClientThread->Client: Send boid
+ClientThread->Server: Add created boid to serverFlock
+ServerGUI->ServerGUI: Draw each boid
+Client->+ReceiveFromServer: Initiate Server-Listener Thread
+
+loop Server:SimulationRunnerThread
+    SimulationRunner->+ClientThread: Invoke clientCallables
+    loop Client:ReceiveFromServerThread
+        ReceiveFromServer->ReceiveFromServer: Await message
+        Server->ClientThread: Get serverFlock
+        ClientThread->ReceiveFromServer: Send serverFlock
+        ReceiveFromServer->Client: Update serverFlock on client 
+        Client->Client: Update boid
+        Client->ReceiveFromServer: Get updated boid
+        ReceiveFromServer->ClientThread: Send updated boid
+    end
+    ClientThread-->-SimulationRunner: Return boid as Future-object
+
+    SimulationRunner->SimulationRunner: Await all clients
+    SimulationRunner->Server: Update flock on server with received boids
+end
+end
