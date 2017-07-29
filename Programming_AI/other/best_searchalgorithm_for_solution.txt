@@ -1,0 +1,17 @@
+If you are considering best in terms of performance of multiple searches from a single source to many destinations, then you should consider using a more suitable approach (Dijkstra's algorithm).
+
+If you are considering best in terms of performance, then in some special cases DFS and BFS will significantly outperform A*. From past experience, this occurs for very small, almost trivial graphs, but would require careful testing and profiling to make a stronger statement.
+
+If you are considering best in terms of path-length, that is how long the final path produced by the algorithm is, then A* is equivalent to any other optimal search algorithm.
+
+If you are considering best in terms of completeness, that is, will the algorithm always find a path to the goal if such a path exists. If so, then A* is equivalent to any other complete algorithm (for example, breadth-first-search).
+
+If you are considering best in cases where some of the weights in the graph are negative, then you will need to use a special algorithm to solve those problems (for example bellman-ford)
+
+If you are considering best in cases where the no heuristic is available then you must fall back on h(x,y)=0 forall states x and y. In this case A* is equivalent to best first search.
+
+If you are considering best in cases related to motion planning in continuous configuration spaces, then A* may work adequately in low dimensions, but storage of the search graph starts to become impractical at high dimensions, and the need to use probabilistically complete algorithms increases (for example RRT, Bi-RRT, RDT)
+
+If you are considering best in cases where the graph is partially observable, you only know a subset of all the possible vertices and edges within the graph at any time, and you need to change state to observe more of the graph, then you need an alternative algorithm designed for this (for example, Keonig's Lifelong Planning A*, LPA*, does exactly this).
+
+If you are considering best in cases where the graph changes over time, which occurs frequently in robotics when you incorporate moving obstacles, then you need an algorithm which is designed for this (for example Stentz's D* or Koenig & Likhachev's D*-Lite).

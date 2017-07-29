@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0057)http://www.cs.columbia.edu/~evs/ais/finalprojs/steinthal/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+   
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; Linux 2.2.5 i586) [Netscape]">
+</head>
+<body>
+
+<center>
+<h1>
+Crossword Puzzles as Constraint Satisfaction Problems</h1></center>
+
+<center>Russell Steinthal&nbsp; <a href="mailto:rms39@columbia.edu">&lt;rms39@columbia.edu&gt;</a>
+<p>Final Project Report for COMS W4721: Advanced Intelligent Systems (Prof.
+Siegel)</p></center>
+
+<p><br>
+</p><h3>
+Introduction</h3>
+Crossword puzzles, in addition to being a hobby of potentially millions
+of people around the world, are an excellent real-world example&nbsp; of
+a constraint satisfaction problem.&nbsp; A solution to a crossword puzzle,
+after all, is an assignment of words to a grid such that each meets a number
+of constraints: a semantic constraint provided by the clue, a length constraint
+provided by the grid, and constraints on its its letters provided by the
+words which it overlaps in the grid.&nbsp; Similarly, the construction
+of a puzzle is based on similar constraints, although the application is
+somewhat different.&nbsp; This paper describes an attempt at modeling those
+constraints formally and using that model to implement systems to solve
+and generate puzzles.
+<p>Ideally, any solution to the crossword puzzle problem would first provide
+a general-purpose constraint satisfaction implementation which would be
+applicable to other domains.&nbsp; Unfortunately, to date I have been unable
+to achieve such a general solution, although I have had limited success
+with crossword-specific solutions.&nbsp; This paper, therefore, describes
+the models I have created and the successes (and failures) I have had trying
+to implement it.
+</p><h3>
+Crossword Puzzle Models</h3>
+Early in my work on this project, two potential models for the problem
+suggested themselves, one based on words, and the other based on characters.
+<br>&nbsp;
+<h4>
+A word- based approach</h4>
+The word-based approach is based on a simple implementation of the general
+constraint-satisfaction framework (such as that suggested by Russel and
+Norvig), namely an assignment of values to a set of variables such that
+each meets all the specified constraints.&nbsp; For crossword puzzles,
+the variables are the words which need to be filled in, one variable for
+each of the words in the puzzle solution.&nbsp; The grid also provides
+the initial constraints for each word, such as the number of letters, what
+overlap relationships the word has with other words in the grid, etc.&nbsp;
+The basic rule that whenever two words overlap, they must share the same
+letter in the overlap position must also be encoded in the system.&nbsp;
+Finally, a dictionary provides the overall constraint that any valid value
+for a variable must be in the dictionary.&nbsp; (Of course, that limits
+the crossword puzzles which can be solved, since most puzzles use at least
+one two-word phrase or proper name; from a theoretical perspective, however,
+one could construct a sufficiently large dictionary to avoid this problem.)
+<p>The advantage to this approach is that as a direct implementation of
+the generic CSP model, there are algorithms which are known to work,&nbsp;
+and which would be extensible to other problems.&nbsp; However, I was unable
+to come up with a suitable representation for the constraints listed, and
+so began considering other models.
+</p><h4>
+A character-based approach</h4>
+This approach is based on another view of the crossword puzzle, and suggests
+different algorithms.&nbsp; Instead of looking at a solution as a set of
+words, it views the grid as a matrix of squares, and a solution, therefore,
+is an assignment of characters to grid squares such that each string of
+characters, read across or down, is a word in the dictionary.&nbsp;&nbsp;
+Constraints on the length of words are represented by marking appropriate
+squares in the grid with "stop" flags, indicating that no letter goes in
+that square, and scanning should stop (i.e. whatever string has been constructed
+to that point should be checked against the dictionary).&nbsp; This is,
+obviously, a direct translation of the blackened squares on a traditional
+crossword puzzle.
+<p>This seemed like a simpler to implement approach, so I chose to begin
+with it.&nbsp; It also has the advantage that the time to solution is bounded,
+since each square can only have one of 26 possible values; unfortunately,
+the bound is very high for any reasonably sized grid, so heuristics are
+necessary to reduce the number of possibilities.
+</p><h4>
+A note on natural language constraints</h4>
+Neither of the models presented above considers the language constraints
+on a puzzle solution, namely that each word "answer" the associated clue.&nbsp;
+To do so would require not only a complete semantic database (such as WordNet),
+but also a system which could parse the clues and generate queries into
+the database; this is beyond the scope of this project, although it could
+be added by inserting an additional constraint, whether in the set of constraints
+for the first approach, or as a check in the scanning stage of the second
+approach.
+<p>A somewhat more limited use of natural-language processing, however,
+could be of more immediate use.&nbsp; In most puzzles, clues and their
+answers fill the same syntactic role.&nbsp; For example, if the clue is
+a noun phrase, the solution is usually a noun; verb phrases and verbs similarly.&nbsp;
+If the clues were run through a syntactic analyzer such as CASS, it should
+be possible to generate part-of-speech hints (or constraints, depending
+on one's degree of confidence in this rule)
+</p><h3>
+A basic crossword-solving algorithm</h3>
+A large part of the research on this project centered around the creation
+and refinement of the following algorithm for filling in a crossword grid
+(under the character-based model described above).&nbsp; It takes as input
+a grid and&nbsp; a word list; with minor variations, the same algorithm
+can be used either to solve a puzzle (in which case the grid is input with
+"stops" already in place, and the word list is (possibly a subset of) the
+dictionary) or to generate a puzzle solution (in which case the grid is
+initially empty and the word list contains the words to fill into the grid).
+<p>Note that a subgrid, as used in the algorithm, is a section of the grid
+space whose upper left square is the first letter of both its horizontal
+and vertical words; the subgrid then extends to all squares which are part
+of words which intersect either the horizontal or vertical word starting
+from the initial position.
+<br>&nbsp;
+</p><ul>
+<li>
+Initialization: Set all the squares in the grid to their unconstrained
+state, that is all character values are possible.&nbsp; (For solving purposes,
+this is A-Z; for generation, A-Z plus a stop indicator, such as NUL.)</li>
+
+<li>
+Repeat the following for each subgrid:</li>
+
+<ul>
+<li>
+&nbsp;&nbsp;&nbsp; For each of the possible character values of the initial
+(upper left) position, get all words from the word list which begin with
+the given character, and which satisfy the length constraints for the down
+and across words, respectively.&nbsp; If there is not at least one word
+which satisfies the length and initial letter constraints for each of the
+two words (that is, there must be at least one valid across word and one
+valid down word), move to the next character value.&nbsp; Otherwise:</li>
+
+<ul>
+<li>
+&nbsp;"Write in" each of the words which were determined to meet the across
+criteria into the grid, moving righward from the initial cell as you go.&nbsp;
+For each character written, maintain a reference to what word caused it
+to be written in.</li>
+
+<li>
+If at any point a letter cannot be written into a cell because it is no
+longer a possible value for the cell, remove the current word from the
+grid and proceed to the next word.</li>
+
+<li>
+Repeat the above two steps for the down words, starting from the initial
+position and moving downward.</li>
+</ul>
+
+<li>
+Move to the cell to the right of the initial position.&nbsp; For each character
+in the list of possible values, find all words which meet the length and
+initial letter constraints (i.e. start with the correct letter and are
+the proper length). &nbsp;Call this list <i>words.</i></li>
+
+<ul>
+<li>
+If <i>words </i>is empty, delete the current character from the list of
+possible values.&nbsp; Propagate the deletion backwards and forwards in
+the grid by removing the word which caused the deleted character to be
+written in.&nbsp; Repeat as necessary; if a cell ever loses all of its
+possible values, terminate the algorithm and return FAIL.</li>
+
+<li>
+"Write in" each of the words, as above.&nbsp; If a letter must be written
+into a cell for which it is not a possible value, remove the current word
+and propagate the changes.</li>
+</ul>
+
+<li>
+Repeat the above step for each row of the grid, for the length of the initial
+down word. &nbsp;This should completely traverse the subgrid.</li>
+</ul>
+
+<li>
+&nbsp;&nbsp; When all subgrids have been filled in, the grid should contain
+a representation of all possible solutions. &nbsp;Output either one or
+all possible solutions using one of any number&nbsp; of algorithms for
+enumerating the solutions. &nbsp;(The grid consists of a collapsed tree
+of possible solutions, with each cell representing all the possible values
+for that cell.)</li>
+</ul>
+
+<h3>
+Results</h3>
+While the algorithm above is believed to be correct, it is extremely inefficient
+due to the complexity of the problem.&nbsp; Heuristics, such as considering
+only a subset of the dictionary&nbsp;(trimmed at the longest word in the
+puzzle, for instance) or the part-of-speech heuristics mentioned above
+can be used to reduce the number of possibilities which must be considered,
+but the algorithm is still at least polynomial time.
+<p>In addition, simple tasks like loading a complete dictionary can be
+time-consuming: on the author's machine (a Pentium-90), loading /usr/dict/words
+into the in-memory data structure took in excess of 20 minutes.&nbsp; (I
+am aware that running the algorithm on a full /usr/dict/words would take
+an exorbitant amount of time; it is provided only for reference, and as
+an example of one of my earlier (foolish) experiments in this project).
+</p><p>Finally, I&nbsp;do not yet have a working implementation of this algorithm,
+in large part because its time constraints make running test cases fairly
+difficult.&nbsp; A pen and paper implementation, however, shows that it
+should work.
+<br>&nbsp;
+</p><h3>
+Conclusion</h3>
+Although an algorithm does exist to solve and generate crossword puzzles
+using constraint propagation, its time and space complexity is at least
+polynomial.&nbsp; Future work, therefore, should focus on either finding
+a linear time algorithm (which I&nbsp;believe to be unlikely) or on heuristics
+to reduce the search space; as indicated above, the use of natural language
+rules to partition the dictionary might be one of the more promising ways
+of doing so.
+<br>&nbsp;
+
+
+</body></html>

@@ -1,0 +1,1219 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Artificial Intelligence DT2016
+\begin_inset Newline newline
+\end_inset
+
+
+\shape smallcaps
+\size larger
+Task 2 - Constraint Satisfaction Problem
+\end_layout
+
+\begin_layout Author
+By
+\emph on
+ Özgun Mirtchev
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph default
+Professor 
+\emph on
+Franziska Klügl
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph default
+Örebro University
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Constraint Problem Solving has been an important area to teach computers,
+ after all that's what the computers are for.
+ Solving problems that we humans cannot.
+ Ever since the beginning researchers has come up with different algorithms
+ and different approaches to take on different problems.
+ 
+\end_layout
+
+\begin_layout Subsection
+Objective
+\end_layout
+
+\begin_layout Standard
+In this lab we will explore two different problem solving algorithms namely
+ Backtracking Search and Arc Consistency.
+ The problem is a 3x3 cross word puzzle (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "crossword"
+
+\end_inset
+
+), for which we will find out which words can fit together according to
+ custom constraints.
+ The problem will be solved as a constraint satisfaction problem at first
+ with backtracking search algorithm.
+ Secondly, the problem will be made network consistent using the Arc Consistency
+ 3 algorithm.
+ At last the problem will be solved by using the two algorithms together.
+ The variables are of A1, A2, A3, D1, D2 and D3 - representing three words
+ across and three words down.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/crossword_empty.png
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The provided 3x3 Crossword Puzzle
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "crossword"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Constraint Satisfaction Problem (CSP)
+\end_layout
+
+\begin_layout Standard
+The backtracking search is in itself a recursive backtracking procedure.
+ The problem consists of a set of variables, a domain for each of the variables
+ and a set of constraint rules.
+ The goal is to choose a value for each variables so that the resulting
+ possible word satisfies the constraints.
+ For every word that passes the constraints, a new level of the algorithm
+ is entered through recursive action.
+ At that level, the same procedure is then done as before, checking the
+ next variable instead.
+ If the constraints are not met for a certain variable, the recursive function
+ returns a false statement, which rolls back to the variable where the constrain
+ts were satisfied.
+ It keeps going like this, until all the domains for each variable has been
+ reduced to one value which satisfies all the constraints for each variable
+ or no values, which leaves it with no solution.
+\end_layout
+
+\begin_layout Subsection
+Arc Consistency (AC)
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+A variable Xi is arc-consistent with respect to variable Xj, if for every
+ value in the current domain Di, there is some value in the domain Dj that
+ satisfies the (binary) constraint on the arc (Xi,Xj).
+ A network is arc-consistent if every variable is arc-consistent with every
+ other variable.
+ 
+\end_layout
+
+\begin_layout Standard
+This is the general description for Arc-Consistency.
+ The problem setup is similar to CSP.
+ Since it's a network, one can see it as a web, with each variable having
+ a connection to every variable with common constraints.
+ There are three possible outcomes when it comes to AC.
+ Either (i) one domain is empty, in which case there is no solution to the
+ problem, or (ii) each domain has a single value, which means the problem
+ has a unique solution, or (iii) some domains have more than one value.
+ This gives an indication of two things; either the problem has a solution,
+ or it does not.
+ The answer will, in that case, be found out by performing search.
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Subsection
+Scenario Preparation
+\end_layout
+
+\begin_layout Standard
+With guidance from the lab instructions it was suggested to have an object
+ for each variable and domains.
+ The way this was solved instead was creating a class which holds a list
+ of variables and a class which holds a list of domains, to keep them separate
+ from each other when working with them.
+ There was a file with 40 words to use for the problem.
+ The words were read into the program by adding them to the domain class
+ as strings and the variables were done the same way.
+ Adding them as strings is probably a controversial way of doing it, but
+ it proved to be easier after having tried both approaches; of storing them
+ in a specific Word classes and just manipulating the strings directly.
+ The constraints are in their own class so that it may be easier for both
+ the CSP and AC algorithms to access.
+ However, even if they have similar constraints to check, they do it in
+ similar but still different ways, because of some bad choices, which required
+ the constraints to be custom-made for each sub-task.
+\end_layout
+
+\begin_layout Subsection
+Program procedure
+\end_layout
+
+\begin_layout Standard
+In this section, info about each sub-task will be described through how
+ the program was designed.
+ Upon starting the program in the console, a menu is displayed listing the
+ available problem solving options:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "float=htpb"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ 1.
+ Backtracking
+\end_layout
+
+\begin_layout Plain Layout
+
+ 2.
+ Arc-Consistency(3)
+\end_layout
+
+\begin_layout Plain Layout
+
+ 3.
+ Backtracking with AC
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Backtracking
+\end_layout
+
+\begin_layout Standard
+When choosing backtracking the program loads the corresponding data and
+ instantly starts solving the problem.
+ Depending on how big the domain is for each variable, it will take a few
+ seconds for the problem to finish solving, at which point it will tell
+ the user if there is a solution or not.
+ If the program was able to solve the problem, the solution will be presented
+ with the words for each variable in a crossword print, some detailed informatio
+n on how many iterations were done on each recursive level and the time
+ it took to solve the problem:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Solving with backtracking.
+ Please wait...
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Problem was solved.
+ Solution:
+\end_layout
+
+\begin_layout Plain Layout
+
+                     D1  D2  D3
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+A1 | B | E | E |   | B | E | E |
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+A2 | O | A | F |   | O | A | F |
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+A3 | A | R | T |   | A | R | T |
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of domains: 40
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of variables: 6
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Total assignments: 42911 ({1: 28, 2: 1089, 3: 41361, 4: 427, 5: 5, 6: 1})
+\end_layout
+
+\begin_layout Plain Layout
+
+Total backtracks:  42905
+\end_layout
+
+\begin_layout Plain Layout
+
+Approximate time:  2.901568769688661 s
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If however the program could not solve the problem, it will not display
+ a solution and instead just print out the detailed information and the
+ time it took to run the problem solving algorithm.
+ As an example, the domain 
+\begin_inset Quotes eld
+\end_inset
+
+BOA
+\begin_inset Quotes erd
+\end_inset
+
+ was removed:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Solving with backtracking.
+ Please wait...
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Unable to solve problem.
+ No solution.
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of domains: 39
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of variables: 6
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Total assignments: 56894 ({1: 39, 2: 1482, 3: 54834, 4: 539})
+\end_layout
+
+\begin_layout Plain Layout
+
+Total backtracks:  56894
+\end_layout
+
+\begin_layout Plain Layout
+
+Approximate time:  3.79085442019866 s
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Arc-Consistency(3)
+\end_layout
+
+\begin_layout Standard
+When choosing the Arc-Consistency option, the program runs the problem on
+ the Arc-Consistency 3 algorithm.
+ This algorithm, is more efficient than earlier implementations and a bit
+ easier to implement that the later ones, such as AC-4 and AC-5.
+ 
+\end_layout
+
+\begin_layout Standard
+Similar to the CSP option, the AC choice, loads the data into the corresponding
+ data structures and starts solving the problem immediately.
+ During execution it also prints out if the arc network, between two variables,
+ are consistent or not.
+ If it's not consistent, the algorithm removes the domains that are violating
+ the constraints of the arc and prints it out.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D2->A3 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D3->A3 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: A1->D1 - Removed ['ARE', 'ART']
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: A2->D1 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: A3->D1 - Removed ['OAF']
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: A1->D1 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: A2->D1 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When a solution is found it prints out the entire arc consistent network
+ for the user:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Network is Arc-consistent:
+\end_layout
+
+\begin_layout Plain Layout
+
+A1 ['BEE', 'BOA', 'LEE']
+\end_layout
+
+\begin_layout Plain Layout
+
+A2 ['EAR', 'OAF']
+\end_layout
+
+\begin_layout Plain Layout
+
+A3 ['ARC', 'ARE', 'ARK', 'ARM', 'ART', 'EFT']
+\end_layout
+
+\begin_layout Plain Layout
+
+D1 ['BEE', 'BOA', 'LEE']
+\end_layout
+
+\begin_layout Plain Layout
+
+D2 ['EAR', 'OAF']
+\end_layout
+
+\begin_layout Plain Layout
+
+D3 ['ARC', 'ARE', 'ARK', 'ARM', 'ART', 'EFT']
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Otherwise it prints out that an empty domain was detected and there is no
+ solution:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Empty domain detected.
+ No solution.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Illustrating the arc-consistency network would make it easier to understand
+ how it looks like before and after running the AC3 algorithm (see Figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "acpic"
+
+\end_inset
+
+ & 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "acpic-1"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/t2_csp_graph.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Network 
+\bar under
+before
+\bar default
+ AC3
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "acpic"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/t2_csp_graph_arc_consistent.PNG
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Network 
+\bar under
+after
+\bar default
+ AC3
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "acpic-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Backtracking with AC
+\end_layout
+
+\begin_layout Standard
+Selecting the third option, the program will first make the network arc-consiste
+nt by running the AC3 and then perform the search to solve the problem.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Solving with arc-consistency backtracking.
+ Please wait...
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D1->A2 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D2->A2 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D3->A2 - Removed ['ADD', 'ADO', 'AYE', 'EEL', 'LEE']
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D1->A3 - Removed ['EEL']
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D2->A3 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+Arc: D3->A3 - Consistent
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+\end_layout
+
+\begin_layout Plain Layout
+
+Problem was solved.
+ Solution:
+\end_layout
+
+\begin_layout Plain Layout
+
+                     D1  D2  D3
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+A1 | B | E | E |   | B | E | E |
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+A2 | O | A | F |   | O | A | F |
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+A3 | A | R | T |   | A | R | T |
+\end_layout
+
+\begin_layout Plain Layout
+
+   +-----------+   +-----------+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of domains: 22
+\end_layout
+
+\begin_layout Plain Layout
+
+Number of variables: 6
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Total assignments: 94 ({1: 1, 2: 4, 3: 62, 4: 9, 5: 17, 6: 1})
+\end_layout
+
+\begin_layout Plain Layout
+
+Total backtracks:  88
+\end_layout
+
+\begin_layout Plain Layout
+
+Approximate time:  0.04246530067866144 s
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Profiling tests
+\end_layout
+
+\begin_layout Standard
+The average time taken and the amount of constraint rule calls were measured
+ with a profiler.
+ The measurements may vary depending on which system is used and what kind
+ of CPU is used because of different cycles.
+ The data presented here is more of a guideline to see how much faster it
+ is between two methods of solving a problem.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Backtracking
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Arc Consistency with Backtracking
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Time to solve
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+~3s
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+~0.05s
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total constraint calls
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.5M
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+25k
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Running the backtracking search with a brute force tactic, without any means
+ of reducing unnecessary values in the domains, will take a long time to
+ produce a solution.
+ The average time to solve the presented problem with the crossword puzzle,
+ takes about 3 seconds with an immense amount of calls to the constraint
+ rules, because it checks every possible combination for a valid candidate,
+ even if it has been proven before that the value of the domain is not consisten
+t.
+ Adding more values to the domain will increase the time it takes to solve,
+ because of the nature of the algorithm (e.g.
+ see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "time"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/timetosolve.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Time to solve with recursive backtracking
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "time"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Running arc-consistency on a problem before doing search, may as one can
+ see, reduce the time it takes to solve the problem from a few seconds to
+ almost instantly.
+ Since arc-consistency removes the domains that are not consistent with
+ the constraints, there becomes fewer to iterate through when solving the
+ problem with backtracking search\SpecialChar endofsentence
+ Total assignments when doing only backtracking
+ was up to 42k, while doing it with an arc-consistent network reduced it
+ down to barely 100 assignments, making it an invaluable method to solve
+ problem, to reduce time.
+\end_layout
+
+\begin_layout Standard
+Improvements that could've been made would be the time it takes to solve
+ a problem.
+ It might have been able to be reduced even more if the constraint rules
+ would be more optimized so that unnecessary checks are not done.
+ 
+\end_layout
+
+\begin_layout Standard
+This task took me the longest time to finish, because of my unfamiliarity
+ with the constraint satisfaction problems and because I'm not that fast
+ at learning something just through text (mostly supplied from the course
+ material) but had to complement with pictures and animations from the internet
+ to learn about it.
+ To learn about Arc-Consistency and more about Constraint Satisfaction Problems,
+ I would like to suggest a web-page (
+\begin_inset CommandInset href
+LatexCommand href
+name "http://www.aispace.org/mainTools.shtml"
+target "http://www.aispace.org/mainTools.shtml"
+
+\end_inset
+
+), that you hopefully may add as a suggestion in the course material for
+ learning more.
+ It offers several tools for learning about these problems through animations
+ and illustrations.
+ It helped me a lot in understanding certain subjects, which were difficult
+ to get a visual picture of just through text.
+\end_layout
+
+\begin_layout Standard
+This task was very good for learning about CSP and the setup of the lab
+ was good.
+ It was easy because of the structure, so that one focuses on solving one
+ problem first before moving on to the next on and then at last combining
+ the two together.
+\end_layout
+
+\end_body
+\end_document

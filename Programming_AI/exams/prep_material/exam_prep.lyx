@@ -1,0 +1,1986 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Part
+Search
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Illustration and explanation of Search algorithms"
+target "http://bryukh.com/labyrinth-algorithms/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Depth-First Search
+\end_layout
+
+\begin_layout Itemize
+Fast, but may end up in dead-loops.
+ Not optimal and doesn't guarantee the best solution.
+ To solve this, an iterative deepening addition might be required.
+\end_layout
+
+\begin_layout Itemize
+Starts with an arbitrary node of the graph, but explores as far as possible
+ along each branch.
+\end_layout
+
+\begin_layout Itemize
+You begin at some node in the graph and continuously explore deeper and
+ deeper into the graph while you can find new nodes that you haven't yet
+ reached (or until you find the solution).
+ Any time the DFS runs out of moves, it backtracks to the latest point where
+ it could make a different choice, then explores out from there.
+ This can be a serious problem if your graph is extremely large and there's
+ only one solution, since you might end up exploring the entire graph along
+ one DFS path only to find the solution after looking at each node.
+ Worse, if the graph is infinite (perhaps your graph consists of all the
+ numbers, for example), the search might not terminate.
+ Moreover, once you find the node you're looking for, you might not have
+ the optimal path to it (you could have looped all over the graph looking
+ for the solution even though it was right next to the start node!)
+\end_layout
+
+\begin_layout Section
+Breadth-First Search
+\end_layout
+
+\begin_layout Itemize
+Slow search, goes through every node.
+ Better than A* for smaller graphs but gets slower the bigger the graph
+ becomes and takes up more memory.
+ Spreads like a wave outwards from the source node.
+\end_layout
+
+\begin_layout Itemize
+Starts at some arbitrary node of the graph and explores the neighbouring
+ nodes first, before moving to the next level neighbours.
+\end_layout
+
+\begin_layout Section
+A*
+\end_layout
+
+\begin_layout Standard
+Informed search algorithm which chooses the path with the lowest heurisitic
+ cost overall.
+ Uses a Best-First search to find the least-cost path from a given initial
+ node to a goal node.
+ Traverses through the graph and follows a path of the lowest expected total
+ cost or distance.
+ Heurisitics must be admissible (not overestimate the cost/distance to the
+ goal).
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f(n)=g(n)+h(n)$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+g(n) = cost so far to reach node n
+\end_layout
+
+\begin_layout Itemize
+h(n) = estimated cost from n to goal
+\end_layout
+
+\begin_layout Itemize
+f(n) = estimated total costs of path through n to goal
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Heuristic functions
+\end_layout
+
+\begin_layout Standard
+Best heuristic function depends on the context of the data
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename E:/Users/Ozzie/Dropbox/University/Datateknik/Artificiell Intelligens/exams/prep_material/euclidean_vs_manhattan.png
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Euclidean (Green) & Manhattan (Blue) distances
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
+Euclidean distance
+\end_layout
+
+\begin_layout Itemize
+Measures the shortest distance in the plane, without any restrictions (bird-flig
+ht path)
+\end_layout
+
+\begin_layout Subsubsection
+
+\series bold
+Manhattan distance
+\end_layout
+
+\begin_layout Itemize
+Works better with high dimensional vectors
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Measures the shortest distance if you're only allowed to move horizontally
+ or vertically
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Iterative Deepening
+\end_layout
+
+\begin_layout Standard
+A limit in search levels (usually for Depth-First search; can be used for
+ A* as well), where the limit stops at the maximum specified level amd increases
+ for each level.
+ For A* the limit could be a maximum overall-cost to to not exceed when
+ searching.
+\end_layout
+
+\begin_layout Standard
+Saving memory by not needing to explored list is also good.
+\end_layout
+
+\begin_layout Section
+Local Search
+\end_layout
+
+\begin_layout Standard
+Useful when we are interested in the solution state but not in the path
+ to the goal.
+ Local search only operates on the current state and move into neighbouring
+ states.
+\end_layout
+
+\begin_layout Subsection
+Advantages
+\end_layout
+
+\begin_layout Itemize
+Use very little memory (No recording of explored alternatives like DFS or
+ BFS)
+\end_layout
+
+\begin_layout Itemize
+Able to find reasonable solutions in large or infinite (continuous) state
+ spaces.
+\end_layout
+
+\begin_layout Subsection
+Algorithms
+\end_layout
+
+\begin_layout Subsubsection
+Hill-climbing
+\end_layout
+
+\begin_layout Itemize
+Find a new 
+\begin_inset Quotes eld
+\end_inset
+
+better
+\begin_inset Quotes erd
+\end_inset
+
+ next overall state by randomly selecting a variable, and trying to find
+ an assignment to that variable which improves the overall score
+\end_layout
+
+\begin_layout Subsubsection
+Random walk
+\end_layout
+
+\begin_layout Subsubsection
+Simulated annealing
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Animation of Simulated Annealing"
+target "https://en.wikipedia.org/wiki/File:Hill_Climbing_with_Simulated_Annealing.gif"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Starts with a randomized state.
+ For each iteration in a loop, it will move to neighbouring states which
+ decreases the energy (a counter which gets decreased; the higher it is,
+ the worse the solution is), while also only accepting moves within the
+ energy value.
+\end_layout
+
+\begin_layout Itemize
+Basically: Decrease the energy slowly, accepting less bad moves at each
+ energy level until at very low temperatures the algorithm becomes a greedy
+ hill-climbing algorithm.
+ 
+\end_layout
+
+\begin_layout Section
+Planning
+\end_layout
+
+\begin_layout Standard
+State-space search can operate in the forward direction (progression) or
+ the backward direction (regression).
+ Sometimes given the branching factor is it more efficient to search backward.
+\end_layout
+
+\begin_layout Subsection
+Progression
+\end_layout
+
+\begin_layout Standard
+Searching forwards is called progression planning.
+ Which means starting in the initial state and using the problem's actions
+ to search forward for the goal state.
+\end_layout
+
+\begin_layout Subsection
+Regression
+\end_layout
+
+\begin_layout Standard
+Searching backwards is called regression planning.
+ Which means starting at the goal state and using the inverse of the actions
+ to search backward for the initial state.
+\end_layout
+
+\begin_layout Standard
+The principal question in 
+\series bold
+regression 
+\series default
+planning is this: 
+\end_layout
+
+\begin_layout Itemize
+What are the states from which applying a given action leads to the goal?
+ 
+\end_layout
+
+\begin_layout Standard
+Computing the description of these states is called regressing the goal
+ through the action.
+ 
+\end_layout
+
+\begin_layout Standard
+Main advantage of regression search is that it allows us to consider only
+ 
+\series bold
+relevant
+\series default
+ actions.
+\end_layout
+
+\begin_layout Subsection
+Partial-order planning (POP)
+\end_layout
+
+\begin_layout Standard
+The POP algorithms explore the space of plans without commiting to a totally
+ ordered sequence of actions.
+ They work back from the goal, adding actions to the plan to achieve each
+ subgoal.
+ They are particularly effective on problems related to a divide-and-conquer
+ approach.
+\end_layout
+
+\begin_layout Section
+Planning vs Search
+\end_layout
+
+\begin_layout Standard
+Planning is the process of computing several steps of a problem-solving
+ procedure before executing any of them.
+ This problem 
+\series bold
+can
+\series default
+ be solved by search.
+\end_layout
+
+\begin_layout Standard
+The main difference between search and planning is the 
+\bar under
+representation of states
+\bar default
+.
+\end_layout
+
+\begin_layout Itemize
+In search, states are presented as a single entity (which may be quite a
+ complex object, but its interal structure is 
+\bar under
+not
+\bar default
+ used by the search algorithm)
+\end_layout
+
+\begin_layout Itemize
+In planning, states have structured representations (collections of properties)
+ which are used by the planning algorithm.
+\end_layout
+
+\begin_layout Itemize
+Planning systems do the following:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Open up action and goal representation to allow selection
+\end_layout
+
+\begin_layout Enumerate
+Divide-and-conquer by subgoaling
+\end_layout
+
+\begin_layout Enumerate
+Relax requirement for sequential construction of solutions
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Search
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Planning
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+States
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data structures
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Logical sentences
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Actions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Code
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Preconditions/outcomes
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Goal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Code
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Logical sentence (conjunction)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Plan
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sequence from dataset
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Constrains on actions
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Min-Max Algorithm (Game Tree Search)
+\end_layout
+
+\begin_layout Standard
+Depending on which search is used, usually we start at the root down to
+ the leaf of the first nodes, from there the whole tree is worked through.
+ Top node is max and then alternating for each level down.
+ Think of each level as two players, playing against eachother.
+ First player wants to pick the winning number (Max), Second player wants
+ to pick the winning number also, but it's the opposite of the First player
+ so that's why it's (Min).
+ 
+\end_layout
+
+\begin_layout Section
+Alpha-Beta pruning
+\end_layout
+
+\begin_layout Standard
+Alpha-Beta pruning helps with saving immense amount of computation when
+ working with large game trees, by cutting off branches that doesn't need
+ to be searched.
+ The below link takes you to a video which explains it very well, from minute
+ 22.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "MIT OpenCourseWare - Search: Games, Minimax, and Alpha-Beta"
+target "https://www.youtube.com/watch?v=STjW3eH0Cik"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Knowledge Representation
+\end_layout
+
+\begin_layout Section
+Propositional Logic
+\end_layout
+
+\begin_layout Subsection
+Operators
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lnot A$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+not A
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Negation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\land B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+A and B
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Conjunction
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\lor B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+A or B
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Disjunction
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\Rightarrow B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+if A, then B
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Implication
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\Leftrightarrow B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Quotes eld
+\end_inset
+
+A if and only if B
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Equivalence
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Inference by Enumeration using Truth Tables
+\end_layout
+
+\begin_layout Subsection
+Forward/Backward chaining using Horn Clauses
+\end_layout
+
+\begin_layout Subsection
+Resolution
+\end_layout
+
+\begin_layout Standard
+Algorithm works by using 
+\series bold
+proof by contradiction
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+If the query is asking if 
+\bar under
+D is true
+\bar default
+ with respect to a knowledge base, using resolution, the query is instead
+ changed to asking if 
+\bar under
+D is false
+\bar default
+ and the test whether there is a contradiction or not.
+\end_layout
+
+\begin_layout Enumerate
+Convert all sentences to CNF
+\end_layout
+
+\begin_layout Enumerate
+Negate the desired conclusion (converted to CNF)
+\end_layout
+
+\begin_layout Enumerate
+Apply resolution rule until either
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Derive false (a contradiction)
+\end_layout
+
+\begin_layout Enumerate
+Can't apply any more
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Resolution refutation is sound and complete
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If we derive a contradiction, then the conclusion follows from the axioms
+\end_layout
+
+\begin_layout Enumerate
+If we can't apply any more, then the conclusion cannot be proved from the
+ axioms
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Conjunctive Normal Form (CNF)
+\end_layout
+
+\begin_layout Standard
+As a normal form, the formula is useful in automated theorem proving.
+ It is similar to the product of sums form used in circuit theory.
+\end_layout
+
+\begin_layout Standard
+Logical statements 
+\bar under
+without
+\bar default
+ the operators: 
+\begin_inset Formula $\land,\Rightarrow,\exists,\forall$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Translate to CNF
+\end_layout
+
+\begin_layout Enumerate
+Push negations into the formula
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lnot(A\lor B)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lnot(A)\land\lnot(B)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lnot(A\land B)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lnot(A)\lor\lnot(B)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Apply the distributive law where a disjunction occurs over a conjunction,
+ repeatedly until it's not possible anymore
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\lor(B\land C)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(A\lor B)\land(A\lor C)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Drop universal quantifiers
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\forall xPerson(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Person(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Eliminate biconditionals
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\Rightarrow B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lnot A\lor B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\Leftrightarrow B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(A\Rightarrow B)\land(B\Rightarrow A)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Skolemize variables - Each existing variable is replaced by a Skolem constant
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\exists xRich(x)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $x\longrightarrow G1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Rich(G1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\forall xPerson(x)\Rightarrow\exists yHeart(y)\land Has(x,y)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y\longrightarrow G1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Person(x)\Rightarrow Heart(G1)\land Has(x,G1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Examples
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $A\Leftrightarrow B$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(A\Rightarrow B)\land(B\Rightarrow A)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(\lnot A\lor B)\land(\lnot B\lor A)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(A\land B)\Leftrightarrow(A\lor B)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $((A\text{∧}B)\text{⇒}(A\text{∨}B))\text{∧}((A\text{∨}B)\text{⇒}(A\text{∧}B))$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(\text{¬}(A\text{∧}B)\text{∨}(A\text{∨}B))\text{∧}(\text{¬}(A\text{∨}B)\text{∨}(A\text{∧}B))$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $([\text{¬}A\text{∨¬}B]\text{∨}(A\text{∨}B))\text{∧}([\text{¬}A\text{∧¬}B]\text{∨}(A\text{∧}B))$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(\text{¬}A\text{∨¬}B\text{∨}A\text{∨}B)\text{∧}([(\text{¬}A\text{∧¬}B)\text{∨}A]\text{∧}[(\text{¬}A\text{∧¬}B)\text{∨}B])$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $TRUE\text{∧}([(\text{¬}A\text{∨}A)\text{∧}(\text{¬}B\text{∨}A)]\text{∧}[(\text{¬}A\text{∨}B)\text{∧}(\text{¬}B\text{∨}B])$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $[TRUE\text{∧}(\text{¬}B\text{∨}A)\text{∧}(\text{¬}A\text{∨}B)\text{∧}TRUE)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\equiv$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $(\text{¬}B\text{∨}A)\text{∧}(\text{¬}A\text{∨}B)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Decision Tree
+\end_layout
+
+\begin_layout Itemize
+A map of the reasoning process, good at solving classification problems
+\end_layout
+
+\begin_layout Itemize
+Represents a number of different attributes and values
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Nodes represent attributes
+\end_layout
+
+\begin_layout Itemize
+Branches represent values of the attribute
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Path through a tree represents a decision
+\end_layout
+
+\begin_layout Itemize
+Can be associated with rules
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename E:/Users/Ozzie/Dropbox/University/Datateknik/Artificiell Intelligens/exams/prep_material/dec_tree_ex.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Decision Tree Example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+ID3 algorithm
+\end_layout
+
+\begin_layout Itemize
+Builds a decision tree from a set of examples, each consisting of a set
+ of attribute-value pairs, through a greedy approach.
+\end_layout
+
+\begin_layout Itemize
+Summary:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Calculate the entropy of every attribute using a data set
+\end_layout
+
+\begin_layout Enumerate
+Split the data set into subsets using the attribute for which the resulting
+ entropy is minimum, or the information gain is maximum
+\end_layout
+
+\begin_layout Enumerate
+Make a decision tree node containing that attribute
+\end_layout
+
+\begin_layout Enumerate
+Recurse on subsets using remaining attributes
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Answers the question: 
+\series bold
+Are we done yet? 
+\series default
+Which means one of two things:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+All of the data points to the same classification.
+ Allows ID3 to make a final decision.
+\end_layout
+
+\begin_layout Itemize
+There are no more attributes to divide the data.
+ ID3 only uses each attribute maximum one time per path through the tree.
+ If maximum is reached and remaining data doesn't point to a classification,
+ it is forced to make a final decision 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Usually picks the most popular classification.
+\end_layout
+
+\end_deeper
+\begin_layout Part
+PEAS
+\end_layout
+
+\begin_layout Itemize
+Performance Measure
+\end_layout
+
+\begin_layout Itemize
+Environment
+\end_layout
+
+\begin_layout Itemize
+Actuators
+\end_layout
+
+\begin_layout Itemize
+Sensors
+\end_layout
+
+\begin_layout Section
+Performance Measure
+\end_layout
+
+\begin_layout Itemize
+Be sade
+\end_layout
+
+\begin_layout Itemize
+Reach Destination
+\end_layout
+
+\begin_layout Itemize
+Maximize Profits
+\end_layout
+
+\begin_layout Itemize
+Obey laws
+\end_layout
+
+\begin_layout Section
+Environment
+\end_layout
+
+\begin_layout Itemize
+Urban streets
+\end_layout
+
+\begin_layout Itemize
+Freeways
+\end_layout
+
+\begin_layout Itemize
+Traffic
+\end_layout
+
+\begin_layout Itemize
+Pedestrians
+\end_layout
+
+\begin_layout Itemize
+Weather
+\end_layout
+
+\begin_layout Itemize
+Customers
+\end_layout
+
+\begin_layout Section
+Actuators
+\end_layout
+
+\begin_layout Itemize
+Steering wheel
+\end_layout
+
+\begin_layout Itemize
+Accelerator
+\end_layout
+
+\begin_layout Itemize
+Brake
+\end_layout
+
+\begin_layout Itemize
+Horn
+\end_layout
+
+\begin_layout Section
+Sensors
+\end_layout
+
+\begin_layout Itemize
+Video
+\end_layout
+
+\begin_layout Itemize
+Accelerometers
+\end_layout
+
+\begin_layout Itemize
+Gauges
+\end_layout
+
+\begin_layout Itemize
+Engine sensors
+\end_layout
+
+\begin_layout Itemize
+Keyboard
+\end_layout
+
+\begin_layout Itemize
+GPS
+\end_layout
+
+\end_body
+\end_document

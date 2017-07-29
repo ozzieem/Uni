@@ -1,0 +1,183 @@
+
+<!-- saved from url=(0046)http://www.saedsayad.com/clustering_kmeans.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>K-Means</title>
+<link rel="icon" type="image/png" href="http://www.saedsayad.com/logosmart.png">
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20171535-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body>
+
+<table border="0" width="800">
+  <tbody><tr>
+    <td><font face="Calibri"><a href="http://www.saedsayad.com/data_mining_map.htm">Map</a>
+      &gt; <a href="http://www.saedsayad.com/data_mining.htm">Data
+      Mining</a> &gt; <a href="http://www.saedsayad.com/predicting_the_future.htm"> Predicting the Future</a> &gt;
+      <a href="http://www.saedsayad.com/modeling.htm"> Modeling</a> &gt; <a href="http://www.saedsayad.com/clustering.htm"> Clustering</a>
+      &gt; K-Means</font></td>
+  </tr>
+  <tr>
+    <td>
+      <font face="Calibri" color="#008000">&nbsp;</font>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3 align="center"><font face="Calibri" color="#008000">K-Means Clustering</font></h3>
+    </td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">K-Means clustering intends to partition </font><i> n</i><font face="Calibri">
+      objects into </font><i> k</i><font face="Calibri"> clusters in which each
+      object belongs to the cluster with the nearest mean. This method produces exactly
+      </font><i> k</i><font face="Calibri"> different clusters of greatest possible distinction. The best number of clusters
+      </font><i> k</i><font face="Calibri"> leading to the greatest separation (distance) is not known as a priori and must be computed from the data.
+      The objective of K-Means clustering is to minimize total intra-cluster variance, or, the squared error function:&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td>
+      &nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+      <p align="center"><img border="0" src="./K-Means_files/Clustering_kmeans_c.png"></p></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri"><b>&nbsp;</b></font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri"><b>Algorithm</b></font></td>
+  </tr>
+  <tr>
+    <td>
+      <ol>
+        <li><font face="Calibri">Clusters the data into </font><i> k</i><font face="Calibri">
+          groups where </font><i> k</i><font face="Calibri">&nbsp;</font><font face="Calibri">
+          is predefined.</font></li>
+        <li><font face="Calibri">Select </font><i> k</i><font face="Calibri">
+          points at random as cluster centers.</font></li>
+        <li><font face="Calibri">Assign objects to their closest cluster center according to the
+          <i> Euclidean distance</i> function.</font></li>
+        <li><font face="Calibri">Calculate the centroid or mean of all objects in each cluster.</font></li>
+        <li><font face="Calibri">Repeat steps 2, 3 and 4 until the same points are assigned to each cluster in consecutive rounds.</font></li>
+      </ol>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p align="center"><img border="0" src="./K-Means_files/Clustering_kmeans.png" width="362" height="242"></p></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">K-Means is relatively an efficient method. However,
+      we need to specify the number of clusters, in advance and the final
+      results are sensitive to initialization and often terminates at a local optimum.
+      Unfortunately there is no global theoretical method to find the optimal number of clusters. A
+      practical approach is to compare the outcomes of multiple runs with different
+      </font><i><font face="Times New Roman"> k</font></i><font face="Calibri"> and choose the best one
+      based on a predefined criterion. In general, a large </font><i><font face="Times New Roman"> k</font></i><font face="Calibri">
+      probably decreases the error but increases the risk of overfitting.</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><i>Example</i>:</td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">Suppose we want to group the visitors to a website
+      using just their age (a one-dimensional space) as follows:</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">15,15,16,19,19,20,20,21,22,28,35,40,41,42,43,44,60,61,65</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri"><b>Initial clusters:</b></font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">Centroid (C1) = 16    [16]<br>
+      Centroid (C2) = 22    [22]</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">Iteration <b>1</b>:</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">C1 = 15.33    [15,15,16]<br>
+      C2 = 36.25    [19,19,20,20,21,22,28,35,40,41,42,43,44,60,61,65]</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">Iteration <b>2</b>:</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">C1 = 18.56    [15,15,16,19,19,20,20,21,22]<br>
+      C2 = 45.90    [28,35,40,41,42,43,44,60,61,65]</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">Iteration <b>3</b>:</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">C1 = 19.50    [15,15,16,19,19,20,20,21,22,28]<br>
+      C2 = 47.89    [35,40,41,42,43,44,60,61,65]</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">Iteration <b>4</b>:</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">C1 = 19.50    [15,15,16,19,19,20,20,21,22,28]<br>
+      C2 = 47.89    [35,40,41,42,43,44,60,61,65]</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">&nbsp;</font></td>
+  </tr>
+  <tr>
+    <td><font face="Calibri">No change between iterations 3 and 4 has been
+      noted. By using clustering, 2 groups have been identified 15-28 and
+      35-65. The initial choice of centroids can affect the output clusters, so the algorithm is often run multiple times with different starting conditions in order to get a fair view of what the clusters should be.</font></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+      <table border="0" width="100%">
+        <tbody><tr>
+          <td width="8%"><font face="Calibri"><a href="http://www.saedsayad.com/clustering_kmeans_exercise.htm"><span style="background-color: #CCFFFF">Exercise</span></a></font></td>
+          <td width="7%"><a href="http://www.saedsayad.com/datasets/Kmeans.txt" target="_blank"><img border="0" src="./K-Means_files/R.png" width="40" height="31"></a></td>
+          <td width="85%"><font face="Calibri"><a target="_blank" href="http://home.dei.polimi.it/matteucc/Clustering/tutorial_html/AppletKM.html">K Means
+      Interactive</a></font></td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+</tbody></table>
+
+
+
+
+</body></html>

@@ -1,0 +1,149 @@
+﻿import math
+
+class District:
+    def __init__(self, name, x, y):
+        self.x = x
+        self.y = y
+        self.name = name
+        self.connections = []
+    def distance(self, otherDistrict):
+        return (math.sqrt((otherDistrict.x - self.x)**2 + (otherDistrict.y - self.y)**2))
+
+Districts = []
+
+# Load in data about the nodes (districts) from the files:
+dataFile = open('locations2015.csv')
+for dataLine in dataFile.readlines():
+    if (dataLine.split(';')[0]) != "name":
+        Districts.append(District((dataLine.split(';')[0]), int(dataLine.split(';')[1]), int(dataLine.split(';')[2])))
+dataFile.close()
+
+dataFile = open('connections2015.csv')
+for dataLine in dataFile.readlines():
+    if (dataLine.split(';')[0] != "from"):
+        for fromConnection in Districts:
+            if (dataLine.split(';')[0] == fromConnection.name):
+                fromConnection.connections.append((dataLine.split(';')[1]).rstrip('\n'))
+dataFile.close()
+
+# Get district object from name (string):
+def getDistrict(name):
+    for d in Districts:
+        if name == d.name:
+            return d
+
+# Experimenting with recursive Depth Limited Search:
+pathList = []
+
+def findPathIDS(startName, goalName):
+    d = getDistrict(startName)
+    pathList.append(startName)
+    for connection in d.connections:
+        if goalName in pathList:
+            break
+        if connection not in pathList:
+            findPathIDS(connection, goalName)
+
+# Depth Limited Search:
+def DLS(startName, goalName, maxDepth):
+    Frontier = [startName]
+    tempFrontier = [startName]
+    hasParent = {}   # Parent describes from which node it was explored.
+    depth = 0   # Depth level.
+    while depth <= maxDepth:
+        print(" - ", tempFrontier)
+        if goalName in Frontier:    # Are we there yet?
+            print("Found it!")
+            for i in range(0, depth + 1):
+                if i == 0:
+                    parent = goalName
+                else:
+                    parent = hasParent[parent]
+                print(parent)
+            return "Goal"
+            break
+        for connection in tempFrontier: # tempFrontier is a copy of the "real" Frontier. Makes it easier to handle the depth level.
+            for node in getDistrict(connection).connections:
+                if node not in Frontier:
+                    hasParent[node] = connection # Adding connection as parent to the node.
+                    Frontier.append(node)
+                if node == goalName:
+                    hasParent[node] = connection
+                    break
+        for newNode in Frontier:    # Copies the newly added frontier nodes to the temp list.
+            if newNode not in tempFrontier:
+                tempFrontier.append(newNode)
+        depth += 1
+
+# Iterative Deepening Search:
+def IDS(startName, goalName, maxDepth):
+    for d in range(0, maxDepth):
+        print(d)
+        if DLS(startName, goalName, d) == "Goal":
+            break
+
+# Below: A*-Search Made this A* with help from Franziska's pseudo code.
+def ASTAR(startName, goalName):
+    hasParent = {}  # Contains a node as key and its parent as item.
+    explored = {}
+    gCost = {startName: 0.0}    # Initializing costs of the starting node.
+    hCost = {startName: getDistrict(startName).distance(getDistrict(goalName))}
+    frontier = {startName: gCost[startName] + hCost[startName]}
+    while True:
+        print(frontier)
+        if bool(frontier) == False: # Is the frontier empty?
+            break
+        node = min(frontier, key = frontier.get)    # Select the node with the lowest cost.
+        if node == goalName:    # Goal test.
+            break
+        explored[node] = frontier[node] # Mark the processed node as explored.
+        del frontier[node]
+        for next in getDistrict(node).connections:  # Check the connections and calculate their costs.
+            gTemp = gCost[node] + getDistrict(node).distance(getDistrict(next))  # Storing the G cost in a temp variable.
+            hCost[next] = getDistrict(next).distance(getDistrict(goalName))
+            if next in explored.keys(): # If the connection already is explored, check if temp G cost is better than at last check.
+                if next in gCost.keys():
+                    if gTemp < gCost[next]: # If new G cost is less than before, change parent, update cost and add to frontier.
+                        gCost[next] = gTemp
+                        del explored[next]
+                        hasParent[next] = node
+                        frontier[next] = gTemp + hCost[next]
+            elif next in frontier:
+                if gTemp + hCost[next] < frontier[next]:
+                    hasParent[next] = node
+                    gCost[next] = gTemp
+                    frontier[next] = gTemp + hCost[next]
+            else:
+                hasParent[next] = node
+                gCost[next] = gTemp
+                frontier[next] = gCost[next] + hCost[next]
+    pathList = []
+    pathList.append(goalName)
+    p = hasParent[goalName]
+    pathList.append(p)
+    while p in hasParent.keys():    # Prints the path.
+        p = hasParent[p]
+        pathList.append(p)
+    print(pathList[::-1])
+
+# Run the program:
+start = int(input("Which Search algorithm?\n1 - Iterative Deepening Search\n2 - A* Search\n"))
+if start == 1:
+    while True:
+        print("Iterative Deepening Search")
+        a = input("From where? ")
+        b = input("To where? ")
+        c = int(input("Maximum levels? "))
+        if getDistrict(a) in Districts and getDistrict(b) in Districts:
+            IDS(a, b, c)
+        else:
+            print("Wrong locations. Try again.")
+elif start == 2:
+    while True:
+        print("A* Search")
+        a = input("From where? ")
+        b = input("To where? ")
+        if getDistrict(a) in Districts and getDistrict(b) in Districts:
+            ASTAR(a, b)
+        else:
+            print("Wrong locations. Try again.")

@@ -1,0 +1,36 @@
+wines = []
+
+
+class Wine:
+    def __init__(self, id, total):
+        self.alcohol_id = id
+        self.total = total
+
+
+def normalize_values(file):
+    values = []
+    file.readline()
+    for x in range(1, 14):
+        for Line in file:
+
+
+
+def read_data():
+    FileLoc = open('wine.data')
+    FileLoc.readline()
+    for LineLoc in FileLoc:
+        LineLoca = LineLoc.split(',')
+        sum = 0
+        for x in range(1, 14):
+            sum += float(LineLoca[x])
+        wines.append(Wine(LineLoca[0], sum))
+    FileLoc.closed
+
+
+def main():
+    read_data()
+    print(wines[1].total)
+
+
+if __name__ == "__main__":
+    main()

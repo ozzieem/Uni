@@ -1,0 +1,90 @@
+﻿CSP:
+	Discrete variables
+		- Finite domains
+			-> n variables, domain size d -> in the order of d^n complete assignments
+			-> Combinatorial problems
+
+Specific search for Constraint Satisfaction Problems:
+	Backtracking Search:
+		- Variables assignments are commutative
+			-> Sequence of assigning is not important
+		- Only need to consider assignments to a single variable at each node
+
+		- Depth-first search for CSPs with single-variable assignments and backtracking
+		  when a variable has no legal values to assign is called Backtracking Search
+
+
+Notes after first implementation of the backtracking algorithm:
+
+2017-02-11
+How I've done is a bit different. I start with saying that each variable has an empty domain and then I go through the domain array and check if it is consistent with whatever each variable has at the moment. The next variable is then selected by checking if it is empty or not. The same process is the repeated for that variable, checking each domain. I realise that not having each variable contain the domains from the start and then, through the use of the traiditonal backtracking algorithm, take the not consistent domain from the variable. This makes it a bit difficult to do arc-consistency with the current backtracking algorithm, since if I understand it correctly, the arc-consistency function requires the variables to store the possible domains inside of it, to be able to pick out the domains from it that are not consistent. I'm not really sure how to solve that with my implementation.
+
+Also another thing, my implementation of this backtracking algorithm, takes roughly 1 min each time I want to solve the crossword problem that I have been given. It has 6 variables and each variable has 40 domains. Solving the problem, requires ~42000 iterations through the recursive backtracking function. I'm not sure if it should take that long or require that many iterations. Either my implementation is reaaaally bad or it actually does take that long. I'm unsure about this...
+
+2017-02-12
+I just tried running the code on PyCharm and to my surprise, the CSP is solved within a few seconds instead of nearly a minute on Visual Studio. It is a bit weird, but I assume there are a lot of optimisations done on PyCharm compared to Visual Studio, which is in itself a good thing but also maybe it's bad since I might not be able to a significant time-boost when I implement the arc-consistency algorithm. We'll see, but for now I'll migrate this project to PyCharm and continue my work there instead since it's running so much faster.
+
+------------------------------------------------------------------------------------------
+
+# Constraint Propagation with AC-3
+
+def AC3(csp, queue=None):
+    if queue == None:
+        queue = [(Xi, Xk) for Xi in csp.vars for Xk in csp.neighbors[Xi]]
+    while queue:
+        (Xi, Xj) = queue.pop()
+        if remove_inconsistent_values(csp, Xi, Xj):
+            for Xk in csp.neighbors[Xi]:
+                queue.append((Xk, Xi))
+
+def remove_inconsistent_values(csp, Xi, Xj):
+    "Return true if we remove a value."
+    removed = False
+    for x in csp.curr_domains[Xi][:]:
+        # If Xi=x conflicts with Xj=y for every possible y, eliminate Xi=x
+        if every(lambda y: not csp.constraints(Xi, x, Xj, y),
+                csp.curr_domains[Xj]):
+            csp.curr_domains[Xi].remove(x)
+            removed = True
+    return removed
+
+Algorithm Revise makes an arc consistent
+Begin
+  1. For each a in Di if there is no value b in Dj that matches a then delete a from the Dj.
+End.
+
+Notes for arc-consistency implementation:
+
+2017-02-18
+I'm not quite sure how I'm going to implement this algorithm with my current implementation of the backtracking function. It seems to work fine as it is but I'm not sure how much time I will win by implementing this function, even though I know how the algorithm seems to work. The AC3 algorithm, that I've been assigned to implement seems to take an entire CSP, and from that remove the domains that are inconsistent with the given variable, which is picked from a queue within that AC function. From this, one can save time by not needing to check the domains that are not consistent within the network. I've looked at different implementations of the AC3 algorithm but everyone seem to have done it differently. Mostly this depends on several things. First it's not the same situation that I'm working on. Most the algorithms have implemented it for a Sudoku puzzle, however I'm working on a crossword puzzle, which would seem similar, however the constraints are very different from the Sudoku puzzle, so it is a bit confusing for me at times when I read their code and I can't understand what is going at a particular line. Also, they've designed the code a lot more function-based and probably not as messy as my code is at this current stage. I feel like I'd like to clean it up a bit but since it is working well now, I feel like I don't want to waste more time than what is really necessary for this assignment.
+
+I think what I need to do now, is to think more carefully about what my arc-consistency function is going to do. My goal is to make sure to remove the domains for a particular variable that are not consistent within that network of variables. That means in the backtracking function where the AC-function is going to be I need to take the following things as input: the current variable that is worked on, the domain for that variable and all the other variables in the CSP. From this I need to check each variable and compare it with the current variable to see if there are any domains I can remove, by revising the consistency of the variables and the domains they have. The domains will be removed for one variable at a time, so as an example, if I take in variable A1, I want to check A1 against all other variables (A2, A3, D1, D2, D3) and their domains, to see if there are any domains that I can remove, which does not fit. But the removed domains are only valid for A1. The rest of the variables are done the same way. If this works, then it won't be exactly the same as the AC3 algorithm, but it will be a similar one but adapted to my assignment.
+
+2017-02-27
+I was able to implement a custom "arc-consistency" algorithm, which removes the unnecessary words from the domains that does not fit the next variable, depending on the current variable. It does remove words from the domain, but not all of them... I'm unsure what this depends on but then again I haven't really stepped through it properly either to check up on any errors during the comparisons. Before the arc-consistency was implemented it took around 42k iterations and 3 secs to solve the problem. Now it solves it in 11k iterations and 1.3 secs. So it is a clear improvement just from that implementation. It can be made even faster, if I just can figure out how to remove ALL of the unnecessary words from the domain of each variable. After I've done that, it depends entirely on my professor if she will accept my implementation or if I will have to reimplement everything from the beginning following her pseudo-code perfectly. Hopefully it's not the latter as I've spent a lot time with this task and it would suck to spend even more time to rewrite the code, when it basically does the job, although with very poorly written code. And perhaps, 1.3 secs is too long for this... Will find out...
+
+I found out now that I was removed objects from the same list that I was iterating through... Not a good thing at all........ I'm disappointed in myself for even letting it happen. I've investigated this even further and it seems to me that it is basically removing random objects from the list when doing that. What is remarkable is that it is still giving a quite large performance boost, which is unbelieveable to me. I did try a more correct way of iterating through the global domain list (which is should've been done originally) and removing from the local list. However, eventhough it did remove the correct words from the domain now, it still took the same time to solve the problem. Which is.. I don't even know.. Unbelievable... How can it take the same amount of time and same amount of iterations as without arc-consistency, when I remove stuff to search through???? I can't understand this... It's something very weird going on. I wonder if it's worth investigating to make it correct, but then again, if I can't get the same performance as with removing the iterating list, why should I even bother? I'm very confused right now. I can't understand how that can even remotely work, and the correct way of doing it still gives the same amount of iterations. It sounds like it might be some kind of underlying optimization going on but I'm still not sure...
+
+2017-03-06
+I have now implemented the AC3 algorithm to try and solve the crossword problem. However, I'm not getting it to solve the problem as it doesn't remove any values of the domains. I'm checking the condition: " If Xi=x conflicts with Xj=y for every possible y, eliminate Xi=x" or "if no value y in Domain[X i ] allows (x,y) for (X j ↔X i ) then remove", which means it will remove the value of the domain of the current variable ONLY if the current word conflicts with all of the possible words for the neighbouring variable. However, this will never happen as there is always at least one value in the domain for each variable that will be consistent, so I'm not quite sure how it should be done to get it remove the correct values from the domain. They values must somehow be different to each other... I don't know... I will ask Fransizka about it and see if she can help.
+
+2017-03-24
+It seems like Fransizka did not want to aid me by responding to the mail I sent, so I have come back to try and solve this AC3 algorithm once and for all. When taking a look at the code I left since last, I noticed that I'm not removing the values from the domain of the variables correctly. I'm not really sure if I understand this correctly and wouldn't mind at all if I would receive some help regarding this. I found an writeup about crossword solving and in there is a section about arc consistency. Upon reading I found this section:
+"AC-3 works in two steps. It first iterates over every variable xi, checking whether its values are supported in each constraint over xi. While it does this, AC-3 queues the unsupported values it has removed. It then dequeues the previously removed unsupported values, checking whether the removals have caused
+more values to become unsupported. Any newly unsupported values it places on the queue and continues dequeueing until it gets to the point where the queue is empty. This happens when no more values become unsupported, and we are guaranteed termination because there are only finitely many values that can be removed."
+So with my understanding from earlier readings, I was surprised to learn that what you actually put in the queue is the unsupported values... I don't think I read that anywhere in the articles that I read about before. What I'm going to do now, is to try and implement this way of adding to the queue and make sure to put in the correct values...
+
+2017-03-27
+So I haven't implemented the way I talked about last time, since I've read more articles and it has come to my mind that maybe it's not wrong with the algorithm that I've implemented but the data structures I'm using... I think what I see as neighbours are not what they actually are. I think what I need to do is to represent this CSP in a graph form - to make it easier, visually. From that I will probably be able to find out what really are the neighbours and what kind of constraint each cell has.
+TODO: Make a graph representation of the current CSP and control the constraints between the edges. That means 6 variables = 6 nodes with each connection having a constraint. The connections are between each A to D. So A1 there are 3 connections, one to D1, D2 and D3. This gives us 9 constraints.
+The constraints are known since they have been implemented, but I wonder if I'm missing something... Also one good thing might be to implement a function for each constraint that exists instead of doing it like I'm doing now, trying to fit everything in one function. It might also be more useable as well, not needing to implement the same thing twice and so on.
+TODO: Make a file or class or something called constraints, where you store all of the constrains in their own function'
+
+2017-03-27
+From the problem visualization I was able to make a constraint graph out of the problem and get a clearer picture of how it looks. I was also able to find a Java Application from www.aispace.org, where it clearly showed how Arc Consistency works between nodes. I was so happy to find this example, since it was exactly what I needed to be able to finally finish the implementation of this algorithm. I also noticed a big problem which probably has hindered me in my implementation, which is the usual problem or mistake one can do with python lists. Since the variables are acting as references when you assign one variable to the other, some values from lists were unintentionally removed, when they shouldn't have been. That has been probably the most annoying problem I've had with this language. It would never happen in C, which is the language I've programmed in most. I probably would've enjoy the implementation more had it been in C++ or something similar, to avoid shit problems like these. But at least I'm done now with arc-consistency. My only remaining task is to implement into the aldready exisiting backtracking-algorithm. It seemed easy at first but then I realised that I used pure string for the AC implementation and Word and WordEntry classes to represent the words and the cells in the backtracking implementation. So I'll either have to convert the backtracking implementation to be only in strings or convert the AC implementation to use the objects instead. However I already tried that and it didn't work as well as I expected and I rather take the easy way out at this point, since this task has wasted so much of my time and also not receiving any help from the teacher has made this a long process. I'm at least happy that I was able to figure it out by myself...
+
+2017-03-28
+I feel happy that I was able to solve this task once and for all. I don't think I've spent this much time on one specific labtask before. It took a bit of battling with how lists work in Python and several papers that explain the arc consistency algorithm to make it click in my brain to make it work in code. I've implemented a simple menu now, where the user can select what they would like to solve the csp with, whether it's with backtracking or arc-consistency or both. So far the tests show that obviously the combination of these two algorithms make it able to solve much faster than just going through with backtracking. I'm pretty sure that my implementation of the backtracking algorithm is very slow, but it works like it is, so I don't think I'm going to touch it anymore, unless Franziska tells me to change it or if I feel motivated enough to change it. It should be easy at this point but I think I'm just tired of this now and want to move on. The remaining part is to show these implementations to Franziska, so that she can give me the points and hopefully I'll also pass on the exam, which I'm not sure about and the correction time for Franziska is so long. I think we were max 10 people who wrote it, but still there haven't been any results from it, eventhough I've had two exams after that one and I received the results within a week. At this point, it can take however long it want to as long as I pass it. That's the most important thing for me. Otherwise I might have to redo all of this again during winter, which I wouldn't want to do, at all. I can only hope and pray for a good outcome after battling with this course for so long...
+
+
+

@@ -1,0 +1,1238 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Artificial Intelligence DT2016
+\begin_inset Newline newline
+\end_inset
+
+
+\shape smallcaps
+\size larger
+Task 3 - K-means clustering
+\end_layout
+
+\begin_layout Author
+By
+\emph on
+ Özgun Mirtchev
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph default
+Professor 
+\emph on
+Franziska Klügl
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\emph default
+Örebro University
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Machine learning is a topic that has been mentioned a lot more in recent
+ times.
+ Almost all of the technical devices that are used today have some sort
+ of machine learning built-in.
+ In this lab K-means clustering is used to group up similar objects from
+ a base of available data.
+ While clustering is not exactly machine learning, since it gives a result
+ based on data, it still counts as some sort of learning.
+ 
+\end_layout
+
+\begin_layout Subsection
+Objective
+\end_layout
+
+\begin_layout Standard
+This lab requires a working implementation of k-means clustering algorithm.
+ The provided unclustered data are values of customers spending in different
+ attributes: Fresh, Milk, Grocery, Frozen, Detergents Paper and Delicatessen.
+ The customers has their own spending channel as well which includes hotels,
+ restaurants, cafes and retail.
+ Besides channels the customers have a region attribute as well, which speaks
+ about where the customers lives.
+ The file data has the data separated by 
+\begin_inset Quotes eld
+\end_inset
+
+;
+\begin_inset Quotes erd
+\end_inset
+
+ needs to be read into the program by an appropriate procedure into appropriate
+ data structures.
+ From that k-means clustering will be done and an analysis of the result
+ will be done.
+ A method for deciding the optimal k-value for a cluster will also be implemente
+d.
+\end_layout
+
+\begin_layout Subsection
+K-means clustering 
+\end_layout
+
+\begin_layout Standard
+K-means clustering is a very commonly used clustering algorithm.
+ It uses a distance measure between unclustered data objects to cluster
+ them up together depending on randomly picked centroids.
+ The centroids are recalculated depending on all the objects from the database,
+ and the way the objects are placed in the cluster is dependent on the distance
+ between the object and the nearest centroid.
+ The process is repeated until the centroid reaches a state where its position
+ stops changing.
+ Depending on which 
+\begin_inset Formula $k$
+\end_inset
+
+ value was given, the produced result will be 
+\begin_inset Formula $k$
+\end_inset
+
+ amount of clusters.
+ An example may be seen in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "k_cluster_idx"
+
+\end_inset
+
+where the 
+\begin_inset Formula $k$
+\end_inset
+
+ value is 3, clustering the data into three groups.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/kmeansclustering.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+K-means clustering example
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "k_cluster_idx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Elbow-curve
+\end_layout
+
+\begin_layout Standard
+Selecting a good 
+\begin_inset Formula $k$
+\end_inset
+
+ value is also important.
+ There are a few alternatives to choose from when wanting to know the optimal
+ 
+\begin_inset Formula $k$
+\end_inset
+
+ value.
+ One approach is to do multiple scenario runs with different 
+\begin_inset Formula $k$
+\end_inset
+
+ values and choose the best one out of these according to a criterion.
+ In this lab the Elbow-method was applied to figure the best 
+\begin_inset Formula $k$
+\end_inset
+
+ value of an unclustered data.
+ 
+\end_layout
+
+\begin_layout Standard
+This makes it easier to see which 
+\begin_inset Formula $k$
+\end_inset
+
+ value would be the most optimal for the current cluster group, instead
+ of doing it manually for each attribute.
+ It's important to not increase the 
+\begin_inset Formula $k$
+\end_inset
+
+ value too much to avoid overfitting, eventhough it may give a more 'precise'
+ result.
+ 
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Subsection
+Scenario Preparation
+\end_layout
+
+\begin_layout Standard
+First task was to implement a way to store all of the data that was going
+ to be read into an apporpriate data structure, to be able to handle the
+ data easily.
+ 
+\end_layout
+
+\begin_layout Standard
+Since the data is about the annual spending of costumers, a class named
+ Client was created to store the information for each customer.
+ In this class, the channel and the region of the client are stored as member
+ variables, while the spending of the client was stored into an array, to
+ make it easier to calculate the new position of the centroid, depending
+ on which attribute was selected to do clustering on.
+ 
+\end_layout
+
+\begin_layout Standard
+A cluster class was also created to store the randomly picked centroid,
+ together with a list of the clients that are going to be assigned to the
+ cluster.
+ The initial cluster has only one client in it, which is the randomly picked
+ centroid.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Client:
+\end_layout
+
+\begin_layout Plain Layout
+
+  init(costumer_data):
+\end_layout
+
+\begin_layout Plain Layout
+
+    client_data = costumer_data
+\end_layout
+
+\begin_layout Plain Layout
+
+    channel = 0         
+\end_layout
+
+\begin_layout Plain Layout
+
+    region = 0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+class Cluster:
+\end_layout
+
+\begin_layout Plain Layout
+
+  init(clients):
+\end_layout
+
+\begin_layout Plain Layout
+
+    clients = clients
+\end_layout
+
+\begin_layout Plain Layout
+
+    centroid = clients[0]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Class pseudocode
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Program procedure
+\end_layout
+
+\begin_layout Standard
+Upon starting the program in the console, a menu is displayed listing all
+ the available attributes to choose:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "float=htpb"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Attributes:  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 1.
+ Fresh  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 2.
+ Milk  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 3.
+ Grocery  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 4.
+ Frozen  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 5.
+ Detergents paper  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 6.
+ Delicatessen 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+The user enters the number of the chosen attribute
+\series default
+, which in turn loads the corresponding data into the class instances.
+ The data is stored in a file named 
+\begin_inset Quotes eld
+\end_inset
+
+costumer.data
+\begin_inset Quotes erd
+\end_inset
+
+, which is filled with 440 values for each attribute.
+ If the loading of data is successful, a message will be displayed, notifying
+ the user with how many values were loaded.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "float=htbp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Loading client data...
+ (../files/costumer.data)
+\end_layout
+
+\begin_layout Plain Layout
+
+Data loading completed: 440 values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Immediately after the loading has finished
+\series default
+ the user is prompted with a choice of which method of K-means should be
+ run.
+ The available methods are manual and elbow-method.
+ With manual the user is able to manually choose a desired 
+\begin_inset Formula $k$
+\end_inset
+
+ value.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "float=htbp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+K-means  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 1.
+ Manual K-value  
+\end_layout
+
+\begin_layout Plain Layout
+
+ 2.
+ Elbow-method
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Here the user needs to choose 
+\series default
+which method they would like to run.
+ 
+\end_layout
+
+\begin_layout Standard
+By choosing manual-method, the program prompts the user again by asking
+ which value the K-means clustering should be run with.
+ 
+\end_layout
+
+\begin_layout Standard
+By choosing elbow-method, k-means clustering is currently run on the dataset
+ with the k value in a range of 1-9 .
+ The elbow-method calculates the variance between each cluster and detects
+ the elbow-curve by the biggest change in the value of sum of squared errors
+ (SSE) from the specific cluster.
+ Below one may see an example of the elbow-calculations from 1-9 clusters.
+ Disregarding the variance of the first cluster, the biggest difference
+ of variance is between 2 and 3.
+ Due to how the elbow-method was implemented the optimal value of k is chosen
+ as 3.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "float=htbp"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+	 Cluster	 Percentage of variance
+\end_layout
+
+\begin_layout Plain Layout
+
+	 1 		 0.0
+\end_layout
+
+\begin_layout Plain Layout
+
+	 2 		 60.42500844611611
+\end_layout
+
+\begin_layout Plain Layout
+
+	 3 		 79.3975499703917
+\end_layout
+
+\begin_layout Plain Layout
+
+	 4 		 85.91375760172765
+\end_layout
+
+\begin_layout Plain Layout
+
+	 5 		 90.98892241443801
+\end_layout
+
+\begin_layout Plain Layout
+
+	 6 		 92.41320818922254
+\end_layout
+
+\begin_layout Plain Layout
+
+	 7 		 95.38843859520377
+\end_layout
+
+\begin_layout Plain Layout
+
+	 8 		 95.78655678993113
+\end_layout
+
+\begin_layout Plain Layout
+
+	 9 		 95.98528234810792
+\end_layout
+
+\begin_layout Plain Layout
+
+Elbow curve detected.
+ Optimal K-value: 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+After the clustering process
+\series default
+, an analysis report is printed to give information about what is inside
+ each cluster.
+ Most important values of a cluster is to see what the size of it is and
+ how the different data is distributed.
+ For this reason, there are four versions of the analysis print-out:
+\end_layout
+
+\begin_layout Enumerate
+A 
+\series bold
+compact
+\series default
+ version (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "compacy_analysis"
+
+\end_inset
+
+) which gives a more detailed output but easy to glance over, with differences
+ between the highest and lowest value in the cluster.
+ 
+\end_layout
+
+\begin_layout Enumerate
+A 
+\series bold
+compacttext
+\series default
+ version (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "compacy_analysis-1"
+
+\end_inset
+
+) which prints out the values in a compact text form for better overview
+ of the shopping and habitat of the group.
+\end_layout
+
+\begin_layout Enumerate
+A 
+\series bold
+full
+\series default
+ version (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "full_analysis"
+
+\end_inset
+
+) which prints out relevant information for a user not interested in differences
+ between clusters.
+ 
+\end_layout
+
+\begin_layout Enumerate
+A 
+\series bold
+fulltext 
+\series default
+version (see Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "full_analysis-1"
+
+\end_inset
+
+) prints out all of the values and tells it in a natural spoken language.
+ More useful if one wants to present it in an article or some kind.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/compact_analysis.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Compact analysis output
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "compacy_analysis"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/compacttext_analysis.PNG
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Compact text analysis output
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "compacy_analysis-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/full_analysis.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Full analysis output
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "full_analysis"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename material/fulltext_analysis.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Full text analysis output
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "full_analysis-1"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Tests
+\end_layout
+
+\begin_layout Standard
+In this section some tests will show how the elbow-method in the program
+ chooses the k-value for each attribute, together with diagram of the elbow-curv
+e and data points complemented with an analysis output.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr1_fresh_elbow_curve.PNG
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr1_fresh_output.PNG
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attribute: Fresh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The first attribute, Fresh, received the k value of 3 by the elbow-method.
+ Looking at the analysis data it seems like a fair number to put it, but
+ perhaps even making 4 clusters would make it group up the three highest
+ points together, instead of grouping them up with the 23 others, as can
+ be seen in cluster 3.
+ Doing this would perhaps make the clustering a bit fair and not make the
+ higher numbers span over to the lower side too much, however it would most
+ likely be overfitted, so keeping it at 3 is a better number.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr2_milk_elbow_curve.PNG
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr2_milk_output.PNG
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attribute: Milk
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As the previous attribute the elbow-algorithm detects the k value to be
+ at 3, looking at the diagram it makes sense.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr3_grocery_elbow_curve.PNG
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr3_grocery_output.PNG
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attribute: Grocery
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once again there is clear elbow detected at k = 3.
+ Looking at the 6 data points in the diagram, and the size of cluster 3
+ in the analysis report, which is also 6, it seems to make sense putting
+ it as k = 3.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr4_frozen_elbow_curve.PNG
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr4_frozen_output.PNG
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attribute: Frozen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The same situation as the previous one, cluster 3 has the size of 3, correspondi
+ng to the amount of points in the diagram.
+ There are a lot of values grouped up at the start making a big cluster
+ at the size 370 and a second cluster a bit smaller at 67 where the points
+ are a bit more spread.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr5_detergentspaper_elbow_curve.PNG
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr5_detergentspaper_output.PNG
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attribute: Detergents paper
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr6_delicatessen_elbow_curve.PNG
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename tests/attr6_delicatessen_output.PNG
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Attribute: Delicatessen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+The reason why all the attributes received k-value 3 might be because of
+ the small amount of but very high values in the cluster data.
+ This was countered by using the Minkowski distance during the k-means clusterin
+g, which gives a middle value of two inputs, no matter how small or big
+ they are.
+ However the elbow-method doesn't consider the unbalanced data and just
+ picks out the value corresponding to the curve.
+ Perhaps balancing the data before doing the clustering might've produced
+ fluctuating values for k, however this is not an easy thing to accomplish
+ without changing the real values and affecting the end result.
+ Had there been more time to spend, a good alternative would've been implemented
+ to alleviate this problem.
+\end_layout
+
+\begin_layout Standard
+Improvements that could've been made to this program, are better code structure.
+ I noticed that I added more things as I was doing the programming, which
+ I didn't consider beforehand.
+ Coding everything in classes probably would've helped a bit with the readabilit
+y of the code as well, since now it's mostly a big mess of big functions
+ everywhere.
+\end_layout
+
+\begin_layout Standard
+Overall I've learned a lot about how unsupervised machine learning and clusterin
+g works.
+ It was a bit difficult to understand how I would setup everything at the
+ start and a lot of information finding was required for me to get going.
+ Either way, I feel like I managed to complete it in a good way and it didn't
+ require an immense amount of time when compared to the previous task.
+\end_layout
+
+\end_body
+\end_document

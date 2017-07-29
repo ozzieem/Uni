@@ -1,0 +1,134 @@
+Room_Dict = []
+Course_Dict = []
+
+
+class Room:
+    def __init__(self, name, places, proj, comp, specEq, level):
+        self.name = name
+        self.places = places
+        self.proj = proj
+        self.comp = comp
+        self.specEq = specEq
+        self.level = level
+
+
+class Course:
+    def __init__(self, course, prog, no_stud, type_of):
+        self.course = course
+        self.prog = prog
+        self.no_stud = no_stud
+        self.type_of = type_of
+
+
+def add_rooms():
+    Room_Dict.append(Room("T002", 20, "No", "Yes", "No", 0))
+    Room_Dict.append(Room("T004", 30, "No", "Yes", "No", 0))
+    Room_Dict.append(Room("T101", 70, "Yes", "No", "No", 1))
+    Room_Dict.append(Room("T103", 20, "No", "No", "No", 1))
+    Room_Dict.append(Room("T114B", 10, "No", "No", "Yes", 1))
+    Room_Dict.append(Room("T127", 30, "Yes", "No", "No", 1))
+    Room_Dict.append(Room("T133", 40, "Yes", "No", "No", 1))
+    Room_Dict.append(Room("T203", 10, "No", "No", "No", 2))
+    Room_Dict.append(Room("T221", 20, "Yes", "No", "No", 2))
+    Room_Dict.append(Room("T227", 70, "Yes", "No", "No", 2))
+
+
+def add_courses():
+    Course_Dict.append(Course("A", "Data", 9, "Lecture"))
+    Course_Dict.append(Course("B", "Sociology", 9, "Seminar"))
+    Course_Dict.append(Course("C", "Psychology", 65, "Lecture"))
+    Course_Dict.append(Course("D", "Data", 20, "Labs"))
+    Course_Dict.append(Course("E", "Math", 25, "Lecture"))
+    Course_Dict.append(Course("F", "Criminology", 20, "Seminar"))
+    Course_Dict.append(Course("G", "Machine Engin", 15, "Labs"))
+    Course_Dict.append(Course("H", "Machine Engin", 35, "Lecture"))
+    Course_Dict.append(Course("I", "Data", 44, "Lecture"))
+    Course_Dict.append(Course("J", "Machine Engin", 27, "Lecture"))
+
+
+def check_places(course, room):
+    if course.no_stud <= room.places:
+        return True
+    else:
+        return False
+
+
+def check_proj(course, room):
+    if course.type_of == "Seminar" or course.type_of == "Lecture":
+        if room.proj == "Yes":
+            return True
+    else:
+        return False
+
+
+def check_comp(course, room):
+    if course.prog == "Data" and course.type_of == "Labs":
+        if room.comp == "Yes":
+            return True
+    else:
+        return False
+
+
+def check_special_eq(course, room):
+    if course.type_of == "Labs" and course.prog == "Machine Engin":
+        if room.specEq == "Yes":
+            return True
+    else:
+        return False
+
+
+def check_level(course1, room1, course2, room2):
+    if course1.prog == course2.prog:
+        if room1.level == room2.level:
+            return True
+    else:
+        return False
+
+
+def select_unassigned_variable(assignment, C_D):
+    for next in C_D:
+        if next.course not in assignment:
+            return next
+    return False
+
+
+def recursive_backtracking(assignment, R_D, C_D):
+    if len(assignment) == len(C_D):
+        return assignment
+    var = select_unassigned_variable(assignment, C_D)
+    for next in R_D:
+        if next.name not in assignment.values():
+            if check_places(var, next):
+                assignment[var.course] = next.name
+                result = recursive_backtracking(assignment, R_D, C_D)
+                if result != False:
+                    return result
+                assignment.pop(var.course)
+    return False
+
+
+tom = {}
+results = {}
+
+
+def main():
+    add_courses()
+    add_rooms()
+    results = recursive_backtracking(tom, Room_Dict, Course_Dict)
+    print_it(results)
+
+
+def print_it(dict):
+    list1 = []
+    list2 = []
+    for x in dict.values():
+        list1.append(x)
+    for x in dict.keys():
+        list2.append(x)
+    for x in range(0, len(list2)):
+        print(list1[x])
+        print(list2[x])
+
+
+if __name__ == "__main__":
+    main()

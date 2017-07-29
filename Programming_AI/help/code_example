@@ -1,0 +1,190 @@
+# Lab no.1
+from math import fabs, sqrt, sqrt
+
+#task a
+class Location :
+    def __init__ (self, name, x, y):
+        self.name = name
+        self.x = x
+        self.y = y
+
+class Connections : 
+    def __init__ (self, fr, to):
+        self.fr = fr
+        self.to = to
+
+locationList = []
+connectionList = []
+
+def AddLocation(dataLine):
+    tmp = dataLine.split(';')
+    name = tmp[0]
+    x = int(tmp[1])
+    y = int(tmp[2])
+    location = Location(name, x, y)
+    locationList.append(location)
+
+def AddConnection(dataLine):
+    fr = dataLine.split(';')[0]
+    tp = dataLine.split(';')[1] 
+    connection = Connections(fr,tp)
+    connectionList.append(connection)
+
+#B ---------------------------------------------------------------------------------------------------------------------------#
+def get_connections(location):
+    node_connections = []
+    for i in connectionList:
+        if location.name == i.fr:
+            node_connections.append(i.to)
+        elif location.name == i.to:
+            node_connections.append(i.fr)
+    return remove_duplicates(node_connections)
+
+def remove_duplicates(l):
+    temp = []
+    for e in l:
+        if e not in temp:
+            temp.append(e)
+    return temp
+
+def get_object(name):
+    for i in locationList:
+        if i.name == name:
+            return i
+         
+def reconstruct_path(start, camefrom, end):
+    path = []
+    node = end
+    while True:
+        if node == start:
+            path.append(start)
+            path.reverse()
+            return path
+        else:
+            path.append(node)
+            node = get_object(camefrom[node.name])
+
+def is_path(start, stop, result):
+    if not result == []:
+        if result[-1] == stop and start == result[0]:
+            return True
+    return False    
+
+def IterativeDeepeningSearch(start, stop):
+    for depth in range (0, 100):
+        result = depth_limited_search(start, stop, depth) 
+        if is_path(start, stop, result):
+            return result
+
+def depth_limited_search(start, stop, maxDepth) :
+    frontier = [start]
+    depthList = {start.name : 0}
+    cameFrom = {start.name : None}
+    visited = []
+    while frontier:       
+        node = frontier[0]
+        frontier.remove(node) 
+        visited.append(node)
+        if not depthList[node.name] > maxDepth:
+            if node == stop:
+                return reconstruct_path(start, cameFrom, stop)
+            for next in get_connections(node):
+                next_object = get_object(next)
+                if (next_object not in visited) and (next_object not in frontier):
+                    frontier.append(next_object)
+                    depthList[next] = depthList[node.name] + 1
+                    cameFrom[next] = node.name
+    return [] 
+#A*-------------------------------------------------A_Star---------------------------------------------------------#
+def A_star(start, stop):
+    frontier = [start]
+    camefrom = {start.name : 0}
+    costs_so_far = {start : 0}
+    explored = []
+    while frontier:
+        node = select_best(frontier, costs_so_far,stop)
+        if node == stop:
+            return reconstruct_path(start, camefrom, stop)
+        frontier.remove(node)
+        explored.append(node)
+        for next in get_connections(node):
+            next_obj = get_object(next)
+            temp_score = costs_so_far[node] + heuristic(node,next_obj)
+            #temp_score += heuristic(node, stop)
+            if next_obj in explored:    
+                if temp_score < costs_so_far[next_obj]:
+                    explored.remove(next_obj)
+                    frontier.append(next_obj)
+                    costs_so_far[next_obj] = temp_score
+                    camefrom[next_obj.name]=node.name
+            elif next_obj in frontier:
+                if temp_score < costs_so_far[next_obj]:
+                    costs_so_far[next_obj] = temp_score
+                    camefrom[next_obj.name]=node.name
+            else:
+                frontier.append(next_obj)
+                costs_so_far[next_obj] = temp_score
+                camefrom[next_obj.name] = node.name
+    return []
+
+def heuristic(node1, node2): #h(n)
+    from math import fabs, sqrt
+    x = fabs(node1.x - node2.x)
+    y = fabs(node1.y - node2.y)
+    return sqrt(pow(x,2) + pow(y,2))
+
+def select_best(frontier, costs_so_far,stop):
+    best = frontier[0]
+    for n in frontier:
+        if costs_so_far[n]+heuristic(n,stop) < costs_so_far[best]+heuristic(best,stop):
+            best = n
+    return best
+
+
+#-----------Tests----------------------------------------Tests----------------------------------------#
+
+#"Main" 
+locationFile = open('locations2015.csv')
+locationFile.readline()
+for dataLine in locationFile :
+    AddLocation(dataLine)
+locationFile.close()
+
+connectionFile = open('connections2015.csv')
+connectionFile.readline()
+for dataLine in connectionFile :
+    AddConnection(dataLine[:-1])
+connectionFile.close()
+
+#print("Existing nodes/locations")
+#for items in locationList:
+#    print(items.name,"x = ", items.x,"y = ", items.y)
+
+#print("Available connections")
+#for items1 in connectionList:
+#    print(items1.fr, "-", items1.to)
+
+
+print("Let's try to find a path between Västhaga and Bjorkhaga using Iterative Deepening Search: ")
+for x in IterativeDeepeningSearch(get_object("Vasthaga"), get_object("Bjorkhaga")):
+    print(x.name)
+
+print(" ")
+
+print("Solhaga - Norra Bro: ")
+for y in IterativeDeepeningSearch(get_object("Solhaga"), get_object("Norra Bro")):
+    print(y.name)
+
+print(" ")
+
+#print(heuristic(get_object("Vasthaga"), get_object("Varberga")))
+print("A-star: Brickebacken - Vasthaga: ")
+for z in A_star(get_object("Brickebacken"), get_object("Vasthaga")):
+    print(z.name)
+
+print(" ")
+
+print("A-star: Vasthaga, Bjorkhaga")
+for x in A_star(get_object("Vasthaga"), get_object("Bjorkhaga")):
+    print(x.name)
+

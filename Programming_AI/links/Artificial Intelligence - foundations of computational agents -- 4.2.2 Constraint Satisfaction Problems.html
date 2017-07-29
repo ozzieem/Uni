@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0038)http://artint.info/html/ArtInt_76.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- XML file produced from file: ArtInt.tex
+     using Hyperlatex v 2.9-in-waiting-rk (c) Otfried Cheong, Tom Sgouros, Ryszard Kubiak
+     on Emacs 22.3.1, Mon Jun  7 20:26:55 2010 --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Artificial Intelligence - foundations of computational agents -- 4.2.2 Constraint Satisfaction Problems</title>
+<link rel="stylesheet" href="./Artificial Intelligence - foundations of computational agents -- 4.2.2 Constraint Satisfaction Problems_files/styleBook.css" type="text/css">
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-19416541-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<style type="text/css">
+:root #content > #right > .dose > .dosesingle,
+:root #content > #center > .dose > .dosesingle,
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style></head>
+<body>
+
+<div id="wrap">
+
+	<!--header -->
+	<div id="header">			
+		<h1 id="logo-text"><a href="http://artint.info/index.html" title="">Artificial <br>Intelligence</a></h1>		
+		<p id="logo-subtext">foundations of computational agents</p>
+	<!--header ends-->					
+	</div>
+	
+	<!-- navigation starts-->	
+	<div id="nav">		
+<a href="http://artint.info/html/ArtInt_75.html"><img class="previous" alt="4.2.1 Constraints" src="./Artificial Intelligence - foundations of computational agents -- 4.2.2 Constraint Satisfaction Problems_files/arrow-left.gif"></a><a href="http://artint.info/html/ArtInt_74.html"><img class="up" alt="4.2 Possible Worlds, Variables, and
+Constraints" src="./Artificial Intelligence - foundations of computational agents -- 4.2.2 Constraint Satisfaction Problems_files/arrow-up.gif"></a><a href="http://artint.info/html/ArtInt_77.html"><img class="next" alt="4.3 Generate-and-Test Algorithms" src="./Artificial Intelligence - foundations of computational agents -- 4.2.2 Constraint Satisfaction Problems_files/arrow-right.gif"></a><ul><li><a href="http://artint.info/index.html">Home</a></li><li><a href="http://artint.info/html/ArtInt_351.html">Index</a></li><li><a href="http://artint.info/html/ArtInt.html#cicontents">Contents</a></li></ul>
+	<!-- navigation ends-->	
+	</div>
+			
+	<!-- content starts -->
+	<div id="content">
+	
+		<div id="main">
+
+<h3>4.2.2 Constraint Satisfaction Problems</h3>
+<p>A <b>constraint satisfaction problem</b><a name="id1"></a> (CSP)<a name="id2"> consists</a> of
+</p>
+<ul><li>a set of variables,
+</li><li>a domain for each variable, and
+</li><li>a set of constraints. 
+</li></ul>
+<p>The aim is to choose a value for each variable
+so that the resulting possible world satisfies the constraints; we want a model of the constraints.
+</p>
+<p>A finite CSP has a finite set of variables and a finite domain for
+each variable. Many of the methods considered in this chapter only work for
+finite CSPs, although some are designed for infinite, even continuous,
+domains.
+</p>
+<p>The multidimensional aspect of these
+problems, where each variable can be seen as a separate dimension,
+makes them difficult to solve but also provides structure that can be exploited.
+</p>
+<p>Given a CSP, there are a number of tasks that can be
+performed:
+</p>
+<ul><li>Determine whether or not there is a model.</li><li>Find a model.
+</li><li>Find all of the models or enumerate the models.
+</li><li>Count the number of models.
+</li><li>Find the best model, given a measure of how good
+models are; see <a href="http://artint.info/html/ArtInt_93.html">Section </a><a href="http://artint.info/html/ArtInt_93.html">4.10</a>.
+</li><li>Determine whether some statement holds in all models.
+</li></ul>
+<p>This chapter mostly considers the problem of finding a model. Some of the
+methods can also determine if there is no solution. What may be
+more surprising is that some of the methods can find a model if one exists, but they cannot
+tell us that there is no model if none exists.
+</p>
+<p>CSPs are very common, so it is worth trying to find relatively
+efficient ways to solve them. Determining whether there is
+a model for a CSP with
+finite domains is NP-hard (see <a href="http://artint.info/html/ArtInt_109.html#nondet-choice">box</a>) and no known algorithms exist to solve
+such problems that do not use exponential time in the worst
+case. However, just because a problem is NP-hard does not mean that
+all instances are difficult to solve. Many instances have structure
+that can be exploited.
+</p>
+
+		</div>
+		
+	<!-- content ends-->	
+	</div>
+		
+	<!-- footer starts -->		
+	<div id="footer">						
+		<p>	Copyright © 2010, <a href="http://cs.ubc.ca/~poole/">David Poole</a> and 
+  			<a href="http://cs.ubc.ca/~mack/">Alan
+                        Mackworth</a>. <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/ca/"><img alt="Creative Commons License" style="border-width:0" src="./Artificial Intelligence - foundations of computational agents -- 4.2.2 Constraint Satisfaction Problems_files/80x15.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/ca/">Creative Commons Attribution-Noncommercial-No Derivative Works 2.5 Canada License</a>.
+   		</p>	
+	<!-- footer ends-->
+	</div>
+
+<!-- wrap ends here -->
+</div>
+
+
+</body></html>

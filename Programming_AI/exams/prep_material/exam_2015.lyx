@@ -1,0 +1,371 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Task - Search
+\end_layout
+
+\begin_layout Subsection
+a) Represent the robot navigation problem from location S to location G
+ as a search problem with all the relevant elements necessary for its descriptio
+n
+\end_layout
+
+\begin_layout Standard
+Not sure how it should be represented but I believe that since it's a search
+ problem, we will need to use data structures to able to use the information
+ for planning.
+ There should probably be a two dimensional grid including the numbered
+ cells and the blocked cells.
+ The robot has its position, and while planning should check if next cell
+ is passable or not.
+\end_layout
+
+\begin_layout Subsection
+b) What path would be found from S to G with the following algorithms:
+\end_layout
+
+\begin_layout Subsubsection
+Depth-First search
+\end_layout
+
+\begin_layout Standard
+Depth-First search starts from S and explores each branch of the cell until
+ the goal.
+ An expected path would be:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename depth_first_path.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+[S]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [S] -> [1, 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [1] -> [(1-8), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [18] -> [(1-8-9), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [189] -> [(1-8-9-10), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [18910] -> [(1-8-9-10-25), (1-8-9-10-11), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [(1-8-9-10-25)] -> [(1-8-9-10-25-24), (1-8-9-10-11), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [(1-8-9-10-25-24)] -> [(1-8-9-10-25-24-26), (1-8-9-10-25-24-23),
+ (1-8-9-10-11), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [(1-8-9-10-25-24-26)] -> [(1-8-9-10-25-24-26-27), (1-8-9-10-25-24-23),
+ (1-8-9-10-11), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [(1-8-9-10-25-24-26-27)] -> [(1-8-9-10-25-24-26-27-28), (1-8-9-10-25-2
+4-23), (1-8-9-10-11), 2]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [(1-8-9-10-25-24-26-27-28)] -> [(1-8-9-10-25-24-26-27-28-G), (1-8-9-10
+-25-24-23), (1-8-9-10-11), 2]
+\end_layout
+
+\begin_layout Enumerate
+Goal reached.
+ Final path: (1-8-9-10-25-24-26-27-28)
+\end_layout
+
+\begin_layout Subsubsection
+Breadth-First search
+\end_layout
+
+\begin_layout Standard
+Starts at some arbitrary node of the graph and explores the neighbouring
+ nodes first, before moving to the next level neighbours.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename breath_first_path.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+c) A* search
+\end_layout
+
+\begin_layout Paragraph
+What would be a good A* heuristic?
+\end_layout
+
+\begin_layout Standard
+Since the scenario involves a maze, it would be good to use manhattan distance
+ as heuristic because it is more accurate when dealing with vertical and
+ horizontal paths.
+\end_layout
+
+\begin_layout Standard
+The distance to the goal is calculated for each cell.
+ So the robot will follow the path that is least costly to the goal.
+\end_layout
+
+\begin_layout Itemize
+D = Distance to goal
+\end_layout
+
+\begin_layout Itemize
+H = Heuristic for each cell
+\end_layout
+
+\begin_layout Enumerate
+[S]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [S] -> [1(D+H), 2(D+H)]
+\end_layout
+
+\begin_layout Enumerate
+Expanding [1] -> [(8(1(D+H)) + D+H), 2(D+H)]
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Expand the lowest cost 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Expanding [2] -> [8(D+H) + (1(D+H)), 3(D+H) + (2(D+H))]
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+And expansion continues till goal is reached
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+d) Explain the major differences between state-space search and local search.
+ Does it make sense to solve the robot navigation problem using local search.
+\end_layout
+
+\begin_layout Enumerate
+With State-space search, there's a path produced from the search of a graph,
+ however with local search this doesn't apply since local search is only
+ working on the current and the neighbouring states.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Using state-space search, the algorithms often keep track of the history
+ and the visited nodes.
+ With local search, there's no history.
+ 
+\end_layout
+
+\begin_layout Standard
+One can use local search to solve the problem.
+ However, it might not present the fastest route to the goal from the initial
+ state.
+ If one uses a gradient search (Greedy search together with an heuristic
+ function to determine the cost to the goal from the position of the robot),
+ it may be possible for the robot to reach the goal at some point, perhaps
+ even using the same route as the previous algorithms presented.
+\end_layout
+
+\begin_layout Section
+Task 3 - Knowledge representation
+\end_layout
+
+\begin_layout Subsection
+a) Transform the predicate logic formula to CNF
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\forall xHuman(x)\Rightarrow\exists tFallsAsleep(x,t)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $t\longrightarrow G1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Human(x)\Rightarrow FallsAsleep(x,G1))$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Human(x)\Rightarrow FallsAsleep(x,G1))$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\lnot Human(x)\lor FallsAlseep(x,G1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+b)
+\end_layout
+
+\end_body
+\end_document

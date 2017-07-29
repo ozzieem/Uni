@@ -3,13 +3,15 @@ Almost all the coding I'm doing relating to university courses.
 
 C++_Tests/C_Tests includes some test code I've been writing to test things or helping others.
 
-Programming_C includes all assignments from the basic programming course in C. Beginner level.
-
-Programming_CG includes all assignments from the Computer Graphics course in OpenGL. Advanced level.
+Programming_AI includes all assignments from the Aritificial Intelligence course, Intermediate level.
 
 Programming_AIMR includes all material from the course Artificial Intelligence in Mobile Robots, Advanced level.
 
 Programming_AVR includes all material from the course Computer Hardware and Architecture. Intermediate level.
+
+Programming_C includes all assignments from the basic programming course in C. Beginner level.
+
+Programming_CG includes all assignments from the Computer Graphics course in OpenGL. Advanced level.
 
 Programming_Methodology includes all the projects for the course in C++ and C#. Intermediate level.
 

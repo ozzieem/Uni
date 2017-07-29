@@ -1,0 +1,34 @@
+Clustering machine learning with K-means
+
+K-Means clustering intends to partition n objects into k clusters in which each object belongs to the cluster with the nearest mean. This method produces exactly k different clusters of greatest possible distinction.
+
+2017-03-08
+I've managed to implement the K-means algorithm with the customer dataset. However, the code needs to be changed slightly so that there's a menu of some sort that one can choose which attribute of the dataset that clustering should be executed on. For example, if I want to group the annual spending on grocery products in a specific region or channel, I pass in grocery as an argument to the cluster, so that it only uses that data. From that it may give information about how much each group (cluster) spends in an interval and so on. This will be achieved by making the data list in the Client class, to be assigned dynamically when the Client object is created, so that it only loads in the desired data and not the other ones. I think this way of doing it is probably the one that requires the least amount of work and still gives the same result, as doing if-statements everywhere to check what attribute is active.
+
+2017-03-09
+Now the k-means algorithm is finished and it also outputs useful data after execution:
+
+Initial centroids: [[C:[902]], [C:[6964]], [C:[9965]]]
+Total iterations: 26
+Annual spending for attribute Grocery: 3 groups identified
+CLUSTER 1 (Centroid:4168):
+	Size: 341
+	Spending: [3 - 11238]
+	Channel:
+		Hotels/Restaurants/Cafe: 283
+		Retail:58
+	Region:
+		Lisbon: 61
+		Oporto: 34
+		Other:  246
+
+There is also a possibility to choose which attribute that should be analyzed. From this one can run the data to see from which region or channel the people are spending on a particular attribute. The above example presents only one group of three, but from it one can read that annually there are 341 people that spends between 3-11238 on Groceries. 61 of those are from region 1 (Lisbon), 34 from region 2 (Oporto) and 246 from region 3 (Other). 283 of the purchases was made in channel 1 (Hotel/Restaurants/Cafes) while 58 of them were from channel 2 (Retail).
+So now I'm officially done with task 3, which took a bit time to figure how I should approach at first. I think I make it sometimes unnecessarily hard for myself, which causes it to take more time than necessary. It was a bit difficult at first, when I had no idea what to do, to read up on how it works and such since there were so much info everywhere with different examples and sometimes no examples at all.
+
+2017-03-11
+I thought I was finished last time I was working on this but apparently there was a way to figure out the best k-value for a dataset, so that there will be a good clustering depending on the values that are presented. I implemeneted the elbow method, which essentially means that we're running the k_means algorithm a chosen amount of time which are stored in a list. Then for each clusterlist inside the list, we calculate the total variance of all the data sets and the variance of the current cluster. The variance for the cluster is stored inside a dictionary for easy access later on and the total variance is basically summarized for every cluster. It will be a big number at the end because of the data inside the datasets but it seems to be running well. Upon running tests it shows that for each attribute the k-value of 3 seems to be the best choice... However I'm a bit worried since the values are quite similar for each attribute with some differences. We'll see what Franziska will say. She still hasnt' responded to my last email I sent a week ago...
+int(math.sqrt(440 / 2))   # k ~ sqrt(n/2) apparently is a quick and rough method of getting a good k-value...
+I changed the elbow algorithm a bit now, and it picks kvalue as 4 more now instead of 3, like it did earlier. I didn't do anything in particular except for changing to the correct ratio when converting to percentage changes. However, for attribute Fresh, I get a bit mistfit from the elbow algorithm. If I choose the kvalue myself, I'd put it at probably 7 because then it has grouped up a bit more divided. The elbow picks 4 for it which is a bit too low, if looking at the analysis data. One cluster has a way too big range of clients. Perhaps it's okay if it's that way, I'm not sure , but I guess we'll see.
+
+2017-03-12
+I tried a new way to find the elbow curve, by taking the greatest difference of the second difference of each cluster variance. This gives a bit more varied result for each cluster, which I'm more satisfied with. It takes the cluster after the elbow is found, so that even if there is not much gain, it still gives a better result overall for all the clusters, even if it might overfit some attributes. This may not be a good way to do it, but the Elbow method is known for not being very accurate anyway. And as I said earlier, I'm waiting for feedback from Franziska. Until then I'm going to leave it like it is.
