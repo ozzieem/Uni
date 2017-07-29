@@ -1,0 +1,35 @@
+If you have a one-to-one relation between two tables, then the primary key of the details table is a foreign key as well.
+
+ master           detail (1 : 1)
++----------+ 1:1 +-------------+
+| PK  id   |<---o| PK FK  id   |
++----------+     +-------------+
+|     col1 |     |        col1 |
+|     col2 |     |        col2 |
+|     etc. |     |        etc. |
++----------+     +-------------+
+If you have a m-to-n relation the junction table has columns relating to the two primary keys of the m and the n-tables. These columns are primary keys and foreign keys at the same time.
+
+                    m : n
+ m_table          junction
++----------+ 1:n +------------+      n_table
+| PK  id1  |<---o| PK FK  id1 | m:1 +----------+
++----------+     | PK FK  id2 |o--->| PK  id2  |
+|     col1 |     +------------+     +----------+
+|     col2 |     |            |     |     col1 |
+|     etc. |     +------------+     |     etc. |
++----------+                        +----------+
+Note that with this construction, a record of one table can only be linked to a specific record of the other table once, since each composite primary key of the junction table must be unique. If you want to allow non-unique pairings, define a separate primary key in the junction table:
+
+                    m : n
+                  junction
+                 +---------+
+ m_table         | PK  id  |
++----------+ 1:n +---------+      n_table
+| PK  id1  |<---o| FK  id1 | m:1 +----------+
++----------+     | FK  id2 |o--->| PK  id2  |
+|     col1 |     +---------+     +----------+
+|     col2 |     |         |     |     col1 |
+|     etc. |     +---------+     |     etc. |
++----------+                     +----------+
+In this case, the primary key and foreign key constraints are set on different columns.

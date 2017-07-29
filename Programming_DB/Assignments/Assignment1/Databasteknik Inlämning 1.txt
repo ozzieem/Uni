@@ -1,0 +1,48 @@
+
+Server -
+	IP adress
+	Player - Offline
+
+
+
+
+
+	Instance - (Players who are not online, is not in an instance)
+		Empty instances exists
+		Unique instance ID
+		Name
+		Description
+
+
+
+		Player - Online (Does not disappear upon death, but loses points and items)
+			Name (unique)
+			Description
+			Stats -
+				Strength
+				Experience
+				Health
+				Points
+			Items -
+				Equipable
+				Pick-up-able
+				Name
+				Description
+
+		Monster - (Disappears upon death)
+			Name
+			Description
+			Stats -
+				Strength
+				Experience
+				Health
+				Points
+			Items -
+				Equipable
+				Pick-up-able
+				Name
+				Description
+
+
+
+

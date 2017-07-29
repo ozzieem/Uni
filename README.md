@@ -1,5 +1,5 @@
 # UniCpp
-Almost all the coding I'm doing relating to university courses.
+Almost all the coding I'm doing relating to university courses. All of the folders include code which I have written myself. I reserve myself for possible faults and most likely controversial ways of coding but such is the way of learning. 
 
 C++_Tests/C_Tests includes some test code I've been writing to test things or helping others.
 
@@ -14,6 +14,8 @@ Programming_C includes all assignments from the basic programming course in C. B
 Programming_CI includes all assignments from the compilers and interpretators course. Advanced level.
 
 Programming_CG includes all assignments from the Computer Graphics course in OpenGL. Advanced level.
+
+Programming_DB includes all assigments from the Database course. Beginner level.
 
 Programming_Java includes all assignments from the Java for Interfaces and Networks course. Advanced level.
 
