@@ -1,0 +1,23 @@
+
+
+---------------- Light Shading ---------------- 
+
+Flat shading computes lighting values for one vertex per polygon and uses the resulting color for the entire polygon,
+resulting in a single flat color for every polygon. The individual polygons can be seen.
+
+Gouraud shading computes lighting values per vertex and interpolates them over a polygon, i.e. for each fragment on
+the polygon, the color values from the vertices are interpolated.
+
+With gouraud shading, you will get visible specular highligts on vertices, but you won't see much of the specular
+highlight if it should be on the inside of a triangle. Around the specular highlight, you will see noticable poolygon
+edges. Specular highlights will appear to jump from vertex to vertex when moving the model, camera or light source.
+The quality of your specular highlights depends on the number of vertices in your model.
+See here for an example: https://en.wikipedia.org/wiki/File:Gouraud_low_anim.gif
+
+Phong shading interpolates the lighting parameters across the polygon and computes the lighting per fragment, not
+per vertex. You get good looking, round, smooth specular highlights that move smoothly along the surface as the camera,
+model or light moves. No visible artifacts from the polygon edges.
+See here for an example: https://en.wikipedia.org/wiki/File:Phong-shading-sample.jpg
+
+Phong shading is not to be confused with the Phong reflectance model, a mathematical model for computing illumination
+at a point on a surface.

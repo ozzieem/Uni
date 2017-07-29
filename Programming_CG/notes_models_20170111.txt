@@ -1,0 +1,11 @@
+---------Lighting models---------
+
+Gouraud Shading: The light is computed at each vertex and interpolated across the surface.
+
+
+---------Reflection models---------
+
+
+Phong Model: Ambient, Diffuse, Emission, Specular
+
+Phong Shading: Normals are interpolated across the surface, and the light is computed at each fragment. 

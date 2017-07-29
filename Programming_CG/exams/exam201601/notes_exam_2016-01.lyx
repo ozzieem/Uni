@@ -1,0 +1,768 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Phong model
+\end_layout
+
+\begin_layout Paragraph
+Explain the four components used in Phong model and how they differ between
+ black rubber and glossy plastic.
+\end_layout
+
+\begin_layout Subparagraph
+Black rubber 
+\end_layout
+
+\begin_layout Standard
+No emission Ce
+\end_layout
+
+\begin_layout Standard
+Ambient Ca = (0,0,0)
+\end_layout
+
+\begin_layout Standard
+Diffuse Cd = (0, 0, 0)
+\end_layout
+
+\begin_layout Standard
+Specular Cs = (0, 0, 0)
+\end_layout
+
+\begin_layout Standard
+Specular exponent f = 1 or at least < 10
+\end_layout
+
+\begin_layout Subparagraph
+Glossy plastic
+\end_layout
+
+\begin_layout Standard
+No emission Ce
+\end_layout
+
+\begin_layout Standard
+Ambient Ca = (0,0,0)
+\end_layout
+
+\begin_layout Standard
+Diffuse Cd = (r, g, b) depending on color of plastic
+\end_layout
+
+\begin_layout Standard
+Specular Cs = (1, 1, 1) and ks <= 1
+\end_layout
+
+\begin_layout Standard
+Specular exponent f between 10 and 100
+\end_layout
+
+\begin_layout Paragraph
+Compute the colour of a spheres image's centre pixel using the Phong model
+ given a sphere with material components
+\end_layout
+
+\begin_layout Standard
+The colour is computed from the Phong reflection model equation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C=C_{e}+C_{a}+C_{d}(w_{i}*n)+C_{s}(v*w_{r})^{f}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The given components are:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{e}=(0,0,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{a}=(0,0,0)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{d}=(0.5,0.5,0.5)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $C_{s}=(0.5,0.5,0.5)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $r=1$
+\end_inset
+
+ - radius
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $s=(0,0,0)$
+\end_inset
+
+ - centre point
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c_{p}=(3,0,0)$
+\end_inset
+
+ - camera position
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $c_{d}=(-1,0,0)$
+\end_inset
+
+ - camera direction
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $i=(2,0,1)$
+\end_inset
+
+ - isotropic white point light position
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename exam201601/notes_pictures/phong1.png
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have white light 
+\begin_inset Formula $I=(1,1,1)$
+\end_inset
+
+, so we omit the 
+\begin_inset Formula $I$
+\end_inset
+
+ colour terms from the equation.
+ For a unit sphere, the normal vector is the same as the position vector
+ of the surface point, so 
+\begin_inset Formula $n=(1,0,0)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+The direction to the light is 
+\begin_inset Formula $i-h=(2,0,1)-(1,0,0)=(1,0,1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Normalising the vector gives 
+\begin_inset Formula $w_{i}=\frac{(1,0,1)}{||(1,0,1)||}=(\frac{1}{\sqrt{2}},0,\frac{1}{\sqrt{2}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The direction to the camera is 
+\begin_inset Formula $c_{p}-h=(3,0,0)-(1,0,0)$
+\end_inset
+
+, so the normalised view vector is 
+\begin_inset Formula $v=(1,0,0)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Since the normal is parallell to the x axis, is is easy to compute the mirror
+ direction 
+\begin_inset Formula $w_{r}=(\frac{1}{\sqrt{2}},0,-\frac{1}{\sqrt{2}})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We plug these into the equation:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C=C_{e}+C_{a}+C_{d}(\text{\ensuremath{\frac{1}{\sqrt{2}}}})+C_{s}(\ensuremath{\frac{1}{\sqrt{2}}})^{f}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the colours of the sphere's materials have equal rgb components, the
+ colour of the pixel will be 
+\begin_inset Formula $C=(k,k,k)$
+\end_inset
+
+ where
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $k=0+0+\frac{1}{2\sqrt{2}}+\frac{1}{2\sqrt{2}}=\frac{1}{\sqrt{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename exam201601/notes_pictures/phong2.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Rendering equation
+\end_layout
+
+\begin_layout Paragraph
+Describe what the terms A-D mean in the rendering equation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename exam201601/notes_pictures/rendering.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rendering equation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A: Light emitted from 
+\series bold
+\shape italic
+
+\begin_inset Formula $P$
+\end_inset
+
+
+\series default
+\shape default
+ in direction 
+\begin_inset Formula $w_{o}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+B: Incoming light to 
+\series bold
+\shape italic
+
+\begin_inset Formula $P$
+\end_inset
+
+
+\series default
+\shape default
+ from direction 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+C: How much of the light of the that arrives at 
+\series bold
+\shape italic
+
+\begin_inset Formula $P$
+\end_inset
+
+
+\series default
+\shape default
+ from 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ scatters in direction 
+\series bold
+
+\begin_inset Formula $w_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+D: The cosine of the angle between the incoming light and the normal at
+ 
+\series bold
+\shape italic
+
+\begin_inset Formula $P$
+\end_inset
+
+
+\series default
+\shape default
+ (assuming normalised vectors)
+\end_layout
+
+\begin_layout Paragraph
+Describe how the rendering equations is implemented in ray tracing and path
+ tracing
+\end_layout
+
+\begin_layout Standard
+Path tracing computes the integral 
+\begin_inset Quotes eld
+\end_inset
+
+depth first
+\begin_inset Quotes erd
+\end_inset
+
+ by shooting a single secondary ray per recursion, where a ray hits a surface.
+ The rendering progresses by iterating over all pixels multiple times, each
+ time sampling a new 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ direction in order to better estimate the integral.
+ In that sense, it is more of an 
+\begin_inset Quotes eld
+\end_inset
+
+any-time
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm than basic ray tracing.
+ You get a noisy result, which gets better the longer you wait.
+\end_layout
+
+\begin_layout Standard
+In basic ray tracing, a single ray is shot per pixel, and the integral is
+ estimated by a fixed number of samples: one per light source with 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+ = the direction to the light source, optionally a reflected recursive ray
+ and optionally a transmitted recursive ray.
+ This gives a low-variance result, but with a bias compared to the true
+ solution.
+ In 
+\begin_inset Quotes eld
+\end_inset
+
+distribution ray tracing
+\begin_inset Quotes erd
+\end_inset
+
+, at any recursion step, multiple rays may be emitted, but this can quickly
+ lead to a combinatorial explosion of rays (
+\begin_inset Quotes eld
+\end_inset
+
+breadth-first
+\begin_inset Quotes erd
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Paragraph
+Describe why the rendering equation is difficult to solve in general.
+ List two reasons, and mention why those are problematic
+\end_layout
+
+\begin_layout Itemize
+It is an integral equation, where the function 
+\begin_inset Formula $L(P,$
+\end_inset
+
+
+\begin_inset Formula $w_{o})$
+\end_inset
+
+ that we want to find is also on the right hand side of the equation, inside
+ an integral.
+ (We need to simplify the B part to be able to solve it)
+\end_layout
+
+\begin_layout Itemize
+The integral cannot usually be solved analytically (algebraically).
+ (Infinite amount of summarisations)
+\end_layout
+
+\begin_layout Itemize
+It involves shadowing from other obstacles, so we need to evaluate it numericall
+y instead, using discrete samples.
+ Most modern methods use randomised samples: Monte Carlo integration.
+\end_layout
+
+\begin_layout Itemize
+Choosing the samples wisely, to get low variance (little noise) but still
+ get an image decently fast, is nontrivial.
+ 
+\end_layout
+
+\begin_layout Itemize
+Not only reflections from surfaces contribute to the incoming light.
+ There could also be light scattered in patricipating media.
+ 
+\end_layout
+
+\begin_layout Itemize
+Subsurface scattering is not explicitly included in this version of the
+ rendering equation.
+ One would also need a second integral, integrating over output points,
+ not just out direction, to cover that.
+\end_layout
+
+\begin_layout Section
+Matrix calculations
+\end_layout
+
+\begin_layout Paragraph
+What does each of the following transformation matrices do, when left-multiplied
+ with the position vector p of a point:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename exam201601/notes_pictures/matrices.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+T1: Does nothing (identity matrix)
+\end_layout
+
+\begin_layout Itemize
+T2: Translates 1 point along the z-axis
+\end_layout
+
+\begin_layout Itemize
+T3: Rotates -90 degrees counter-clockwise around z
+\end_layout
+
+\begin_layout Itemize
+T4: Shears perpendicular to the z-axis
+\end_layout
+
+\begin_layout Paragraph
+Describe how you would implement the transformation between and object's
+ local frame and the world frame without using homogenous coordinates.
+ Also motivate why it is convenient to use homogeneous coordinates.
+\end_layout
+
+\begin_layout Standard
+Transforming an object from its local coordinate frame tot he world frame
+ is typically done by first rotation the object so that it has the desired
+ orientation with respect to the world frame, and then translate it.
+\end_layout
+
+\begin_layout Standard
+With homogeneous coordinates, it is possible to store all transformations
+ as matrices and append transformations just by multiplying the matrices
+ together.
+ Without homogeneous coordinates, translations would need to be implemented
+ with vector addition rather than matrix multiplication.
+\end_layout
+
+\begin_layout Standard
+Using homogeneous coordinates allows all common operations - translation,
+ rotation, scaling as well as perspective projection - to be implemented
+ as matrix operations.
+ This means that any sequence of several translations and rotations can
+ still be represented using a single matrix.
+ Another advantage is using homogeneous coordinates, infinity can be represented
+ with real numbers, [x,0].
+\end_layout
+
+\begin_layout Section
+Shadow maps
+\end_layout
+
+\begin_layout Paragraph
+Outline steps for a basic shadow mapping algorithm
+\end_layout
+
+\begin_layout Enumerate
+Render scene from light source's position
+\end_layout
+
+\begin_layout Enumerate
+Save the corresponding depth buffer
+\end_layout
+
+\begin_layout Enumerate
+Render scene from camera view
+\end_layout
+
+\begin_layout Enumerate
+Transform each pixel's coordinates to light space
+\end_layout
+
+\begin_layout Enumerate
+If z (distance from light source) is greater than the corresponding value
+ in the shadow map, then the pixel is in shadow.
+\end_layout
+
+\begin_layout Paragraph
+List four advantages of shadow maps over shadow volumes, or vice versa,
+ for real-time shadow rendering
+\end_layout
+
+\begin_layout Subparagraph
+Shadow maps
+\end_layout
+
+\begin_layout Itemize
+can generate shadows for any rasterisable geometry
+\end_layout
+
+\begin_layout Itemize
+no need to compute silhouette edges
+\end_layout
+
+\begin_layout Itemize
+no need to generate additional geometry
+\end_layout
+
+\begin_layout Itemize
+no need to care about whether camera is in shadow or not
+\end_layout
+
+\begin_layout Itemize
+faster (just one extra rendering pass per directional light source)
+\end_layout
+
+\begin_layout Itemize
+faster (doesnt affect fill rate)
+\end_layout
+
+\begin_layout Subparagraph
+Shadow volumes
+\end_layout
+
+\begin_layout Itemize
+have no issue with biasing
+\end_layout
+
+\begin_layout Itemize
+have no issue with aliasing
+\end_layout
+
+\begin_layout Itemize
+works well with omnidirectional light sources
+\end_layout
+
+\begin_layout Paragraph
+Augment your shadow mapping algorithm so that the algorithm also takes into
+ account z fighting and shadow map aliasing.
+\end_layout
+
+\begin_layout Itemize
+Add a depth bias, to prevent z-fighting
+\end_layout
+
+\begin_layout Itemize
+Describe one of the percentage closest filtering, shadow map fitting, warping
+ or partitioning
+\end_layout
+
+\end_body
+\end_document

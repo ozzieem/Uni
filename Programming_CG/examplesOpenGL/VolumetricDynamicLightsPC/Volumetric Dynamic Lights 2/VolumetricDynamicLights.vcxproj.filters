@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{a10ba58f-8f88-4e53-a10b-fb15de1fe3b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="shaders">
+      <UniqueIdentifier>{77f90e93-1b0c-46b1-9560-5a7e066e5660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MathLib">
+      <UniqueIdentifier>{274d460f-e595-41ea-91a0-51a96e0c11e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ShaderManager">
+      <UniqueIdentifier>{7195a79d-f7b3-4cc4-ad45-af58e8a65e65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TextureManager">
+      <UniqueIdentifier>{5b889673-b0e1-4850-8006-dd5cc0cd6bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\glut">
+      <UniqueIdentifier>{e5e84456-e5f8-4634-97d2-c17da47601fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\glew">
+      <UniqueIdentifier>{b38d004d-2600-4247-9ec3-34452631b204}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="OpenGL\Camera3D.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\CubeBufferObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\FrameBufferObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\Frustum.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\GpuTimerQuery.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\OGLShapes.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\OGLStateMachine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\OrientPos.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureProjection.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureProjectionOrtho.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\MathLib.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\MathLibFunc.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\Matrix4.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\Plane.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\Quaternion.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\Sphere.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\Vector2.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\Vector3.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\MathLib\Vector4.cpp">
+      <Filter>src\MathLib</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\ShaderManager\GPUProgram.cpp">
+      <Filter>src\ShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\ShaderManager\GPUProgramManager.cpp">
+      <Filter>src\ShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\ShaderManager\GPUShader.cpp">
+      <Filter>src\ShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\Image.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\ImageBMP.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\ImageTGA.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\Texture.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\Texture2D.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\Texture3DEXT.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\TextureCubeMapARB.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\TextureManager\TextureManager.cpp">
+      <Filter>src\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="OpenGL\glew\glew.cpp">
+      <Filter>src\glew</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OpenGL\Camera3D.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\CubeBufferObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\FrameBufferObject.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\Frustum.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\GpuTimerQuery.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\OGLShapes.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\OGLStateMachine.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\OrientPos.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureProjection.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureProjectionOrtho.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\MathLib.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\MathLibFunc.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\Matrix4.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\Plane.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\Quaternion.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\Sphere.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\Vector2.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\Vector3.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\MathLib\Vector4.h">
+      <Filter>src\MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\ShaderManager\GPUProgram.h">
+      <Filter>src\ShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\ShaderManager\GPUProgramManager.h">
+      <Filter>src\ShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\ShaderManager\GPUShader.h">
+      <Filter>src\ShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\Image.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\ImageBMP.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\ImageTGA.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\Texture.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\Texture2D.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\Texture3DEXT.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\TextureCubeMapARB.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\TextureManager\TextureManager.h">
+      <Filter>src\TextureManager</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\glut\glut.h">
+      <Filter>src\glut</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\glew\glew.h">
+      <Filter>src\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\glew\glxew.h">
+      <Filter>src\glew</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenGL\glew\wglew.h">
+      <Filter>src\glew</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\bilatDirBlur.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\bilatDirBlur.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\bilatDirBlur2.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\bilatDirBlur2.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\composite.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\composite.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\defines.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\depthDownSample.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\depthDownSample.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\depthFunc.glsl">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\downsample.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\downsample.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Shader.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\Shader.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\temporalBlend.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\temporalBlend.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\temporalUpsampling.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\temporalUpsampling.vp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VolumetricPointLight.fp">
+      <Filter>shaders</Filter>
+    </None>
+    <None Include="Resources\Shaders\VolumetricPointLight.vp">
+      <Filter>shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="OpenGL\glut\glut64.lib">
+      <Filter>src\glut</Filter>
+    </Library>
+    <Library Include="OpenGL\glut\glut32.lib">
+      <Filter>src\glut</Filter>
+    </Library>
+  </ItemGroup>
+</Project>

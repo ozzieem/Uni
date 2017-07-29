@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<!-- saved from url=(0058)http://sunandblackcat.com/tipFullView.php?l=eng&topicid=18 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		
+	<meta property="og:site_name" content="Sun and Black Cat - Computer Grafics &amp; more">
+	<meta property="og:image" content="http://www.sunandblackcat.com/data/imgs/logo.png">
+	
+	<script async="" src="http://cse.google.com/adsense/search/async-ads.js"></script><script src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/cb=gapi.loaded_1" async=""></script><script src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/plusone.js" gapi_processed="true"></script><script id="facebook-jssdk" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/all.js"></script><script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript" async="" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/cse.js"></script><script src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/jscripts.js" type="text/javascript"></script>
+	
+	
+			<!--GOOGLE ANALYTICS-->
+			<script type="text/javascript">
+			if(window.location.href.search('nwo')==-1){
+				var _gaq = _gaq || [];
+				var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+				_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+				_gaq.push(['_setAccount', 'UA-36567085-1']);
+				_gaq.push(['_trackPageview']);
+				(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+			}
+			</script>
+			
+	
+	<meta name="description" content="Vertex Array Objects (VAO), Vertex Buffer Objects (VBO) and Element Buffer Objects (EBO) in OpenGL">
+	<link rel="shortcut icon" href="http://sunandblackcat.com/data/imgs/icon.png" type="image/png">
+	<link rel="stylesheet" href="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/main.css" type="text/css">
+	
+	<title>Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL</title>
+	
+	<script type="text/javascript">
+	setTimeout(funcOnLoad,4000);
+	</script>
+<script src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/jsapi" type="text/javascript"></script><link type="text/css" href="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/default+en.css" rel="stylesheet"><link type="text/css" href="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/default.css" rel="stylesheet"><script type="text/javascript" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/default+en.I.js"></script><style type="text/css">
+.gsc-control-cse {
+font-family: Arial, sans-serif;
+border-color: #aeadb7;
+background-color: #aeadb7;
+}
+.gsc-control-cse .gsc-table-result {
+font-family: Arial, sans-serif;
+}
+input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
+border-color: #cbcad5;
+}
+input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
+border-color: #2F5BB7;
+background-color: #357AE8;
+background-image: none;
+filter: none;
+}
+.gsc-tabHeader.gsc-tabhInactive {
+border-color: #b80200;
+background-color: #cbcad5;
+}
+.gsc-tabHeader.gsc-tabhActive {
+border-color: #dc6200;
+border-bottom-color: #cbcad5;
+background-color: #cbcad5;
+}
+.gsc-tabsArea {
+border-color: #dc6200;
+}
+.gsc-webResult.gsc-result,
+.gsc-results .gsc-imageResult {
+border-color: #666666;
+background-color: #95959c;
+}
+.gsc-webResult.gsc-result:hover,
+.gsc-imageResult:hover {
+border-color: #666666;
+background-color: #9692ba;
+}
+.gs-webResult.gs-result a.gs-title:link,
+.gs-webResult.gs-result a.gs-title:link b,
+.gs-imageResult a.gs-title:link,
+.gs-imageResult a.gs-title:link b {
+color: #1155CC;
+}
+.gs-webResult.gs-result a.gs-title:visited,
+.gs-webResult.gs-result a.gs-title:visited b,
+.gs-imageResult a.gs-title:visited,
+.gs-imageResult a.gs-title:visited b {
+color: #1155CC;
+}
+.gs-webResult.gs-result a.gs-title:hover,
+.gs-webResult.gs-result a.gs-title:hover b,
+.gs-imageResult a.gs-title:hover,
+.gs-imageResult a.gs-title:hover b {
+color: #1155CC;
+}
+.gs-webResult.gs-result a.gs-title:active,
+.gs-webResult.gs-result a.gs-title:active b,
+.gs-imageResult a.gs-title:active,
+.gs-imageResult a.gs-title:active b {
+color: #1155CC;
+}
+.gsc-cursor-page {
+color: #1155CC;
+}
+a.gsc-trailing-more-results:link {
+color: #1155CC;
+}
+.gs-webResult .gs-snippet,
+.gs-imageResult .gs-snippet,
+.gs-fileFormatType {
+color: #333333;
+}
+.gs-webResult div.gs-visibleUrl,
+.gs-imageResult div.gs-visibleUrl {
+color: #990000;
+}
+.gs-webResult div.gs-visibleUrl-short {
+color: #990000;
+}
+.gs-webResult div.gs-visibleUrl-short {
+display: none;
+}
+.gs-webResult div.gs-visibleUrl-long {
+display: block;
+}
+.gs-promotion div.gs-visibleUrl-short {
+display: block;
+}
+.gs-promotion div.gs-visibleUrl-long {
+display: none;
+}
+.gsc-cursor-box {
+border-color: #666666;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+border-color: #b80200;
+background-color: #95959c;
+color: #1155CC;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+border-color: #dc6200;
+background-color: #cbcad5;
+color: #1155CC;
+}
+.gsc-webResult.gsc-result.gsc-promotion {
+border-color: #726f90;
+background-color: #8f8ab5;
+}
+.gsc-completion-title {
+color: #1155CC;
+}
+.gsc-completion-snippet {
+color: #333333;
+}
+.gs-promotion a.gs-title:link,
+.gs-promotion a.gs-title:link *,
+.gs-promotion .gs-snippet a:link {
+color: #1155CC;
+}
+.gs-promotion a.gs-title:visited,
+.gs-promotion a.gs-title:visited *,
+.gs-promotion .gs-snippet a:visited {
+color: #1155CC;
+}
+.gs-promotion a.gs-title:hover,
+.gs-promotion a.gs-title:hover *,
+.gs-promotion .gs-snippet a:hover {
+color: #1155CC;
+}
+.gs-promotion a.gs-title:active,
+.gs-promotion a.gs-title:active *,
+.gs-promotion .gs-snippet a:active {
+color: #1155CC;
+}
+.gs-promotion .gs-snippet,
+.gs-promotion .gs-title .gs-promotion-title-right,
+.gs-promotion .gs-title .gs-promotion-title-right * {
+color: #333333;
+}
+.gs-promotion .gs-visibleUrl,
+.gs-promotion .gs-visibleUrl-short {
+color: #009933;
+}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gscsep_a{display:none}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:3px}.gssb_e{border:0}.gssb_l{margin:5px 0}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f9;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29487d;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f9;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+<!-- Prev Body Start File-->
+<body class="background" onresize="hideZoomedImg(true,event)" onload="funcOnLoad();">
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/fTmIQU3LxvB.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/fTmIQU3LxvB(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<script>
+	window.fbAsyncInit = function() {
+	// init the FB JS SDK
+	FB.init({
+		appId      : '607938562571531',                        // App ID from the app dashboard
+		channelUrl : '//www.sunandblackcat.com/pageparts/channel.html', 
+		status     : true,                                 // Check Facebook Login status
+		xfbml      : true                                  // Look for social plugins on the page
+	});
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- LOADING OF PAGE -->
+<div id="hidePlane" class="hidePlaneStyle" style="visibility: hidden;">
+	<div id="hidePlaneDark" class="hidePlaneStyleDark" style="visibility: hidden;">
+		<img id="pageLoadingImage" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/img16.gif" style="border: 0px solid #8a0000;top:50px;position:relative;" alt="sunLoadingImage">
+	</div>
+</div>
+
+<!-- DIV FOR HINT OVER IMAGE-->
+<div id="tipDivID" style="visibility:hidden;position:absolute;top:0px;left:0px;z-index:25;">
+	<table style="border-spacing: 0 0;border-collapse: collapse;border: none;">
+		<tbody><tr>
+			<td style="width:7px;height:7px;background-image: url(data/imgs/tipLeftTop.png);"></td>
+			<td style="width:auto;height:7px;background-repeat: repeat-x;background-image: url(data/imgs/tipTop.png);"></td>	
+			<td style="width:7px;height:7px;background-image: url(data/imgs/tipRightTop.png);"></td>
+		</tr>
+		<tr>
+			<td style="width:7px;height:auto;background-repeat: repeat-y;background-image: url(data/imgs/tipLeft.png);"></td>	
+			<td style="background-color:#aeadb7;max-width:180px;">
+				<div style="font-family: Tahoma;font-size: 12px;font-weight: normal;margin: 0px 0px 0px 0px;text-align: center;" id="tipContentsDivID">	
+				</div>
+			</td>
+			<td style="width:7px;height:auto;background-repeat: repeat-y;background-image: url(data/imgs/tipRight.png);"></td>	
+		</tr>
+		<tr>
+			<td style="width:7px;height:7px;background-image: url(data/imgs/tipLeftBot.png);"></td>
+			<td style="width:auto;height:7px;background-repeat: repeat-x;background-image: url(data/imgs/tipBot.png);"></td>
+			<td style="width:7px;height:7px;background-image: url(data/imgs/tipRightBot.png);"></td>
+		</tr>
+	</tbody></table>
+</div>
+
+<!--ZOOMED IMAGE-->
+<div id="fadePlane" class="fadePlaneStyle" onclick="hideZoomedImg(false,event)" style="visibility: hidden; z-index: 1;">
+	<div id="showedImagDiv" style="width:500px;margin:0 auto;position:relative;top:0px;">
+		<img id="showedImag" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/fade.png" style="border: 3px solid rgb(138, 0, 0); visibility: hidden; opacity: 1;" alt="whowedImag">
+		<div id="imageComment" style="text-align: center; position: relative; left: 1px; top: -20px; color: rgb(204, 204, 204); font-size: 12px; background-color: rgb(34, 34, 34); border: 1px solid rgb(170, 0, 0); visibility: hidden;"></div>
+		<div id="loadingImag" style="margin:0 auto;position:relative;visibility:hidden;top:-100px;left:0px;width:100px;height:100px;">
+			<script>
+				var firstShow=true;
+			</script>
+			<img id="sunLoadingImage" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/img16.gif" style="border: 3px solid #8a0000;" alt="sunLoadingImage">
+		</div>
+	</div>
+</div>
+
+<!--ADVERTS-->
+<div id="advert_left" style="visibility: hidden; position: fixed; top: 0px; left: 0px; z-index: 1;">
+	<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/pageCornerLeft.png" alt="cornerLeft">
+</div>
+<div id="advert_right" style="visibility: visible; position: fixed; top: 0px; right: 0px; z-index: 2;">
+	<a href="http://sunandblackcat.com/insideMapsCareers.php?l=eng"><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/pageCornerInsideMaps.png" alt="cornerRight"></a></div>
+
+<!-- MAIN PAGE LAYER-->
+<div class="blackFade">
+
+<!-- Prev PageBase file-->
+<div id="main_div" style="margin: 0px auto; width: 101px; height: 5px; z-index: 3;" 2";"="">
+
+    <div style="top:232px; width:104px; left:-373px;  padding:0px;  z-index:2; height:144px;">
+        <img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/decoration_left1.png" alt="decoration left 1">
+    </div>
+    
+    <div id="buttonMenu" style="top:-145px; left:-341px; width:70px; height:450px; padding:0px; z-index:5;  ">
+        <img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/decoration_left2.png" alt="decoration left 2" style="width:78px;height:128px;">
+        
+		<br><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/trans9.gif" alt="trans"><a href="http://sunandblackcat.com/index.php?l=eng"><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/but_home_pas.png" alt="home" onmouseover="src=&quot;data/imgs/but_home_o.png&quot;" onmouseout="src=&quot;data/imgs/but_home_pas.png&quot;"></a><br><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/trans9.gif" alt="trans"><a href="http://sunandblackcat.com/projects.php?l=eng"><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/but_projects_pas.png" alt="projects" onmouseover="src=&quot;data/imgs/but_projects_o.png&quot;" onmouseout="src=&quot;data/imgs/but_projects_pas.png&quot;"></a><br><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/trans9.gif" alt="trans"><a href="http://sunandblackcat.com/galleries.php?l=eng"><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/but_gallery_pas.png" alt="gallery" onmouseover="src=&quot;data/imgs/but_gallery_o.png&quot;" onmouseout="src=&quot;data/imgs/but_gallery_pas.png&quot;"></a><br><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/trans9.gif" alt="trans"><a href="http://sunandblackcat.com/other.php?l=eng"><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/but_other_act.png" alt="articles"></a>	</div>
+	
+	<!--DECORATION UNDER LANGUAGES BUTTON-->
+	<div style="position:relative;top:-641px;left:385px;width:61px;height:243px;">
+		<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/decoration_right.png" alt="decoration rigth">
+	</div>
+
+	<!--LANGUAGES BUTTONS-->
+	<div id="langMenu" style="margin:0px auto;text-align:center;top:-831px;left:366px; width:25px;  height:22px;">
+		<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/lang_eng_o.png" alt="English" style="width:20px;" onmouseover="src=&#39;data/imgs/lang_eng_o.png&#39;" onmouseout="src=&#39;data/imgs/lang_eng_o.png&#39;"><br><a href="http://sunandblackcat.com/tipFullView.php?l=ukr&amp;topicid=18"><img style="width:20px;" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/lang_ukr.png" alt="Óêðà¿íñüêà" onmouseover="src=&#39;data/imgs/lang_ukr_o.png&#39;" onmouseout="src=&#39;data/imgs/lang_ukr.png&#39;"></a><br>		
+		<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/searchout.png" alt="Show/Hide search bar" onmouseover="src=&#39;data/imgs/searchover.png&#39;;" onmouseout="src=&#39;data/imgs/searchout.png&#39;;" onclick="swapsearch();" style="width:21px;">
+		<br>
+	</div>
+	
+<!--CUSTOM ELEMENTS FOR THIS PAGE-->
+	<div id="centerPage" style="text-align:center;top:-853px;left:-264px;width:10px;height:50px;min-width: 650px;">
+	
+		<div class="topCage"></div>
+<div class="fillCage">
+	<!--LOGO-->
+	<div class="logos">
+		<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/logo.png" alt="black cat logo">
+		<img alt="variable logo" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/nearLogo2.png">
+	</div>
+</div>
+<div class="midCage"></div>		
+		<!--PAGE CONTENTS-->
+        <div class="fillCage">
+			<div class="topic">
+				<div id="searchdiv" style="visibility:hidden;height:0px;">
+					<div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-en"><div class="gsc-control-wrapper-cse" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" dir="ltr" spellcheck="false" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none; background: url(&quot;http://www.google.com/cse/static/en/google_custom_search_watermark.gif&quot;) left center no-repeat rgb(255, 255, 255);"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody></table></div><input type="hidden" name="bgresponse" id="bgresponse"></td><td class="gsc-search-button"><input type="image" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/search_box_icon.png" class="gsc-search-button gsc-search-button-v2" title="search"></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table><table cellspacing="0" cellpadding="0" class="gsc-branding"><tbody><tr><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img"><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/small-logo.png" class="gsc-branding-img"></td></tr></tbody></table></form><div class="gsc-results-wrapper-nooverlay"><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table cellspacing="0" cellpadding="0" class="gsc-above-wrapper-area-container"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table cellspacing="0" cellpadding="0" class="gsc-resultsHeader"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div class="gsc-result-selector gsc-one-result" title="show one result">&nbsp;</div><div class="gsc-result-selector gsc-more-results" title="show more results">&nbsp;</div><div class="gsc-result-selector gsc-all-results" title="show all results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div></div></div></div>
+					<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+				</div>
+				
+				
+		<script>
+			var curEntityNumber=1;
+			pagesPerEntity[0]=11;
+			var curPageEntity=0;
+		</script>
+	
+			<table style="width:633px;"><tbody><tr>
+						<td style="width:85px;"><span class="textDate">[17 Jan 2013]</span></td>
+						<td style="width:395px;text-align:center;"><h1 class="textHeader">
+						Usage of Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL
+					</h1></td>
+					<td style="width:75px;text-align:right;"><div class="fb-like fb_iframe_widget" data-href="http://www.sunandblackcat.com/tipFullView.php?l=eng&amp;topicid=18" data-send="false" data-layout="button_count" data-width="85" data-show-faces="false" data-font="arial" style="display:inline;" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=607938562571531&amp;container_width=0&amp;font=arial&amp;href=http%3A%2F%2Fwww.sunandblackcat.com%2FtipFullView.php%3Fl%3Deng%26topicid%3D18&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=85"><span style="vertical-align: bottom; width: 79px; height: 20px;"><iframe name="f3069bab3900ec" width="85px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/like.html" style="border: none; visibility: visible; width: 79px; height: 20px;" class=""></iframe></span></div></td>
+	<td style="width:75px;text-align:right;"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 70px; height: 15px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 70px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1478283231742" name="I0_1478283231742" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+	<script type="text/javascript">(function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js";	var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s); })();</script></td>
+				</tr>
+			</tbody></table>
+			<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+			
+			<div class="textSimple13" style="text-align:justify;">
+			Vertex Buffer Objects (VBO) are used to save information about vertices that will be used as source of data for attributes of a vertex shader. To render an object you have to create and fill Vertex Buffer Object for each type of attribute (position, color, normal, etc.) present in the vertex shader, indicate which vertex buffer corresponds to which attribute in the vertex shader, indicate how to interpret data in created VBOs and then you can execute draw call.
+			</div>
+			
+			<div class="textSimple13" style="text-align:justify;">
+			Vertex Array Objects (VAO) save information about which Vertex Buffer Object is connected to which attribute of the vertex shader, and information about how attributes of the vertex shader should interpret data in connected vertex buffers. In OpenGL 3+ in order to render any object you should bind VAO.
+			</div>
+			
+			<div class="textSimple13" style="text-align:justify;">
+			Element Buffer Objects (EBO) are used as source of indices during rendering of indexed primitives.
+			</div>
+			
+			<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+			<div class="textSimple13" style="text-align:justify;">
+			Following example shows how to initialize VAO, two VBOs and EBO:
+			</div>
+			
+			<code>
+			const int floatsPerPosition = 3;<br>
+			const int floatsPerColor = 4;<br>
+			const int numVertices = 3;<br>
+			const int sizeOfPositions = sizeof(float) * numVertices * floatsPerPosition;<br>
+			const int sizeOfColors = sizeof(float) * numVertices * floatsPerColor;<br>
+			const int numIndices = 3;<br>
+			const int sizeOfIndices = sizeof(int) * numIndices;
+			<br>
+			<z>// Positions of vertices on CPU</z><br>
+			float positions[numVertices][floatsPerPosition] = <br>
+			{<br>
+			&nbsp;&nbsp;&nbsp;{0, 0, 0},<br>
+			&nbsp;&nbsp;&nbsp;{1, 1, 1},<br>
+			&nbsp;&nbsp;&nbsp;{1, 0, 1}<br>
+			}; <br>
+			<br>
+			<z>// Colors of vertices on CPU</z><br>
+			float colors[numVertices][floatsPerColor] = <br>
+			{<br>
+			&nbsp;&nbsp;&nbsp;{0, 0, 0, 1},<br>
+			&nbsp;&nbsp;&nbsp;{1, 1, 1, 1},<br>
+			&nbsp;&nbsp;&nbsp;{1, 0, 1, 1}<br>
+			}; <br>
+			<br>
+			<z>// Indexes on CPU</z><br>
+			int indices[numVertices] =<br>
+			{<br>
+			&nbsp;&nbsp;&nbsp;0, 1, 2<br>
+			};<br>
+			<br>
+			<z>////////////////////////////////////////////////////////////////////////</z><br>
+			<br>
+			GLuint vao, vbo1, vbo2, ebo; <z>// Identifiers of OpenGL objects</z><br>
+			<br>
+			glGenVertexArrays(1, &amp;vao);  <z>// Create new VAO</z><br>
+			<z>// Binded VAO will store connections between VBOs and attributes</z><br>
+			glBindVertexArray(vao);<br>
+			<br>
+			glGenBuffers(1, &amp;vbo1); <z>// Create new VBO</z><br>
+			glBindBuffer(GL_ARRAY_BUFFER, vbo1); <z>// Bind vbo1 as current vertex buffer</z><br>
+			<z>// initialize vertex buffer, allocate memory, fill it with data</z><br>
+			glBufferData(GL_ARRAY_BUFFER, sizeOfPositions, positions, GL_STATIC_DRAW);<br> 
+			<z>// indicate that current VBO should be used with vertex attribute with index 0</z><br>
+			glEnableVertexAttribArray(0);<br>
+			<z>// indicate how vertex attribute 0 should interpret data in connected VBO</z><br>
+			glVertexAttribPointer(0, floatsPerPosition, GL_FLOAT, GL_FALSE, 0, 0);<br>
+			<br>
+			glGenBuffers(1, &amp;vbo2); <z>// Create new VBO</z><br>
+			glBindBuffer(GL_ARRAY_BUFFER, vbo2); <z>// Bind vbo2 as current vertex buffer</z><br>
+			<z>// initialize vertex buffer, allocate memory, fill it with data</z><br>
+			glBufferData(GL_ARRAY_BUFFER, sizeOfColors, colors, GL_STATIC_DRAW);<br> 
+			<z>// indicate that current VBO should be used with vertex attribute with index 1</z><br>
+			glEnableVertexAttribArray(1);<br>
+			<z>// indicate how vertex attribute 1 should interpret data in connected VBO</z><br>
+			glVertexAttribPointer(1, floatsPerColor, GL_FLOAT, GL_FALSE, 0, 0);<br>
+			<br>
+			<z>// Create new buffer that will be used to store indices</z><br>
+			glGenBuffers(1, &amp;ebo);<br>
+			<z>// Bind index buffer to corresponding target</z><br>
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo); <br>
+			<z>// ititialize index buffer, allocate memory, fill it with data</z><br>
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeOfIndices, indices, GL_STATIC_DRAW);<br>
+			<br>
+			<z>// reset bindings for VAO, VBO and EBO</z><br>
+			glBindVertexArray(0);<br>
+			glBindBuffer(GL_ARRAY_BUFFER, 0);<br>
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);<br>
+			</code>
+			
+			<div class="textSimple13" style="text-align:justify;">
+			Function glBufferData() allocates new region of memory for a buffer. That's why this functions should be used only during initialization of the buffer, but not during modification of buffer's contents. To update contents of the buffer you can use glBufferSubData() or glMapBufferRange() functions. Usage of glMapBufferRange() may be better in terms of performance, because in such case you don't need to allocate memory yourself (just use pointer provided by OpenGL). On some operating systems glMapBufferRange() may fail if called when application loses control over graphics memory.
+			</div>
+			
+			
+			<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+			<div class="textSimple13" style="text-align:justify;">
+			To render the objects you have to bind corresponding VAO and exucute draw call:
+			</div>
+			
+			<code>
+			<z>// After initialization VAO contains all required information about which VBO corresponds to which attibute in the vertex shader, and how to interpret data in VBOs. So simply bind VAO and it will automatically initialize all states required for rendering.</z><br>
+			glBindVertexArray(vao);<br>
+			<z>// Non-indexed draw call</z><br>
+			glDrawArrays(GL_TRIANGLES, 0, numVertices);<br>
+			<br>
+			<z>/////////////////////////////////////////////////////////////////</z><br><br>
+			<z>// bind index buffer if you want to render indexed data</z><br>
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);<br>
+			<z>// indexed draw call</z><br>
+			glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, NULL);<br>
+			</code>
+			
+			<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+			<div class="textSimple13" style="text-align:justify;">
+			Previous examples show how to use separate Vertex Buffer Objects for each attribute of the vertex shader, but it's possible to store data in a single VBO. Data in buffers can be grouped by attributes (data for first attribute for all vertices, then data for second attribute for all vertices) or grouped by vertices, so called interleaved attributes (data for first vertex, then data for second vertex and so on).
+			</div>
+			
+			<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+			<div class="textSimple13" style="text-align:justify;">
+			Following example shows how to use interleaved attributes. glVertexAttribPointer() accepts relative offsets of attributes. Stride is equal to size of all attributes for single vertex.
+			</div>
+			
+			<code>
+			const int floatsPerPosition = 3;<br>
+			const int floatsPerColor = 4;<br>
+			const int numVertices = 2;<br>
+			const int positionsOffset = 0 * sizeof(float);<br>
+			const int colorsOffset = floatsPerPosition * sizeof(float);<br>
+			const int sizeOfVertex = (floatsPerPosition + floatsPerColor) * sizeof(float);<br>
+			<br>
+			<z>// Vertex buffer on CPU. Positions are interleaved with colors.</z><br>
+			float data[numVertices * (floatsPerPosition * floatsPerColor)] =<br>
+			{ <br>
+			&nbsp;&nbsp;&nbsp;1, 1, 1, <z>// Position of first vertex</z><br>
+			&nbsp;&nbsp;&nbsp;1, 1, 1, 1<z>// Color of first vertex</z><br>
+			&nbsp;&nbsp;&nbsp;0, 0, 0, <z>// Position of second vertex</z><br>
+			&nbsp;&nbsp;&nbsp;0, 0, 0, 1  <z>// Color of second vertex</z><br>
+			};<br>
+			<br>
+			<z>// stride is equal to sizeOfVertex and initial offset = positionsOffset</z><br>
+			glVertexAttribPointer(0, floatsPerPosition, GL_FLOAT, GL_FALSE, sizeOfVertex,<br>			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(void*)(positionsOffset));<br>
+			<z>// stride is equal to sizeOfVertex, and initial offset = colorsOffset</z><br>
+			glVertexAttribPointer(1, floatsPerColor, GL_FLOAT, GL_FALSE, sizeOfVertex,<br>			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(void*)(colorsOffset));<br>
+			</code>
+			
+			<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+			<div class="textSimple13" style="text-align:justify;">
+			And this example shows how to use single buffer with data grouped by attributes. glVertexAttribPointer() accepts offsets to start of positions and colors. Stride is equal to 0, because there is no additional gap between consequtive positions or colors.
+			</div>
+			
+			<code>
+			const int floatsPerPosition = 3;<br>
+			const int floatsPerColor = 4;<br>
+			const int numVertices = 2;<br>
+			const int positionsStart = 0 * sizeof(float);<br>
+			const int colorsStart = numVertices * floatsPerPosition * sizeof(float);<br>
+			<br>
+			<z>// Vertex buffer data on CPU. Positions for all vertices, then colors for all verticers.</z><br>
+			float data[numVertices * (floatsPerPosition * floatsPerColor)] =  
+			{ <br>
+			&nbsp;&nbsp;&nbsp;0, 0, 0, <z>// Position of first vertex. Start of positions.</z><br>
+			&nbsp;&nbsp;&nbsp;1, 1, 1, <z>// Position of second vertex</z><br>
+			&nbsp;&nbsp;&nbsp;0, 0, 0, 1, <z>// Color of first vertex. Start of colors.</z><br>
+			&nbsp;&nbsp;&nbsp;1, 1, 1, 1  <z>// Color of second vertex</z><br>
+			};<br>
+			<br>
+			<z>// stride is equal to 0, and initial offset = positionsStart</z><br>
+			glVertexAttribPointer(0, floatsPerPosition, GL_FLOAT,<br>			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GL_FALSE, 0, (void*)(positionsStart));<br>
+			<z>// stride is equal to 0, and initial offset = colorsStart</z><br>
+			glVertexAttribPointer(1, floatsPerColor, GL_FLOAT,<br>			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GL_FALSE, 0, (void*)(colorsStart));<br>
+			</code>
+						<br>
+				<img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/hr.png" alt="">
+				<br>
+				
+				<ul class="tags"><li><a onclick="setupsearch(&quot;Vertex Buffer&quot;);">Vertex Buffer</a></li><li><a onclick="setupsearch(&quot; Vertex Array&quot;);"> Vertex Array</a></li><li><a onclick="setupsearch(&quot; Element Buffer&quot;);"> Element Buffer</a></li><li><a onclick="setupsearch(&quot; OpenGL&quot;);"> OpenGL</a></li><li><a onclick="setupsearch(&quot; VAO&quot;);"> VAO</a></li><li><a onclick="setupsearch(&quot; VBO&quot;);"> VBO</a></li><li><a onclick="setupsearch(&quot; EBO&quot;);"> EBO</a></li></ul>
+			</div>
+			
+	<div id="disqus_loader" style="text-align: center">
+	  <img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/disqus1.jpg" onmouseover="src=&quot;data/imgs/disqus2.jpg&quot;" onmouseout="src=&quot;data/imgs/disqus1.jpg&quot;" onclick="load_disqus()">
+	  <script>
+		function load_disqus(){	
+		  var dsq = document.createElement("script"); 
+		  dsq.type = "text/javascript"; 
+		  dsq.async = true;
+		  dsq.src = "http://sunblackcat.disqus.com/embed.js";
+		  (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+		  var ldr = document.getElementById("disqus_loader");
+		  ldr.parentNode.removeChild(ldr);
+		}
+	  </script>
+	</div>
+	<div id="disqus_thread" class="disqusMargin"></div>
+			</div>
+
+		
+        <div class="bottomCage"></div>
+        <br><span style="color:#FFFFFF;">
+<span itemscope="" itemtype="http://data-vocabulary.org/Person"><span itemprop="affiliation">Sun and Black Cat</span>- <span itemprop="name">Igor Dykhta </span>(<span itemprop="email"><img src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/email_black.gif" style="vertical-align:middle" alt="igor dykhta email"></span>)</span> © 2007-2014
+</span><br>
+    </div>
+</div>
+</div>
+
+
+<iframe name="oauth2relay788913400" id="oauth2relay788913400" src="./Vertex Array Objects, Vertex Buffer Objects and Element Buffer Objects in OpenGL_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 500px; display: none; top: 174px; position: absolute; left: 233px;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

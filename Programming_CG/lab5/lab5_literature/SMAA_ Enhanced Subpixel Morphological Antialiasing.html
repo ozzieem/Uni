@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://www.iryoku.com/smaa/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>SMAA: Enhanced Subpixel Morphological Antialiasing</title>
+<link href="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/style.css" rel="stylesheet" type="text/css">
+<link href="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/style(1).css" rel="stylesheet" type="text/css">
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/jquery.js"></script>
+<script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/jquery.smooth-scroll.js"></script>
+<script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/iryoku.collapsible.js"></script>
+<script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/sh_main.min.js"></script>
+<script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/sh_hlsl.js"></script>
+<script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/sh_bibtex.js"></script>
+<script type="text/javascript" src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/velocity.min.js"></script>
+<link href="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/sh_ide-codewarrior.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21711543-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<style type="text/css">
+:root #header + #content > #left > #rlblock_left,
+:root #content > #center > .dose > .dosesingle,
+:root #content > #right > .dose > .dosesingle
+{ display: none !important; }</style></head>
+
+<body onload="sh_highlightDocument()">
+<a id="top"></a>
+<div id="wrapper">
+<div id="header">
+<div id="journal">Computer Graphics Forum, Vol. 31(2), EUROGRAPHICS 2012</div>
+<div id="title"><a href="http://www.iryoku.com/smaa/" class="nounderline">SMAA: Enhanced Subpixel Morphological Antialiasing</a></div>
+
+
+<table id="authors">
+<tbody><tr>
+<td><a href="http://www.iryoku.com/">Jorge Jimenez</a><span class="super">1</span></td>
+<td><a href="http://cheveone.blogspot.com/">Jose I. Echevarria</a><span class="super">1</span></td>
+<td><a href="http://twitter.com/#!/CRYTEK_TIAGO">Tiago Sousa</a><span class="super">2</span></td>
+<td><a href="http://giga.cps.unizar.es/~diegog/">Diego Gutierrez</a><span class="super">1</span></td>
+</tr>
+<tr class="mail">
+<td><img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/jim.png" alt="Mail"></td>
+<td><img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/jiechevarria.png" alt="Mail"></td>
+<td><img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/tsousa.png" alt="Mail"></td>
+<td><img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/dgutierrez.png" alt="Mail"></td>
+</tr>
+<tr>
+<td colspan="4" id="affiliation">
+<span class="super">1</span> Universidad de Zaragoza
+<span class="super">2</span> Crytek
+</td>
+</tr>
+</tbody></table>
+
+
+<a href="http://www.iryoku.com/smaa/images/teaser.png" class="nounderline"><img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/teaser-thumb.jpg" alt="Teaser" id="teaser"></a>
+
+
+<table id="navigation">
+<tbody><tr>
+<td><a href="http://www.iryoku.com/smaa/#news">News</a></td>
+<td><a href="http://www.iryoku.com/smaa/#abstract">Abstract</a></td>
+<td><a href="http://www.iryoku.com/smaa/#movie">Movie</a></td>
+<td><a href="http://www.iryoku.com/smaa/#downloads">Downloads</a></td>
+<td><a href="http://www.iryoku.com/smaa/#bibtex">Bibtex</a></td>
+<td><a href="http://www.iryoku.com/smaa/#related">Related</a></td>
+<td><a href="http://www.iryoku.com/smaa/#links">Links</a></td>
+</tr>
+</tbody></table>
+</div>
+
+
+<div id="content">
+
+<h1><a id="news" href="http://www.iryoku.com/smaa/#top">News</a></h1>
+<ul class="news">
+<li><div class="date">August 23, 2013</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.8</a> released, featuring a minor code clean-up and minor optimizations.</div></li>
+<li><div class="date">May 16, 2012</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Slides</a> from our Eurographics presentation uploaded!</div></li>
+<li><div class="date">January 16, 2012</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.7</a> released, featuring SMAA S2x and 4x. Checkout the new Eurographics paper and supplementary material in the downloads section!</div></li>
+<li><div class="date">November 30, 2011</div> <div class="text">Andrej Dudenhefner released a <a href="http://mrhaandi.blogspot.com/p/injectsmaa.html" class="underline">SMAA 1x Injector</a>! Kudos to Andrej.</div></li>
+<li><div class="date">November 18, 2011</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.6</a> released, featuring GLSL support. Big thanks to   
+Dmitriy Jdone!</div></li>
+</ul>
+
+<div class="collapsible news">
+<div class="header collapsed expand" style="display: inline; cursor: pointer;" id="collapsible_smaa/_0"><a href="javascript:null">More</a><div class="clear"></div></div>
+<div class="content" style="display: none;">
+<ul class="news">
+<li><div class="date">October 28, 2011</div> <div class="text">Demo <a href="http://www.iryoku.com/smaa/#movie" class="underline">movie</a> showing SMAA features and CryEngine 3 integration uploaded.</div></li>
+<li><div class="date">October 27, 2011</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.5</a> released, featuring SMAA T2x and <a href="http://iryoku.com/aacourse/downloads/13-Anti-Aliasing-Methods-in-CryENGINE-3.pptx" class="underline">CryEngine temporal reprojection</a>.</div></li>
+<li><div class="date">September 6, 2011</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.4</a> released, featuring <a href="http://iryoku.com/aacourse/downloads/06-MLAA-on-PS3.pptx" class="underline">predicated thresholding</a> (Killzone 3 edge detection method).</div></li>
+<li><div class="date">September 3, 2011</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.3</a> released, featuring corner pattern processing.</div></li>
+<li><div class="date">September 1, 2011</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.2</a> released, featuring diagonal pattern processing, quality presets and further optimizations.</div></li>
+<li><div class="date">August 29, 2011</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.1</a> released, featuring better performance and easier integration.</div></li>
+<li><div class="date">August 25, 2011</div> <div class="text"><a href="http://www.iryoku.com/smaa/#downloads" class="underline">Version 2.0</a> released, featuring local constrast adaptation and accurate searches.</div></li>
+<li><div class="date">August 25, 2011</div> <div class="text">Web launched!</div></li>
+</ul>
+</div>
+</div>
+
+
+<h1><a id="abstract" href="http://www.iryoku.com/smaa/#top">Abstract</a></h1>
+<p>We present a new image-based, post-processing antialiasing technique, which offers practical solutions to the common, open problems of existing filter-based real-time antialiasing algorithms. Some of the new features include local contrast analysis for more reliable edge detection, and a simple and effective way to handle sharp geometric features and diagonal lines. This, along with our accelerated and accurate pattern classification allows for a better reconstruction of silhouettes. Our method shows for the first time how to combine morphological antialiasing (MLAA) with additional multi/supersampling strategies (MSAA, SSAA) for accurate subpixel features, and how to couple it with temporal reprojection; always preserving the sharpness of the image. All these solutions combine synergies making for a very robust technique, yielding results of better overall quality than previous approaches while more closely converging to MSAA/SSAA references but maintaining extremely fast execution times. Additionally, we propose different presets to better fit the available resources or particular needs of each scenario.</p>
+
+<h1><a id="movie" href="http://www.iryoku.com/smaa/#top">Movie</a></h1>
+<p><span class="bold">IMPORTANT:</span> designed to viewed in HD at full screen. As compression hides aliasing, we encourage to download the HD movie in <a href="http://www.iryoku.com/smaa/#downloads" class="underline">Downloads</a> to better see the differences between the different techniques.</p>
+<iframe src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/31247769.html" width="850" height="478" frameborder="0"></iframe>
+
+
+<h1><a id="downloads" href="http://www.iryoku.com/smaa/#top">Downloads</a></h1>
+<ul>
+<li><a href="http://www.iryoku.com/smaa/downloads/SMAA-Enhanced-Subpixel-Morphological-Antialiasing.pdf">PDF [6.64 MB]</a></li><li><a href="http://www.iryoku.com/smaa/downloads/SMAA-Enhanced-Subpixel-Morphological-Antialiasing.pptx">Slides [170.33 MB]</a></li><li><a href="http://www.iryoku.com/smaa/downloads/SMAA-Enhanced-Subpixel-Morphological-Antialiasing.mp4">Movie [222.72 MB]</a></li><li><a href="http://www.iryoku.com/smaa/downloads/SMAA-Enhanced-Subpixel-Morphological-Antialiasing-Suplementary-Material.zip">Supplementary Material [368.18 MB]</a></li><li><a href="http://www.iryoku.com/smaa/downloads/SMAA-DX10-v2.8.exe">Precompiled Demo [15.81 MB]</a></li><li>
+<div class="collapsible downloads">
+<div class="header collapsed expand" style="display: inline; cursor: pointer;" id="collapsible_smaa/_1"><a href="javascript:null">Source Code</a><div class="clear"></div></div>
+<div class="content" style="display: none;">
+<p class="bold">Github Repository</p>
+<ul>
+<li>
+<a href="https://github.com/iryoku/smaa">https://github.com/iryoku/smaa</a>
+</li>
+</ul>
+
+<p class="bold">Direct Links</p>
+<ul>
+
+<li>
+<span class="italic">2.8 (August 23, 2013):</span> better profile timers, moved vertex shader subpixel jitter to the transformation matrix and improvements in the SMAA C++ interface. DX9 demo now features all the controls DX10 version already had, thanks to <a href="https://github.com/kphillisjr">kphillisjr</a>.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.8" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.7...v2.8">Diff with v2.7</a>
+</li>
+
+<li class="old">
+<span class="italic">2.7 (January 16, 2012):</span> added SMAA S2x and 4x modes. <span class="bold">IMPORTANT:</span> the textures have changed. Both SMAA.h and the textures should be uptaded.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.7" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.6...v2.7">Diff with v2.6</a>
+</li>
+
+<li class="old">
+<span class="italic">2.6 (November 18, 2011):</span> added GLSL support.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.6" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.5...v2.6">Diff with v2.5</a>
+</li>
+
+<li class="old">
+<span class="italic">2.5 (October 27, 2011):</span> added temporal supersampling (SMAA T2x).<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.5" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.4...v2.5">Diff with v2.4</a>
+</li>
+
+<li class="old">
+<span class="italic">2.4 (September 6, 2011):</span> added predicated thresholding.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.4" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.3...v2.4">Diff with v2.3</a>
+</li>
+
+<li class="old">
+<span class="italic">2.3 (September 3, 2011):</span> added corner pattern processing.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.3" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.2...v2.3">Diff with v2.2</a>
+</li>
+
+<li class="old">
+<span class="italic">2.2 (September 1, 2011):</span> added diagonal pattern processing, presets and optimized the neighborhood blending pass.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.2" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.1...v2.2">Diff with v2.1</a>
+</li>
+
+<li class="old">
+<span class="italic">2.1 (August 29, 2011):</span> optimized the edge detection and blending weight calculation passes, by only marking pixels with edges on the top-left boundaries. Added .h versions of precomputed textures.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.1" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v2.0...v2.1">Diff with v2.0</a>
+</li>
+
+<li class="old">
+<span class="italic">2.0 (August 25, 2011):</span> initial release, including accurate searches and local contrast adaptation. We revamped the shader interface, allowing a single .h file to work across platforms.<br>
+<a href="https://github.com/iryoku/smaa/zipball/v2.0" class="underline">Download</a>
+<img src="./SMAA_ Enhanced Subpixel Morphological Antialiasing_files/starwhite.png" alt=" | ">
+<a href="https://github.com/iryoku/smaa/compare/v1.5...v2.0">Diff with v1.5</a>
+</li>
+
+<li class="old">For older versions, checkout <a href="http://www.iryoku.com/mlaa/#downloads" class="underline">Jimenez's MLAA</a>.</li>
+
+</ul>
+</div>
+</div>
+</li>
+</ul>
+
+
+<h1><a id="bibtex" href="http://www.iryoku.com/smaa/#top">Bibtex</a></h1>
+<pre class="bibtexsec sh_bibtex sh_sourceCode">@<span class="sh_keyword">article</span>{JIMENEZ2012_CGF,
+    <span class="sh_type">author</span> = {Jorge Jimenez and Jose I. Echevarria and Tiago Sousa and Diego Gutierrez},
+    <span class="sh_type">title</span> = {SMAA: Enhanced Morphological Antialiasing},
+    <span class="sh_type">journal</span> = {Computer Graphics Forum (Proc. EUROGRAPHICS 2012)},
+    <span class="sh_type">year</span> = {2012},
+    <span class="sh_type">volume</span> = {31},
+    <span class="sh_type">number</span> = {2},
+}
+</pre>
+<div class="collapsible">
+<div class="header collapsed expand" style="display: inline; cursor: pointer;" id="collapsible_smaa/_2"><a href="javascript:null">Related Bibtex</a><div class="clear"></div></div>
+<div class="content" style="display: none;">
+<pre class="bibtexsec sh_bibtex sh_sourceCode">@<span class="sh_keyword">inbook</span>{JIMENEZ2011_GPUPRO2A,
+    <span class="sh_type">author</span> = {Jorge Jimenez and Belen Masia and Jose I. Echevarria and Fernando Navarro and Diego Gutierrez},
+    <span class="sh_type">editor</span> = {Wolfgang Engel},
+    <span class="sh_type">title</span> = {{GPU} Pro 2},
+    <span class="sh_type">chapter</span> = {Practical Morphological Anti-Aliasing},
+    <span class="sh_type">publisher</span> = {{AK} Peters Ltd.},
+    <span class="sh_type">year</span> = {2011},
+}
+</pre><pre class="bibtexsec sh_bibtex sh_sourceCode">@<span class="sh_keyword">inproceedings</span>{JIMENEZ2011_SIGGRAPH11,
+    <span class="sh_type">author</span> = {Jorge Jimenez and Diego Gutierrez and Jason Yang and Alexander Reshetov and
+              Pete Demoreuille and Tobias Berghoff and Cedric Perthuis and Henry Yu and
+              Morgan McGuire and Timothy Lottes and Hugh Malan and Emil Persson and
+              Dmitry Andreev and Tiago Sousa},
+    <span class="sh_type">title</span> = {Filtering Approaches for Real-Time Anti-Aliasing},
+    <span class="sh_type">booktitle</span> = {ACM SIGGRAPH Courses},
+    <span class="sh_type">year</span> = {2011},
+}
+</pre></div>
+</div>
+
+
+<h1><a id="related" href="http://www.iryoku.com/smaa/#top">Related</a></h1>
+<ul>
+<li><span class="italic">2011</span>: <a href="http://iryoku.com/mlaa/">Practical Morphological Anti-Aliasing</a></li>
+<li><span class="italic">2011</span>: <a href="http://iryoku.com/aacourse/">Filtering Approaches for Real-Time Anti-Aliasing</a></li>
+</ul>
+
+
+<h1><a id="links" href="http://www.iryoku.com/smaa/#top">Links</a></h1>
+<ul>
+<li><a href="http://mrhaandi.blogspot.com/p/injectsmaa.html">Andrej Dudenhefner's SMAA Injector</a></li>
+</ul>
+
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $.collapsible(".collapsible");
+    $('a').smoothScroll();
+});
+</script>
+
+
+
+</body></html>

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug|x64">
+      <Configuration>debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="release|x64">
+      <Configuration>release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="OpenGL\Camera3D.cpp" />
+    <ClCompile Include="OpenGL\CubeBufferObject.cpp" />
+    <ClCompile Include="OpenGL\FrameBufferObject.cpp" />
+    <ClCompile Include="OpenGL\Frustum.cpp" />
+    <ClCompile Include="OpenGL\glew\glew.cpp" />
+    <ClCompile Include="OpenGL\GpuTimerQuery.cpp" />
+    <ClCompile Include="OpenGL\MathLib\MathLib.cpp" />
+    <ClCompile Include="OpenGL\MathLib\MathLibFunc.cpp" />
+    <ClCompile Include="OpenGL\MathLib\Matrix4.cpp" />
+    <ClCompile Include="OpenGL\MathLib\Plane.cpp" />
+    <ClCompile Include="OpenGL\MathLib\Quaternion.cpp" />
+    <ClCompile Include="OpenGL\MathLib\Sphere.cpp" />
+    <ClCompile Include="OpenGL\MathLib\Vector2.cpp" />
+    <ClCompile Include="OpenGL\MathLib\Vector3.cpp" />
+    <ClCompile Include="OpenGL\MathLib\Vector4.cpp" />
+    <ClCompile Include="OpenGL\OGLShapes.cpp" />
+    <ClCompile Include="OpenGL\OGLStateMachine.cpp" />
+    <ClCompile Include="OpenGL\OrientPos.cpp" />
+    <ClCompile Include="OpenGL\ShaderManager\GPUProgram.cpp" />
+    <ClCompile Include="OpenGL\ShaderManager\GPUProgramManager.cpp" />
+    <ClCompile Include="OpenGL\ShaderManager\GPUShader.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\Image.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\ImageBMP.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\ImageTGA.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\Texture.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\Texture2D.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\Texture3DEXT.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\TextureCubeMapARB.cpp" />
+    <ClCompile Include="OpenGL\TextureManager\TextureManager.cpp" />
+    <ClCompile Include="OpenGL\TextureProjection.cpp" />
+    <ClCompile Include="OpenGL\TextureProjectionOrtho.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OpenGL\Camera3D.h" />
+    <ClInclude Include="OpenGL\CubeBufferObject.h" />
+    <ClInclude Include="OpenGL\FrameBufferObject.h" />
+    <ClInclude Include="OpenGL\Frustum.h" />
+    <ClInclude Include="OpenGL\glew\glew.h" />
+    <ClInclude Include="OpenGL\glew\glxew.h" />
+    <ClInclude Include="OpenGL\glew\wglew.h" />
+    <ClInclude Include="OpenGL\glut\glut.h" />
+    <ClInclude Include="OpenGL\GpuTimerQuery.h" />
+    <ClInclude Include="OpenGL\MathLib\MathLib.h" />
+    <ClInclude Include="OpenGL\MathLib\MathLibFunc.h" />
+    <ClInclude Include="OpenGL\MathLib\Matrix4.h" />
+    <ClInclude Include="OpenGL\MathLib\Plane.h" />
+    <ClInclude Include="OpenGL\MathLib\Quaternion.h" />
+    <ClInclude Include="OpenGL\MathLib\Sphere.h" />
+    <ClInclude Include="OpenGL\MathLib\Vector2.h" />
+    <ClInclude Include="OpenGL\MathLib\Vector3.h" />
+    <ClInclude Include="OpenGL\MathLib\Vector4.h" />
+    <ClInclude Include="OpenGL\OGLShapes.h" />
+    <ClInclude Include="OpenGL\OGLStateMachine.h" />
+    <ClInclude Include="OpenGL\OrientPos.h" />
+    <ClInclude Include="OpenGL\ShaderManager\GPUProgram.h" />
+    <ClInclude Include="OpenGL\ShaderManager\GPUProgramManager.h" />
+    <ClInclude Include="OpenGL\ShaderManager\GPUShader.h" />
+    <ClInclude Include="OpenGL\TextureManager\Image.h" />
+    <ClInclude Include="OpenGL\TextureManager\ImageBMP.h" />
+    <ClInclude Include="OpenGL\TextureManager\ImageTGA.h" />
+    <ClInclude Include="OpenGL\TextureManager\Texture.h" />
+    <ClInclude Include="OpenGL\TextureManager\Texture2D.h" />
+    <ClInclude Include="OpenGL\TextureManager\Texture3DEXT.h" />
+    <ClInclude Include="OpenGL\TextureManager\TextureCubeMapARB.h" />
+    <ClInclude Include="OpenGL\TextureManager\TextureManager.h" />
+    <ClInclude Include="OpenGL\TextureProjection.h" />
+    <ClInclude Include="OpenGL\TextureProjectionOrtho.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Shaders\bilatDirBlur.fp" />
+    <None Include="Resources\Shaders\bilatDirBlur.vp" />
+    <None Include="Resources\Shaders\bilatDirBlur2.fp" />
+    <None Include="Resources\Shaders\bilatDirBlur2.vp" />
+    <None Include="Resources\Shaders\composite.fp" />
+    <None Include="Resources\Shaders\composite.vp" />
+    <None Include="Resources\Shaders\defines.glsl" />
+    <None Include="Resources\Shaders\depthDownSample.fp" />
+    <None Include="Resources\Shaders\depthDownSample.vp" />
+    <None Include="Resources\Shaders\depthFunc.glsl" />
+    <None Include="Resources\Shaders\downsample.fp" />
+    <None Include="Resources\Shaders\downsample.vp" />
+    <None Include="Resources\Shaders\Shader.fp" />
+    <None Include="Resources\Shaders\Shader.vp" />
+    <None Include="Resources\Shaders\temporalBlend.fp" />
+    <None Include="Resources\Shaders\temporalBlend.vp" />
+    <None Include="Resources\Shaders\temporalUpsampling.fp" />
+    <None Include="Resources\Shaders\temporalUpsampling.vp" />
+    <None Include="Resources\Shaders\VolumetricPointLight.fp" />
+    <None Include="Resources\Shaders\VolumetricPointLight.vp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="OpenGL\glut\glut32.lib" />
+    <Library Include="OpenGL\glut\glut64.lib" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CF223ED7-0172-4024-9445-84F3A375053E}</ProjectGuid>
+    <RootNamespace>ds</RootNamespace>
+    <Keyword>ManagedCProj</Keyword>
+    <CudaToolkitCustomDir>$(CUDA_PATH)</CudaToolkitCustomDir>
+    <CudaToolkitCustomDir>$(CUDA_PATH)</CudaToolkitCustomDir>
+    <CudaToolkitCustomDir>$(CUDA_PATH)</CudaToolkitCustomDir>
+    <CudaToolkitCustomDir>$(CUDA_PATH)</CudaToolkitCustomDir>
+    <ProjectName>VolumetricDynamicLights</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>false</CLRSupport>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='debug|x64'">$(SolutionDir)\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='release|x64'">$(SolutionDir)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='debug|x64'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='release|x64'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='debug|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='release|x64'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='debug|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='release|x64'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='debug|x64'" />
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='release|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='debug|x64'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='release|x64'" />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;..\..\render;$(DEVIL_PATH)\include;$(ASSIMP_PATH)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>..\..\render\build\vs10\debug;$(ASSIMP_PATH)\lib\x86;$(DEVIL_PATH)\</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmt;msvcrtd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <CudaCompile>
+      <Include>..;../src;../../render;$(GPU_SDK_PATH)\C\common\inc;$(CUDA_FRAMEWORK_PATH)\src\framework;$(GLM_PATH);$(OPTIX_PATH)\SDK\nvcommon\nvModel\include;$(DEVIL_PATH)\include</Include>
+      <Defines>CUDA</Defines>
+      <Runtime>MTd</Runtime>
+      <CodeGeneration>compute_20,sm_20</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;..\..\render;$(DEVIL_PATH)\include;$(ASSIMP_PATH)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnablePREfast>false</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>..\..\render\build\vs10\x64\debug;$(ASSIMP_PATH)\lib\assimp_debug_x64;$(DEVIL_PATH)\</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmt;msvcrtd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <CudaCompile>
+      <Include>..;../src;../../render;$(GPU_SDK_PATH)\C\common\inc;$(CUDA_FRAMEWORK_PATH)\src\framework;$(GLM_PATH);$(OPTIX_PATH)\SDK\nvcommon\nvModel\include;$(DEVIL_PATH)\include</Include>
+      <Defines>CUDA</Defines>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Runtime>MTd</Runtime>
+      <CodeGeneration>compute_20,sm_20</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;..\..\render;$(DEVIL_PATH)\include;$(ASSIMP_PATH)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4250;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <EnablePREfast>false</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>..\..\render\build\vs10\x64\debug;$(ASSIMP_PATH)\lib\assimp_debug_x64;$(DEVIL_PATH)\</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>libcmt;msvcrtd;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+    </Link>
+    <CudaCompile>
+      <Include>..;../src;../../render;$(GPU_SDK_PATH)\C\common\inc;$(CUDA_FRAMEWORK_PATH)\src\framework;$(GLM_PATH);$(OPTIX_PATH)\SDK\nvcommon\nvModel\include;$(DEVIL_PATH)\include</Include>
+      <Defines>CUDA</Defines>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Runtime>MTd</Runtime>
+      <CodeGeneration>compute_20,sm_20</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Opengl;Opengl/ShaderLib;Opengl/MathLib;Opengl/ShaderManager;Opengl/TextureManager;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_ITERATOR_DEBUG_LEVEL=0;OPENGL_VER=44;_MSC_PLATFORM_TOOLSET=$(PlatformToolsetVersion);_DEBUG;_M_X64;_WINDOWS;VC_EXTRA_LEAN;GLEW_STATIC;FTGL_LIBRARY_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4250;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <Optimization>Disabled</Optimization>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ProgramDataBaseFileName>$(SolutionDir)$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <CudaCompile>
+      <Include>..;../src;../../render;$(GPU_SDK_PATH)\C\common\inc;$(CUDA_FRAMEWORK_PATH)\src\framework;$(GLM_PATH);$(OPTIX_PATH)\SDK\nvcommon\nvModel\include;$(DEVIL_PATH)\include</Include>
+      <Defines>CUDA</Defines>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Runtime>MT</Runtime>
+      <CodeGeneration>compute_20,sm_20</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>Opengl;Opengl/ShaderLib;Opengl/MathLib;Opengl/ShaderManager;Opengl/TextureManager;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;OPENGL_VER=44;_MSC_PLATFORM_TOOLSET=$(PlatformToolsetVersion);_WINDOWS;NDEBUG;GLEW_STATIC;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4250;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ProgramDataBaseFileName>$(SolutionDir)$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+    <CudaCompile>
+      <Include>..;../src;../../render;$(GPU_SDK_PATH)\C\common\inc;$(CUDA_FRAMEWORK_PATH)\src\framework;$(GLM_PATH);$(OPTIX_PATH)\SDK\nvcommon\nvModel\include;$(DEVIL_PATH)\include</Include>
+      <Defines>CUDA</Defines>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
+      <Runtime>MT</Runtime>
+      <CodeGeneration>compute_20,sm_20</CodeGeneration>
+    </CudaCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

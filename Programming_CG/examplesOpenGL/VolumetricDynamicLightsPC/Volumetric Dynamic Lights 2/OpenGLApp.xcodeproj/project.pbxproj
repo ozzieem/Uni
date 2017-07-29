@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE403D6115F3C60A00AD8032 /* FrameBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE403D5F15F3C60A00AD8032 /* FrameBufferObject.cpp */; };
+		BE55AD1515B339D2005AA70A /* MathLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD0315B339D2005AA70A /* MathLib.cpp */; };
+		BE55AD1615B339D2005AA70A /* MathLibFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD0515B339D2005AA70A /* MathLibFunc.cpp */; };
+		BE55AD1715B339D2005AA70A /* Matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD0715B339D2005AA70A /* Matrix4.cpp */; };
+		BE55AD1815B339D2005AA70A /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD0915B339D2005AA70A /* Plane.cpp */; };
+		BE55AD1915B339D2005AA70A /* Quaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD0B15B339D2005AA70A /* Quaternion.cpp */; };
+		BE55AD1A15B339D2005AA70A /* Sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD0D15B339D2005AA70A /* Sphere.cpp */; };
+		BE55AD1B15B339D2005AA70A /* Vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD0F15B339D2005AA70A /* Vector2.cpp */; };
+		BE55AD1C15B339D2005AA70A /* Vector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD1115B339D2005AA70A /* Vector3.cpp */; };
+		BE55AD1D15B339D2005AA70A /* Vector4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD1315B339D2005AA70A /* Vector4.cpp */; };
+		BE55AD3415B33A03005AA70A /* Camera3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD1E15B33A03005AA70A /* Camera3D.cpp */; };
+		BE55AD3515B33A03005AA70A /* Frustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD2015B33A03005AA70A /* Frustum.cpp */; };
+		BE55AD3915B33A03005AA70A /* GpuTimerQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD2815B33A03005AA70A /* GpuTimerQuery.cpp */; };
+		BE55AD3A15B33A03005AA70A /* OGLShapes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD2A15B33A03005AA70A /* OGLShapes.cpp */; };
+		BE55AD3B15B33A03005AA70A /* OGLStateMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD2C15B33A03005AA70A /* OGLStateMachine.cpp */; };
+		BE55AD3C15B33A03005AA70A /* OrientPos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD2E15B33A03005AA70A /* OrientPos.cpp */; };
+		BE55AD3D15B33A03005AA70A /* TextureProjection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD3015B33A03005AA70A /* TextureProjection.cpp */; };
+		BE55AD3E15B33A03005AA70A /* TextureProjectionOrtho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD3215B33A03005AA70A /* TextureProjectionOrtho.cpp */; };
+		BE55AD4A15B33BB7005AA70A /* GPUProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD4415B33BB7005AA70A /* GPUProgram.cpp */; };
+		BE55AD4B15B33BB7005AA70A /* GPUProgramManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD4615B33BB7005AA70A /* GPUProgramManager.cpp */; };
+		BE55AD4C15B33BB7005AA70A /* GPUShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD4815B33BB7005AA70A /* GPUShader.cpp */; };
+		BE55AD5C15B33BDC005AA70A /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD4E15B33BDC005AA70A /* Image.cpp */; };
+		BE55AD5D15B33BDC005AA70A /* ImageBMP.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD5015B33BDC005AA70A /* ImageBMP.cpp */; };
+		BE55AD5E15B33BDC005AA70A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD5215B33BDC005AA70A /* Texture.cpp */; };
+		BE55AD5F15B33BDC005AA70A /* Texture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD5415B33BDC005AA70A /* Texture2D.cpp */; };
+		BE55AD6015B33BDC005AA70A /* Texture3DEXT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD5615B33BDC005AA70A /* Texture3DEXT.cpp */; };
+		BE55AD6115B33BDC005AA70A /* TextureCubeMapARB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD5815B33BDC005AA70A /* TextureCubeMapARB.cpp */; };
+		BE55AD6215B33BDC005AA70A /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD5A15B33BDC005AA70A /* TextureManager.cpp */; };
+		BE55AD6415B33C2F005AA70A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD6315B33C2F005AA70A /* main.cpp */; };
+		BE55AD6F15B33ED4005AA70A /* ImageTGA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE55AD6D15B33ED3005AA70A /* ImageTGA.cpp */; };
+		BE78DF6414AE6DED000AACCE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE78DF6314AE6DED000AACCE /* OpenGL.framework */; };
+		BE78DF6614AE6E15000AACCE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE78DF6514AE6E15000AACCE /* GLUT.framework */; };
+		BE8370D21973E46C00F283A3 /* CubeBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE8370D01973E46C00F283A3 /* CubeBufferObject.cpp */; };
+		BE9E0020197D9F620079E0AD /* OpenGLApp in CopyFiles */ = {isa = PBXBuildFile; fileRef = BE78DF4E14AE6CF1000AACCE /* OpenGLApp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE78DF4C14AE6CF1000AACCE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "/Users/sebastien/Development/GFX/Volumetric Dynamic Lights";
+			dstSubfolderSpec = 0;
+			files = (
+				BE9E0020197D9F620079E0AD /* OpenGLApp in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		BE027FD9197BCE4200A34BF1 /* depthDownSample.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = depthDownSample.fp; path = Resources/Shaders/depthDownSample.fp; sourceTree = SOURCE_ROOT; };
+		BE027FDA197BCE4200A34BF1 /* depthDownSample.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = depthDownSample.vp; path = Resources/Shaders/depthDownSample.vp; sourceTree = SOURCE_ROOT; };
+		BE26F09219841D2A000D6296 /* temporalBlend.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = temporalBlend.fp; path = Resources/Shaders/temporalBlend.fp; sourceTree = SOURCE_ROOT; };
+		BE26F09319841D2A000D6296 /* temporalBlend.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = temporalBlend.vp; path = Resources/Shaders/temporalBlend.vp; sourceTree = SOURCE_ROOT; };
+		BE403D5F15F3C60A00AD8032 /* FrameBufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FrameBufferObject.cpp; path = OpenGL/FrameBufferObject.cpp; sourceTree = SOURCE_ROOT; };
+		BE403D6015F3C60A00AD8032 /* FrameBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FrameBufferObject.h; path = OpenGL/FrameBufferObject.h; sourceTree = SOURCE_ROOT; };
+		BE403D6415F3DFA100AD8032 /* downsample.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = downsample.fp; path = Resources/Shaders/downsample.fp; sourceTree = SOURCE_ROOT; };
+		BE403D6515F3DFA100AD8032 /* downsample.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = downsample.vp; path = Resources/Shaders/downsample.vp; sourceTree = SOURCE_ROOT; };
+		BE44E9A819853EC6006F30E7 /* temporalUpsampling.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = temporalUpsampling.fp; path = Resources/Shaders/temporalUpsampling.fp; sourceTree = SOURCE_ROOT; };
+		BE44E9A919853EC6006F30E7 /* temporalUpsampling.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = temporalUpsampling.vp; path = Resources/Shaders/temporalUpsampling.vp; sourceTree = SOURCE_ROOT; };
+		BE55AD0315B339D2005AA70A /* MathLib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MathLib.cpp; path = OpenGL/MathLib/MathLib.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD0415B339D2005AA70A /* MathLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathLib.h; path = OpenGL/MathLib/MathLib.h; sourceTree = SOURCE_ROOT; };
+		BE55AD0515B339D2005AA70A /* MathLibFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MathLibFunc.cpp; path = OpenGL/MathLib/MathLibFunc.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD0615B339D2005AA70A /* MathLibFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MathLibFunc.h; path = OpenGL/MathLib/MathLibFunc.h; sourceTree = SOURCE_ROOT; };
+		BE55AD0715B339D2005AA70A /* Matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix4.cpp; path = OpenGL/MathLib/Matrix4.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD0815B339D2005AA70A /* Matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Matrix4.h; path = OpenGL/MathLib/Matrix4.h; sourceTree = SOURCE_ROOT; };
+		BE55AD0915B339D2005AA70A /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Plane.cpp; path = OpenGL/MathLib/Plane.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD0A15B339D2005AA70A /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = OpenGL/MathLib/Plane.h; sourceTree = SOURCE_ROOT; };
+		BE55AD0B15B339D2005AA70A /* Quaternion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Quaternion.cpp; path = OpenGL/MathLib/Quaternion.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD0C15B339D2005AA70A /* Quaternion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Quaternion.h; path = OpenGL/MathLib/Quaternion.h; sourceTree = SOURCE_ROOT; };
+		BE55AD0D15B339D2005AA70A /* Sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sphere.cpp; path = OpenGL/MathLib/Sphere.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD0E15B339D2005AA70A /* Sphere.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sphere.h; path = OpenGL/MathLib/Sphere.h; sourceTree = SOURCE_ROOT; };
+		BE55AD0F15B339D2005AA70A /* Vector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector2.cpp; path = OpenGL/MathLib/Vector2.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD1015B339D2005AA70A /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector2.h; path = OpenGL/MathLib/Vector2.h; sourceTree = SOURCE_ROOT; };
+		BE55AD1115B339D2005AA70A /* Vector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector3.cpp; path = OpenGL/MathLib/Vector3.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD1215B339D2005AA70A /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector3.h; path = OpenGL/MathLib/Vector3.h; sourceTree = SOURCE_ROOT; };
+		BE55AD1315B339D2005AA70A /* Vector4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector4.cpp; path = OpenGL/MathLib/Vector4.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD1415B339D2005AA70A /* Vector4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vector4.h; path = OpenGL/MathLib/Vector4.h; sourceTree = SOURCE_ROOT; };
+		BE55AD1E15B33A03005AA70A /* Camera3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera3D.cpp; path = OpenGL/Camera3D.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD1F15B33A03005AA70A /* Camera3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera3D.h; path = OpenGL/Camera3D.h; sourceTree = SOURCE_ROOT; };
+		BE55AD2015B33A03005AA70A /* Frustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Frustum.cpp; path = OpenGL/Frustum.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD2115B33A03005AA70A /* Frustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Frustum.h; path = OpenGL/Frustum.h; sourceTree = SOURCE_ROOT; };
+		BE55AD2815B33A03005AA70A /* GpuTimerQuery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GpuTimerQuery.cpp; path = OpenGL/GpuTimerQuery.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD2915B33A03005AA70A /* GpuTimerQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GpuTimerQuery.h; path = OpenGL/GpuTimerQuery.h; sourceTree = SOURCE_ROOT; };
+		BE55AD2A15B33A03005AA70A /* OGLShapes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OGLShapes.cpp; path = OpenGL/OGLShapes.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD2B15B33A03005AA70A /* OGLShapes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OGLShapes.h; path = OpenGL/OGLShapes.h; sourceTree = SOURCE_ROOT; };
+		BE55AD2C15B33A03005AA70A /* OGLStateMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OGLStateMachine.cpp; path = OpenGL/OGLStateMachine.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD2D15B33A03005AA70A /* OGLStateMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OGLStateMachine.h; path = OpenGL/OGLStateMachine.h; sourceTree = SOURCE_ROOT; };
+		BE55AD2E15B33A03005AA70A /* OrientPos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OrientPos.cpp; path = OpenGL/OrientPos.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD2F15B33A03005AA70A /* OrientPos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrientPos.h; path = OpenGL/OrientPos.h; sourceTree = SOURCE_ROOT; };
+		BE55AD3015B33A03005AA70A /* TextureProjection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureProjection.cpp; path = OpenGL/TextureProjection.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD3115B33A03005AA70A /* TextureProjection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureProjection.h; path = OpenGL/TextureProjection.h; sourceTree = SOURCE_ROOT; };
+		BE55AD3215B33A03005AA70A /* TextureProjectionOrtho.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureProjectionOrtho.cpp; path = OpenGL/TextureProjectionOrtho.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD3315B33A03005AA70A /* TextureProjectionOrtho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureProjectionOrtho.h; path = OpenGL/TextureProjectionOrtho.h; sourceTree = SOURCE_ROOT; };
+		BE55AD4015B33A73005AA70A /* Shader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Shader.fp; path = Resources/Shaders/Shader.fp; sourceTree = SOURCE_ROOT; };
+		BE55AD4115B33A73005AA70A /* Shader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Shader.vp; path = Resources/Shaders/Shader.vp; sourceTree = SOURCE_ROOT; };
+		BE55AD4415B33BB7005AA70A /* GPUProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPUProgram.cpp; path = OpenGL/ShaderManager/GPUProgram.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD4515B33BB7005AA70A /* GPUProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPUProgram.h; path = OpenGL/ShaderManager/GPUProgram.h; sourceTree = SOURCE_ROOT; };
+		BE55AD4615B33BB7005AA70A /* GPUProgramManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPUProgramManager.cpp; path = OpenGL/ShaderManager/GPUProgramManager.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD4715B33BB7005AA70A /* GPUProgramManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPUProgramManager.h; path = OpenGL/ShaderManager/GPUProgramManager.h; sourceTree = SOURCE_ROOT; };
+		BE55AD4815B33BB7005AA70A /* GPUShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GPUShader.cpp; path = OpenGL/ShaderManager/GPUShader.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD4915B33BB7005AA70A /* GPUShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPUShader.h; path = OpenGL/ShaderManager/GPUShader.h; sourceTree = SOURCE_ROOT; };
+		BE55AD4E15B33BDC005AA70A /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = OpenGL/TextureManager/Image.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD4F15B33BDC005AA70A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = OpenGL/TextureManager/Image.h; sourceTree = SOURCE_ROOT; };
+		BE55AD5015B33BDC005AA70A /* ImageBMP.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageBMP.cpp; path = OpenGL/TextureManager/ImageBMP.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD5115B33BDC005AA70A /* ImageBMP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageBMP.h; path = OpenGL/TextureManager/ImageBMP.h; sourceTree = SOURCE_ROOT; };
+		BE55AD5215B33BDC005AA70A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = OpenGL/TextureManager/Texture.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD5315B33BDC005AA70A /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = OpenGL/TextureManager/Texture.h; sourceTree = SOURCE_ROOT; };
+		BE55AD5415B33BDC005AA70A /* Texture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture2D.cpp; path = OpenGL/TextureManager/Texture2D.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD5515B33BDC005AA70A /* Texture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture2D.h; path = OpenGL/TextureManager/Texture2D.h; sourceTree = SOURCE_ROOT; };
+		BE55AD5615B33BDC005AA70A /* Texture3DEXT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture3DEXT.cpp; path = OpenGL/TextureManager/Texture3DEXT.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD5715B33BDC005AA70A /* Texture3DEXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture3DEXT.h; path = OpenGL/TextureManager/Texture3DEXT.h; sourceTree = SOURCE_ROOT; };
+		BE55AD5815B33BDC005AA70A /* TextureCubeMapARB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureCubeMapARB.cpp; path = OpenGL/TextureManager/TextureCubeMapARB.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD5915B33BDC005AA70A /* TextureCubeMapARB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureCubeMapARB.h; path = OpenGL/TextureManager/TextureCubeMapARB.h; sourceTree = SOURCE_ROOT; };
+		BE55AD5A15B33BDC005AA70A /* TextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TextureManager.cpp; path = OpenGL/TextureManager/TextureManager.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD5B15B33BDC005AA70A /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextureManager.h; path = OpenGL/TextureManager/TextureManager.h; sourceTree = SOURCE_ROOT; };
+		BE55AD6315B33C2F005AA70A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD6D15B33ED3005AA70A /* ImageTGA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageTGA.cpp; path = OpenGL/TextureManager/ImageTGA.cpp; sourceTree = SOURCE_ROOT; };
+		BE55AD6E15B33ED3005AA70A /* ImageTGA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageTGA.h; path = OpenGL/TextureManager/ImageTGA.h; sourceTree = SOURCE_ROOT; };
+		BE767DA5197D01B90027D3B0 /* bilatDirBlur.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bilatDirBlur.fp; path = Resources/Shaders/bilatDirBlur.fp; sourceTree = SOURCE_ROOT; };
+		BE767DA6197D01B90027D3B0 /* bilatDirBlur.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bilatDirBlur.vp; path = Resources/Shaders/bilatDirBlur.vp; sourceTree = SOURCE_ROOT; };
+		BE78DF4E14AE6CF1000AACCE /* OpenGLApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGLApp; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE78DF6314AE6DED000AACCE /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		BE78DF6514AE6E15000AACCE /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		BE7971E81977FE63009FA204 /* composite.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = composite.fp; path = Resources/Shaders/composite.fp; sourceTree = SOURCE_ROOT; };
+		BE7971E91977FE63009FA204 /* composite.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = composite.vp; path = Resources/Shaders/composite.vp; sourceTree = SOURCE_ROOT; };
+		BE8370D01973E46C00F283A3 /* CubeBufferObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CubeBufferObject.cpp; path = OpenGL/CubeBufferObject.cpp; sourceTree = SOURCE_ROOT; };
+		BE8370D11973E46C00F283A3 /* CubeBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CubeBufferObject.h; path = OpenGL/CubeBufferObject.h; sourceTree = SOURCE_ROOT; };
+		BE8370D319740C4D00F283A3 /* VolumetricPointLight.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = VolumetricPointLight.fp; path = Resources/Shaders/VolumetricPointLight.fp; sourceTree = SOURCE_ROOT; };
+		BE8370D419740C4D00F283A3 /* VolumetricPointLight.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = VolumetricPointLight.vp; path = Resources/Shaders/VolumetricPointLight.vp; sourceTree = SOURCE_ROOT; };
+		BE9E001E197D771F0079E0AD /* bilatDirBlur2.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bilatDirBlur2.fp; path = Resources/Shaders/bilatDirBlur2.fp; sourceTree = SOURCE_ROOT; };
+		BE9E001F197D771F0079E0AD /* bilatDirBlur2.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bilatDirBlur2.vp; path = Resources/Shaders/bilatDirBlur2.vp; sourceTree = SOURCE_ROOT; };
+		BEA70D28198ECD4B00EF797B /* defines.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = defines.glsl; path = Resources/Shaders/defines.glsl; sourceTree = SOURCE_ROOT; };
+		BEA70D29198ECD4B00EF797B /* depthFunc.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = depthFunc.glsl; path = Resources/Shaders/depthFunc.glsl; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE78DF4B14AE6CF1000AACCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE78DF6614AE6E15000AACCE /* GLUT.framework in Frameworks */,
+				BE78DF6414AE6DED000AACCE /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE55AD3F15B33A3A005AA70A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BE55AD4215B33A7F005AA70A /* Textures */,
+				BEC38CEE14FEF3CE001561E9 /* Shaders */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		BE55AD4215B33A7F005AA70A /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Textures;
+			sourceTree = "<group>";
+		};
+		BE55AD4315B33B9D005AA70A /* ShaderManager */ = {
+			isa = PBXGroup;
+			children = (
+				BE55AD4415B33BB7005AA70A /* GPUProgram.cpp */,
+				BE55AD4515B33BB7005AA70A /* GPUProgram.h */,
+				BE55AD4615B33BB7005AA70A /* GPUProgramManager.cpp */,
+				BE55AD4715B33BB7005AA70A /* GPUProgramManager.h */,
+				BE55AD4815B33BB7005AA70A /* GPUShader.cpp */,
+				BE55AD4915B33BB7005AA70A /* GPUShader.h */,
+			);
+			name = ShaderManager;
+			sourceTree = "<group>";
+		};
+		BE55AD4D15B33BC7005AA70A /* TextureManager */ = {
+			isa = PBXGroup;
+			children = (
+				BE55AD6D15B33ED3005AA70A /* ImageTGA.cpp */,
+				BE55AD6E15B33ED3005AA70A /* ImageTGA.h */,
+				BE55AD4E15B33BDC005AA70A /* Image.cpp */,
+				BE55AD4F15B33BDC005AA70A /* Image.h */,
+				BE55AD5015B33BDC005AA70A /* ImageBMP.cpp */,
+				BE55AD5115B33BDC005AA70A /* ImageBMP.h */,
+				BE55AD5215B33BDC005AA70A /* Texture.cpp */,
+				BE55AD5315B33BDC005AA70A /* Texture.h */,
+				BE55AD5415B33BDC005AA70A /* Texture2D.cpp */,
+				BE55AD5515B33BDC005AA70A /* Texture2D.h */,
+				BE55AD5615B33BDC005AA70A /* Texture3DEXT.cpp */,
+				BE55AD5715B33BDC005AA70A /* Texture3DEXT.h */,
+				BE55AD5815B33BDC005AA70A /* TextureCubeMapARB.cpp */,
+				BE55AD5915B33BDC005AA70A /* TextureCubeMapARB.h */,
+				BE55AD5A15B33BDC005AA70A /* TextureManager.cpp */,
+				BE55AD5B15B33BDC005AA70A /* TextureManager.h */,
+			);
+			name = TextureManager;
+			sourceTree = "<group>";
+		};
+		BE78DF4314AE6CF1000AACCE = {
+			isa = PBXGroup;
+			children = (
+				BE55AD6315B33C2F005AA70A /* main.cpp */,
+				BE55AD3F15B33A3A005AA70A /* Resources */,
+				BE78DF6214AE6D11000AACCE /* Frameworks */,
+				BE78DF5114AE6CF1000AACCE /* OpenGL */,
+				BE78DF4F14AE6CF1000AACCE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE78DF4F14AE6CF1000AACCE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE78DF4E14AE6CF1000AACCE /* OpenGLApp */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE78DF5114AE6CF1000AACCE /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				BEC4ACFA1503DB2E004325E8 /* Math */,
+				BEC4ACE01503DA29004325E8 /* OpenGLTools */,
+			);
+			name = OpenGL;
+			path = SoftwareRasterizer;
+			sourceTree = "<group>";
+		};
+		BE78DF6214AE6D11000AACCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE78DF6514AE6E15000AACCE /* GLUT.framework */,
+				BE78DF6314AE6DED000AACCE /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEC38CEE14FEF3CE001561E9 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				BEA70D28198ECD4B00EF797B /* defines.glsl */,
+				BEA70D29198ECD4B00EF797B /* depthFunc.glsl */,
+				BE44E9A819853EC6006F30E7 /* temporalUpsampling.fp */,
+				BE44E9A919853EC6006F30E7 /* temporalUpsampling.vp */,
+				BE26F09219841D2A000D6296 /* temporalBlend.fp */,
+				BE26F09319841D2A000D6296 /* temporalBlend.vp */,
+				BE9E001E197D771F0079E0AD /* bilatDirBlur2.fp */,
+				BE9E001F197D771F0079E0AD /* bilatDirBlur2.vp */,
+				BE767DA5197D01B90027D3B0 /* bilatDirBlur.fp */,
+				BE767DA6197D01B90027D3B0 /* bilatDirBlur.vp */,
+				BE027FD9197BCE4200A34BF1 /* depthDownSample.fp */,
+				BE027FDA197BCE4200A34BF1 /* depthDownSample.vp */,
+				BE7971E81977FE63009FA204 /* composite.fp */,
+				BE7971E91977FE63009FA204 /* composite.vp */,
+				BE8370D319740C4D00F283A3 /* VolumetricPointLight.fp */,
+				BE8370D419740C4D00F283A3 /* VolumetricPointLight.vp */,
+				BE403D6415F3DFA100AD8032 /* downsample.fp */,
+				BE403D6515F3DFA100AD8032 /* downsample.vp */,
+				BE55AD4015B33A73005AA70A /* Shader.fp */,
+				BE55AD4115B33A73005AA70A /* Shader.vp */,
+			);
+			name = Shaders;
+			path = SoftwareRasterizer;
+			sourceTree = "<group>";
+		};
+		BEC4ACE01503DA29004325E8 /* OpenGLTools */ = {
+			isa = PBXGroup;
+			children = (
+				BE8370D01973E46C00F283A3 /* CubeBufferObject.cpp */,
+				BE8370D11973E46C00F283A3 /* CubeBufferObject.h */,
+				BE55AD4D15B33BC7005AA70A /* TextureManager */,
+				BE55AD4315B33B9D005AA70A /* ShaderManager */,
+				BE55AD1E15B33A03005AA70A /* Camera3D.cpp */,
+				BE55AD1F15B33A03005AA70A /* Camera3D.h */,
+				BE55AD2015B33A03005AA70A /* Frustum.cpp */,
+				BE55AD2115B33A03005AA70A /* Frustum.h */,
+				BE55AD2815B33A03005AA70A /* GpuTimerQuery.cpp */,
+				BE55AD2915B33A03005AA70A /* GpuTimerQuery.h */,
+				BE55AD2A15B33A03005AA70A /* OGLShapes.cpp */,
+				BE55AD2B15B33A03005AA70A /* OGLShapes.h */,
+				BE403D6015F3C60A00AD8032 /* FrameBufferObject.h */,
+				BE403D5F15F3C60A00AD8032 /* FrameBufferObject.cpp */,
+				BE55AD2C15B33A03005AA70A /* OGLStateMachine.cpp */,
+				BE55AD2D15B33A03005AA70A /* OGLStateMachine.h */,
+				BE55AD2E15B33A03005AA70A /* OrientPos.cpp */,
+				BE55AD2F15B33A03005AA70A /* OrientPos.h */,
+				BE55AD3015B33A03005AA70A /* TextureProjection.cpp */,
+				BE55AD3115B33A03005AA70A /* TextureProjection.h */,
+				BE55AD3215B33A03005AA70A /* TextureProjectionOrtho.cpp */,
+				BE55AD3315B33A03005AA70A /* TextureProjectionOrtho.h */,
+			);
+			name = OpenGLTools;
+			sourceTree = "<group>";
+		};
+		BEC4ACFA1503DB2E004325E8 /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				BE55AD0315B339D2005AA70A /* MathLib.cpp */,
+				BE55AD0415B339D2005AA70A /* MathLib.h */,
+				BE55AD0515B339D2005AA70A /* MathLibFunc.cpp */,
+				BE55AD0615B339D2005AA70A /* MathLibFunc.h */,
+				BE55AD0715B339D2005AA70A /* Matrix4.cpp */,
+				BE55AD0815B339D2005AA70A /* Matrix4.h */,
+				BE55AD0915B339D2005AA70A /* Plane.cpp */,
+				BE55AD0A15B339D2005AA70A /* Plane.h */,
+				BE55AD0B15B339D2005AA70A /* Quaternion.cpp */,
+				BE55AD0C15B339D2005AA70A /* Quaternion.h */,
+				BE55AD0D15B339D2005AA70A /* Sphere.cpp */,
+				BE55AD0E15B339D2005AA70A /* Sphere.h */,
+				BE55AD0F15B339D2005AA70A /* Vector2.cpp */,
+				BE55AD1015B339D2005AA70A /* Vector2.h */,
+				BE55AD1115B339D2005AA70A /* Vector3.cpp */,
+				BE55AD1215B339D2005AA70A /* Vector3.h */,
+				BE55AD1315B339D2005AA70A /* Vector4.cpp */,
+				BE55AD1415B339D2005AA70A /* Vector4.h */,
+			);
+			name = Math;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE78DF4D14AE6CF1000AACCE /* OpenGLApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE78DF5714AE6CF1000AACCE /* Build configuration list for PBXNativeTarget "OpenGLApp" */;
+			buildPhases = (
+				BE78DF4A14AE6CF1000AACCE /* Sources */,
+				BE78DF4B14AE6CF1000AACCE /* Frameworks */,
+				BE78DF4C14AE6CF1000AACCE /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenGLApp;
+			productName = SoftwareRasterizer;
+			productReference = BE78DF4E14AE6CF1000AACCE /* OpenGLApp */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE78DF4514AE6CF1000AACCE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = BE78DF4814AE6CF1000AACCE /* Build configuration list for PBXProject "OpenGLApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BE78DF4314AE6CF1000AACCE;
+			productRefGroup = BE78DF4F14AE6CF1000AACCE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE78DF4D14AE6CF1000AACCE /* OpenGLApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE78DF4A14AE6CF1000AACCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE55AD1515B339D2005AA70A /* MathLib.cpp in Sources */,
+				BE55AD1615B339D2005AA70A /* MathLibFunc.cpp in Sources */,
+				BE55AD1715B339D2005AA70A /* Matrix4.cpp in Sources */,
+				BE55AD1815B339D2005AA70A /* Plane.cpp in Sources */,
+				BE55AD1915B339D2005AA70A /* Quaternion.cpp in Sources */,
+				BE55AD1A15B339D2005AA70A /* Sphere.cpp in Sources */,
+				BE55AD1B15B339D2005AA70A /* Vector2.cpp in Sources */,
+				BE55AD1C15B339D2005AA70A /* Vector3.cpp in Sources */,
+				BE55AD1D15B339D2005AA70A /* Vector4.cpp in Sources */,
+				BE55AD3415B33A03005AA70A /* Camera3D.cpp in Sources */,
+				BE55AD3515B33A03005AA70A /* Frustum.cpp in Sources */,
+				BE55AD3915B33A03005AA70A /* GpuTimerQuery.cpp in Sources */,
+				BE55AD3A15B33A03005AA70A /* OGLShapes.cpp in Sources */,
+				BE55AD3B15B33A03005AA70A /* OGLStateMachine.cpp in Sources */,
+				BE55AD3C15B33A03005AA70A /* OrientPos.cpp in Sources */,
+				BE55AD3D15B33A03005AA70A /* TextureProjection.cpp in Sources */,
+				BE55AD3E15B33A03005AA70A /* TextureProjectionOrtho.cpp in Sources */,
+				BE55AD4A15B33BB7005AA70A /* GPUProgram.cpp in Sources */,
+				BE55AD4B15B33BB7005AA70A /* GPUProgramManager.cpp in Sources */,
+				BE55AD4C15B33BB7005AA70A /* GPUShader.cpp in Sources */,
+				BE55AD5C15B33BDC005AA70A /* Image.cpp in Sources */,
+				BE55AD5D15B33BDC005AA70A /* ImageBMP.cpp in Sources */,
+				BE55AD5E15B33BDC005AA70A /* Texture.cpp in Sources */,
+				BE55AD5F15B33BDC005AA70A /* Texture2D.cpp in Sources */,
+				BE55AD6015B33BDC005AA70A /* Texture3DEXT.cpp in Sources */,
+				BE55AD6115B33BDC005AA70A /* TextureCubeMapARB.cpp in Sources */,
+				BE55AD6215B33BDC005AA70A /* TextureManager.cpp in Sources */,
+				BE55AD6415B33C2F005AA70A /* main.cpp in Sources */,
+				BE8370D21973E46C00F283A3 /* CubeBufferObject.cpp in Sources */,
+				BE55AD6F15B33ED4005AA70A /* ImageTGA.cpp in Sources */,
+				BE403D6115F3C60A00AD8032 /* FrameBufferObject.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BE78DF5514AE6CF1000AACCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BE78DF5614AE6CF1000AACCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BE78DF5814AE6CF1000AACCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/system\"",
+				);
+				PRODUCT_NAME = OpenGLApp;
+			};
+			name = Debug;
+		};
+		BE78DF5914AE6CF1000AACCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/system\"",
+				);
+				PRODUCT_NAME = OpenGLApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE78DF4814AE6CF1000AACCE /* Build configuration list for PBXProject "OpenGLApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE78DF5514AE6CF1000AACCE /* Debug */,
+				BE78DF5614AE6CF1000AACCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BE78DF5714AE6CF1000AACCE /* Build configuration list for PBXNativeTarget "OpenGLApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE78DF5814AE6CF1000AACCE /* Debug */,
+				BE78DF5914AE6CF1000AACCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE78DF4514AE6CF1000AACCE /* Project object */;
+}

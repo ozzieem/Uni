@@ -1,0 +1,93 @@
+Anti-aliasing has been a hot-button topic on the forums since it was first discovered that multi-sample anti-aliasing was no longer available in the beta. Now that 6.0 is live, the discussions have heated up once again. I'd like to use this thread to explain why these changes were likely made, how they may affect your game's graphics, and what sort of potential solutions or improvements are available. 
+
+First off, you may be asking: Just what is anti-aliasing, and what's all the hullabaloo about? Essentially, in this context, anti-aliasing is the process of removing unwanted jagged edges from a rendered image. This improves the smoothness of the image, and alleviates stair-stepping artifacts, particularly while moving.
+
+A general explanation of anti-aliasing as well as a few example images can be found on this Wikipedia page:
+
+http://en.wikipedia.org/wiki/Spatial_anti-aliasing
+
+Traditionally in games, anti-aliasing has been achieved by “sampling” a full image or the geometry of an image at a higher resolution and then blending the pixels together. Respectively, these techniques are known as super-sample anti-aliasing and multi-sample anti-aliasing. 
+
+http://en.wikipedia.org/wiki/Supersampling
+http://en.wikipedia.org/wiki/Multisample_anti-aliasing
+
+Since its release, World of Warcraft has used multi-sample anti-aliasing – or MSAA – as its primary option for anti-aliasing. In the most basic sense, MSAA provides almost the same quality as super-sample anti-aliasing (SSAA) for a fraction of the performance cost. Unfortunately, MSAA doesn't play too nicely with what's known as deferred rendering, which is something that World of Warcraft now seems to utilise as of patch 6.0. This was also somewhat touched on in the Engineer's Workship: Engine Evolution in Warlords of Draenor blog post.
+
+http://en.wikipedia.org/wiki/Deferred_shading#Disadvantages
+http://us.battle.net/wow/en/blog/15936285/
+
+Several games (including Guild Wars 2, Rift, and StarCraft II) utilise some deferred rendering technique for its immediate benefits, although for all practical purposes, this is incompatible with MSAA. This leaves game developers with a tricky question: What (if anything) do they use in place of MSAA?
+
+EDIT: With 6.1, Blizzard is reintroducing MSAA. I'm yet unsure if this is due to them reverting to forward rendering, or using DirectX 11-level tech to maintain MSAA alongside the deferred rendering. Such techniques are possible, although they are surprisingly rare to see in modern games.
+
+http://docs.nvidia.com/gameworks/content/gameworkslibrary/graphicssamples/d3d_samples/antialiaseddeferredrendering.htm
+
+/END EDIT
+
+Fortunately, there are other anti-aliasing options available. As mentioned previously, super-sample anti-aliasing (also known as SSAA) is one possibility, although many developers shy away from it due to its considerable negative impact to framerate. In recent years, there has also been an influx of what are known as post-process anti-aliasing (or PPAA) algorithms. 
+
+Instead of rendering an image at a larger resolution and sampling nearby pixels to produce a final, anti-aliased image, PPAA options work by taking the already-rendered image and intelligently “blurring” edges. For most players, this produces satisfactory results, and it's also incredibly fast. Modern integrated graphics chips are more than capable of utilising the offered PPAA choices with very little performance penalty.
+
+Post-process anti-aliasing has a few problems, however. To mention a few:
+Most obviously, a blurry image is counter to what players tend to want in their graphics
+Image detail cannot be gained (only lost) with PPAA since nothing is rendered at a higher resolution.
+Post-process anti-aliasing may not be fully effectively in all situations as it only has pixel data
+Developers need to manually define what has PPAA applied, lest the game's interface also have it applied (this is why we don't currently have anti-aliasing in stuff like the character pane/dressing room)
+
+
+That may sound like several downsides, although PPAA is still an awesome thing! NVIDIA, AMD, Intel, and several other companies/developers have been hard at working on continuing to improve the efficiency and quality of PPAA algorithms. There are several options available, each of which offers its own benefits and caveats. 
+
+To keep things short and manageable, I will only mention four PPAA algorithms: FXAA, MLAA, CMAA, and SMAA (not to be confused with MSAA).
+
+MLAA – AMD's Morphological Anti-Aliasing: This was one of the very first PPAA choices on the market. It was hyped for its ability to anti-alias some of the first games utilising deferred rendering that didn't otherwise offer any anti-aliasing options. It's not terribly common these days as it's considered fairly aggressive with blurring.
+
+FXAA – NVIDIA's Fast Approximate Anti-Aliasing: This is fairly common in some newer game titles. It's fast and fairly effective at removing jagged edges, although it is notorious for its potential blurriness. FXAA Low and FXAA High are two options currently available in World of Warcraft.
+
+http://en.wikipedia.org/wiki/Fast_approximate_anti-aliasing
+
+CMAA – Intel's Conservative Morpholgical Anti-Aliasing: This is a relatively young PPAA option that Intel worked to develop that strives to offer high-quality anti-aliasing with a small enough footprint that it would run well on integrated hardware. It generally does a good job of removing most jagged edges and it rarely noticeably blurs the final image. It may leave some jagged edges that would otherwise be smoothed by a more aggressive PPAA option's algorithm, however. CMAA is available in World of Warcraft for players that aren't running on DirectX 9-level video hardware.
+
+https://software.intel.com/en-us/articles/conservative-morphological-anti-aliasing-cmaa-update
+
+SMAA – Enhanced Subpixel Morphological Anti-Aliasing: While still less demanding than MSAA or SSAA, SMAA is possibly the most demanding PPAA option available. A handful of players have asked that this be added as an option, so I believed it would be worthy of a mention.
+
+http://www.iryoku.com/smaa/
+
+
+Do remember that PPAA options aren't the only possibility, however! Some of you attentive readers may have realised that I've only slightly glazed over SSAA up until this point. While SSAA can potentially incur a significant hit on framerate, it is – bar none – the absolute best anti-aliasing quality possible as it samples everything at a higher resolution. 
+
+MSAA only works on geometry. Anything that's essentially just a “2D cutout” cannot be properly anti-aliased by MSAA. You will see these graphics techniques used frequently in WoW for objects such as grass, flags, and certain items. MSAA never affected these, although both PPAA options and SSAA are able to address aliasing on such elements with no problem.
+
+It's currently difficult to force any sort of SSAA/supersampling in WoW, although it appears to work rather well with NVIDIA's Dynamic Super Resolution introduced on their newer video cards and available for older hardware with the latest drivers. Dynamic Super Resolution is explored rather in-depth in this excellent Tech Report article:
+
+http://techreport.com/review/27102/maxwell-dynamic-super-resolution-explored
+
+Hydrow and a handful of other players also tested this feature out, and participated in an excellent discussion in this thread:
+
+http://us.battle.net/wow/en-us/forum/topic/14997059571#1
+
+Of special interest is this post, where Hydrow posted some comparison screenshots between no AA, CMAA, DSR, and a mix of CMAA+DSR:
+
+http://us.battle.net/wow/en/forum/topic/14997059571?page=3#49
+
+DSR/SSAA are nice options as they are capable of extracting additional geometry information. This allows the final image to both be simultaneously better anti-aliased while also potentially providing more detail. The possible quality improvements were quite visible in the previously linked Tech Report article.
+
+I haven't mentioned it yet, but as also shown in the above post, PPAA options can be applied quite easily alongside SSAA, which has the potential to allow for crisp, yet still anti-aliased graphics. I have toyed around with this for quite a while in the Dolphin Emulator, which offers a mix of higher internal resolutions, MSAA, SSAA, and FXAA.
+
+I'd like to share a few comparison screenshots from Paper Mario: The Thousand Year Door in Dolphin. I chose this game as it has a wonderful mix of 2D and 3D objects, just like World of Warcraft! I also intentionally ran this game at an internal resolution of 640x528 to make it easier to notice the jagged edges (but do note that the final images are sampled up). At this internal resolution, I have screenshots comparing no AA with MSAA, SSAA, FXAA, FXAA+MSAA, and lastly FXAA+SSAA.
+
+http://imgur.com/a/7Hshl#0
+
+You'll immediately notice that the game is a jagged mess without any anti-aliasing. 8XMSAA helps a bunch, although it doesn't do anything for Mario or his Yoshi. Meanwhile, SSAA produces an excellent final result. 
+
+After looking at the hardware-based anti-aliasing alone, I then applied just FXAA. The end result is an image that's better to look at than one without any AA, plus Mario and Yoshi look smooth! Unfortunately, the 3D geometry still isn't anti-aliased as well as it was with MSAA, and the quality is still sub-par compared to MSAA.
+
+However, pairing FXAA with MSAA or SSAA produces downright incredible results. There are barely any jagged edges in sight, and the final result is an image that is quite pleasing to look at. It's almost difficult to believe that it's ultimately upsampled from such a low resolution!
+
+World of Warcraft still looks pretty nice on my 27" 2560x1440 display with CMAA, although I would be quite happy if Blizzard implemented a separate SSAA option. It would be best if it was tossed under the advanced graphics options and if it warned players of its considerable performance implications, although it's certainly something that should be available for players that have the graphics horsepower to drive it. It would be a far cleaner implementation than NVIDIA's DSR could ever hope to be, and it could also be available for AMD video card owners without any hassle or workarounds (and Intel GPU players too...I guess? :P).
+
+Hopefully this explanation/rambling has been at least somewhat informative or helpful. I'll probably add things as I feel fit. I've taken part in these discussions for a while, but my thoughts have been scattered throughout several different forums.
+
+Thanks for reading, and feel free to ask any questions!
+
+(also I really wish I could embed links >_>)

@@ -1,0 +1,101 @@
+html, body, div, span,
+applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dd, dl, dt, li, ol, ul,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    line-height: 1;
+    font-family: inherit;
+    text-align: left;
+    vertical-align: baseline;
+}
+a img, :link img, :visited img {border: 0}
+table {border-collapse: collapse; border-spacing: 0}
+ul {list-style: none}
+q:before, q:after,
+blockquote:before, blockquote:after {content: ""}
+
+
+@font-face {
+    font-family: 'Kyrial Sans Pro Regular';
+    src: url('fonts/Kyrial-Sans-Pro-Regular.eot');
+    src: url('fonts/Kyrial-Sans-Pro-Regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Kyrial-Sans-Pro-Regular.woff2') format('woff2'),
+         url('fonts/Kyrial-Sans-Pro-Regular.woff') format('woff'),
+         url('fonts/Kyrial-Sans-Pro-Regular.ttf') format('truetype');
+}
+
+
+body                    { font-size:18px; font-family:"Kyrial Sans Pro Regular","Myriad Pro",Helvetica,sans-serif; color:#555 }
+h1                      { font-size:30px; margin-top:50px; font-weight:normal; text-transform:uppercase }
+h1 a                    { color: #7e513c }
+p                       { margin:15px 0; line-height:1.5em; text-align:justify }
+a                       { color:#545976; text-decoration:none }
+a:hover                 { padding-bottom: 1px; color:#9a9cb5; border-bottom:1px solid #9a9cb5 }
+a.nounderline:hover     { color:#9a9cb5; border-bottom:none }
+a.underline             { padding-bottom: 1px; border-bottom:1px solid #545976 }
+a.underline:hover       { padding-bottom: 1px; border-bottom:1px solid #9a9cb5 }
+ul                      { margin:15px 0; margin-left:25px; list-style-type:disc }
+li                      { margin:10px 0; text-align:justify; line-height:1.5em }
+
+.super                  { vertical-align:7px; font-size:70% }
+.bold                   { font-weight:bold }
+.italic,#journal        { font-style:italic }
+
+
+#wrapper                { width:850px; margin:0 auto; padding-top: 40px; padding-bottom: 60px }
+#title                  { color:#545976; font-size:45px; text-align:center; margin-top: 10px }
+#journal                { font-size:20px; text-align:center; font-style:italic }
+#teaser                 { margin-top:40px; margin-left:auto; margin-right:auto; display:block }
+
+#authors                { width:100%; margin-top:30px; margin-left:auto; margin-right:auto }
+#authors tr             { height:30px }
+#authors tr.mail        { height:35px }
+#authors td             { text-align:center }
+#authors td img         { vertical-align:top; height: 13px; -ms-interpolation-mode: bicubic; }
+#authors #affiliation   { font-size:14px; padding-top: 10px; line-height:18px }
+#authors #affiliation span
+                        { margin-left:20px }
+
+#navigation             { font-size:20px; text-transform:uppercase; margin-left:auto; margin-right:auto; margin-top:10px }
+#navigation td          { padding:15px; padding-bottom:0 }
+
+.news li + li,
+ul + .news              { margin-top: 20px; margin-bottom: 0; }
+.news div.date          { font-weight: bold }
+.news div.text          { line-height:1.5em; margin-top: 3px }
+
+.downloads li.old       { opacity:0.6 }
+
+.code,
+.bibtexsec              { font-family:Consolas,"Courier New",monospace; font-size:12px; padding:15px; overflow:auto; margin:15px 0; line-height: normal }
+.code:last-child,
+.bibtexsec:last-child   { margin-bottom: 0 }
+
+
+.collapsible            { margin-top: 10px; width: 100% }
+.collapsible .header    { display: inline-block }
+.collapsible .header a  { border-bottom: none }
+.collapsible .header a:hover
+                        { padding-bottom: 1px; color:#9a9cb5; border-bottom:1px solid #9a9cb5 }
+.collapsible .content   { padding: 10px 0 0 22px }
+
+.collapsible .expand:before,
+.collapsible .collapse:before
+                        { content: ""; display: inline-block; background: url('images/sprites.png'); width: 12px; height: 12px; margin-right: 10px }
+
+.collapsible .collapse:before
+                        { background-position: -1px -1px }
+.collapsible .expand:before
+                        { background-position: -17px -1px }
+
+h1 + .collapsible       { margin-top: 18px }

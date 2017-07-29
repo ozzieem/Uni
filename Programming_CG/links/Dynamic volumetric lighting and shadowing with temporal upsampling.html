@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0092)http://sebastien.hillaire.free.fr/index.php?option=com_content&view=article&id=72&Itemid=106 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="Sebastien, Hillaire, graphics, gpu, visual effects, game">
+  <meta name="title" content="Dynamic volumetric lighting and shadowing with temporal upsampling">
+  <meta name="author" content="Sebh">
+  <meta name="description" content="Sebastien Hillaire, PhD">
+  <meta name="generator" content="Joomla! 1.5 - Open Source Content Management">
+  <title>Dynamic volumetric lighting and shadowing with temporal upsampling</title>
+  <link href="http://sebastien.hillaire.free.fr/templates/rhuk_milkyway/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script type="text/javascript" src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/mootools.js.download"></script>
+  <script type="text/javascript" src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/caption.js.download"></script>
+
+
+<link rel="stylesheet" href="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/system.css" type="text/css">
+<link rel="stylesheet" href="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/general.css" type="text/css">
+<link rel="stylesheet" href="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/template.css" type="text/css">
+<link rel="stylesheet" href="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/blue.css" type="text/css">
+<link rel="stylesheet" href="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/black_bg.css" type="text/css">
+<!--[if lte IE 6]>
+<link href="/templates/rhuk_milkyway/css/ieonly.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+
+<script language="JavaScript" id="onDate"></script>
+<script language="JavaScript" src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/stat637.php"></script>
+<style type="text/css">
+:root #header + #content > #left > #rlblock_left
+{ display: none !important; }</style></head>
+<body id="page_bg" class="color_blue bg_black width_fmax">
+<a name="up" id="up"></a>
+<div class="center" align="center">
+	<div id="wrapper">
+		<div id="wrapper_r">
+			<div id="header">
+				<div id="header_l">
+					<div id="header_r">
+						<div id="logo"></div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div id="tabarea">
+				<div id="tabarea_l">
+					<div id="tabarea_r">
+						<div id="tabmenu">
+						<table cellpadding="0" cellspacing="0" class="pill">
+							<tbody><tr>
+								<td class="pill_l">&nbsp;</td>
+								<td class="pill_m">
+								<div id="pillmenu">
+									<ul id="mainlevel-nav"><li><a href="http://sebastien.hillaire.free.fr/index.php?option=com_content&amp;view=frontpage&amp;Itemid=1" class="mainlevel-nav">Home</a></li><li><a href="http://sebastien.hillaire.free.fr/index.php?option=com_content&amp;view=article&amp;id=49&amp;Itemid=29" class="mainlevel-nav">Resume</a></li><li><a href="http://sebastien.hillaire.free.fr/index.php?option=com_content&amp;view=article&amp;id=50&amp;Itemid=18" class="mainlevel-nav">Publications</a></li><li><a href="http://sebastien.hillaire.free.fr/index.php?option=com_content&amp;view=article&amp;id=48&amp;Itemid=30" class="mainlevel-nav">Demos</a></li><li><a href="http://sebastien.hillaire.free.fr/index.php?option=com_content&amp;view=article&amp;id=51&amp;Itemid=53" class="mainlevel-nav">Projects</a></li><li><a href="http://sebastien.hillaire.free.fr/index.php?option=com_content&amp;view=article&amp;id=52&amp;Itemid=54" class="mainlevel-nav">Links</a></li></ul>
+								</div>
+								</td>
+								<td class="pill_r">&nbsp;</td>
+							</tr>
+							</tbody></table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="search">
+				<form action="http://sebastien.hillaire.free.fr/index.php" method="post">
+	<div class="search">
+		<input name="searchword" id="mod_search_searchword" maxlength="20" alt="Search" class="inputbox" type="text" size="20" value="search..." onblur="if(this.value==&#39;&#39;) this.value=&#39;search...&#39;;" onfocus="if(this.value==&#39;search...&#39;) this.value=&#39;&#39;;">	</div>
+	<input type="hidden" name="task" value="search">
+	<input type="hidden" name="option" value="com_search">
+	<input type="hidden" name="Itemid" value="106">
+</form>
+			</div>
+
+			<div id="pathway">
+				
+			</div>
+
+			<div class="clr"></div>
+
+			<div id="whitebox">
+				<div id="whitebox_t">
+					<div id="whitebox_tl">
+						<div id="whitebox_tr"></div>
+					</div>
+				</div>
+
+				<div id="whitebox_m">
+					<div id="area">
+									
+
+						<div id="leftcolumn">
+															<div class="module_menu">
+			<div>
+				<div>
+					<div>
+													<h3>Menu principal</h3>
+											<ul class="menu"><li class="item1"><a href="http://sebastien.hillaire.free.fr/"><span>Home</span></a></li><li class="item55"><a href="http://sebastien.hillaire.free.fr/index.php?option=com_contact&amp;view=contact&amp;id=1&amp;Itemid=55"><span>Contact</span></a></li><li class="item75"><a href="http://sebh-blog.blogspot.com/" target="_blank"><span>Blog</span></a></li><li class="item76"><a href="http://www.twitter.com/SebHillaire" target="_blank"><span>Twitter</span></a></li></ul>					</div>
+				</div>
+			</div>
+		</div>
+	
+												</div>
+
+												<div id="maincolumn">
+													
+							<table class="nopad">
+								<tbody><tr valign="top">
+									<td>
+										<table class="contentpaneopen">
+<tbody><tr>
+		<td class="contentheading" width="100%">
+					Dynamic volumetric lighting and shadowing with temporal upsampling			</td>
+						<td align="right" width="100%" class="buttonheading">
+		<a href="http://sebastien.hillaire.free.fr/index.php?view=article&amp;catid=38%3Ademocategoryalias&amp;id=72%3Avolumetricspherelight&amp;format=pdf&amp;option=com_content&amp;Itemid=106" title="PDF" onclick="window.open(this.href,&#39;win2&#39;,&#39;status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no&#39;); return false;" rel="nofollow"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/pdf_button.png" alt="PDF"></a>		</td>
+		
+				<td align="right" width="100%" class="buttonheading">
+		<a href="http://sebastien.hillaire.free.fr/index.php?view=article&amp;catid=38%3Ademocategoryalias&amp;id=72%3Avolumetricspherelight&amp;tmpl=component&amp;print=1&amp;layout=default&amp;page=&amp;option=com_content&amp;Itemid=106" title="Print" onclick="window.open(this.href,&#39;win2&#39;,&#39;status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no&#39;); return false;" rel="nofollow"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/printButton.png" alt="Print"></a>		</td>
+		
+				<td align="right" width="100%" class="buttonheading">
+		<a href="http://sebastien.hillaire.free.fr/index.php?option=com_mailto&amp;tmpl=component&amp;link=aHR0cDovL3NlYmFzdGllbi5oaWxsYWlyZS5mcmVlLmZyL2luZGV4LnBocD9vcHRpb249Y29tX2NvbnRlbnQmdmlldz1hcnRpY2xlJmlkPTcyOnZvbHVtZXRyaWNzcGhlcmVsaWdodCZjYXRpZD0zODpkZW1vY2F0ZWdvcnlhbGlhcyZJdGVtaWQ9MTA2" title="E-mail" onclick="window.open(this.href,&#39;win2&#39;,&#39;width=400,height=350,menubar=yes,resizable=yes&#39;); return false;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/emailButton.png" alt="E-mail"></a>		</td>
+					</tr>
+</tbody></table>
+
+<table class="contentpaneopen">
+
+
+
+<tbody><tr>
+<td valign="top">
+<p>&nbsp;</p>
+<p>Being able to rendering realistic surface in real time is a very challenging area. During the last year there has been some awesome progress and result are already visilbe in latest game productions [4]. But having this alone is not good enough: you would fall in the problematic case of having a too perfect and clean rendering look that will in the end make the final result appear synthetic.</p>
+<p>That is one of the many reason to also have volumetric lighting and shadowing effects rendered, i.e. the result of light scattering when traveling in the air because of particles supsended in it, forming what is called: a participating media. I won't go into the details of how this phenomenon is happening and why as this is not the purpose of this article. If you are interested, please refer to the PBRT book [5] or this <a href="http://cs.dartmouth.edu/~wjarosz/publications/dissertation/chapter4.pdf">good online dissertation chapter.</a> Or maybe I'll writte an article with details and code if there is a great demand :)</p>
+<p>Then let's focus on this demo: <strong>rendering lighting, scattering and shadowing effect of dynamic lights in real time</strong>. Basically, the work of [3] but with more details on temporal upsampling. I will present the result for a single point light but any number of them could be accumulated. Also please note that, in this demo, I do a fullscreen pass per light for convenience when integrating the scattering light. But the light geometry could be rasterised instead, or you could even used a tiled approach.</p>
+<p><strong>NB:</strong> note that I won't give performance details as all this has been done on a MAC having an HD3000 which does not have GPU performance measure tool. I am against using FPS for performance measurment but I will use that here instead while I port the demo to a more interesting environment.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p style="text-align: center;">
+<object width="420" height="315" data="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/Zpx7eShJf_Y.html" type="application/x-shockwave-flash">
+<param name="src" value="http://www.youtube.com/v/Zpx7eShJf_Y">
+</object>
+</p>
+<p>&nbsp;</p>
+<h1><span style="color: #333333;">Background</span></h1>
+<p>In the context of real-time games, volumetric effects have often been approximated using simple directional billboard or particles. There have been a few games featuring very good volumetric effects from dynamic lights such as <a href="http://xboxfreedom.walyou.netdna-cdn.com/wp-content/uploads/2011/05/Alan-Wake.jpg" target="_blank">Alan Wake</a> using shadow maps or <a href="http://images.eurogamer.net/assets/articles//a/1/1/2/6/9/1/6/2_2.jpg.jpg" target="_blank">LBP2 </a>using a <a href="http://advances.realtimerendering.com/s2011/Evans,%20Kirczenow%20-%20Voxels%20in%20LBP2%20%28Siggraph%202011%20Advances%20in%20Real-Time%20Rendering%20Course%29.pdf" target="_blank">world space volume</a>.</p>
+<p>More recently, this effect have become more advanced. Many lights can now be rasterised [3], the volumetric look can now look more complex thanks to the use of particles insertion [1], and particles can even have scattered light applied on them to make sure they fit into the environment [1][2]. Last but not the least, high quality light shaft from the sun light can also be be achieved [1][2][3], without relying on screen space approximations.</p>
+<p>There are three possibilities to develop dynamic light scattering simulation: splatting [3], volume filling [1] or a mix of both [2]. This demo focus on splatting.</p>
+<p>&nbsp;</p>
+<h1><span style="color: #333333;">Rendering Volumetric Lighting and Shadowing</span></h1>
+<p>Here is an exemple of what we want to achieve:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/200rays" border="0" alt="images/demo_dynvollight/200rays" width="640" height="478" style="border: 0px none;"></p>
+<p style="text-align: center;">&nbsp;</p>
+<p>This scene feature a dynamic point light lighting the environement and generating light shafts due to the presence of a participating media and occluders. This high quality smooth scattering has been achieved using 200 rays to be sure no under-sampling artefacts were visible. However, this is very expenssive, especially at full resolution.</p>
+<p>There are two techniques we can use to make that faster:</p>
+<ul>
+</ul>
+<ol>
+<li>Casting less ray per pixel</li>
+<li>Rendering at half resolution for a 4x theoretical boost</li>
+</ol>
+<p>&nbsp;</p>
+<ol> </ol> 
+<ul>
+</ul>
+<h2><span style="color: #888888;"><strong>Using Noise and Bilateral Blur</strong></span></h2>
+<p>This is what happens when only 10 rays are cast per pixel:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/10rays" border="0" alt="images/demo_dynvollight/10rays" width="638" height="477" style="border: 0px none;"></p>
+<p style="text-align: center;">&nbsp;</p>
+<p>In this case, the binary shadow boundaries reveal the low frequency nature of our sampling: this is call signal under-sampling. This is more visible due to the fact that shadow are a ON/OFF effect and not a smooth transition. Even with smooth transition, a too low amount of sample will never be able to reconstruct a signal perfectly (depending on its frequency).</p>
+<p>What can be done to avoid that? We can exploite the relative coherency in screen space of the sampled signal. The goal will be to offset the rays randomly per pixel in order to produce noise. Then near by rays in screen space will have sampled different parts of the signal we want to reconstruct. A final gather pass will then be used to merge the near by result in screen space to recunstruct a higher quality signal [6]. Here is the result:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/10raysnoise.png" border="0" alt="images/demo_dynvollight/10raysnoise" width="638" height="477" style="border: 0px none;"></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: left;">Now that we have this picture with close by ray having information we want to merge. How do the merge this information? Typically, a blur would do it. It should merge nearby sampled signal. Here is the result:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/simpleblur.png" border="0" alt="images/demo_dynvollight/simpleblur" width="637" height="476" style="border: 0px none;"></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: left;">You can see that the signal is not reconstructed as you would expect at the level of object silhouettes. One of the multiple reasons for that is that rays contain information that have not been sampled in the same range of distance and thus these data and not coherent and should not be merged (different distance range ==&gt; different occlusion range ==&gt; incoherent rays that should not be merged). To solve that problem, we must use a bilateral up-sampling kernel relying on the image depth information. Great we are going to need one because we want to render at half resolution and and we will need to up sample: this win-win situation is explained in the next section.</p>
+<p style="text-align: left;">&nbsp;</p>
+<h2><span style="color: #888888;"><strong>Half Resolution Rendering and Bilateral Up-Sampling</strong></span></h2>
+<p>Rendering at half resolution requires the following steps:</p>
+<ul>
+<li>Downsample the original depth to half resolution using a min of max filter (I use max but it can leave holes so min would be better with lots of high-frequency occluders such as trees and such)</li>
+<li>Render the scattering contribution at half resolution and using half resolution depth (accumulate every lights contributions)</li>
+<li>Up sample the buffer</li>
+</ul>
+<p>Here is the result:</p>
+<ul>
+</ul>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/blitblur.png" border="0" alt="images/demo_dynvollight/blitblur" width="636" height="477" style="border: 0px none;"></p>
+<p>You can now see that the sharp objects silhouette are maintained while all noise from the picture is removed. One donwside is that sharp volumetric shadowing features are lost from the picture (such as the very strong shadow edge coming from the teapot handle).</p>
+<p>&nbsp;</p>
+<h2><span style="color: #555555;"><strong><span style="color: #888888;">Getting the noise and bilateral blur kernel right</span><br></strong></span></h2>
+<p>I have decided to go with a very specific setup to gather all coherent rays in screen space:</p>
+<ul>
+<li>A bilateral up sampling kernel using 1 center tap and 8 side taps, 4 on each side of the center pixel</li>
+<li>A bilateral filter is not separable but I am still using it in a seprable fashion: it works and it is good enough</li>
+<li>I am using uniform weights because we want to gather all the coherent rays, as many as possible. There is not justification in using a gaussian blur filter here even though it could be used. In my few experiment, quality was lower because far from the center taps were having less weight and as such less coherent rays were gathered to reconstruct the final scattered light values. this was leading to the noise pattern becoming visible (but this would be fixed with a wider blur kernel of course).</li>
+<li>Since the gather is 9 tap large, I use a 4x4 noise texture (at least twice the number of samples for a given frequency to be sure not visual pattern are visible): This is enough to gather oll the different version of coherent rays</li>
+</ul>
+<p>To quality/performance could be setup as a function of this filter kernel width. Also, you will need to play with the number of steps done for each ray.</p>
+<p>Also, in this demo I have used a simple random noise. I still have to try other types of noise such as the one presented in [3].</p>
+<p>&nbsp;</p>
+<h1><span style="color: #333333;">Up the Quality: Temporal Up-Sampling</span></h1>
+<p>So we now get very good quality light scattering from dynamic lights! But there are some corner cases to be aware of:</p>
+<ul>
+<li>Dynamic lights can generate flikering shadows when moving. This is especially noticeable when using low resolution shadow maps</li>
+<li>When sampling a signal, you need at least twice the number of samples as compared to its frequency. In our case, high frequency geometry can thus results in bad signal reconstruction due to high frequency shadow in the view ray space.</li>
+</ul>
+<p>Ths following screenshot proves that high frequency shadow map really mess up with the scattered light estimation. The left side is fine but, on the right, the high frequency tall and thin spots make it hard to evaluate the correct scattering contribution with as few as 10 samples per ray.</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/highfreqpb.png" border="0" alt="images/demo_dynvollight/highfreqpb" width="638" height="479" style="border: 0px none;"></p>
+<p style="text-align: center;">&nbsp;</p>
+<p>Even when applying the bilateral blur algorithm, you can still see artifact:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/highfreqpbblur.png" border="0" alt="images/demo_dynvollight/highfreqpbblur" width="637" height="477" style="border: 0px none;"></p>
+<p style="text-align: center;">&nbsp;</p>
+<h2><span style="color: #888888;"><strong>Temporal Up-Sampling</strong></span></h2>
+<p>On  obvious way to solve that is too up the number of samples but this will linearly scale the cost up. But a  smarter way is to use temporal up-sampling similarly to anti-aliasing  techniques (e.g. [7] or SMAA). It is quickly presented in [3] for thid  context but no details are given. One could think of using a simple blend with the previous frame but as you can see one the next screenshot, this is very ugly when the camera is moving:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/simpletempup.png" border="0" alt="images/demo_dynvollight/simpletempup" style="border: 0px none;"></p>
+<p>The corrent temporal upsampling result is visible in the following screenshot! It definitly looks smoother and the temporal stability of moving lights is also greatly increased. (see video further down)</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/temporalupsample.png" border="0" alt="images/demo_dynvollight/temporalupsample" width="637" height="478" style="border: 0px none;"></p>
+<p style="text-align: left;">&nbsp;</p>
+<ul>
+</ul>
+<h2><strong><span style="color: #555555;"><span style="color: #888888;">Temporal Acceptance Factor</span><br></span></strong></h2>
+<p>Temporal upsampling effectively works by reusing the result from the previous frame in order to accumulate even more coherent samples. You basically have to reproject and combine your current scattering estimation with the one from the previous frame. However, when the camera is moving, some re-projected values will be inccorect due to view space occluders reveiling new scene parts. this is shown in the next picture:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/tempupselect2.png" border="0" alt="images/demo_dynvollight/tempupselect2" width="638" height="478" style="border: 0px none;"></p>
+<p style="text-align: left;">&nbsp;</p>
+<p>The red areas are marked as containing invalid scattering data for the current frame (as compared to the previous frame buffer data). So in this case the previous frame data cannot be re-used: only the newly evaluated scattered light will be used. The more green it gets, the more the acceptance factor is high and in this case, results from the previous frame can be used. Here are some details on how this is evaluated:</p>
+<ul>
+<li><strong>P</strong> is current pixel position in world space ( use current clip position and depth, inverse projection matrix and inverse camera transform)</li>
+<li><strong>P</strong> is projected in the clip space of previous frame camera clip space <strong>P'</strong>.</li>
+<li>D-Previous frame depth is sample using <strong>P'</strong> and used to reconstruct the previous camera space world space position <strong>P''</strong>.</li>
+<li>Both <strong>P</strong> and <strong>P''</strong> distance are compared to compute an acceptance factor. I tried an boolean selection but I was not happy with the binary results I was getting and it was preventing smooth transition (more about this futher down). In the end I am using <strong>exp(-length(P-P'')*scale)</strong> as my acceptance value <strong>A</strong>. </li>
+<li><strong>A</strong> is thus not a boolean but it is "progressively" rejecting samples based on their world space distance. I have found that in the case of volumetric, it was giving a smoother result when moving. Maybe a personal preference in the case of volumetric light and shadow.</li>
+<li>The previous scattered light value will then be combined with the new one from 0 (red) to <strong>W</strong> (green). In my case I set the <strong>W</strong> value to be 0.2.</li>
+</ul>
+<p>This is great but if the camera stand still, the quality is never going to improve. My way of dealing with this is to randomly translate the noise pattern applied per pixel. Thus each frame will have a different noise pattern and the sample will accumulate and blend to finally form a smooth picture.</p>
+<ul>
+</ul>
+<p>More details:</p>
+<ul>
+<li>I tried to only use a linearised depth buffer data and depth comparison: this is in fact a bad choice. In this case a pixels having a constant depth is a plane in front of the camera (not a sphere). And this causes far pixel at the edges of the screen will be more rejected thant the one at the center of the screen.</li>
+<li>I have found that combining results post up-sampling blur was giving a better result. You could say this is <em>post-bilateral-up-sampling-temporal-up-sampling</em> :)</li>
+<li>Pixel on the ground plane are a big problem when far away: between frames, their depth can vary a lot for each camera movement, even small, due to rasterisation inprecision/aliasing. I have found that the continuous exponential acceptance factor was helping a lot in this case but I am cursious was else could be done (appart from msaa depth). This problem is illustrated in the next picture, far away pixels are not accepted for some camera movement because the difference in depth or reconstructed position is too large&nbsp; for the same pixel due to rasterisation imprecision (one way to solve that issue is to increase the depth/distance acceptance threshold but this could then result in too many reprojection artefact and trail behind moving objects):</li>
+</ul>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/tempupselect3.png" border="0" alt="images/demo_dynvollight/tempupselect3" width="638" height="480" style="border: 0px none;"></p>
+<p style="text-align: left;">&nbsp;</p>
+<p>Of course this temporal upsampling approach help us pushing the boundaries only until another higher frequency shadow map beats us. But at least we have a good head start now. :)</p>
+<h1><span style="color: #333333;">Number of Samples</span></h1>
+<p>A summary of how many samples are accumulated to reconstruct the scattered light contribution:</p>
+<ul>
+<li><strong>Simple scattering buffer</strong>: 10 samples per pixel</li>
+<li><strong>Bilateral upsampling</strong>: 1 center+8 side taps horizontal and vertical: 9*9*10= 810 samples per pixel at maximum</li>
+<li><strong>Temporal up sampling</strong>: for W=0.2, let's assume we accumulat only 1/0.2=5 frames (even though this is not corect as this is an exponential accumulation so it is a potentially infinite accumulation). That would top up the number of sample per pixel to 4050!</li>
+</ul>
+<p>&nbsp;</p>
+<ul>
+</ul>
+<h1><span style="color: #333333;">Conclusion</span></h1>
+<p>Even though more important details should be handled such as transparent and animated object, this shows that there is no reason to not have such effect in games choosing to go with complex visuals.</p>
+<p>&nbsp;</p>
+<h1><span style="color: #333333;">Future work</span></h1>
+<p>Here is a list of things that could be added in this demo. I did not spend time on that as it was not the point of this demo:</p>
+<ul>
+<li>Better scattering with phase function and scattering coefficient (wavelength dependent)</li>
+<li>Camera jittering</li>
+<li>Take int accout moving object using a motion buffer</li>
+<li>Same type of acceptance based on color as in [7]</li>
+<li>Better moving average using a sample count (instead of the per frame contribution factor used here)</li>
+</ul>
+<p>&nbsp;</p>
+<h1><span style="color: #333333;">Bonus</span></h1>
+<p>You can add some noise to make the participating media look complex:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/noise.png" border="0" alt="images/demo_dynvollight/noise" width="639" height="476" style="border: 0px none;"></p>
+<p style="text-align: left;">&nbsp;</p>
+<p style="text-align: left;">A visually interesting bug I had in glsl; uninitialised out value from a glsl function:</p>
+<p style="text-align: center;"><img src="./Dynamic volumetric lighting and shadowing with temporal upsampling_files/ogl bug.png" border="0" alt="images/demo_dynvollight/oglbug" width="639" height="479" style="border: 0px none;"></p>
+<p style="text-align: left;">&nbsp;</p>
+<ul>
+</ul>
+<h1><strong><span style="color: #333333;">Demo and source code</span><br></strong></h1>
+<p>Ths source code is provided as is with a xcode project compiling on MAC and running at least on an Intel HD3000. I did not spend time cleaning it so there also is all my test code inside. Tell me if you find any mistake please! Thanks.</p>
+<p>Let me know if you improve the code, I could integrate :)</p>
+<p><strong>Download now for <strong><a href="https://app.box.com/s/qecdxotg896v68oac0zj" target="_blank">MAC</a> or <a href="https://app.box.com/s/93vfy0f11bwdyefjw1st" target="_blank">PC</a></strong>.</strong></p>
+<p>Keys are:</p>
+<ul>
+<li><span style="text-decoration: underline;">qsdz or awsd</span>: move in space</li>
+<li><span style="text-decoration: underline;">up down left right arrows</span>: look</li>
+<li><span style="text-decoration: underline;">t</span>: modifies temporal up sampling: off, simple blend, temporal</li>
+<li><span style="text-decoration: underline;">n</span>: time base random per pixel offset</li>
+<li><span style="text-decoration: underline;">b</span>: modifies half resolutio up sampling: off, blur, bilateral blur</li>
+<li><span style="text-decoration: underline;">l</span>: enable/disablee moving light</li>
+<li><span style="text-decoration: underline;">+ -</span>: increase / decrease temporal accumulation</li>
+</ul>
+<p>&nbsp;</p>
+<h1><span style="color: #333333;">Contributors</span></h1>
+<p>Thanks to <span>Randall Rauwendaal (<a href="https://twitter.com/raegnar" target="_blank">@raegnar</a>, <a href="http://rauwendaal.net/" target="_blank">http://rauwendaal.net/</a>) for the Visual Studio solution.</span></p>
+<p><span><br></span></p>
+<ul>
+</ul>
+<h1><span style="color: #333333;">References</span></h1>
+<p>This is only focusing on real-time game results here:</p>
+<p>[1] Volumetric Light Effects in Killzone Shadow Fall, <a href="http://www.crcpress.com/product/isbn/9781482208634" target="_blank">GPU Pro 5</a></p>
+<p>[2] <a href="http://bartwronski.com/publications">Volumetric fog: Unified, compute shader based solution to atmospheric scattering</a>, 2014</p>
+<p>[3] <a href="http://www.slideee.com/slide/volumetric-lighting-for-many-lights-in-lords-of-the-fallen" target="_blank">Volumetric lighting in Lord of the Fallen</a>, 2014</p>
+<p>[4] SIGGRAPH 2014 Course: <a href="http://s2014.siggraph.org/attendees/courses/events/physically-based-shading-theory-and-practice" target="_blank">Physically Based Shading in Theory and Practice</a>, SIGGRAPH 2014</p>
+<p>[5] <a href="http://www.pbrt.org/" target="_blank">PBRT book</a></p>
+<p>[6] <a href="http://sirkan.iit.bme.hu/~szirmay/lightshaft_link.htm" target="_blank">Real Time Volumetric Lighting in PArticipating Media</a></p>
+<p>[7] <a href="http://advances.realtimerendering.com/s2014/index.html#_HIGH-QUALITY_TEMPORAL_SUPERSAMPLING" target="_blank">High-Quality Temporal Supersampling</a>, SIGGRAPH 2014</p>
+
+</td>
+</tr>
+
+<tr>
+	<td class="modifydate">
+		Last Updated on Saturday, 20 September 2014 09:18	</td>
+</tr>
+</tbody></table>
+<span class="article_separator">&nbsp;</span>
+
+										
+									</td>
+																	</tr>
+							</tbody></table>
+
+						</div>
+						<div class="clr"></div>
+					</div>
+					<div class="clr"></div>
+				</div>
+
+				<div id="whitebox_b">
+					<div id="whitebox_bl">
+						<div id="whitebox_br"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="footerspacer"></div>
+		</div>
+
+		<div id="footer">
+			<div id="footer_l">
+				<div id="footer_r">
+					<p id="syndicate">
+						
+					</p>
+					<p id="power_by">
+	 				 	Powered by <a href="http://www.joomla.org/">Joomla!</a>.
+						valid <a href="http://validator.w3.org/check/referer">XHTML</a> and <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23067704-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body></html>
