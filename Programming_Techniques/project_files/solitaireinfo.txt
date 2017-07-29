@@ -1,0 +1,4 @@
+I Bulgarisk Patiens är ett antal kort fördelade över ett antal högar. För varje hög, tas ett kort och kombineras till en ny hög. 
+
+Om antal kort av högarna har en triangulär uppsättning så innebär det att patiensen har gått ut. T.ex. 1,2,3,4,5,6.
+Om högarna inte kommer fram till en triangulär uppsättning så kommer patiensen att gå in i en cykel och kommer inte att gå ut, därför kommer det att avbrytas.

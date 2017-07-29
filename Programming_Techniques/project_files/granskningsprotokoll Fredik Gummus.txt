@@ -1,0 +1,58 @@
+﻿Granskares namn: Fredrik Gummus
+Namn på den granskade: Özgun Mirtchev
+Granskad uppgift: Bulgarisk Patiens
+
+Användarvänlighet
+
+✓ Informativa utskrifter / lättbegripligt grafiskt gränssnitt 
+#Programmet är enkelt att förstå och har förklarande utskrifter. Programmet skriver dock inte ut vad en "Bulgarisk Patiens" är eller hur en sådan fungerar.
+
+✓ Enkel inmatning 
+#Programmet har enkel inmatning samt kontrollerar input och det verkar inte gå att skriva fel.
+
+Programmerarvänlighet
+
+½ Vettiga namn 
+#Variabelnamnen är oftast vettiga men det förekommer några generella/sämre namn. T.ex. så döps patients-klassen till "user_class", vilket inte säger så mycket om dess klass. Anrop som "user_class.user_patiens(user_heaps)" blir därför väldigt otydliga och säger inte så mycket om man inte ser hur variablen deklarerades. Jämför med anropet "patiens.user_patiens(user_heaps)", där man tydligare ser vad som görs.
+
+Andra tvivelaktiga namn:
+* "random_class", samma anledning som "user_class".
+* "var" används ett antal gånger för att spara användarens input. Borde vara något mindre generellt, t.ex. "heap_input"
+* "j" (rad 207), borde ha något tydligare namn (t.ex. iteration).
+
+X Kommentarer 
+#Vissa funktioner saknar kommentar helt. Många funktioner saknar kommentarer om in/output. Funktionen "user_patiens" gör mycket mer än det som beskrivs i dess kommentar.
+✓ Konsekvent språk 
+#Engelska används för namngivning och svenska för kommentarer. Enbart klassen "BulgariskPatiens" som har svensk namngivning (förstår dock varför).
+
+½ Konsekvent typografi 
+#Alla variabler och funktioner består av gemener och understreck. Användandet av parenteser är däremot inte konsekvent. Vissa if-satser använder parenteser och andra använder det inte.
+
+✓ Felhantering 
+#Programmet kontrollerar input och det verkar inte gå att skriva fel.
+
+Strukturering
+
+½ Lämplig uppdelning i funktioner 
+#Programmet är till stor del uppdelat i lämpliga funktioner men vissa funktioner skulle kunnat delas upp ytterligare. T.ex. funktionen "program_navigation" gör rätt mycket och hade kunnat delat upp i fler funktioner, t.ex. en funktion per val.
+✓ Lämplig uppdelning i klasser (ej obligatoriskt) #Programmet består av en klass som innehåller allt relevant till patiens.
+
+½ Temporära variabler så lokalt som möjligt #Programmet använder temporära variabler. Programmet deklarerar däremot några variabler långt före de används, t.ex. "finished_patiens" (rad 136) och "i" (rad 170, kan deklareras närmare while-loopen).
+
+½ Återanvändbara funktioner/klasser 
+#Det finns två olika funktioner för att kontrollera input men som ändå är relativt lika - läsa input och försöka göra input till en integer. Man hade kanske kunnat göra om detta för att återanvända "check_input" och slippa kodupprepning.
+
+½ In- och utdata till funktioner 
+#In/utdata används ofta. Vissa funktioner har dock tvivelaktiga parameter, t.ex. parameter till konstruktorn används inte och parametern "i" i funktionen "check_heapcards_input" säger inte så mycket - borde kanske ha ett annat namn? Parametern "print_out" används även som en integer med värde 0/1, hade det inte varit bättre om den var boolean? Ingen skillnad funktionsmässigt men det ser bättre ut då. Anropet "self.start_iteration(1)" blir därför lite otydlig och man måste läsa funktionens parameter för att förstå vad den skickade ettan gör. Anropet hade istället kunnat se ut som "self.start_iteration(print_out = True)", vilket ser bättre och tydligare ut.
+
+? Flexibelt/utbyggbart program 
+#Jag har lite problem med att besvara denna fråga. Men hade programmet fungerat om man t.ex. ändrat någon regel? Hur hade det blivit om det inte var en "vanlig" kortlek som det står i uppgiftsbeskrivningen? Men jag anser att programmet verkar någorlunda flexibelt.
+
+½ Ingen kodupprepning #Det sker en del mindre kodupprepning i koden. Rad 224, där man anropar self.start_iteration, hade kunnat vara utanför if-satsen istället för att anropa den två gånger. Alltså genom att anropa den som "rand_count += self.start_iteration(print_mode)". Kodupprepning vid "check_input" (se ovan för förklaring). Funktionerna "user_patiens" och "random_patiens" påminner en del om varandra. Båda funktionerna består av en count-variabel (i/j),  en while-loop, anrop av "start_iteration" och avslutas med att anropa "return_to_menu". 
+
+X Ingen hårdkodning #Det sker en del hårdkodning i programmet. Talen 2 och 52 förekommer på flera ställen i programmet och bör använda en konstant istället.
+
+
+Följande punkt är nödvändig (måste alltid åtgärdas)
+
+✓ Uppfyller kraven i lydelsen #Programmet uppfyller uppgiftsbeskrivningen inklusive extrauppgift C och B.

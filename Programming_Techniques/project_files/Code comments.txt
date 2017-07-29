@@ -1,0 +1,48 @@
+Kommentarer Prototyp
+
+# Titel: Bulgarisk Patiens
+# Författare: Özgun Mirtchev
+# Datum: 2015-07-23
+# Uppdaterad: 2015-07-29
+#
+# 23/7: <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# Detta program låter användaren mata in egna högar för ett spel i Bulgarisk
+# patiens. Programmet beräknar hur många iterationer det tar för patiensen att
+# gå ut, om iterationer överstiger max antal iterationer för högen
+# eller om det kommer in i en cykel, avbryts det och användaren återvänder till
+# huvudmenyn
+#
+# Det ska finnas ett fel-meddelande för varje fel-inmatning användaren gör.
+# Just nu finns möjlighet för användaren att skriva in en hög med storlek av
+# hela kortleket (52), och det tyckte inte jag att lägga in en koll för var värt
+# (Varför spela patiens om man inte tänker göra det seriöst?)
+# Och därför lade jag ist in en rekommendation på hur stor varje hög bör vara.
+#
+# Uppdatering 29/7: <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# I en tidigare version var funktionerna för långa, för många rader, och därför
+# utfördes flera utbyten av kodrader mot funktions-anrop istället.
+# Tex så anropas funktionen check_input nu, istället för att kontrollera
+# inmatning via loopar. Detta gör så att beräknings-funktionerna är
+# någorlunda städade men har fortfarande samma funktion som tidigare.
+#
+# En funktion för navigering till korrekt funktionsanrop infördes också för
+# att avlasta själva main-funktionen. Nu kan man tydligt se vilka val som leder
+# till vilka funktioner.
+#
+# Uppdatering 31/7: <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# iterations-funktionen hade tidigare två olika versioner, en för ren beräkning
+# och en för beräkning och utskrift. Dessa två funktioner har nu kombinerats
+# ihop eftersom att det bröt alldeles för mycket mot DRY och jag kunde inte
+# låta det vara på det sättet. Även om funktionen är för lång (över 15 rader)
+# så tycker jag att det är bättre att det är så istället för att samma identiska
+# kod förekommer igen i en annan funktion.
+#
+# Uppdatering 3/8: <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+# check-funktionen har delats upp.
+# Alla variabler har bytt namn så att det passar namnkonventionen för Python...
+# iterations-funktionen har genomgått en smärre förändring. Den huvudsakliga
+# funktionen har gjorts om till en metod inom klassen BulgariskPatiens.
+# Ännu en funktion lades till, start_iteration, genomför iterationen och
+# skriver ut beroende på vilka värden som har returnerats.
+# De flesta funktioner som hade object som argument har nu flyttats in till
+# klassen.

@@ -1,0 +1,77 @@
+Granskares namn: Özgun Mirtchev
+Namn på den granskade: Fredrik Gummus
+Granskad uppgift: Horoskop
+
+
+--Användarvänlighet--
+
+O Informativa utskrifter / lättbegripligt grafiskt gränssnitt---------------
+Skriver tydligt ut vad programmet gör, samt hur man ska skriva in sitt födelsedatum. 
+
+O Enkel inmatning---------------
+Man skriver in hela sitt födelsedatum på en gång istället för att skriva in år, månad, dag var för sig. Vilket är väldigt bra. Försökt alla möjliga inputs men programmet lyckas fånga fel och återge felmeddelande. 
+
+
+--Programmerarvänlighet--
+
+O Vettiga namn---------------
+Väldigt bra namngivna funktioner och variabler. Man förstår precis funktioner och variabler gör utan att behöva läsa kommentarer.
+
+O Kommentarer---------------
+Bra kommenterat genom hela koden, möjlighet till att kunna kolla sin egen index genom DEBUG-kommentaren.
+
+O Konsekvent språk---------------
+Variabler/funktions-namn skrivna på engelska och kommenterat på svenska.
+
+O Konsekvent typografi---------------
+Alla variabler har skrivits enligt den (tydligen) traditionella typografin för Python:
+Class_one; function_two(); variable_three().
+
+O Felhantering---------------
+Alla felhanteringar sker med try::except i den första funktionen, som är den enda funktionen som tar emot inmatning. Ser mycket tydligt ut och man förstår vilket sorts fel som har uppstått.
+Enda felhanteringen som inte ger korrekt meddelande är den som kollar om datumet ligger i framtiden. Istället för "Födelsedatumet kan inte inträffa före dagens datum!" (line 64) så skrivs "Ange ett korrekt datum!" ut. Kanske värt att se över det om korrekt meddelande ska fram.
+Testade datum:  2016-04-15
+		2150-06-24
+		9654-12-02
+		3333-12-13
+
+----------------------------------
+En kommentar angående kod-skrivningen, som jag redan har sagt till personen som jag granskar. Kodraderna som skrivs är i några fall väldigt långa och man måste förstora fönstret för att kunna se resten av koden. En tum-regel som jag har lärt mig är att kod-raderna inte ska vara mer än 80 rader långa för att förbättra läsbarheten för andra.
+
+Och ännu en kommentar, men är förmodligen helt obsolet, angående användandet av quit(). När funktionen anropas får jag en popup som frågar om jag vill "kill" programmet. Jag vet att det finns blandade åsikter kring användet av sys-bibilioteket, men om man använder sys.exit() istället för quit() så stängs programmet av utan en kill-prompt. 
+---------------------------------
+
+--Strukturering--
+
+O Lämplig uppdelning i funktioner---------------
+Alla funktioner utför bara en sak och är tydligt uppdelade. Det kanske inte är en stor sak men det skulle det vara enklare att läsa om funktionerna som anropas redan har redovisats tidigare. Som tex calculate_and_display() i Horoskop, placers längst ned, istället för högst upp, då man har gått igenom alla funktioner som används.
+
+O Lämplig uppdelning i klasser (ej obligatoriskt)---------------
+Det finns många klasser med tydliga namngivningar som är uppdelade till att ta hand om varje specifik del, med metoder som utför förändringar enbart för den klassen. 
+
+O Temporära variabler så lokalt som möjligt---------------
+Det fanns inte så många temporära variabler förutom done, birth_date och filename och kanske en till men alla variablerna är lokala. 
+
+O Återanvändbara funktioner/klasser---------------
+Eftersom många av funktionerna och klasserna är uppdelade på ett väldigt effektivt sätt skulle många kunna återanvändas. Så länge man inte tänker ändra på inmatnings-formatet, eftersom en hel klass är byggd på det.
+
+O In- och utdata till funktioner---------------
+In- och utdata används där det behövs men en del funktioner returnerar värden utan att ha parametrar, och vice versa. Som t.ex. line 89-96.
+
+O Flexibelt/utbyggbart program---------------
+Programmet är flexibelt, då det är lätt att lägga till en fil med egna egenskaper i. Man behöver bara lägga till filens namn i en färdig lista i Horoskop-klassen. Dessvärre är det krångligare om man vill lägga till en specifik åldersgrupp, eftersom man måste lägga till flera rader kod för att programmet ska räkna ut korrekt index. Men det är nog inte ofta man gör det...
+
+O Ingen kodupprepning---------------
+Kodupprepning är minimal eller förekommer inte alls.
+Metoden check_if_date_has_occured (line 59), har en if-sats där upprepning av varibel-beräkning förekommer. Kanske vore det bättre att lägga in 'current_date.year - self.date.year' i sin egen variabel så att man slipper ändra de andra ifall en förändring skulle behövas?
+
+O Ingen hårdkodning---------------
+Förekommer lite i create_prophecy (line 191) men kan förbises eftersom det handlar om filnamn.
+Kanske vore det bättre att lägga in filnamnet i en variabel i klassen, så att man slipper ändra namnet tre gånger om man räknar in attributen prophecy_properties också. Jag är osäker på om det är en bra lösning eller inte eftersom jag inte har programmerat inom OO-programmering så mycket ännu.
+
+
+
+Följande punkt är nödvändig (måste alltid åtgärdas)
+
+O Uppfyller kraven i lydelsen
+	Programmet utför uppgiftens beskrivning och uppfyller även extrauppgifterna C och B.
