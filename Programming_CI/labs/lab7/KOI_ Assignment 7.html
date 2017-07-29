@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0073)http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-7/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>KOI: Assignment 7</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000">
+
+<h1><a href="http://basen.oru.se/kurser/koi/2016-2017-p1/index.html">KOI</a>: Assignment 7</h1>
+
+In this assignment you will generate a target program
+for a simple virtual machine.
+You will also write a simple optimizer that transforms a syntax tree.
+
+<p>
+
+Doing this assignment (and the previous ones) will give the grade 4 on the project part of the course.
+
+
+
+</p><h2>Part A: Generating and executing stack machine code</h2>
+
+Take the syntax trees from
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-5/index.html">lab 5</a>,
+those that you have already executed in
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-6/index.html">lab 6</a>,
+and translate them into stack-machine code.
+
+<p>
+
+The <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/forelasningar/fo-09/index.html">lecture notes</a>
+from lecture 9
+(or at least, the <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/old-lectures/lecture-09/lecture-09.html">old lecture 9</a>)
+contain some hints about how to generate code for a stack machine.
+
+</p><p>
+
+Use the class <b>StackMachine</b>
+(source code available
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-7/StackMachine/files.html">here</a>)
+to manage and execute the target program.
+Study the program <b>stacktest.cpp</b>
+(source code available in the same place)
+to see how instructions can be added to the
+stack machine's program, and how to run it.
+
+</p><p>
+
+<i>An addition from 2012:</i>
+New, experimental version of <b>StackMachine</b>:
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-7/StackMachine-2012/files.html">StackMachine-2012/files.html</a>.
+Contains some additional instrructions (read, write etcetera).
+
+
+
+</p><h2>Part B: Optimization</h2>
+
+It is more common for real compilers to perform optimization
+on three-address code, or so-called peep-hole optimization on the generated machine code,
+but it is also possible to optimize a tree representation of a program.
+
+<p>
+
+Write an optimizer that simplifies a syntax tree by
+
+</p><ol>
+<li>Removing useless calculations.
+    Examples: Replace <b>x + 0</b> with <b>x</b>, and <b>x * 1</b> with <b>x</b>.
+    You don't have to identify <i>all</i> useless calculations,
+    but your optimizer should handle at least some cases.
+</li><li>Pre-calculate constant expressions.
+    Examples: Replace <b>2 + 3</b> with <b>5</b>.
+    Again, you don't have to identify <i>all</i> constant expressions,
+    but your optimizer should handle at least some cases.
+</li><li>Pre-evaluate <b>if</b> statements with constant conditions.
+    Example: Replace <b>if (2 &gt; 3) a = 1; else a = 2;</b> with <b>a = 2;</b>.
+</li></ol>
+
+Hint: Traverse the syntax tree, and build a new tree at the same time.
+The default case for a node is to build a new, exactly similar node,
+but in some cases you can simplify the new tree.
+
+<p>
+
+You may assume that there is a garbage collector,
+so you don't have to bother with deleting unused tree nodes.
+
+</p><p>
+
+Insert the optimizer at the proper place in your compiler.
+
+
+
+</p><h2>Report!</h2>
+
+Doing this assignment (and the previous ones) will give the grade 4 on the project part of the course.
+
+<p>
+
+Show your results and discuss them with the teacher,
+<br>
+<i>or</i>,
+<br>
+send an
+<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=KOI%20lab%207">e-mail</a>:
+</p><ul>
+<li> 
+The e-mail should contain clear and full explanations of what you have done.
+</li><li>
+Include well-chosen and commented test runs with input and output.
+</li><li>
+Send your e-mail in plain text format,
+not as HTML or Word documents
+or with unnecessary attachments.
+</li><li>
+Include relevant source code, with any changes clearly marked.
+</li><li>
+Except for this report, you should <i>also</i> send all
+the source code that is required to compile the final version of the program,
+as a Zip file or equivalent.
+</li></ul>
+
+<p>
+
+</p><hr>
+
+<font size="-1">
+<a href="http://www.aass.oru.se/~tpy/">Thomas Padron-McCarthy</a>
+(<a href="mailto:thomas.padron-mccarthy@oru.se?subject=Kursen%20Kompilatorer%20och%20interpretatorer">thomas.padron-mccarthy@oru.se</a>)
+October 25, 2012
+</font>
+
+
+
+</body></html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0073)http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/index.html -->
+<html lang="en" class="gr__basen_oru_se"><style type="text/css" id="night-mode-pro-style"></style><link type="text/css" rel="stylesheet" id="night-mode-pro-link"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>KOI: Lab Exercise 3</title>
+<script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head>
+
+<body bgcolor="#ffffff" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000" data-gr-c-s-loaded="true">
+
+<h1><a href="http://basen.oru.se/kurser/koi/2016-2017-p1/index.html">KOI</a>: Lab Exercise 3</h1>
+
+<!--
+<font color="red" size="+3"><b>
+Hallå! Det här är inte översatt till Linux än! Tro inte på allt som står här!
+</b></font>
+-->
+
+<p>
+
+Creating a parser with Yacc.
+(Or actually with Bison, which is the version of Yacc that we will be using.
+Yacc and Bison are very similar, but there are some differences.)
+
+</p><p>
+
+Resources:
+
+</p><ul>
+
+<li>
+<i>Thomas Niemann:</i>
+<a href="http://www.epaperpress.com/lexandyacc/">A Compact Guide to Lex &amp; Yacc</a>
+is a good introduction to Yacc.
+
+</li><li>
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/forelasningar/fo-05/index.html">Lecture 5</a>
+in this course is about Yacc.
+
+<!--
+<li>
+How to use Flex and Bison with Visual Studio 2005 and 2008:
+<a href="http://blogs.msdn.com/devdev/archive/2005/09/13/465034.aspx">Custom building and code generators in Visual Studio 2005</a>
+-->
+
+</li><li>
+<a href="http://gnuwin32.sourceforge.net/packages/bison.htm">Bison for Windows</a>
+
+</li><li>
+<a href="http://gnuwin32.sourceforge.net/packages/flex.htm">Flex for Windows</a>
+
+</li></ul>
+
+
+
+<h2>Yacc and Bison</h2>
+
+The original version of Yacc created a C file called <b>y.tab.c</b>,
+with compilable C code,
+and a header file called <b>y.tab.h</b>, with definitions of token codes.
+With Bison,
+you need to use the command-line argument "-d" to get a ".h" file.
+Also, Bison doesn't use the fixed names <b>y.tab.c</b> and <b>y.tab.h</b>,
+but instead uses the same base name as that of the input file,
+with <b>.tab.c</b> and <b>.tab.h</b> appended.
+For example, let's say we are building a parser
+for a language called  DumScript. The command
+
+<blockquote>
+<pre>bison -d dumscript.y
+</pre>
+</blockquote>
+
+will create the files <b>dumscript.tab.c</b> and <b>dumscript.tab.h</b>.
+
+<p>
+
+Yacc is very often used together with a scanner generator called <b>Lex</b>,
+and Bison is very often used together with a scanner generator called <b>Flex</b>.
+Flex is very similar to Lex.
+(Note that there are several other computer-related things that are called Flex,
+which have nothing to do with the scanner generator Flex.)
+
+
+
+</p><h2>Bison and Flex in various environments</h2>
+
+Some Unix and Unix-like systems, such as various Linux distributions, come with these tools already installed.
+On Ubuntu 14.04, you need to install them, which can be done with the command <b>sudo apt-get install bison flex</b>.
+You can then run them using the commands <b>bison</b> and <b>flex</b> in a command shell.
+
+
+<p>
+
+On Windows, you have to download and install them separately,
+and it may be a bit difficult to get them to work well with Visual Studio.
+There are some Windows-specific instructions in
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/windows-labbar/index.html">the old Windows version of these assignments</a>.
+
+</p><p>
+
+Bison should generate the C files
+<b><i>something</i>.tab.c</b> and <b><i>something</i>.tab.h</b>,
+and Flex should generate the C file
+<b>lex.yy.c</b>.
+
+</p><p>
+
+You must re-run Bison and Flex whenever you have made changes to their input files,
+so they generate new C source and header files.
+
+</p><p>
+
+To build a project that contains Bison or Flex specifications,
+you can run the commands by hand,
+and then compile and link the C files,
+but you should automate this process as much as you can.
+A simple script ("batch file") may be enough, but more advanced methods are available.
+On Unix-like systems such as Linux you can use <b>make</b> to automate the build process.
+(See below.)
+
+
+
+</p><h2>Part A: Bison and Flex</h2>
+
+Try out a simple example, which implements a calculator that understands
+simple expressions.
+Download the parser specification
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/example/example.y">example.y</a>
+and the scanner specification
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/example/example.l">example.l</a>,
+or both (and a 
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/example/Makefile">Makefile</a>)
+in
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/example.zip">example.zip</a>.
+
+<p>
+
+Unpack, study the files, make a project, compile, and run it.
+(You can either just type <b>make</b> to build the program,
+using the provided
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/example/Makefile">Makefile</a>,
+or look in that file for commands to give.
+
+</p><p>
+
+</p><ul>
+<li>Study the <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/example/Makefile">Makefile</a>,
+    Which commands used to build <b>example</b> are written explicitly in the file?
+    Are there some commands that <b>make</b> will deduce by itself?
+</li><li>Which types of expressions does the calculator understand?
+</li><li>One common operator is missing. Which one?
+</li><li>Add the missing operator!
+</li></ul>
+
+
+
+<h2>Part B: The calculator</h2>
+
+Replace your hand-coded parser 
+in the <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/asu-86/29/files.html">2.9 program</a>
+from <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-2/index.html">lab exercise 2</a>
+with a Yacc-generated parser.
+The program should still generate postfix output and calculate the result.
+
+<p>
+
+With a hand-coded parser, it was difficult to handle both assignments and expressions.
+Let your Yacc grammar handle both, and see how easy it is!
+
+</p><p>
+
+Some more things to do:
+
+</p><ul>
+<li>
+You can declare <b>yyerror</b> in the "definitions" part of
+the Yacc input file: <b>extern void yyerror(char*);</b>
+
+</li><li>
+We must also define <b>yyerror</b> somewhere in the program,
+and a good place to do that is in the "subroutines" part of the Yacc input file.
+
+</li><li>
+Yacc expects the scanner to be called <b>yylex</b>,
+since this is the name of the function generated by Lex and Flex.
+Define such a function (again, in the "subroutines" part of the Yacc input file),
+and let it call the old scanner function, <b>lexan</b>.
+
+</li><li>
+The parser function generated by Yacc will be called <b>yyparse</b>,
+but the program in which we will plug it in
+expects the parser function to be called <b>parse</b>.
+One way to handle this is to define a <b>parse</b> function,
+which just calls <b>yyparse</b>.
+
+</li><li>
+Yacc generates its own token codes for <b>ID</b>, <b>NUM</b> etc.
+Obviously, the scanner must use the same token codes, and not the
+(different) ones that we used before.
+Therefore you should change the header file <b>global.h</b>,
+and replace the old definitions of token codes
+with an <b>#include</b> of the Yacc-generated header file <b><i>something</i>.tab.h</b>.
+</li></ul>
+
+There is a sample Yacc input file that (sort of) works with the 2.9 program
+in the lecture notes for
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/forelasningar/fo-05/index.html#yacc-example">lecture 5</a>.
+
+
+
+<h2>Part C: More operators</h2>
+
+Implement the following operators from C and C++, in the grammar,
+in the postfix translator, and in the calculator:
+
+<ul>
+<li><b>%</b> (a synonym for <b>mod</b>)
+</li><li><b>&amp;</b> (bitwise and)
+</li><li><b>|</b> (bitwise or)
+</li><li><b>&lt;</b>
+</li><li><b>&gt;</b>
+</li><li><b>?:</b> (as in <i>expr1</i> <b>?</b> <i>expr2</i> <b>:</b> <i>expr3</i>)
+</li></ul>
+
+Multi-character operators, such as <b>==</b> and <b>++</b>,
+would require changing the scanner, so for now we wait with those.
+
+<p>
+
+In C and in C++, the <b>?:</b> operator only evaluates one of the expressions
+<i>expr2</i> and <i>expr3</i>.
+If you want, you can instead let your operator evaluate both <i>expr2</i> and <i>expr3</i>.
+
+
+
+</p><h2>Part D: Yacc and C++</h2>
+
+Make a copy of your entire project, and then compile this copy program, including the Yacc-generated parser,
+as C++ instead of C.
+
+<p>
+
+The original Yacc was designed to accept C code in the semantic actions,
+but later versions, such as Bison, also allows C++.
+If the input file ends with <b>.ypp</b> instead of <b>.y</b>,
+Bison will
+automatically give its output file a C++ extension.
+For example, if you call the input file <b>language.ypp</b>,
+the command <b>bison -d language.ypp</b>
+will generate the output files
+<b>language.tab.cpp</b> and <b>language.tab.hpp</b>.
+
+</p><p>
+
+C++ is more picky with declarations than C is,
+so you may have to add some declarations
+in the definitions part of the Yacc input file.
+Something like this might work:
+
+</p><p>
+
+</p><blockquote>
+<pre>%{
+  #include &lt;stdlib.h&gt;
+  #include "global.h"
+  extern int tokenval;
+  extern void yyerror(char*);
+  extern int yylex();
+%}
+</pre>
+</blockquote>
+
+<p>
+
+To avoid linking problems when mixing C and C++ source files,
+change all other C files that your program uses
+(<b>main.c</b>, <b>lexer.c</b> etc)
+to have C++ extensions (<b>main.cpp</b>, <b>lexer.cpp</b> etc).
+
+</p><p>
+
+(And yes, C and C++ are two different languages.
+You have to be a bit careful if you mix them in the same project.)
+
+
+
+</p><h2>Report</h2>
+
+Show your results and discuss them with the teacher,
+<br>
+<i>or</i>,
+<br>
+send an
+<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=KOI%20lab%202">e-mail</a>
+with clear and full explanations of what you have done.
+(Send your e-mail in plain text format, not as HTML or Word documents.
+Do not use attachments.)
+Include the source code, with your changes clearly marked.
+
+<p>
+
+Even if you don't send a report by e-mail,
+we advise that you write down your answers,
+to facilitate communication and for your own later use.
+
+</p><p>
+
+</p><hr>
+
+<font size="-1">
+<a href="http://www.aass.oru.se/~tpy/">Thomas Padron-McCarthy</a>
+(<a href="mailto:thomas.padron-mccarthy@oru.se?subject=Kursen%20Kompilatorer%20och%20interpretatorer">thomas.padron-mccarthy@oru.se</a>)
+September 15, 2014
+</font>
+
+
+
+</body></html>

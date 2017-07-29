@@ -1,0 +1,60 @@
+start -> list eof
+list -> assignment ; list
+       | empty
+assignment -> { print(id.lexeme) id expr
+expr -> term moreterms
+
+moreterms -> 
+	+ term { print('+') } moreterms
+       | - term { print('-') } moreterms
+       | empty
+term -> factor morefactors
+
+morefactors -> 
+	* factor { print('*') } morefactors
+       | / factor { print('/') } morefactors
+       | div factor { print('DIV') } morefactors
+       | mod factor { print('MOD') } morefactors
+       | empty
+factor -> 
+	( expr )
+       | id { print(id.lexeme) }
+       | num { print(num.value) }
+       | = expr { print('=') }
+		   
+	   
+	   
+a=a*7;	(list eof)
+	(assignment ; empty eof)
+	(id = expr ; empty eof)
+	(id = term moreterms ; empty eof)
+	(id = factor morefactors moreterms ; empty eof)
+	(id = id morefactors moreterms ; empty eof)
+	(id = id * factor morefactors moreterms ; empty eof)
+	(id = id * num morefactors moreterms ; empty eof)
+	(id = id * num empty moreterms ; empty eof)
+	(id = id * num empty empty ; empty eof)
+	
+	
+a=a+b;  (list eof)
+	(assignment ; empty eof)
+	(id = expr ; empty eof)
+	(id = term moreterms ; empty eof)
+	(id = factor morefactors moreterms ; empty eof)
+	(id = id morefactors moreterms ; empty eof)
+	(id = id empty moreterms ; empty eof)
+	(id = id empty + term moreterms ; empty eof)
+	(id = id empty + factor morefactors moreterms ; empty eof)
+	(id = id empty + id morefactors moreterms ; empty eof)
+	(id = id empty + id empty moreterms ; empty eof)
+	(id = id empty + id empty empty ; empty eof)
+	
+
+a=7;	(list eof)
+	(assignment ; empty eof)
+	(id = expr ; empty eof)
+	(id = term moreterms ; empty eof)
+	(id = factor morefactors moreterms ; empty eof)
+	(id = num morefactors moreterms ; empty eof)
+	(id = num empty empty ; empty eof)
+	

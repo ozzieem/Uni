@@ -1,0 +1,730 @@
+State 0 conflicts: 1 shift/reduce
+State 16 conflicts: 1 shift/reduce
+State 17 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: start $end
+
+    1 start: list DONE
+
+    2 list: expr ';' list
+    3     | assignment ';' list
+    4     | %empty
+
+    5 $@1: %empty
+
+    6 assignment: ID $@1 '=' expr
+
+    7 expr: term moreterms
+
+    8 $@2: %empty
+
+    9 moreterms: '+' term $@2 moreterms
+
+   10 $@3: %empty
+
+   11 moreterms: '-' term $@3 moreterms
+   12          | %empty
+
+   13 term: factor morefactors
+
+   14 $@4: %empty
+
+   15 morefactors: '*' factor $@4 morefactors
+
+   16 $@5: %empty
+
+   17 morefactors: '/' factor $@5 morefactors
+
+   18 $@6: %empty
+
+   19 morefactors: DIV factor $@6 morefactors
+
+   20 $@7: %empty
+
+   21 morefactors: MOD factor $@7 morefactors
+   22            | %empty
+
+   23 factor: exponent moreexponents
+
+   24 $@8: %empty
+
+   25 moreexponents: '^' exponent $@8 moreexponents
+   26              | %empty
+
+   27 exponent: '(' expr ')'
+
+   28 $@9: %empty
+
+   29 exponent: $@9 NUM
+
+   30 $@10: %empty
+
+   31 exponent: $@10 ID
+   32         | %empty
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+'(' (40) 27
+')' (41) 27
+'*' (42) 15
+'+' (43) 9
+'-' (45) 11
+'/' (47) 17
+';' (59) 2 3
+'=' (61) 6
+'^' (94) 25
+error (256)
+DONE (258) 1
+ID (259) 6 31
+NUM (260) 29
+DIV (261) 19
+MOD (262) 21
+
+
+Nonterminals, with rules where they appear
+
+$accept (17)
+    on left: 0
+start (18)
+    on left: 1, on right: 0
+list (19)
+    on left: 2 3 4, on right: 1 2 3
+assignment (20)
+    on left: 6, on right: 3
+$@1 (21)
+    on left: 5, on right: 6
+expr (22)
+    on left: 7, on right: 2 6 27
+moreterms (23)
+    on left: 9 11 12, on right: 7 9 11
+$@2 (24)
+    on left: 8, on right: 9
+$@3 (25)
+    on left: 10, on right: 11
+term (26)
+    on left: 13, on right: 7 9 11
+morefactors (27)
+    on left: 15 17 19 21 22, on right: 13 15 17 19 21
+$@4 (28)
+    on left: 14, on right: 15
+$@5 (29)
+    on left: 16, on right: 17
+$@6 (30)
+    on left: 18, on right: 19
+$@7 (31)
+    on left: 20, on right: 21
+factor (32)
+    on left: 23, on right: 13 15 17 19 21
+moreexponents (33)
+    on left: 25 26, on right: 23 25
+$@8 (34)
+    on left: 24, on right: 25
+exponent (35)
+    on left: 27 29 31 32, on right: 23 25
+$@9 (36)
+    on left: 28, on right: 29
+$@10 (37)
+    on left: 30, on right: 31
+
+
+State 0
+
+    0 $accept: . start $end
+
+    ID   shift, and go to state 1
+    '('  shift, and go to state 2
+
+    DONE      reduce using rule 4 (list)
+    ID        [reduce using rule 30 ($@10)]
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    start       go to state 3
+    list        go to state 4
+    assignment  go to state 5
+    expr        go to state 6
+    term        go to state 7
+    factor      go to state 8
+    exponent    go to state 9
+    $@9         go to state 10
+    $@10        go to state 11
+
+
+State 1
+
+    6 assignment: ID . $@1 '=' expr
+
+    $default  reduce using rule 5 ($@1)
+
+    $@1  go to state 12
+
+
+State 2
+
+   27 exponent: '(' . expr ')'
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    expr      go to state 13
+    term      go to state 7
+    factor    go to state 8
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 3
+
+    0 $accept: start . $end
+
+    $end  shift, and go to state 14
+
+
+State 4
+
+    1 start: list . DONE
+
+    DONE  shift, and go to state 15
+
+
+State 5
+
+    3 list: assignment . ';' list
+
+    ';'  shift, and go to state 16
+
+
+State 6
+
+    2 list: expr . ';' list
+
+    ';'  shift, and go to state 17
+
+
+State 7
+
+    7 expr: term . moreterms
+
+    '+'  shift, and go to state 18
+    '-'  shift, and go to state 19
+
+    $default  reduce using rule 12 (moreterms)
+
+    moreterms  go to state 20
+
+
+State 8
+
+   13 term: factor . morefactors
+
+    DIV  shift, and go to state 21
+    MOD  shift, and go to state 22
+    '*'  shift, and go to state 23
+    '/'  shift, and go to state 24
+
+    $default  reduce using rule 22 (morefactors)
+
+    morefactors  go to state 25
+
+
+State 9
+
+   23 factor: exponent . moreexponents
+
+    '^'  shift, and go to state 26
+
+    $default  reduce using rule 26 (moreexponents)
+
+    moreexponents  go to state 27
+
+
+State 10
+
+   29 exponent: $@9 . NUM
+
+    NUM  shift, and go to state 28
+
+
+State 11
+
+   31 exponent: $@10 . ID
+
+    ID  shift, and go to state 29
+
+
+State 12
+
+    6 assignment: ID $@1 . '=' expr
+
+    '='  shift, and go to state 30
+
+
+State 13
+
+   27 exponent: '(' expr . ')'
+
+    ')'  shift, and go to state 31
+
+
+State 14
+
+    0 $accept: start $end .
+
+    $default  accept
+
+
+State 15
+
+    1 start: list DONE .
+
+    $default  reduce using rule 1 (start)
+
+
+State 16
+
+    3 list: assignment ';' . list
+
+    ID   shift, and go to state 1
+    '('  shift, and go to state 2
+
+    DONE      reduce using rule 4 (list)
+    ID        [reduce using rule 30 ($@10)]
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    list        go to state 32
+    assignment  go to state 5
+    expr        go to state 6
+    term        go to state 7
+    factor      go to state 8
+    exponent    go to state 9
+    $@9         go to state 10
+    $@10        go to state 11
+
+
+State 17
+
+    2 list: expr ';' . list
+
+    ID   shift, and go to state 1
+    '('  shift, and go to state 2
+
+    DONE      reduce using rule 4 (list)
+    ID        [reduce using rule 30 ($@10)]
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    list        go to state 33
+    assignment  go to state 5
+    expr        go to state 6
+    term        go to state 7
+    factor      go to state 8
+    exponent    go to state 9
+    $@9         go to state 10
+    $@10        go to state 11
+
+
+State 18
+
+    9 moreterms: '+' . term $@2 moreterms
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    term      go to state 34
+    factor    go to state 8
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 19
+
+   11 moreterms: '-' . term $@3 moreterms
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    term      go to state 35
+    factor    go to state 8
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 20
+
+    7 expr: term moreterms .
+
+    $default  reduce using rule 7 (expr)
+
+
+State 21
+
+   19 morefactors: DIV . factor $@6 morefactors
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    factor    go to state 36
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 22
+
+   21 morefactors: MOD . factor $@7 morefactors
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    factor    go to state 37
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 23
+
+   15 morefactors: '*' . factor $@4 morefactors
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    factor    go to state 38
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 24
+
+   17 morefactors: '/' . factor $@5 morefactors
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    factor    go to state 39
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 25
+
+   13 term: factor morefactors .
+
+    $default  reduce using rule 13 (term)
+
+
+State 26
+
+   25 moreexponents: '^' . exponent $@8 moreexponents
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    exponent  go to state 40
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 27
+
+   23 factor: exponent moreexponents .
+
+    $default  reduce using rule 23 (factor)
+
+
+State 28
+
+   29 exponent: $@9 NUM .
+
+    $default  reduce using rule 29 (exponent)
+
+
+State 29
+
+   31 exponent: $@10 ID .
+
+    $default  reduce using rule 31 (exponent)
+
+
+State 30
+
+    6 assignment: ID $@1 '=' . expr
+
+    '('  shift, and go to state 2
+
+    ID        reduce using rule 30 ($@10)
+    NUM       reduce using rule 28 ($@9)
+    $default  reduce using rule 32 (exponent)
+
+    expr      go to state 41
+    term      go to state 7
+    factor    go to state 8
+    exponent  go to state 9
+    $@9       go to state 10
+    $@10      go to state 11
+
+
+State 31
+
+   27 exponent: '(' expr ')' .
+
+    $default  reduce using rule 27 (exponent)
+
+
+State 32
+
+    3 list: assignment ';' list .
+
+    $default  reduce using rule 3 (list)
+
+
+State 33
+
+    2 list: expr ';' list .
+
+    $default  reduce using rule 2 (list)
+
+
+State 34
+
+    9 moreterms: '+' term . $@2 moreterms
+
+    $default  reduce using rule 8 ($@2)
+
+    $@2  go to state 42
+
+
+State 35
+
+   11 moreterms: '-' term . $@3 moreterms
+
+    $default  reduce using rule 10 ($@3)
+
+    $@3  go to state 43
+
+
+State 36
+
+   19 morefactors: DIV factor . $@6 morefactors
+
+    $default  reduce using rule 18 ($@6)
+
+    $@6  go to state 44
+
+
+State 37
+
+   21 morefactors: MOD factor . $@7 morefactors
+
+    $default  reduce using rule 20 ($@7)
+
+    $@7  go to state 45
+
+
+State 38
+
+   15 morefactors: '*' factor . $@4 morefactors
+
+    $default  reduce using rule 14 ($@4)
+
+    $@4  go to state 46
+
+
+State 39
+
+   17 morefactors: '/' factor . $@5 morefactors
+
+    $default  reduce using rule 16 ($@5)
+
+    $@5  go to state 47
+
+
+State 40
+
+   25 moreexponents: '^' exponent . $@8 moreexponents
+
+    $default  reduce using rule 24 ($@8)
+
+    $@8  go to state 48
+
+
+State 41
+
+    6 assignment: ID $@1 '=' expr .
+
+    $default  reduce using rule 6 (assignment)
+
+
+State 42
+
+    9 moreterms: '+' term $@2 . moreterms
+
+    '+'  shift, and go to state 18
+    '-'  shift, and go to state 19
+
+    $default  reduce using rule 12 (moreterms)
+
+    moreterms  go to state 49
+
+
+State 43
+
+   11 moreterms: '-' term $@3 . moreterms
+
+    '+'  shift, and go to state 18
+    '-'  shift, and go to state 19
+
+    $default  reduce using rule 12 (moreterms)
+
+    moreterms  go to state 50
+
+
+State 44
+
+   19 morefactors: DIV factor $@6 . morefactors
+
+    DIV  shift, and go to state 21
+    MOD  shift, and go to state 22
+    '*'  shift, and go to state 23
+    '/'  shift, and go to state 24
+
+    $default  reduce using rule 22 (morefactors)
+
+    morefactors  go to state 51
+
+
+State 45
+
+   21 morefactors: MOD factor $@7 . morefactors
+
+    DIV  shift, and go to state 21
+    MOD  shift, and go to state 22
+    '*'  shift, and go to state 23
+    '/'  shift, and go to state 24
+
+    $default  reduce using rule 22 (morefactors)
+
+    morefactors  go to state 52
+
+
+State 46
+
+   15 morefactors: '*' factor $@4 . morefactors
+
+    DIV  shift, and go to state 21
+    MOD  shift, and go to state 22
+    '*'  shift, and go to state 23
+    '/'  shift, and go to state 24
+
+    $default  reduce using rule 22 (morefactors)
+
+    morefactors  go to state 53
+
+
+State 47
+
+   17 morefactors: '/' factor $@5 . morefactors
+
+    DIV  shift, and go to state 21
+    MOD  shift, and go to state 22
+    '*'  shift, and go to state 23
+    '/'  shift, and go to state 24
+
+    $default  reduce using rule 22 (morefactors)
+
+    morefactors  go to state 54
+
+
+State 48
+
+   25 moreexponents: '^' exponent $@8 . moreexponents
+
+    '^'  shift, and go to state 26
+
+    $default  reduce using rule 26 (moreexponents)
+
+    moreexponents  go to state 55
+
+
+State 49
+
+    9 moreterms: '+' term $@2 moreterms .
+
+    $default  reduce using rule 9 (moreterms)
+
+
+State 50
+
+   11 moreterms: '-' term $@3 moreterms .
+
+    $default  reduce using rule 11 (moreterms)
+
+
+State 51
+
+   19 morefactors: DIV factor $@6 morefactors .
+
+    $default  reduce using rule 19 (morefactors)
+
+
+State 52
+
+   21 morefactors: MOD factor $@7 morefactors .
+
+    $default  reduce using rule 21 (morefactors)
+
+
+State 53
+
+   15 morefactors: '*' factor $@4 morefactors .
+
+    $default  reduce using rule 15 (morefactors)
+
+
+State 54
+
+   17 morefactors: '/' factor $@5 morefactors .
+
+    $default  reduce using rule 17 (morefactors)
+
+
+State 55
+
+   25 moreexponents: '^' exponent $@8 moreexponents .
+
+    $default  reduce using rule 25 (moreexponents)

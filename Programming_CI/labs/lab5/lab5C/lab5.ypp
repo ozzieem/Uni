@@ -1,0 +1,190 @@
+%{
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <ctype.h>
+  #include "node.h"
+
+  extern int yyparse(); 
+  extern int yylex(void);
+  extern void yyerror(char*);
+  extern FILE* yyin;
+
+  extern Node* mkleaf(int, int);
+  extern Node* mkreadnode(Node*);
+  extern Node* mkprintnode(Node*);      
+  extern Node* mkwhilenode(Node*, Node*);
+  extern Node* mkifnode(Node*, Node*, Node*);
+  extern Node* mknode(int type, Node*, Node*);
+  
+  extern void printTree(Node*);
+  extern void printTreeRec(Node*, int);
+  extern entry symtable[100];
+  
+  Node* tree;
+  void menu();
+
+%}
+
+%token ID NUM IF ELSE NO_ELSE WHILE PRINT READ
+
+%left '='
+%right '?' ':'
+%left '|'
+%left '&'
+%left '<' '>'
+%left '+' '-'
+%left '*' '/' '%'
+%right '^'
+
+%%
+
+%union {
+	struct Node* p; 
+	int numV;
+	int idV;
+};
+
+%type <p>  expr assignment statement var block else_b list;
+%type <numV> NUM;
+%type <idV> ID;
+
+start
+  : list { tree = $1; }
+;
+
+list
+  : block list  { $$ = mknode(';', $1, $2); } 
+  |             { $$ = NULL;  } 
+;
+
+block
+  : expr ';'   
+	| assignment ';' 
+  | statement
+  | PRINT '(' expr ')' ';'  { $$ = mknode('P', $3, 0); } 
+  | READ '(' var ')' ';'    { $$ = mkreadnode($3); } 
+;
+
+statement
+  : WHILE '(' expr ')' '{' list '}'     { $$ = mkwhilenode($3, $6); }
+  | IF '(' expr ')' '{' list '}' else_b { $$ = mkifnode($3, $6, $8); }  
+;
+
+else_b
+  : ELSE '{' list '}'  { $$ = $3; }
+  |                    { $$ = NULL; }
+;  
+  
+expr
+  : var
+  | NUM               { $$ = mkleaf(NUM, yylval.numV); }
+	| expr '+' expr     { $$ = mknode('+', $1, $3); }	
+  | expr '-' expr     { $$ = mknode('-', $1, $3); }
+	| expr '*' expr     { $$ = mknode('*', $1, $3); }
+	| expr '/' expr     { $$ = mknode('/', $1, $3); }
+  | expr '%' expr     { $$ = mknode('%', $1, $3); }
+  | expr '^' expr     { $$ = mknode('^', $1, $3); }
+  | expr '>' expr     { $$ = mknode('>', $1, $3); }
+  | expr '<' expr     { $$ = mknode('<', $1, $3); }
+	;
+
+assignment: var '=' expr  { $$ = mknode('=', $1, $3); }
+var: ID                   { $$ = mkleaf(ID, yylval.idV); }
+
+%%
+
+int main() {
+    menu();
+		yyparse();
+    printTree(tree);
+}
+
+void menu() {
+    const char* fileName = "inText.lang";
+    yyin = fopen(fileName, "r");
+}
+
+void printTree(Node* tree) {
+	//printf("\nSyntax tree:\n");
+  printTreeRec(tree,0);
+}
+
+
+/* PRINT TREE */
+void printTreeRec(Node *p, int level) {
+  if (p) {
+    switch(p->type) {
+      case ID: {
+        printf("%*s", 2 * level, "");
+        printf("%s\n", symtable[p->leaf_value].lexptr);
+      } break;
+
+      case NUM: {
+        printf("%*s", 2 * level, "");
+        printf("%d\n", p->leaf_value);
+      } break;
+
+      /* read */
+      case 'R': {
+        printf("%*s", 2 * level, "");
+        printf("read\n");
+        printTreeRec(p->args[0], level + 1);        
+      } break;
+
+      /* while */
+      case 'W': {
+        printf("%*s", 2 * level, "");
+        printf("while\n");
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);        
+      } break;
+
+      /* if-else */
+      case 'I':
+      {
+        printf("%*s", 2 * level, "");
+        printf("if\n");
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);
+        if(p->args[2]) printTreeRec(p->args[2], level + 1);
+      } break;
+
+      /* print */
+      case 'P':
+      {
+        printf("%*s", 2 * level, "");
+        printf("print\n");
+        printTreeRec(p->args[0], level + 1);
+      } break;
+
+      case '=':
+      case '+':
+      case '-':
+      case '*':
+      case '%':
+      case '^':
+      case '<':
+      case '>':
+      case '/':
+      {
+        printf("%*s", 2*level, "");
+        printf("%c\n", p->type);
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);
+      } break;
+
+      case ';': {
+        printf("%*s", 2*level, "");
+        printf(";\n");
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);
+      } break;
+
+      default: printf("no matched node type"); break;
+    }
+  }
+}
+
+void yyerror(char* s) {
+    fprintf(stderr, "%s\n", s);
+}

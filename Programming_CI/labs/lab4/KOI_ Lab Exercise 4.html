@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0073)http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-4/index.html -->
+<html lang="en" class="gr__basen_oru_se"><style type="text/css" id="night-mode-pro-style"></style><link type="text/css" rel="stylesheet" id="night-mode-pro-link"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>KOI: Lab Exercise 4</title>
+<script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script></head>
+
+<body bgcolor="#ffffff" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000" data-gr-c-s-loaded="true">
+
+<h1><a href="http://basen.oru.se/kurser/koi/2016-2017-p1/index.html">KOI</a>: Lab Exercise 4</h1>
+
+This exercise is about lexical analysis (scanning),
+with a hand-crafted deterministic finite state machine,
+and with a Lex-generated scanner.
+
+
+
+<h2>Resources</h2>
+
+<ul>
+<li>
+<i>Thomas Niemann:</i>
+<a href="http://www.epaperpress.com/lexandyacc/">A Compact Guide to Lex &amp; Yacc</a>
+is a good introduction to Lex.
+
+</li><li>
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/forelasningar/fo-06/index.html">Lecture 6</a>
+in this course was about scanners and Lex.
+</li></ul>
+
+
+<h2>Learn about DFAs!</h2>
+
+A <b>finite state automaton</b>, also called <b>finite state machine</b>,
+(in Swedish: <b>ändlig tillståndsmaskin</b>, <b>ändlig tillståndsautomat</b>),
+can be in one of several <b>states</b>.
+For example, here are three states:
+
+<p>
+
+<img src="./KOI_ Lab Exercise 4_files/dfa-1.gif" alt="Three states for a FSA">
+
+</p><p>
+
+It is called finite (Swedish: "ändlig")
+since it only has a finite (Swedish: ändligt)
+number of states.
+
+</p><p>
+
+We add some transitions, or <b>edges</b>, that lets the machine
+change state from one state to another:
+
+</p><p>
+
+<img src="./KOI_ Lab Exercise 4_files/dfa-2.gif" alt="Three states, with transitions">
+
+</p><p>
+
+The arrow pointing into state 1 is marked "Start",
+which means that we always start in state 1.
+From state 1 we can only move to state 2.
+When we are in state 2, we can either go back to state 1,
+or go on to state 3.
+State 3 is the end state, marked with a double ring.
+
+</p><p>
+
+In a <b>deterministic</b> finite state automaton, or <b>DFA</b>
+(Swedish: <b>deterministisk tillståndsmaskin</b>)
+transitions are determined by some sort of input:
+
+</p><p>
+
+<img src="./KOI_ Lab Exercise 4_files/dfa-3.gif" alt="DFA">
+
+</p><p>
+
+We move from state 1 to state 2 if we get an <b>a</b> as input.
+From state 2, we move back to state 1 if we get a <b>b</b> as input,
+and we move on to state 3 if we get an <b>a</b>.
+
+</p><p>
+
+To get from the start state to the end state,
+we must get an input string that starts with an <b>a</b>,
+and then has zero or more <b>ba</b> pairs.
+As soon as we get two <b>a</b> in a row, we move to the end state.
+These strings will work:
+b
+</p><ul>
+<li><b>aa</b>
+</li><li><b>abaa</b>
+</li><li><b>ababaa</b>
+</li><li><b>abababaa</b>
+</li><li>...
+</li></ul>
+
+If other input symbols than a and b can occur in the input,
+we should handle them too. We add a fourth state,
+which is also an end state, and were we
+will arrive as soon as we find anything else than <b>a</b> and <b>b</b>
+in the input:
+
+<p>
+
+<img src="./KOI_ Lab Exercise 4_files/dfa-4.gif" alt="Another DFA">
+
+
+
+</p><h2>Do!</h2>
+
+In part A you will implement a finite state machine,
+and in part B you will use Lex to build a scanner.
+
+
+
+<h3>Part A</h3>
+
+Implement the DFA described above as a program.
+The program should read characters from standard input,
+and report which state it is in.
+
+<p>
+
+There are several common ways to implement a state machine like this one.
+
+</p><ul>
+<li>With <b>goto</b> and labels
+</li><li>With a <b>switch</b> statement inside a <b>while (1)</b> loop
+</li><li>With a table of states, input and transitions
+</li></ul>
+
+Choose one of these ways, or try to invent a new one!
+
+
+
+<h3>Part B</h3>
+
+Replace the hand-coded scanner in the
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/asu-86/29/files.html">2.9</a> program
+(see the file
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/asu-86/29/files.html#lexer.c">lexer.c</a>)
+with a Lex-generated one.
+It should recognize all the token types expected by the parser.
+
+
+
+<h2>Report!</h2>
+
+Show your results and discuss them with the teacher,
+<br>
+<i>or</i>,
+<br>
+send an
+<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=KOI%20lab%204">e-mail</a>
+with clear and full explanations of what you have done.
+Include well-chosen and commented test runs with input and output.
+(Send your e-mail in plain text format,
+not as HTML or Word documents
+or with unnecessary attachments.)
+Include relevant source code, with any changes clearly marked.
+
+<p>
+
+</p><hr>
+
+<font size="-1">
+<a href="http://www.aass.oru.se/~tpy/">Thomas Padron-McCarthy</a>
+(<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=Kursen%20Kompilatorer%20och%20interpretatorer">Thomas.Padron-McCarthy@oru.se</a>)
+August 27, 2008
+</font>
+
+
+
+</body></html>

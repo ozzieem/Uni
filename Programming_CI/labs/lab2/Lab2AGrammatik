@@ -1,0 +1,97 @@
+start -> list eof
+list -> assignment ; list
+       | expr ; list
+       | empty
+assignment -> id = expr
+expr -> term moreterms
+
+moreterms -> + term { print('+') } moreterms
+       | - term { print('-') } moreterms
+       | empty
+term -> factor morefactors
+
+morefactors -> * factor { print('*') } morefactors
+       | / factor { print('/') } morefactors
+       | div factor { print('DIV') } morefactors
+       | mod factor { print('MOD') } morefactors
+       | empty	
+factor -> ( expr )
+       | id { print(id.lexeme) }
+       | num { print(num.value) }
+	   
+
+Would it be possible to write a predictive recursive-descent parser for your grammar? (Hints: Is it ambiguous? Is it left-recursive? Are FIRST sets disjoint?) 
+
+Ja, det vore möjligt. Inte tvetydig eftersom man bara kan skapa ETT parseträd från grammatiken (-> prediktiv). Grammatiken är inte vänsterrekursiv (-> prediktiv). FIRST-mängder nedan har gemensamma element (-> INTE prediktiv -> recursive descent). 
+
+FIRST(factor) = {(, id, num}
+FIRST(assignment) = {id} 
+
+void list()
+{
+    // Bevis för FIRST-konflikt finnes...
+    if (lookahead == ID || lookahead == NUM || lookahead == '(') {
+        expr(); match(';'); list();
+    }
+    else if (lookahead == ID) {
+        assignment(); match(';'); list();
+    }
+
+    else {
+    /* Empty */
+    }
+}
+
+	   
+	   
+a=a*7;	(list eof)
+	(assignment ; empty eof)
+	(id = expr ; empty eof)
+	(id = term moreterms ; empty eof)
+	(id = factor morefactors moreterms ; empty eof)
+	(id = id morefactors moreterms ; empty eof)
+	(id = id * factor morefactors moreterms ; empty eof)
+	(id = id * num morefactors moreterms ; empty eof)
+	(id = id * num empty moreterms ; empty eof)
+	(id = id * num empty empty ; empty eof)
+	
+	
+a=a+b;  (list eof)
+	(assignment ; empty eof)
+	(id = expr ; empty eof)
+	(id = term moreterms ; empty eof)
+	(id = factor morefactors moreterms ; empty eof)
+	(id = id morefactors moreterms ; empty eof)
+	(id = id empty moreterms ; empty eof)
+	(id = id empty + term moreterms ; empty eof)
+	(id = id empty + factor morefactors moreterms ; empty eof)
+	(id = id empty + id morefactors moreterms ; empty eof)
+	(id = id empty + id empty moreterms ; empty eof)
+	(id = id empty + id empty empty ; empty eof)
+	
+
+a=7;	(list eof)
+	(assignment ; empty eof)
+	(id = expr ; empty eof)
+	(id = term moreterms ; empty eof)
+	(id = factor morefactors moreterms ; empty eof)
+	(id = num morefactors moreterms ; empty eof)
+	(id = num empty empty ; empty eof)
+	
+
+
+7+7;	(list eof)
+	(expr ; empty eof)
+	(term moreterms ; empty eof)
+	(factor morefactors moreterms ; empty eof)
+	(num morefactors moreterms ; empty eof)
+	(num empty moreterms ; empty eof)
+	(num empty + term moreterms ; empty eof)
+	(num empty + factor morefactors moreterms ; empty eof)
+	(num empty + num empty moreterms ; empty eof)
+	(num empty + num empty empty ; empty eof)
+
+
+
+
+	

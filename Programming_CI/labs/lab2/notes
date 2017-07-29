@@ -1,0 +1,3 @@
+Recursive-descent parsing = the parser is a program with a procedure (in C: "function") for each non-terminal.
+
+

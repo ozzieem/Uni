@@ -1,0 +1,481 @@
+%{
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <ctype.h>
+  #include "node.h"
+  #include "./StackMachine/StackMachine.h"
+
+  extern int yyparse(); 
+  extern int yylex(void);
+  extern void yyerror(char*);
+  extern FILE* yyin;
+
+  extern Node* mkleaf(int, int);
+  extern Node* mkreadnode(Node*);
+  extern Node* mkprintnode(Node*);      
+  extern Node* mkwhilenode(Node*, Node*);
+  extern Node* mkifnode(Node*, Node*, Node*);
+  extern Node* mknode(int type, Node*, Node*);
+
+  extern int insert(char *s, int tok);
+  extern int lookup(char *s);
+  
+  extern entry symtable[100];
+  StackMachine sm;
+  int SMO(Node*);
+
+  Node* optimize(Node*);
+  void printTree(Node*);
+  void printTreeRec(Node*, int);
+  Node* tree;
+  void menu();
+
+%}
+
+%token ID NUM IF ELSE NO_ELSE WHILE PRINT READ
+
+%left '='
+%right '?' ':'
+%left '|'
+%left '&'
+%left '<' '>'
+%left '+' '-'
+%left '*' '/' '%'
+%right '^'
+
+%%
+
+%union {
+	struct Node* p; 
+	int numV;
+	int idV;
+};
+
+%type <p>  expr assignment statement var block else_b list;
+%type <numV> NUM;
+%type <idV> ID;
+
+start
+  : list { tree = $1; }
+;
+
+list
+  : block list  { $$ = mknode(';', $1, $2); } 
+  |             { $$ = NULL;  } 
+;
+
+block
+  : expr ';'   
+  | assignment ';' 
+  | statement
+  | PRINT '(' expr ')' ';'  { $$ = mknode('P', $3, 0); } 
+  | READ '(' var ')' ';'    { $$ = mkreadnode($3); } 
+;
+
+statement
+  : WHILE '(' expr ')' '{' list '}'     { $$ = mkwhilenode($3, $6); }
+  | IF '(' expr ')' '{' list '}' else_b { $$ = mkifnode($3, $6, $8); }  
+;
+
+else_b
+  : ELSE '{' list '}'  { $$ = $3; }
+  |                    { $$ = NULL; }
+;  
+  
+expr
+  : var
+  | NUM               { $$ = mkleaf(NUM, yylval.numV); }
+  | expr '+' expr     { $$ = mknode('+', $1, $3); }	
+  | expr '-' expr     { $$ = mknode('-', $1, $3); }
+  | expr '*' expr     { $$ = mknode('*', $1, $3); }
+  | expr '/' expr     { $$ = mknode('/', $1, $3); }
+  | expr '%' expr     { $$ = mknode('%', $1, $3); }
+  | expr '^' expr     { $$ = mknode('^', $1, $3); }
+  | expr '>' expr     { $$ = mknode('>', $1, $3); }
+  | expr '<' expr     { $$ = mknode('<', $1, $3); }
+	;
+
+assignment: var '=' expr  { $$ = mknode('=', $1, $3); }
+var: ID                   { $$ = mkleaf(ID, yylval.idV); }
+
+%%
+
+int main() {
+    menu();
+    yyparse();
+
+  try {
+    printTree(tree);    // Tree before optimize
+    tree =  optimize(tree);
+    SMO(tree);
+    sm.append(Instruction(halt));
+    sm.run();          
+    sm.list_program();              
+    printTree(tree);    // Tree after optimize
+  }
+  catch(Exception& e) {
+    std::cout << "*** Exception caught: " << e.message() << std::endl;
+    sm.showstate();
+    sm.list_program();
+  }
+  catch(...) {
+    std::cout << "Unknown exception." << std::endl;
+  }
+}
+
+void menu() {
+    const char* fileName = "code.lang";
+    yyin = fopen(fileName, "r");
+}
+
+void printTree(Node* tree) {
+	//printf("\nSyntax tree:\n");
+  printTreeRec(tree,0);
+}
+
+Node* optimize(Node *p)
+{
+  if (p)
+  {
+    // Recursive calls to traverse the tree
+    for(int i = 0; i < 3; ++i)
+      if (p->args[i]) 
+        p->args[i] = optimize(p->args[i]);
+
+    switch (p->type)
+    {
+
+    case 'I':
+    {
+      // if(1) { a = 0 } else { b = 1 }; => a = 0;
+      // if(0) { a = 0 } else { b = 1 }; => b = 1;
+      if (p->args[0]->type == NUM) {
+        if(p->args[0]->leaf_value) {
+          return p->args[1];
+        }
+        else {
+          if(p->args[2]) {
+            return p->args[2];
+          }
+        }
+      }
+      return p;
+    }
+
+    case '<':
+    case '>':
+    {
+      // 1 > 0 = 1
+      // 1 < 0 = 0
+      if (p->type == '<' && p->args[0]->type == NUM && p->args[1]->type == NUM)
+      {
+        if (p->args[0]->leaf_value < p->args[1]->leaf_value)
+          return mkleaf(NUM, 1);
+        return mkleaf(NUM, 0);
+      }
+      else if (p->type == '>' && p->args[0]->type == NUM && p->args[1]->type == NUM)
+      {
+        if (p->args[0]->leaf_value > p->args[1]->leaf_value)
+          return mkleaf(NUM, 1);
+        return mkleaf(NUM, 0);
+      }
+      return p;      
+    }
+
+    case '-':
+    case '+':
+    {
+      // a + 0 = a 
+      // a - 0 = a                 
+      if (p->args[0]->leaf_value == 0 && p->args[0]->type == NUM)
+        return p->args[1];
+      if (p->args[1]->leaf_value == 0 && p->args[1]->type == NUM)
+        return p->args[0];
+
+      // 2 + 1 = 3
+      // 2 - 1 = 1      
+      if (p->args[0]->type == NUM && p->args[1]->type == NUM)
+        if (p->type == '+') 
+          return mkleaf(NUM, p->args[0]->leaf_value + p->args[1]->leaf_value);
+        else if (p->type == '-')
+          return mkleaf(NUM, p->args[0]->leaf_value - p->args[1]->leaf_value);
+
+      return p;
+    }
+
+    case '*':
+    {
+      // a * 0 = 0       
+      if (p->args[0]->leaf_value == 0 && p->args[0]->type == NUM)
+        return p->args[0];
+      if (p->args[1]->leaf_value == 0 && p->args[1]->type == NUM)
+        return p->args[1];
+      
+      // a * 1 = a
+      if (p->args[0]->leaf_value == 1 && p->args[0]->type == NUM)
+        return p->args[1];
+      if (p->args[1]->leaf_value == 1 && p->args[1]->type == NUM)
+        return p->args[0];
+      
+      // 3 * 2 = 6
+      if (p->args[0]->type == NUM && p->args[1]->type == NUM)
+          return mkleaf(NUM, p->args[0]->leaf_value * p->args[1]->leaf_value);
+
+      return p;
+    }
+
+    case '/':
+    {
+      // 0 / a = 0
+      if (p->args[0]->leaf_value == 0 && p->args[0]->type == NUM)
+        return p->args[0];
+
+      // a / 0 = undefined       
+      if (p->args[1]->leaf_value == 0 && p->args[1]->type == NUM)
+        throw Exception("Divide by zero");
+      
+      // a / 1 = a
+      if (p->args[1]->leaf_value == 1 && p->args[1]->type == NUM)
+        return p->args[0];
+
+      // 20 / 5 = 4
+      if (p->args[0]->type == NUM && p->args[1]->type == NUM)
+          return mkleaf(NUM, p->args[0]->leaf_value / p->args[1]->leaf_value);
+
+
+      
+      return p;
+    }
+
+    case ';':
+    {
+      // if parent node == ; and child node == ; then merge
+      if (p->args[1] && !p->args[0] && p->args[1]->type == ';')
+        return p->args[1];
+      else if (p->args[0] && !p->args[1] && p->args[0]->type == ';')
+        return p->args[0];
+      return p;
+    }
+
+    default:
+      // printf("No optimization for node type '%c'\n", p->type);
+      return p;
+    }
+  }
+}
+
+int LabelIndex = 0;
+
+// StackMachine Operations
+int SMO(Node *p)
+{
+  if (p)
+  {
+    switch (p->type)
+    {
+    case ID:
+    {
+      sm.append(Instruction(rvalue, p->leaf_value));
+    }
+    break;
+
+    case NUM:
+    {
+      sm.append(Instruction(push, p->leaf_value));
+    }
+    break;    
+
+    /* read */
+    case 'R':
+    {
+      sm.append(Instruction(stackop_read, p->args[0]->leaf_value));
+    }
+    break;
+
+    /* print */
+    case 'P':
+    {
+      sm.append(Instruction(stackop_write, p->args[0]->leaf_value));
+    }
+    break;
+
+    /* while */
+    case 'W':
+    {
+      int l1 = LabelIndex++;
+      int l2 = LabelIndex++;
+      sm.append(Instruction(label, l1));
+      SMO(p->args[0]);                     /* condition */
+      sm.append(Instruction(gofalse, l2));
+      SMO(p->args[1]);                     /* inside while */
+      sm.append(Instruction(jump, l1));
+      sm.append(Instruction(label, l2));
+
+    }
+    break;
+
+    /* if-else */
+    case 'I':
+    {
+      int l1 = LabelIndex++;
+      int l2 = LabelIndex++;
+
+      SMO(p->args[0]);                      /* condition */
+      sm.append(Instruction(gofalse, l1));
+      SMO(p->args[1]);                      /* if true */
+      
+      if(p->args[2])
+        sm.append(Instruction(jump, l2));
+      sm.append(Instruction(label, l1));    /* if false */
+      if(p->args[2]) {
+        SMO(p->args[2]);                      /* else */
+        sm.append(Instruction(label, l2));
+      }
+    }
+    break;
+
+    case '=':
+    {
+      sm.append(Instruction(lvalue, p->args[0]->leaf_value));
+      SMO(p->args[1]); // expr
+      sm.append(Instruction(assign));
+    }
+    break;    
+
+    case '+':
+      SMO(p->args[0]);
+      SMO(p->args[1]);
+      sm.append(Instruction(plus));
+      break;
+    
+    case '-':
+      SMO(p->args[0]);
+      SMO(p->args[1]);
+      sm.append(Instruction(minus));
+      break;
+
+    case '*':
+      SMO(p->args[0]);
+      SMO(p->args[1]);
+      sm.append(Instruction(times));
+      break;
+    
+    case '%':
+      SMO(p->args[0]);
+      SMO(p->args[1]);
+      sm.append(Instruction(modulo));
+      break;
+    
+    case '<':
+      SMO(p->args[0]);
+      SMO(p->args[1]);
+      sm.append(Instruction(lt));
+      break;
+       
+    case '>':
+      SMO(p->args[0]);
+      SMO(p->args[1]);
+      sm.append(Instruction(gt));
+      break;
+    
+    case '/':
+      SMO(p->args[0]);
+      SMO(p->args[1]);
+      sm.append(Instruction(divide));
+      break;
+    
+    case ';':
+    {
+      SMO(p->args[0]);
+      if(p->args[1])
+        SMO(p->args[1]);
+    }
+    break;
+
+    default:
+      printf("no matched node type");
+      break;
+    }
+  }
+}
+
+
+/* PRINT TREE */
+void printTreeRec(Node *p, int level) {
+  if (p) {
+    switch(p->type) {
+      case ID: {
+        printf("%*s", 2 * level, "");
+        printf("%s\n", symtable[p->leaf_value].lexptr);
+      } break;
+
+      case NUM: {
+        printf("%*s", 2 * level, "");
+        printf("%d\n", p->leaf_value);
+      } break;
+
+      /* read */
+      case 'R': {
+        printf("%*s", 2 * level, "");
+        printf("read\n");
+        printTreeRec(p->args[0], level + 1);        
+      } break;
+
+      /* while */
+      case 'W': {
+        printf("%*s", 2 * level, "");
+        printf("while\n");
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);        
+      } break;
+
+      /* if-else */
+      case 'I':
+      {
+        printf("%*s", 2 * level, "");
+        printf("if\n");
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);
+        if(p->args[2]) printTreeRec(p->args[2], level + 1);
+      } break;
+
+      /* print */
+      case 'P':
+      {
+        printf("%*s", 2 * level, "");
+        printf("print\n");
+        printTreeRec(p->args[0], level + 1);
+      } break;
+
+      case '=':
+      case '+':
+      case '-':
+      case '*':
+      case '%':
+      case '^':
+      case '<':
+      case '>':
+      case '/':
+      {
+        printf("%*s", 2*level, "");
+        printf("%c\n", p->type);
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);
+      } break;
+
+      case ';': {
+        printf("%*s", 2*level, "");
+        printf(";\n");
+        printTreeRec(p->args[0], level + 1);
+        printTreeRec(p->args[1], level + 1);
+      } break;
+
+      default: printf("no matched node type"); break;
+    }
+  }
+}
+
+void yyerror(char* s) {
+    fprintf(stderr, "%s\n", s);
+}
+

@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0073)http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-5/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>KOI: Lab Exercise 5</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000">
+
+<h1><a href="http://basen.oru.se/kurser/koi/2016-2017-p1/index.html">KOI</a>: Lab Exercise 5</h1>
+
+This exercise is about abstract syntax trees.
+
+
+
+<h2>Resources</h2>
+
+<ul>
+<li>
+ALSU-07 5.3.1, <i>Construction of Syntax Trees</i>
+</li><li>
+(ASU-86 5.2, <i>Construction of Syntax Trees</i>)
+
+</li><li>
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/forelasningar/fo-07/index.html">Lecture 7</a>
+in this course covered that section of the book.
+
+</li><li>
+<i>Thomas Niemann:</i>
+<a href="http://www.epaperpress.com/lexandyacc/">A Compact Guide to Lex &amp; Yacc</a>
+has some examples of how to build syntax trees
+from expressions and statements.
+</li></ul>
+
+
+
+<h2>Part A: Building syntax trees</h2>
+
+Modify your Yacc parser from <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-3/index.html">lab 3</a>
+so that it accepts a sequence of expression statements.
+An expression statements is an expression terminated by a semicolon.
+Example input:
+
+<blockquote>
+<pre>10+20*30+x+y;   
+a = 10 + b;
+</pre>
+</blockquote>
+
+Note that the assignment operator "<b>=</b>" is just another operator,
+so an <i>expression</i>, in this context, can be an assignment.
+
+<p>
+
+Let your parser construct a syntax tree of the entire source input.
+Do not calculate the values of the expressions at this time.
+Just build the syntax tree.
+Use Yacc's attribute values ("<b>$$</b>", "<b>$1</b>", etc.).
+
+</p><p>
+
+You may look at some <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-5/build-hints.html">hints</a>
+about how to build the tree.
+
+
+
+</p><h2>Part B: Printing syntax trees</h2>
+
+Write a function that takes (a pointer to) a syntax tree as input,
+and prints it on the standard output or to a file, with proper indentation.
+You can print the tree using the same format as the source language,
+or in some other nice and pretty way.
+
+<p>
+
+It doesn't have to be very good-looking, just good enough so you can easily verify
+that the constructed syntax trees are correct.
+
+</p><p>
+
+A minimally pretty output for the syntax tree representing the expression statement
+<b>x + 7 + y;</b> would look something like this:
+
+</p><blockquote>
+<pre>Syntax tree:
+  +
+    +
+      x
+      7
+    y
+;
+</pre>
+</blockquote>
+
+You may look at some <a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-5/print-hints.html">hints</a>
+about how to print the tree.
+
+
+
+<h2>Part C: More statements</h2>
+
+Add the following statement types,
+besides expression statements.
+You'll have to modify all three of the parser,
+the syntax tree construction,
+and the syntax tree printer.
+
+<ol>
+<li><b>while</b> statements
+</li><li><b>if</b> statements with an optional <b>else</b> part
+</li><li>Block statements (that is, a sequence of statements enclosed by <b>{</b> and <b>}</b>)
+</li><li><b>print</b> statements, which can print at least a single variable
+</li><li><b>read</b> statements, which can ask for a value of a variable from the user
+</li></ol>
+
+Write a short program in the language you have just designed.
+Try to demonstrate everything it can do.
+
+<p>
+
+For inspiration, here is a test program I once used for one of many possible languages in this exercise.
+It reads an integer <b>n</b>, and then calculates and prints the sum and product of the integers from 1 to <b>n</b>.
+The language you create doesn't have to look like this,
+but it should be possible to write a program that does the same thing.
+
+</p><p>
+
+</p><table border="1" cellspacing="0" cellpadding="3"><tbody><tr><td>
+<pre>sum=0;
+product = 1;
+i=1;
+read(n);
+while (i &lt; n) {
+    if (i % 100 &gt; 0) { } else { print(i); }
+    sum = sum + i;
+    product = product * i;
+    i = i + 1;
+}
+print(sum);
+print(product);
+</pre>
+</td></tr></tbody></table>
+
+
+
+<h2>Report!</h2>
+
+Show your results and discuss them with the teacher,
+<br>
+<i>or</i>,
+<br>
+send an
+<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=KOI%20lab%205">e-mail</a>
+with clear and full explanations of what you have done.
+Include well-chosen and commented test runs with input and output.
+(Send your e-mail in plain text format,
+not as HTML or Word documents
+or with unnecessary attachments.)
+Include relevant source code, with any changes clearly marked.
+
+<p>
+
+</p><hr>
+
+<font size="-1">
+<a href="http://www.aass.oru.se/~tpy/">Thomas Padron-McCarthy</a>
+(<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=Kursen%20Kompilatorer%20och%20interpretatorer">Thomas.Padron-McCarthy@oru.se</a>)
+May 8, 2013
+</font>
+
+
+
+</body></html>

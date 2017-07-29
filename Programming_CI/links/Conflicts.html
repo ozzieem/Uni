@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- saved from url=(0049)http://www.cs.man.ac.uk/~pjj/cs212/ho/node20.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>More examples of shift/reduce and reduce/reduce conflicts with YACC</title>
+<meta name="description" content="More examples of shift/reduce and reduce/reduce conflicts with YACC">
+<meta name="keywords" content="ho">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+
+
+<meta name="Generator" content="LaTeX2HTML v2002-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+
+<link rel="STYLESHEET" href="./Coroutines in C_files/ho.css">
+
+<link rel="next" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node21.html">
+<link rel="previous" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node19.html">
+<link rel="up" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/ho.html">
+<link rel="next" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node21.html">
+</head>
+
+<body>
+<!--Navigation Panel-->
+<a name="tex2html447" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node21.html">
+<img width="37" height="24" align="BOTTOM" border="0" alt="next" src="./Coroutines in C_files/next.png"></a> 
+<a name="tex2html445" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/ho.html">
+<img width="26" height="24" align="BOTTOM" border="0" alt="up" src="./Coroutines in C_files/up.png"></a> 
+<a name="tex2html439" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node19.html">
+<img width="63" height="24" align="BOTTOM" border="0" alt="previous" src="./Coroutines in C_files/prev.png"></a>   
+<br>
+<b> Next:</b> <a name="tex2html448" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node21.html">About this document ...</a>
+<b> Up:</b> <a name="tex2html446" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/ho.html">CS2121: The Implementation and</a>
+<b> Previous:</b> <a name="tex2html440" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node19.html">More examples of Ambiguous</a>
+<br>
+<br>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<a name="CHILD_LINKS"><strong>Subsections</strong></a>
+
+<ul>
+<li><a name="tex2html449" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node20.html#SECTION000201000000000000000">An example of a reduce/reduce conflict</a>
+</li><li><a name="tex2html450" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node20.html#SECTION000202000000000000000">An example of multiple shift/reduce conflicts</a>
+</li><li><a name="tex2html451" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node20.html#SECTION000203000000000000000">A longer example, with shift/reduce and reduce/reduce conflicts</a>
+</li></ul>
+<!--End of Table of Child-Links-->
+<hr>
+
+<h1><a name="SECTION000200000000000000000">
+More examples of shift/reduce and reduce/reduce conflicts with <small>YACC</small></a>
+</h1>
+Conflicts from <small>YACC</small>
+
+<p>
+
+</p><h2><a name="SECTION000201000000000000000">
+An example of a reduce/reduce conflict</a>
+</h2>
+
+<p>
+The grammar that beats an LR(1) parser from 
+<img width="11" height="30" align="MIDDLE" border="0" src="./Coroutines in C_files/img1.png" alt="$\S $"><a href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node19.html#sec:BorE">H.2</a> causes <small>YACC</small> to report:
+</p><div align="CENTER">
+</div><pre>5: reduce/reduce conflict (reduce 3, reduce 4) on c
+state 5
+        B : x y .  (3)
+        E : x y .  (4)
+</pre>
+<div align="CENTER">
+</div>
+
+<p>
+As we expected, when the parser sees an input of <code>x y c</code> it doesn't
+have enough information to be able to decide between reducing the <code>x y</code>
+to <code>B</code> or to <code>E</code>.
+
+</p><p>
+
+</p><h2><a name="SECTION000202000000000000000">
+An example of multiple shift/reduce conflicts</a>
+</h2>
+
+<p>
+The grammar from <img width="11" height="30" align="MIDDLE" border="0" src="./Coroutines in C_files/img1.png" alt="$\S $"><a href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node19.html#sec:exprexpr">H.1</a> causes <small>YACC</small> to report 42
+shift/reduce conflicts! (Roughly speaking, this is because each of the 6
+operators causes problems with each of the 7 grammar rules that includes
+<code>exp</code>.)
+
+</p><p>
+Here is one of the groups of conflicts:
+
+</p><p>
+</p><div align="CENTER">
+</div><pre>6: shift/reduce conflict (shift 7, reduce 9) on '+'
+6: shift/reduce conflict (shift 8, reduce 9) on '-'
+6: shift/reduce conflict (shift 9, reduce 9) on '*'
+6: shift/reduce conflict (shift 10, reduce 9) on '/'
+6: shift/reduce conflict (shift 11, reduce 9) on '^'
+6: shift/reduce conflict (shift 12, reduce 9) on '='
+state 6
+        exp : exp . '+' exp  (1)
+        exp : exp . '-' exp  (2)
+        exp : exp . '*' exp  (3)
+        exp : exp . '/' exp  (4)
+        exp : exp . '^' exp  (7)
+        exp : exp . '=' exp  (8)
+        exp : '!' exp .  (9)
+</pre>
+<div align="CENTER">
+</div>
+
+<p>
+What this is trying to tell us is that
+when we have an input of the form <code>exp op exp op exp</code>
+(or <code>! exp op exp</code>), when we see
+the second <code>op</code>erator, we don't know if the first <code>op</code>
+should be reduced (because it has higher precedence
+i.e. <code>(exp op exp) op exp</code>)
+or if the second <code>op</code> should be shifted
+(because it has the higher precedence
+i.e. <code>exp op (exp op exp)</code>).
+
+</p><p>
+
+</p><h2><a name="SECTION000203000000000000000">
+A longer example, with shift/reduce and reduce/reduce conflicts</a>
+</h2>
+
+<p>
+Suppose we tried to modify the left recursive grammar from
+<img width="11" height="30" align="MIDDLE" border="0" src="./Coroutines in C_files/img1.png" alt="$\S $"><a href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node6.html#ch:machines">5</a> to detect various errors:
+
+</p><p>
+<code>$CS2121/e*/idlist/idlist1_y.y</code>
+
+</p><p>
+</p><pre>list    : id
+        | list optcomma id
+        | list ','               {yyerror ("extra comma ignored");}
+        ;
+optcomma: ','
+        |                        {yyerror ("missing comma inserted");}
+        ;
+</pre>
+
+<p>
+the <code>y.output</code> file from <small>YACC</small> includes the following:
+
+</p><p>
+</p><pre>4: reduce/reduce conflict (red'ns 3 and 4) on id
+state 4 list : list ,_   (3)
+        optcomma : ,_   (4)
+
+        .=reduce 3
+</pre>
+
+<p>
+(<code>_</code> indicates where we are up to in the input
+- <small>BYACC</small> uses <code>.</code>)
+
+</p><p>
+i.e. having read a <code>','</code> to get to state 4, if we then read an
+<code>id</code> we do not know which of the two rules to recognise the comma
+with:
+ 
+</p><div align="CENTER">
+<br>
+<img width="252" height="121" align="BOTTOM" border="0" src="./Coroutines in C_files/img79.png" alt="\begin{picture}(32,13)
+\put(10,12){list}
+\put(15,12){*optcomma}
+\put(10.8,11.8)...
+...10,4){list}
+\put(10.8,3.8){\line(1,-1){2.2}} %
+\put(12,0){*list}
+\end{picture}">
+<br>
+</div>
+<img width="8" height="32" align="MIDDLE" border="0" src="./Coroutines in C_files/img22.png" alt="$[$"> <img width="8" height="32" align="MIDDLE" border="0" src="./Coroutines in C_files/img80.png" alt="$]$"> = state number at this point in the input,
+* = the alternative reductions
+
+<p>
+We can sometimes get more information by finding the state(s) that precede(s)
+state 4 by looking for <code>shift 4</code> or <code>goto 4</code> in <code>y.output</code>
+(and repeating if necessary):
+
+</p><p>
+</p><pre>state 1 $accept : list_$end
+        list : list_optcomma id
+        list : list_,
+        optcomma : _   (5)
+
+        $end accept       , shift 4       id reduce 5       optcomma goto 3
+</pre>
+
+<p>
+ 
+</p><div align="CENTER">
+<br>
+<img width="279" height="156" align="BOTTOM" border="0" src="./Coroutines in C_files/img81.png" alt="\begin{picture}(32,17)
+\put(15,16){list}
+\put(14.8,15.8){\line(-1,-1){2.2}} % /...
+...10,4){list}
+\put(10.8,3.8){\line(1,-1){2.2}} %
+\put(12,0){*list}
+\end{picture}">
+<br>
+</div>
+
+<p>
+Finally, if we reexamine the grammar, we can see that the only way the second
+parse can recognise a <code>list</code> followed by an <code>id</code> is if we can insert
+an <code>optcomma</code> between them, which we can onll do by recognising an empty
+<code>optcomma</code>:
+
+</p><p>
+ 
+</p><div align="CENTER">
+<br>
+<img width="279" height="192" align="BOTTOM" border="0" src="./Coroutines in C_files/img82.png" alt="\begin{picture}(32,20)
+\put(15,20){list}
+\put(14.8,19.8){\line(-1,-1){2.2}} % /...
+...12,4){*list}
+\put(14.8,3.8){\line(1,-1){2.2}} %
+\put(18,0){list}
+\end{picture}">
+<br>
+</div>
+
+<p>
+so to get to state 4 we have read a <code>list</code> followed by a <code>','</code>, and
+we can not tell if this is an <code>optcomma</code> or not just by looking at the
+next symbol (<code>id</code>) because the <code>id</code> can either belong to this
+<code>list</code> (i.e. reduce rule 4) or it can belong to a surrounding
+<code>list optcomma id</code> with an empty optcomma (i.e. reduce rule 3 then
+rule 5) - in either case, we next shift the <code>id</code> and reduce rule 2.
+
+</p><p>
+i.e. the parse tree for an input of <code>id , id</code> can be:
+
+<br><table width="100%">
+<tbody><tr><td>
+
+<table width="35%">
+<tbody><tr><td>
+ 
+<br>
+<img width="140" height="86" align="BOTTOM" border="0" src="./Coroutines in C_files/img83.png" alt="\begin{picture}(16,9)
+\put(7,8){list}
+\put(6.8,7.8){\line(-2,-1){4.4}} % /
+\pu...
+...put(7.8,3.8){\line(0,-1){2.2}} % \vert
+\put(0,0){id}\put(7,0){&#39;,&#39;}
+\end{picture}">
+<br>
+
+<br>
+i.e. <code>((id) (,) id)</code>
+</td></tr>
+</tbody></table>
+
+or:
+
+<table width="45%">
+<tbody><tr><td>
+ 
+<br>
+<img width="177" height="121" align="BOTTOM" border="0" src="./Coroutines in C_files/img84.png" alt="\begin{picture}(20,13)
+\put(11,12){list}
+\put(10.8,11.8){\line(-2,-1){4.4}} % /...
+...t(7,4){&#39;,&#39;}
+\put(0.8,3.8){\line(0,-1){2.2}} % \vert
+\put(0,0){id}
+\end{picture}">
+<br>
+
+<br>
+i.e. <code>(((id) ,) () id)</code> with two error messages:
+<pre>   extra comma ignored
+   missing comma inserted
+</pre></td></tr>
+</tbody></table></td></tr>
+</tbody></table>
+
+</p><p>
+The problem may be that we are forcing the parser to decide what to do with
+the <code>','</code> too early on. We can try to delay the decision by getting rid
+of the <code>optcomma</code> grammar rule and putting extra alternatives into the
+rule for list:
+
+</p><p>
+<code>$CS2121/e*/idlist/idlist2_y.y</code>
+
+</p><p>
+</p><pre>list    : id
+        | list ',' id
+        | list id                {yyerror ("missing comma inserted");}
+        | list ','               {yyerror ("extra comma ignored");}
+        ;
+</pre>
+
+<p>
+Unfortunately, looking at the <code>y.output</code> file from <small>YACC</small> for
+this grammar, we have simply replaced the reduce-reduce conflict by a
+shift-reduce conflict:
+</p><pre>3: shift/reduce conflict (shift 5, reduce 4) on id
+state 3 list : list ,_id
+        list : list ,_   (4)
+
+        id shift 5        . reduce 4
+</pre>
+i.e. after inputting and reducing a list, and shifting a <code>','</code> if the
+parser then encounters another <code>id</code>, it does not know whether to
+include this <code>id</code> in the current <code>list</code> (shift) or leave this
+<code>id</code> to become part of a later <code>list</code> (reduce). i.e. the parse
+tree for an input of <code>id , id</code> can be:
+
+<br><table width="100%">
+<tbody><tr><td>
+
+<table width="20%">
+<tbody><tr><td>
+ 
+<br>
+<img width="140" height="84" align="BOTTOM" border="0" src="./Coroutines in C_files/img85.png" alt="\begin{picture}(16,9)
+\put(7,8){list}
+\put(6.8,7.8){\line(-2,-1){4.4}} % /
+\pu...
+...t(14,4){id}
+\put(0.8,3.8){\line(0,-1){2.2}} % \vert
+\put(0,0){id}
+\end{picture}">
+<br>
+
+<br>
+i.e. <code>((id) , id)</code>
+</td></tr>
+</tbody></table>
+
+or:
+
+<table width="60%">
+<tbody><tr><td>
+ 
+<br>
+<img width="177" height="121" align="BOTTOM" border="0" src="./Coroutines in C_files/img86.png" alt="\begin{picture}(20,13)
+\put(11,12){list}
+\put(10.8,11.8){\line(-2,-1){4.4}} % /...
+...t(7,4){&#39;,&#39;}
+\put(0.8,3.8){\line(0,-1){2.2}} % \vert
+\put(0,0){id}
+\end{picture}">
+<br>
+
+<br>
+i.e. <code>(((id) ,) id)</code> with the same two error messages as before
+</td></tr>
+</tbody></table>
+
+</td></tr>
+</tbody></table>
+
+<p>
+Looking at the possible parses, this is still pretty much the same problem as
+before, so unfortunately the change we made to the grammar has not made any
+real improvement.
+
+</p><p>
+Although we can't tell just from the error messages reporting the conflicts,
+because we can create two alternative parse trees that both completely match a
+possible legal input (i.e. <code>id , id</code>), this grammar and the previous
+version are both ambiguous, and can never be recognised correctly by a parser
+tool.
+
+</p><p>
+The only thing to do is to take a step back and describe afresh what we are
+trying to recognise. I will concentrate on the identifiers, as they are what
+we are really interested in. We want to recognise a list of identifiers,
+each pair separated by zero or more commas (although we expect exactly one),
+and the whole list perhaps preceded and trailed by some commas (although we
+expect none):
+
+</p><p>
+<code>$CS2121/e*/idlist/idlist3_y.y</code>
+
+</p><p>
+</p><pre>list     : no_commas idlist no_commas
+         ;
+idlist   : id
+         | idlist one_comma id
+         ;
+one_comma: commas
+         |                 {yyerror ("missing comma inserted");}
+         ;
+no_commas: commas          {yyerror ("extra comma ignored");}
+         |
+         ;
+commas   : commas ','      {yyerror ("extra comma ignored");}
+         | ','
+         ;
+</pre>
+
+<p>
+
+</p><hr>
+<!--Navigation Panel-->
+<a name="tex2html447" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node21.html">
+<img width="37" height="24" align="BOTTOM" border="0" alt="next" src="./Coroutines in C_files/next.png"></a> 
+<a name="tex2html445" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/ho.html">
+<img width="26" height="24" align="BOTTOM" border="0" alt="up" src="./Coroutines in C_files/up.png"></a> 
+<a name="tex2html439" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node19.html">
+<img width="63" height="24" align="BOTTOM" border="0" alt="previous" src="./Coroutines in C_files/prev.png"></a>   
+<br>
+<b> Next:</b> <a name="tex2html448" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node21.html">About this document ...</a>
+<b> Up:</b> <a name="tex2html446" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/ho.html">CS2121: The Implementation and</a>
+<b> Previous:</b> <a name="tex2html440" href="http://www.cs.man.ac.uk/~pjj/cs212/ho/node19.html">More examples of Ambiguous</a>
+<!--End of Navigation Panel-->
+<address>
+<i>Pete Jinks <br>
+2004-10-26</i>
+</address>
+
+
+</body></html>

@@ -1,0 +1,34 @@
+start -> list eof
+list -> assignment ; list
+       | empty
+assignment -> { print(id.lexeme) } id expr { symboltbl[id_index].value = stack_pop }
+expr -> term moreterms
+
+calc ->   { stack_push = element2 + element1 }
+	| { stack_push = element2 - element1 }
+	| { stack_push = element2 * element1 }
+	| { stack_push = element2 / element1 }
+
+moreterms -> 
+	+ term calc { print('+') } moreterms
+       | - term calc { print('-') } moreterms
+       | empty
+term -> factor morefactors
+
+morefactors -> 
+	* factor calc { print('*') } morefactors
+       | / factor calc { print('/') } morefactors
+       | div factor { print('DIV') } morefactors
+       | mod factor { print('MOD') } morefactors
+       | empty
+factor -> 
+	( expr )
+       | id { print(id.lexeme) }
+       | num { print(num.value) }
+       | = expr { print('=') }
+
+
+a=b
+	Pushing value of b to stack and a pops the value to itself.
+
+

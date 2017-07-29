@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0073)http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-6/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>KOI: Lab Exercise 6</title>
+</head>
+
+<body bgcolor="#ffffff" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000">
+
+<h1><a href="http://basen.oru.se/kurser/koi/2016-2017-p1/index.html">KOI</a>: Lab Exercise 6</h1>
+
+This exercise is about a (comparatively)
+simple way to build an interpreter,
+by executing the syntax trees.
+
+
+<h2>Executing syntax trees</h2>
+
+Write an interpreter that executes the syntax trees from
+<a href="http://basen.oru.se/kurser/koi/2016-2017-p1/linux-labbar/lab-5/index.html">lab 5</a>.
+
+<p>
+
+One way is to write a recursive function,
+called for example <b>execute</b>,
+that takes a pointer to a tree node as argument.
+This function should examine the type field
+in the node, and, depending on the type of node,
+perform the proper action.
+
+</p><p>
+
+For example, if the type of node is '+',
+your function should first evaluate (that is, "calculate the value of")
+the arguments,
+by calling itself recursively with the two sub-trees of the nodes
+as arguments.
+Then it should perform the addition,
+and finally return the result.
+
+</p><p>
+
+Control structures, such as the <b>if</b> statement,
+can be handled in a similar way,
+except that sometimes some arguments should <i>not</i>
+be evaluated.  
+
+
+
+</p><h2>Report!</h2>
+
+Show your results and discuss them with the teacher,
+<br>
+<i>or</i>,
+<br>
+send an
+<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=KOI%20lab%206">e-mail</a>:
+<ul>
+<li> 
+The e-mail should contain clear and full explanations of what you have done.
+</li><li>
+Include well-chosen and commented test runs with input and output.
+</li><li>
+Send your e-mail in plain text format,
+not as HTML or Word documents
+or with unnecessary attachments.
+</li><li>
+Include relevant source code, with any changes clearly marked.
+</li><li>
+Except for this report, you should <i>also</i> send all
+the source code that is required to compile the program,
+as a Zip file or equivalent.
+</li></ul>
+
+<p>
+
+</p><hr>
+
+<font size="-1">
+<a href="http://www.aass.oru.se/~tpy/">Thomas Padron-McCarthy</a>
+(<a href="mailto:Thomas.Padron-McCarthy@oru.se?subject=Kursen%20Kompilatorer%20och%20interpretatorer">Thomas.Padron-McCarthy@oru.se</a>)
+January 12, 2004
+</font>
+
+
+
+</body></html>

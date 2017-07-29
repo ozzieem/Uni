@@ -1,0 +1,63 @@
+
+#include "node.h"
+#include "lab5.tab.h"   // For NUM, ID
+#include "symbol.h"     // Symboltable in printTree
+
+// NODE FUNCTIONS 
+
+Node* mkleaf(int type, int value) {
+  Node* p = malloc(sizeof(*p));
+  p->type = type;
+  p->leaf_value = value;
+  return p;
+}
+
+Node* mknode(int type, Node* left, Node* right) {
+  Node* p = malloc(sizeof(*p));
+  p->type = type; 	//	printf("%c\n", type);
+  p->left = left; 	//	printf("%d\n", left->leaf_value);
+  p->right = right; //	printf("%d\n", right->leaf_value);
+  return p;
+}
+
+
+// PRINT TREE
+
+void printTreeRec(Node *p, int level) {
+  if (p) {
+    switch(p->type) {
+      case ID: {
+        printf("%*s", 2 * level, "");
+        printf("%s\n", symtable[p->leaf_value].lexptr);
+      } break;
+
+      case NUM: {
+        printf("%*s", 2 * level, "");
+        printf("%d\n", p->leaf_value);
+      } break;
+
+      case '=':
+      case '+':
+      case '-':
+      case '*':
+      case '%':
+      case '^':
+      {
+        printf("%*s", 2*level, "");
+        printf("%c\n", p->type);
+        printTreeRec(p->left, level + 1);
+        printTreeRec(p->right, level + 1);
+      } break;
+
+      case ';': {
+        printf("%*s", 2*level, "");
+        printTreeRec(p->left, level + 1);
+        printf("%*s", 2*level, "");
+        printf(";\n");                
+        printTreeRec(p->right, level);
+      } break;
+
+      default: printf("no matched node type"); break;
+    }
+  }
+}

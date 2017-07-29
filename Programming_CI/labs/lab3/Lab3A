@@ -1,0 +1,21 @@
+Study the Makefile
+Which commands used to build <example> are written explicitly in the file? 
+
+	bison -d example.y
+	gcc -Wall -std=c99 -g   -c -o example.tab.o example.tab.c
+	flex example.l
+	gcc -Wall -std=c99 -g   -c -o lex.yy.o lex.yy.c
+
+	
+	This is the same as doing:	
+		bison -d example.y
+		flex example.l
+		gcc -o example example.tab.c lex.yy.c
+
+Are there some commands that <make> will deduce by itself?
+
+	gcc -Wall -std=c99 -g   -c -o example.tab.o example.tab.c
+	gcc -Wall -std=c99 -g   -c -o lex.yy.o lex.yy.c
+
+
+

@@ -1,0 +1,43 @@
+start -> list eof
+list -> assignment ; list
+       | empty
+assignment -> { print(id.lexeme) } id expr { symboltbl[id_index].value = stack_pop }
+expr -> term moreterms
+
+calc ->   { stack_push = element2 + element1 }
+	| { stack_push = element2 - element1 }
+	| { stack_push = element2 * element1 }
+	| { stack_push = element2 / element1 }
+
+moreterms -> 
+	+ term calc { print('+') } moreterms
+       | - term calc { print('-') } moreterms
+       | empty
+term -> factor morefactors
+
+morefactors -> 
+	* factor calc { print('*') } morefactors
+       | / factor calc { print('/') } morefactors
+       | div factor { print('DIV') } morefactors
+       | mod factor { print('MOD') } morefactors
+       | empty
+factor -> exponent moreexponents
+
+moreexponents ->
+	^ exponent calc { print('^') } moreexponents
+       | empty
+exponent -> 
+	( expr )
+       | id { print(id.lexeme) }
+       | num { print(num.value) }
+       | = expr { print('=') }
+
+
+
+Input		Postfix		Value
+2 ^ 3		2 3 ^		8
+2 ^ 3 * 4	2 3 ^ 4 *	32
+2 * 3 ^ 4	2 3 4 ^ *	162
+2 ^ 3 ^ 4	2 3 ^ 4 ^	4096
+
+

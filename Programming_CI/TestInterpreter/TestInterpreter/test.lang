@@ -1,0 +1,12 @@
+10+2
+out "Hello World"
+12
+#myVar = "Teststr"
+#myInt = 23
+#myInt2 = ""
+out #myVar
+out #myInt
+out #myInt2
+out "myInt2 = myInt"
+#myInt2 = #myInt
+out #myInt2

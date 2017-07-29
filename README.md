@@ -11,6 +11,8 @@ Programming_AVR includes all material from the course Computer Hardware and Arch
 
 Programming_C includes all assignments from the basic programming course in C. Beginner level.
 
+Programming_CI includes all assignments from the compilers and interpretators course. Advanced level.
+
 Programming_CG includes all assignments from the Computer Graphics course in OpenGL. Advanced level.
 
 Programming_Java includes all assignments from the Java for Interfaces and Networks course. Advanced level.

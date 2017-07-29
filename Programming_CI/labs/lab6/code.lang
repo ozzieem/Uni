@@ -1,0 +1,22 @@
+sum=0;
+product = 1;
+i=1;
+read(n);
+while (i < n) {
+    if (i % 100 > 0) {
+        if(i > 2) {
+            print(product);
+        } 
+        else {
+            if(sum < product) {
+                print(sum);
+            } 
+            print(i); 
+        }
+    }
+    sum = sum + i;
+    product = product * i;
+    i = i + 1;
+}
+print(sum);
+print(product);
