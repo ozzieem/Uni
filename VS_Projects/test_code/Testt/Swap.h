@@ -1,5 +1,7 @@
 #include "Libs.h"
 
+// Swap int values by value, reference and pointer
+
 static void swap1(int a, int b) {
 	int tmp = a;
 	a = b;

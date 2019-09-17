@@ -16,10 +16,10 @@
 
 int main() {
 	//RunHasPair();
-	//RunReverseString();
+	RunReverseString();
 	//RunInheritance();
 	//RunThread();
-	RunSwap();
+	//RunSwap();
 
 	_getch();
 }

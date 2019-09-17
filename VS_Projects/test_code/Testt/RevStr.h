@@ -1,28 +1,4 @@
 #include "Libs.h"
-#if 0
-static void ReverseWithPointer(char* str)
-{
-
-	std::cout << str << " -> ";
-
-	char* start = str;
-	char* end = str;
-
-	if (strlen(str) % 2)
-		end = str + sizeof(str);
-	else
-		end = str + sizeof(str) + 1;
-	
-	while (end > start)
-	{
-		char tmp = *start;
-		*start++ = *end;
-		*end-- = tmp;
-	}
-
-	printf("%s\n", str);
-}
-#endif
 
 static int GetStringLength(char* s) {
 	int len = 0;
@@ -34,6 +10,44 @@ static void SwapChar(char &s1, char &s2) {
 	char tmp = s1;
 	s1 = s2;
 	s2 = tmp;
+}
+
+static void SwapCharWithPointers(char* ch1_ptr, char* ch2_ptr)
+{
+	char swap_ptr = *ch1_ptr;
+	*ch1_ptr = *ch2_ptr;
+	*ch2_ptr = swap_ptr;
+}
+
+static void ReverseWithPointer(char* str)
+{
+	std::cout << str << " -> ";
+
+	const short length = GetStringLength(str);
+
+	// Set pointers to beginning of string
+	char* begin_ptr = str;
+	char* end_ptr = str;
+
+	// Move the end_ptr to the last character 
+	for (unsigned int i = 0; i < length - 1; i++)
+	{
+		end_ptr++;
+	}
+
+	char swap_ptr;
+
+	for (unsigned int i = 0; i < length / 2; i++) {
+
+		// Swap the pointers with eachother, thus swapping the character they point to
+		SwapCharWithPointers(end_ptr, begin_ptr);
+
+		// and move pointers to the new characther
+		begin_ptr++;
+		end_ptr--;
+	}
+
+	printf("%s\n", str);
 }
 
 static void ReverseWithArray(char* s) {
@@ -52,7 +66,7 @@ static void ReverseWithArray(char* s) {
 static void RunReverseWithPointer(char s[]) {
 	char buffer[16];
 	strcpy_s(buffer, s);
-	//ReverseWithPointer(buffer);
+	ReverseWithPointer(buffer);
 }
 
 static void RunReverseWithArray(char s[]) {

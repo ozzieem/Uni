@@ -2,6 +2,8 @@
 #include <mutex>
 #include <thread>
 
+// Multi-threaded counting towards a value
+
 int g_i = 0;
 int iterations = 5;
 std::mutex g_i_mutex;  // protects g_i
